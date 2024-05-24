@@ -2,4 +2,4 @@
 # Organizing file for calling the starting level
 
 label start:
-    jump level_1_start
+    jump level_0_start

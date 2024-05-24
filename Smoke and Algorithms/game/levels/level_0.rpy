@@ -1,17 +1,17 @@
 ﻿#Smoke and Algorithms - Project 2024 SECont
 
 
-define PN = Character("[PN]")
+define PC = Character("[PN]", what_prefix='"', what_suffix='"')
 default PN = "Robert Paulson"
 default gender = "neutral"
 default heshe = "they"
 default himher = "them"
 default hishers = "their"
-define A = Character("Alex",color="7FFF00")
-define F = Character("Felix",color="00008B")
-define L = Character("Leoni",color="FF7F50")
+define A = Character("Alex", what_prefix='"', what_suffix='"', color="7FFF00")
+define F = Character("Felix", what_prefix='"', what_suffix='"', color="00008B")
+define L = Character("Leoni", what_prefix='"', what_suffix='"', color="FF7F50")
 
-label level_1_start:
+label level_0_start:
 
     scene introduction and name
     "Buckle up for a journey where trust is a weapon, truth is a labyrinth, and the choices you make could unravel a conspiracy that reaches far beyond the walls of your imagination"
@@ -46,7 +46,7 @@ label dorm_1:
     
     "[PN], [hishers] dark hair pulled into a messy bun, sits hunched over [hishers] laptop, the glow of the screen illuminating the intricate henna tattoos on [hishers] left hand."
 
-    PN "I can't focus. Complex systems theory is proving to be...well, complex. My eyes glaze over the lines of code and algorithms, and my mind starts to drift."
+    PC "I can't focus. Complex systems theory is proving to be...well, complex. My eyes glaze over the lines of code and algorithms, and my mind starts to drift."
 
     "Alex, sprawled across the floor amidst a sea of open books, lets out a dramatic sigh."
 
@@ -54,7 +54,7 @@ label dorm_1:
 
     "[PN] chuckles, a welcome distraction from [hishers] studies."
 
-    PN "Don't worry, Alex. We're almost through this. Just a few more hours of this delightful torture."
+    PC "Don't worry, Alex. We're almost through this. Just a few more hours of this delightful torture."
 
     "Alex groans dramatically, then reaches for a half-eaten slice of pizza."
 
@@ -89,7 +89,7 @@ label dorm_1:
     "[PN] looks between Alex and Leoni, weighing her options."
 
 menu:
-    "(Alex' breaking the silence, his voice filled with concern) Do you think we should go after him?":
+    "0h concern) Do you think we should go after him?":
         jump choice1_follow
     
     "(Leoni pushing up her glasses) Or maybe we should see what's on this drive first?":
@@ -102,7 +102,7 @@ label choice1_follow:
 
         $ menu_flag = True
 
-        PN "We can't just let him run off like that. He's obviously terrified. Something's wrong."
+        PC "We can't just let him run off like that. He's obviously terrified. Something's wrong."
         "[PN] rushes out the door, following the direction Felix took. Alex and Leoni exchange a worried glance before hurrying after [himher]."
 
         jump choice1_done
@@ -111,7 +111,7 @@ label choice1_check:
 
         $ menu_flag = True
 
-        PN "He said this was important. Maybe it has answers. Leoni, can you take a look?"
+        PC "He said this was important. Maybe it has answers. Leoni, can you take a look?"
         "Leoni nods, taking the flash drive from [PN]. She plugs it into her laptop and begins examining its contents."
 
         jump choice1_done
@@ -129,5 +129,5 @@ label choice1_ignore:
 label choice1_done:
 
     "At this point the fork is Storygame (Option 1), Minigame (Option 2) and Sideline (Option 3)"
- 
+    jump level_1_start
     return 
