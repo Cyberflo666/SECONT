@@ -1,0 +1,11 @@
+# Compiled Renpy scripts
+*.rpyc
+
+# Visual studio
+*.vscode
+
+# Caches and Saves
+cache
+saves
+log.txt
+project.json
