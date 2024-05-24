@@ -10,6 +10,7 @@ default hishers = "their"
 define A = Character("Alex", what_prefix='"', what_suffix='"', color="7FFF00")
 define F = Character("Felix", what_prefix='"', what_suffix='"', color="00008B")
 define L = Character("Leoni", what_prefix='"', what_suffix='"', color="FF7F50")
+define J = Character("Janitor", what_prefix='"', what_suffix='"', color="AA4473")
 
 label level_0_start:
 
@@ -89,7 +90,7 @@ label dorm_1:
     "[PN] looks between Alex and Leoni, weighing her options."
 
 menu:
-    "0h concern) Do you think we should go after him?":
+    "(you raise your concern) Do you think we should go after him?":
         jump choice1_follow
     
     "(Leoni pushing up her glasses) Or maybe we should see what's on this drive first?":

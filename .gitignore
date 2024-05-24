@@ -7,5 +7,5 @@
 # Caches and Saves
 cache
 saves
-log.txt
+*.txt
 project.json
