@@ -1,4 +1,4 @@
-﻿#Smoke and Algorithms - Project 2024 SECont
+﻿#Smoke and Algorithms - Project 2024 SECont 
 
 
 define PC = Character("[PN]", what_prefix='"', what_suffix='"')
