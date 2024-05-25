@@ -4,6 +4,10 @@
 # Visual studio
 *.vscode
 
+# Visuals and SFX
+images
+sound
+
 # Caches and Saves
 cache
 saves
