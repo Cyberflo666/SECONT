@@ -4,6 +4,8 @@ define window_not_done = True
 define lock_not_done = True
 
 
+
+
 label level_1_start:
     scene bg dorm room
     A "\"We have to get our hands on the info inside this drive. Felix wouldn't have just handed it to us if this wasn't important to him."
@@ -126,35 +128,40 @@ menu:
 
 label felix_room:
     L "Wow, this room is quite messy."
-
     A "Well, Felix did leave in a rush."
-
     PC "Let's focus on why we're here. We don't have time to waste. Who knows if and when the janitor will return to lock the door."
-
     A "What exactly are we looking for, anyway?"
-
     L "Typically, people choose passwords they can easily remember. Given Felix's conspiratorial nature, I doubt he has something simple like \"qwerty\" , \"123456\" or \"password.\" Let's look around for any hints."
 
 menu:
     "Look through his notebooks":
-        "you find a big conspiracy theory book, that is sticking out"
+        "you find a big conspiracy theory book, that is sticking out [[9/11]"
+        jump felix_room
 
     "Search through his bin":
-        "bla"
+        "you find only trash, some empty packaging"
+        jump felix_room
 
     "Search under his bed":
-        "ka"
+        "dirty clothes, empty bottles, and spiderwebs are the only things facing you"
+        jump felix_room
 
     "Look at his posters":
-        "da"
+        "you catch sight of a portal poster. The following quote sticks out:\"the cake is a lie\""
+        jump felix_room
 
     "Look at the pictures on the shelf":
-        "bra"
+        "your eyes meet a Calnder with marked dates. A red circled date [[04/17] labeld with mothers birthday stands out"
+        jump felix_room
 
     "Examine the map":
-        "kjhguvadfs"
+        "You catch sight of a Nevada map, with multiple pins on an [[Area51]"
+        jump felix_room
 
-
+    "Pull the phone out to crack the password":
+        jump phone_minigame
+        #add minigame
+       
 label game_over:
     "YOU DIED"
 
