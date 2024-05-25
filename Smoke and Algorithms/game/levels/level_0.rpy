@@ -10,6 +10,11 @@ default hishers = "their"
 define A = Character("Alex", what_prefix='"', what_suffix='"', color="7FFF00")
 define F = Character("Felix", what_prefix='"', what_suffix='"', color="00008B")
 define L = Character("Leoni", what_prefix='"', what_suffix='"', color="FF7F50")
+define follow = False
+define check = False
+define ignore = False
+image bg dogmeat = "dogfood.png"
+
 
 label level_0_start:
 
@@ -19,12 +24,12 @@ label level_0_start:
     $ PN = renpy.input("Enter your name.", "Robert Paulson", length=15, exclude=" 0123456789+=,.?!<>[]{}").strip() 
     menu:
         "Are you..."
-        "Male":
+        "A Boy":
             $ gender = "male"
             $ heshe = "he"
             $ himher = "him"
             $ hishers = "his"
-        "Female":
+        "A Girl":
             $ gender = "female"
             $ heshe = "she"
             $ himher = "her"
@@ -89,36 +94,30 @@ label dorm_1:
     "[PN] looks between Alex and Leoni, weighing her options."
 
 menu:
-    "0h concern) Do you think we should go after him?":
-        jump choice1_follow
+    "(Alex' breaking the silence, his voice filled with concern)) Do you think we should go after him?":
+        $ follow = True
+        jump choice0_done
     
     "(Leoni pushing up her glasses) Or maybe we should see what's on this drive first?":
-        jump choice1_check
+        $ check = True
+        jump choice0_done
 
     "This could be dangerous. Maybe we shouldn't get involved.":
-        jump choice1_ignore
+        $ ignore = True
+        jump choice0_done
+        
+label choice0_done:
+    if ignore == True:
+        jump choice0_ignore
+    elif check == True:
+        jump choice0_check
+    elif follow == True:
+        jump choice0_follow
 
-label choice1_follow:
 
-        $ menu_flag = True
+label choice0_ignore:
 
-        PC "We can't just let him run off like that. He's obviously terrified. Something's wrong."
-        "[PN] rushes out the door, following the direction Felix took. Alex and Leoni exchange a worried glance before hurrying after [himher]."
-
-        jump choice1_done
-
-label choice1_check:
-
-        $ menu_flag = True
-
-        PC "He said this was important. Maybe it has answers. Leoni, can you take a look?"
-        "Leoni nods, taking the flash drive from [PN]. She plugs it into her laptop and begins examining its contents."
-
-        jump choice1_done
-
-label choice1_ignore:
-
-        $ menu_flag = False
+        scene bg dogmeat
 
         A "(His eyes widening in disbelief) Are you serious? [PN], Felix is our friend. We can't just abandon him!"
 
@@ -126,8 +125,75 @@ label choice1_ignore:
 
         "[PN] hesitates, torn between caution and concern for [hishers] friend."
 
-label choice1_done:
+        A "Exactly! And that's why we need to find out. Come on, [PN], let's go after him."
+   
+        L "I'll stay here and see if I can find anything on the drive. Maybe it'll give us some clues."
 
-    "At this point the fork is Storygame (Option 1), Minigame (Option 2) and Sideline (Option 3)"
-    jump level_1_start
-    return 
+        "[PN] hesitates, torn between caution and concern for [hishers] friend. But the weight of the unknown proves too heavy. [PN] sinks back onto [hishers] bed, a sense of unease settling in."
+
+        A "(Frustration edging into his voice) Seriously? We're just going to let him disappear? What if he's in real trouble?"
+
+        PC "I... I don't know what to do. I'm scared."
+
+        "Leoni looks up from her laptop, her expression a mix of concern and determination."
+
+        L "I'm not finding anything on this drive yet. It's encrypted. But I'll keep trying. In the meantime, maybe we should just... wait and see?"
+
+        "Hours turn into days, and Felix remains missing. The unanswered questions gnaw at [PN], a constant reminder of their inaction. The flash drive remains a mystery, its secrets locked away."
+
+        "Weeks later, a small article buried in a conspiracy theory tabloid catches [PN]'s eye. The headline reads: 'Shocking Discovery: Human DNA Found in Dog Food.'"
+
+        "A chill runs down [PN]'s spine. The article details a bizarre finding at a local pet food factory, a trace of human genetic material amidst the meat and grains. The source of the DNA remains unknown, the investigation ongoing."
+
+        "[PN] can't shake the feeling that this is somehow connected to Felix, to BioSyn, to the cryptic warning he delivered that fateful night. But without proof, it's just another unsolved mystery, a whisper in the wind."
+
+        "The weight of regret settles heavily on [PN]'s shoulders. The choice to ignore Felix's plea, to prioritize safety over friendship, has left a bitter taste in [hishers] mouth. The story ends not with a bang, but with a whimper, a silent echo of what could have been."
+
+        
+
+        return
+ 
+label choice0_check:
+
+        PC "He said this was important. Maybe it has answers. Leoni, can you take a look?"
+        
+        "Leoni nods, taking the flash drive from [PN]. She plugs it into her laptop and begins examining its contents."
+
+        "Her fingers fly across the keyboard, a series of complex commands appearing on the screen."
+
+        L "It's encrypted...heavily. This isn't something I can crack easily. We'll need more information, maybe something in Felix's room can help."
+
+        A "His room? You think he might have left something behind?"
+
+        PC "It's worth a shot. Let's go check it out."
+
+        "The three friends leave the dorm room, a sense of urgency propelling them towards Felix's room. The encrypted drive seems to be a dead end for now, but perhaps the answers they seek lie hidden elsewhere."
+
+        jump level_1_start
+
+label choice0_follow:
+        
+        PC "We can't just let him run off like that. He's obviously terrified. Something's wrong."
+
+        "[PN] rushes out the door, following the direction Felix took. Alex and Leoni exchange a worried glance before hurrying after [himher]."
+
+        "The hallway is dimly lit, the air heavy with the scent of stale pizza and disinfectant. Felix is nowhere to be seen. [PN] quickens [hishers] pace, [hishers] heart pounding in [hishers] chest."
+
+        A "Felix! Where are you?"
+
+        "Their voices echo down the empty corridor, but there's no response. They search every nook and cranny, every possible hiding spot, but Felix is gone."
+
+        PC "Damn it! We lost him."
+
+        "Defeated, they return to the dorm room, the silence amplifying their worry. Leoni picks up the flash drive Felix left behind, a sense of urgency washing over her."
+
+        L "We have to figure out what's on this drive. Maybe it holds the answers to where Felix went and what he's so scared of."
+
+        $ follow = False
+
+        $ check = True
+
+        jump choice0_done
+
+
+return 
