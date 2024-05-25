@@ -10,8 +10,8 @@ define map_seen = False
 
 
 label level_1_start:
-    scene bg dorm room
-    A "\"We have to get our hands on the info inside this drive. Felix wouldn't have just handed it to us if this wasn't important to him."
+    scene bg common area
+    A "We have to get our hands on the info inside this drive. Felix wouldn't have just handed it to us if this wasn't important to him."
     
 menu:
     "Yes, we should go to the police and hand them the drive, they will know what to do":
@@ -21,20 +21,24 @@ menu:
         jump choice_1_1_room
 
 label choice_1_1_police:
+    scene bg police
     "The police take the flash drive as evidence and you don't ever hear anything of the case again."
     "...or of Felix."
-    "Game Over"
-    return
+    jump game_over
 
 label choice_1_1_room:
+    scene bg hallway
     "You step out into the hallway and head towards Felix's room but find out that it's locked."
+    show bg felix door
     L "As I expected, too bad he is too paranoid to let his door open like the rest of us."
     jump choice_1_1_done
 
 label choice_1_1_done:
+    show bg felix door
     A "So. Anyone's got a clue as to how we're going to get into his room"
 
 label menu_1_2:
+    show bg felix door
 menu:
     "Take a look at his windows" if window_not_done:
         PC "His windows, if they're still open, Leonie can climb up there and open the door from inside"
@@ -61,6 +65,7 @@ menu:
         jump choice_1_2_lock_pick
 
 label choice_1_2_windows:
+    scene bg windows
     "Looks like luck is not on your side today. The window to his room is closed and there is no way to open it except brute force."
     "Since you neither want to break your friends window nor get in trouble with the janitor you decide to look for another way in."
     $ window_not_done = False
@@ -83,6 +88,7 @@ menu:
         A "Alright alright I'll do it but you better have my back"
         L "Sure thing Felix"
         A "Ha Ha"
+        scene bg hallway
         "All three of you head out to find the janitor. Traversing the building you see him in a hallway heading your dircetion"
         PC "Showtime Alex."
         A "Pshhh."
@@ -98,6 +104,7 @@ menu:
         L "His roommates"
         "(he checks his phone again:)"
         J "Ah okay I see. Well, lets go to your room shall we."
+        scene bg felix door
         "The four of you go to felix's room where the janitor opens the door for you."
         J "So about a replacement key..."
         A "That wont be necessary. I've just got a message from a friend who found my key. Seems like i forgot them at his place."
@@ -114,6 +121,7 @@ menu:
         A "Everyone is vulnerable to money"
         A "If I offer him a few bucks he surely won't say no to lending us his keys for a minute"
         PC "All right Alex, you have my trust"
+        scene bg hallway
         "Alex leaves behind the corner and heads to the janitor."
         "You hear a loud exchange of words and soon after Alex returns defeated"
         A "He said wasn't taking any money from me"
@@ -124,12 +132,14 @@ menu:
         PC "How about I go grab his keys"
         A "I'm not so sure this is a good idea"
         PC "Leave it to me. I've seen it in plenty of movies"
+        scene bg hallway
         "As you approach the janitor you stumble in front of him on purpose, fall right onto him and get a hold of his key chain"
         "The victorious spirits start rushing to your brain, but as you pull on his keys they won't come loose"
         "The janitor, visibly furious of what stunt you're trying to pull off here, grabs you by the shirt and shoves you against the wall"
         jump game_over
 
 label felix_room:
+    scene bg felix room
     L "Wow, this room is quite messy."
     A "Well, Felix did leave in a rush."
     PC "Let's focus on why we're here. We don't have time to waste. Who knows if and when the janitor will return to lock the door."

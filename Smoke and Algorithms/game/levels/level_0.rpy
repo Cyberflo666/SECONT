@@ -14,7 +14,7 @@ define J = Character("Janitor", what_prefix='"', what_suffix='"', color="AA4473"
 
 label level_0_start:
 
-    scene introduction and name
+    scene bg common area
     "Buckle up for a journey where trust is a weapon, truth is a labyrinth, and the choices you make could unravel a conspiracy that reaches far beyond the walls of your imagination"
 
     $ PN = renpy.input("Enter your name.", "Robert Paulson", length=15, exclude=" 0123456789+=,.?!<>[]{}").strip() 
@@ -38,10 +38,6 @@ label level_0_start:
 
 
 label dorm_1:
-
-    scene dorm room
-
-    scene A DORM ROOM - LATE AFTERNOON
 
     "The late afternoon sun filters through the blinds, casting long shadows across a cluttered dorm room. Books, papers, and empty snack wrappers are scattered haphazardly across the floor, a testament to the chaotic energy of finals week."
     
@@ -103,6 +99,7 @@ label choice1_follow:
 
         $ menu_flag = True
 
+        scene bg hallway blur
         PC "We can't just let him run off like that. He's obviously terrified. Something's wrong."
         "[PN] rushes out the door, following the direction Felix took. Alex and Leoni exchange a worried glance before hurrying after [himher]."
 
@@ -129,6 +126,6 @@ label choice1_ignore:
 
 label choice1_done:
 
+    scene bg common area
     "At this point the fork is Storygame (Option 1), Minigame (Option 2) and Sideline (Option 3)"
     jump level_1_start
-    return 
