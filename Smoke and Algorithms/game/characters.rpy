@@ -41,6 +41,12 @@ image alex surprised:
 image alex smile:
     "images/characters/Player/Male/pcm smile.png"
     zoom 1.4
+transform alex_right:
+    xalign 1.65
+    yalign -0.8
+transform alex_midleft:
+    xalign 0.15
+    yalign -0.8
 
 # Janitor
 image janitor neutral1:
@@ -55,3 +61,9 @@ image janitor smile:
 image janitor thinking:
     "images/characters/Janitor/janitor thinking.png"
     zoom 0.85
+transform janitor_right:
+    xalign 1.1
+    yalign 1.0
+transform janitor_middle:
+    xalign 0.5
+    yalign 1.0
