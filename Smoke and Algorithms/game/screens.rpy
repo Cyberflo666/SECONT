@@ -231,7 +231,7 @@ style choice_button_text is default:
     properties gui.text_properties("choice_button")
 
 
-## Quick Menu screen ###########################################################
+## Quick Menu screen fr###########################################################
 ##
 ## The quick menu is displayed in-game to provide easy access to the out-of-game
 ## menus.
@@ -247,8 +247,7 @@ screen quick_menu():
             style_prefix "quick"
 
             xalign 0.5
-            yalign 1.0
-
+            yalign 0.985
             textbutton _("Back") action Rollback()
             textbutton _("History") action ShowMenu('history')
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
@@ -264,7 +263,7 @@ screen quick_menu():
 init python:
     config.overlay_screens.append("quick_menu")
 
-default quick_menu = True
+default quick_menu = False
 
 style quick_button is default
 style quick_button_text is button_text
@@ -274,7 +273,7 @@ style quick_button:
 
 style quick_button_text:
     properties gui.text_properties("quick_button")
-
+    idle_color "#000000"
 
 ################################################################################
 ## Main and Game Menu Screens
