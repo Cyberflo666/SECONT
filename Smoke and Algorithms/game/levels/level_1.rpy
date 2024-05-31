@@ -1,3 +1,5 @@
+$ renpy.include("inventory.rpy")
+
 #Smoke and Algorithms - Project 2024 SECont
 
 define window_not_done = True
@@ -10,6 +12,7 @@ define map_seen = False
 
 
 label level_1_start:
+    show screen phone_icon
     scene bg common area
 
     show alex neutral:
