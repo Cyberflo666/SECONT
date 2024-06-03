@@ -315,13 +315,13 @@ label felix_room_menu:
     with dissolve
 
     "use your phone to crack the password"
+    jump felix_room_menu
+
+"""
 menu:
-    
-
     "Pull the phone out to crack the password":
-        jump phone_minigame
         #add minigame
-
+"""
 
 label notebooks:
     hide screen felixes_bin
@@ -456,6 +456,16 @@ label pc:
 
 label phone_minigame:    
 label password_cracked:
+    hide screen felixes_bin
+    hide screen felixes_bed
+    hide screen felixes_pc
+    hide screen felixes_notebook
+    hide screen felixes_map
+    hide screen felixes_wall1
+    hide screen felixes_wall2
+    hide screen felixes_wall3
+    hide screen phone_icon
+    hide screen phone_hand
     show leonie happy at left
     with dissolve
 

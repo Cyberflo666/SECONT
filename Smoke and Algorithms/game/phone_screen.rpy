@@ -25,7 +25,7 @@ transform phone_pos:
     yalign 1.28
 
 transform arrow_pos:
-    xalign 0
+    xalign 3
     yalign 0
 
 screen phone_hand():
@@ -36,11 +36,17 @@ screen phone_hand():
         zoom 1.3
         xalign 0.7
     
+    # Return arrow
     imagebutton auto "images/objects/phone/return_arrow_%s.png":
         hover "return_arrow_hover" at arrow_pos
         idle "return_arrow_idle" 
         focus_mask True
         action Hide("phone_hand"), Show("phone_icon")
+    
+    # Enter Password
+    imagebutton auto "images/objects/phone/enter password %s.png":
+        focus_mask True
+        action Jump("password_cracked")
 
     
 
