@@ -1,22 +1,22 @@
 $ renpy.include("screens.rpy")
 
 image phone_icon_hover :
-    "images/objects/Phone/phone_hover.png"
+    "images/objects/phone/phone_hover.png"
     zoom 0.15
    
 
 image phone_icon_idle :
-    "images/objects/Phone/phone_idle.png"
+    "images/objects/phone/phone_idle.png"
     zoom 0.15
     
 
 image return_arrow_hover :
-    "images/objects/Phone/return_arrow_hover.png"
+    "images/objects/phone/return_arrow_hover.png"
     zoom 0.3
     
 
 image return_arrow_idle :
-    "images/objects/Phone/return_arrow_idle.png"
+    "images/objects/phone/return_arrow_idle.png"
     zoom 0.3
    
 
@@ -32,11 +32,11 @@ screen phone_hand():
     zorder 2
     modal True
 
-    image "images/objects/Phone/phone hand.png":
+    image "images/objects/phone/phone hand.png":
         zoom 1.3
         xalign 0.7
     
-    imagebutton auto "images/objects/Phone/return_arrow_%s.png":
+    imagebutton auto "images/objects/phone/return_arrow_%s.png":
         hover "return_arrow_hover" at arrow_pos
         idle "return_arrow_idle" 
         focus_mask True

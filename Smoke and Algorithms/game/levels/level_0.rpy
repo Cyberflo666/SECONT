@@ -73,12 +73,12 @@ label dorm_1:
 
     A "If caffeine and sugar were the keys to academic success, we'd all be Nobel laureates by now."
     
-    show leoni neutral at left
+    show leonie neutral at left
     with dissolve 
 
     "A comfortable silence settles over the room, punctuated only by the rhythmic tapping of Leoni's keyboard from her beanbag chair in the corner."
 
-    show leoni sad at left
+    show leonie sad at left
     with dissolve
 
     L "Hey, have either of you seen Felix today? He hasn't answered any of my texts."
@@ -97,7 +97,7 @@ label dorm_1:
 
     A "Actually, now that you mention it... he seemed a little freaked out this morning. Almost like he was...scared"
 
-    show leoni surprised at left
+    show leonie surprised at left
     with dissolve 
 
     L "Scared? Of what?"
@@ -105,7 +105,7 @@ label dorm_1:
     A "I don't know. He was mumbling something about his internship at BioSyn, some experiment called NeuroMend... It was all very cryptic."
 
     hide alex
-    hide leoni
+    hide leonie
     with dissolve
 
     "Suddenly, the dorm room door is thrown open, slamming against the wall with a resounding crash."
@@ -128,7 +128,7 @@ label dorm_1:
     "The air crackles with tension, and a million thoughts race through my mind. What was that all about? Why is Felix so scared? What's on this flash drive? The flash drive feels heavy in [PN]'s hand."
 
     show alex surprised at alex_right
-    show leoni surprised at left
+    show leonie surprised at left
     with dissolve 
 
     "[PN] looks between Alex and Leoni, weighing her options."
@@ -165,7 +165,7 @@ label choice0_ignore:
 
         A "(His eyes widening in disbelief) Are you serious? [PN], Felix is our friend. We can't just abandon him!"
 
-        show leoni thinking at left
+        show leonie thinking at left
         with dissolve
 
         L "Besides, curiosity is killing me. I want to know what's on that drive."
@@ -177,7 +177,7 @@ label choice0_ignore:
 
         A "Exactly! And that's why we need to find out. Come on, [PN], let's go after him."
 
-        show leoni serious at left
+        show leonie serious at left
         with dissolve
    
         L "I'll stay here and see if I can find anything on the drive. Maybe it'll give us some clues."
@@ -193,14 +193,14 @@ label choice0_ignore:
 
         "Leoni looks up from her laptop, her expression a mix of concern and determination."
 
-        show leoni sad at left
+        show leonie sad at left
         with dissolve
 
         L "I'm not finding anything on this drive yet. It's encrypted. But I'll keep trying. In the meantime, maybe we should just... wait and see?"
 
         hide alex
 
-        hide leoni
+        hide leonie
 
         "Hours turn into days, and Felix remains missing. The unanswered questions gnaw at [PN], a constant reminder of their inaction. The flash drive remains a mystery, its secrets locked away."
 
@@ -223,14 +223,14 @@ label choice0_check:
 
         PC "He said this was important. Maybe it has answers. Leoni, can you take a look?"
 
-        show leoni serious at left
+        show leonie serious at left
         with dissolve
         
         "Leoni nods, taking the flash drive from [PN]. She plugs it into her laptop and begins examining its contents."
 
         "Her fingers fly across the keyboard, a series of complex commands appearing on the screen."
 
-        show leoni sad at left
+        show leonie sad at left
         with dissolve
 
         L "It's encrypted...heavily. This isn't something I can crack easily. We'll need more information, maybe something in Felix's room can help."

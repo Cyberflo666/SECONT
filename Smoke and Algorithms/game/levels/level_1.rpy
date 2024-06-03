@@ -13,17 +13,6 @@ define newspaper_seen = False
 
 
 label level_1_start:
-    scene bg common area
-    with dissolve
-
-    show alex neutral:
-        xalign 1.65
-        yalign -0.8
-
-    show leoni neutral at left
-    with dissolve
-
-
     A "We have to get our hands on the info inside this drive. Felix wouldn't have just handed it to us if this wasn't important to him."
 
 menu:
@@ -47,13 +36,15 @@ label choice_1_1_room:
 
     "You step out into the hallway and head towards Felix's room but find out that it's locked."
     show bg felix door
-    show leoni serious at left
+    show leonie serious at left
+    with dissolve
+
     L "As I expected, too bad he is too paranoid to let his door open like the rest of us."
     jump choice_1_1_done
 
 label choice_1_1_done:
     show bg felix door
-    show leoni neutral at left
+    show leonie neutral at left
     show alex smile at alex_right
     with dissolve
 
@@ -61,14 +52,14 @@ label choice_1_1_done:
 
 label menu_1_2:
     show bg felix door
-    show leoni neutral at left
+    show leonie neutral at left
     show alex neutral at alex_right
     with dissolve
 
 menu:
     "Take a look at his windows" if window_not_done:
         PC "His windows, if they're still open, Leonie can climb up there and open the door from inside"
-        show leoni surprised at left
+        show leonie surprised at left
         with dissolve
 
         L "What..."
@@ -76,7 +67,7 @@ menu:
         with dissolve
 
         A "Good idea, you're probably the smallest one of us so you're most likely to fit through"
-        show leoni thinking at left
+        show leonie thinking at left
         with dissolve
 
         L "Well if you insist it's worth a try i guess"
@@ -85,7 +76,7 @@ menu:
 
     "Get help from the Janitor":
         PC "The janitor probably has a master key. Maybe we can ask him for help?"
-        show leoni thinking at left
+        show leonie thinking at left
         with dissolve
 
         L "If he opens up random rooms by request, he'd be a pretty poor janitor."
@@ -95,13 +86,13 @@ menu:
 
         A "Right, but maybe we can trick or pay him."
 
-        show leoni neutral at left
+        show leonie neutral at left
         with dissolve
 
         L "Or steal his key"
         PC "Really???"
 
-        show leoni serious at left
+        show leonie serious at left
         with dissolve
 
         L "Its an emergency. And it's not like we're going to keep it"
@@ -109,7 +100,7 @@ menu:
 
     "Pick the lock" if lock_not_done:
         PC "Can one of you pick locks. Shouldn't be too hard right?"
-        show leoni serious at left
+        show leonie serious at left
         with dissolve
 
         L "I have a few paper clips in my room we could use, but no idea how to pick a lock with the."
@@ -142,7 +133,7 @@ menu:
         with dissolve
 
         A "Yeaaah, im not so sure about that"
-        show leoni thinking at left
+        show leonie thinking at left
         with dissolve
 
         L "Dont be so humble. Your the most charismatic out of us and your Felix impression is unmatched. Besides you look the most like him"
@@ -151,7 +142,7 @@ menu:
 
         A "Thats great and all but I think we're counting on him not knowing who felix is, because otherwise we're screwed"
         PC "Either way you're our best shot and we need to get into this room"
-        show leoni neutral at left
+        show leonie neutral at left
         with dissolve
 
         L "And since we a re Felixe's room mates we can back up your story"
@@ -159,7 +150,7 @@ menu:
         with dissolve
 
         A "Alright alright I'll do it but you better have my back"
-        show leoni happy at left
+        show leonie happy at left
         with dissolve
 
         L "Sure thing Felix"
@@ -188,7 +179,7 @@ menu:
         J "One second.\" (he checks his phone for a few moments) \"You're from room 014?"
         A "Yes."
         J "And you two are?"
-        show leoni neutral at left
+        show leonie neutral at left
         with dissolve
 
         L "Leonie."
@@ -209,7 +200,7 @@ menu:
         with dissolve
 
         A "That wont be necessary. I've just got a message from a friend who found my key. Seems like i forgot them at his place."
-        show janitor angry at janitor_angry_right
+        show janitor angry #at janitor_angry_right
         with dissolve
         J "And you didn't think of that before?."
 
@@ -218,12 +209,12 @@ menu:
         with dissolve
 
         A "Apperently not."
-        show janitor thinking at janitor_right
-        with dissolve
 
         "the janitor looks at Alex with disapprovement"
         A "Still. Thanks a lot for helping me out."
         J "Just don't lose them again you hear me"
+        show janitor thinking at janitor_right
+        with dissolve
         A "I promise"
         show janitor smile at janitor_right
         with dissolve
@@ -251,7 +242,7 @@ menu:
 
         A "He said wasn't taking any money from me"
 
-        show leoni sad at left
+        show leonie sad at left
         with dissolve
 
         L "Damn, I suspect he won't fall for any of our tricks now"
@@ -273,7 +264,7 @@ menu:
 
         "As you approach the janitor you stumble in front of him on purpose, fall right onto him and get a hold of his key chain"
 
-        show janitor angry at janitor_angry_middle
+        show janitor angry #at janitor_angry_middle
         show bg hallway blur
         with vpunch
 
@@ -287,7 +278,7 @@ menu:
 label felix_room:
     scene bg felix room
     show alex neutral at alex_right
-    show leoni neutral at left
+    show leonie neutral at left
     with dissolve
 
 
@@ -304,7 +295,7 @@ label felix_room:
 
     A "What exactly are we looking for, anyway?"
 
-    show leoni thinking at left
+    show leonie thinking at left
     with dissolve
 
     L "Typically, people choose passwords they can easily remember. Given Felix's conspiratorial nature, I doubt he has something simple like \"qwerty\" , \"123456\" or \"password.\" Let's look around for any hints."
@@ -330,6 +321,7 @@ menu:
     "Pull the phone out to crack the password":
         jump phone_minigame
         #add minigame
+
 
 label notebooks:
     hide screen felixes_bin
@@ -361,7 +353,7 @@ label bin:
     scene bg f bin zoom
     with dissolve
 
-    "You close your nose with your fingers as you lean down uppon the trash bin. This is not the day to be pettily. You force yourself to take aside some old pizza crusts and used tissues."
+    "You close your nose with your fingers as you lean down uppon the trash bin. This is not the day to be petty. You force yourself to take aside some old pizza crusts and used tissues."
     "After the bin is empty you accept that you'll probably only find trash and put the garbage back into the bin."
     jump felix_room_menu
 label bed:
@@ -456,6 +448,7 @@ label pc:
     scene bg f pc zoom
     with dissolve
 
+
     "you try to get access to his PC but it's password protected"
     L "who would have thought"
     jump felix_room_menu
@@ -463,7 +456,7 @@ label pc:
 
 label phone_minigame:    
 label password_cracked:
-    show leoni happy at left
+    show leonie happy at left
     with dissolve
 
     L "Nice that did it. Time to see why he was so stressed out."
@@ -473,7 +466,7 @@ label password_cracked:
     with dissolve
 
     A "Neurological disorders, yes."
-    show leoni neutral at left
+    show leonie neutral at left
     with dissolve
 
     L "Well, according to him biosync is looking to use them for something else, but he doesn't specify what. Only that its about profit and he thinks its dangerous."
@@ -481,7 +474,7 @@ label password_cracked:
     with dissolve
 
     A "And whats up whit Bob Anderson. Any clue who that guy is."
-    show leoni serious at left
+    show leonie serious at left
     with dissolve
 
     L "Looks like he's Felixes supervisor or something."
@@ -490,7 +483,7 @@ label password_cracked:
     with dissolve
 
     A "I dont know, but he seemd really scared today. Maybe there is really more to it"
-    show leoni neutral at left
+    show leonie neutral at left
     with dissolve
 
     L "Yeah. I've never seen him like that before. Do you think they were onto him. I mean why would he give us the flash drive in such a hurry. Maybe he's been kidnapped."
@@ -498,7 +491,7 @@ label password_cracked:
     with dissolve
 
     A "Thats a pretty big jump your taking dont you think. From what we know there is no hard evidence against biosync and Felix is not known to be the most rational person."
-    show leoni thinking at left
+    show leonie thinking at left
     with dissolve
 
     L "Yes yes but he's not here and he hasn't answered any of our calls. Do you not think that's odd even form him."
@@ -512,7 +505,7 @@ menu:
     "Go to the police with the information you got":
         "You go to the police and show them the information you got from the drive. They ask you questions about Felix and the answers make it sound like Felix is making this whole story up."
         "The fact that you have no hard evidence to show also doesn't help. In the end the police claims the drive as property of biosync and puts out a missing person report"
-        show leoni neutral at left
+        show leonie neutral at left
         with dissolve
 
         L "Good thing I made a copy of everything so we didn't lose anything."
