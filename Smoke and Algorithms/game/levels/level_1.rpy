@@ -10,6 +10,7 @@ define calendar_seen = False
 define map_seen = False
 define newspaper_seen = False
 
+default x = 75
 
 
 label level_1_start:
@@ -165,6 +166,8 @@ menu:
         show janitor neutral1 at janitor_right
         show alex neutral at alex_midleft
         with dissolve
+
+        show screen round_rect(66)
 
         A "Excuse me, my name is Felix and I wanted to ask if you can open my room for me. It looks like I've lost my key"
 

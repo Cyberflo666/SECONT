@@ -80,3 +80,28 @@ screen felixes_wall3():
         idle "images/backgrounds/felix room/fb wall3.png" 
         focus_mask True
         action Hide("felixes_wall3"),Jump("wall3")
+
+screen round_rect(bot):
+
+        
+
+    vbar:
+        xalign 0.974 ypos 300
+        ysize 500
+        value AnimatedValue(bot,100,0.5)
+        if (bot > 74 ):
+            bottom_bar "gui/bar/bottomgreen.png"
+        elif (bot > 49):
+            bottom_bar "gui/bar/bottomyellow.png"
+        else:
+            bottom_bar "gui/bar/bottomred.png"
+
+    
+    text "TRUST":
+        xalign 0.995 ypos 250
+        size 40
+        color "00bdff"
+
+
+            
+                
