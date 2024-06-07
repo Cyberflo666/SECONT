@@ -81,17 +81,18 @@ screen felixes_wall3():
         focus_mask True
         action Hide("felixes_wall3"),Jump("wall3")
 
-screen round_rect(bot):
+screen round_rect(trust):
 
         
 
     vbar:
         xalign 0.974 ypos 300
         ysize 500
-        value AnimatedValue(bot,100,0.5)
-        if (bot > 74 ):
+        value AnimatedValue(trust,100,0.5)
+
+        if (trust > 75 ):
             bottom_bar "gui/bar/bottomgreen.png"
-        elif (bot > 49):
+        elif (trust > 40):
             bottom_bar "gui/bar/bottomyellow.png"
         else:
             bottom_bar "gui/bar/bottomred.png"

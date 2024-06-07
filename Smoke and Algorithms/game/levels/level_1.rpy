@@ -10,8 +10,7 @@ define calendar_seen = False
 define map_seen = False
 define newspaper_seen = False
 
-default x = 75
-
+define trust = 40
 
 label level_1_start:
     A "We have to get our hands on the info inside this drive. Felix wouldn't have just handed it to us if this wasn't important to him."
@@ -129,103 +128,7 @@ label choice_1_2_lock_pick:
 label choice_1_2_janitor:
 menu:
     "Try to impersonate as Felix to get him to open the door" :
-        PC "I think you have the best chances Alex"
-        show alex neutral at alex_right
-        with dissolve
-
-        A "Yeaaah, im not so sure about that"
-        show leonie thinking at left
-        with dissolve
-
-        L "Dont be so humble. Your the most charismatic out of us and your Felix impression is unmatched. Besides you look the most like him"
-        show alex smile at alex_right
-        with dissolve
-
-        A "Thats great and all but I think we're counting on him not knowing who felix is, because otherwise we're screwed"
-        PC "Either way you're our best shot and we need to get into this room"
-        show leonie neutral at left
-        with dissolve
-
-        L "And since we a re Felixe's room mates we can back up your story"
-        show alex neutral at alex_right
-        with dissolve
-
-        A "Alright alright I'll do it but you better have my back"
-        show leonie happy at left
-        with dissolve
-
-        L "Sure thing Felix"
-        A "Ha Ha"
-        show bg hallway
-        with dissolve
-
-        "All three of you head out to find the janitor. Traversing the building you see him in a hallway heading your dircetion"
-        PC "Showtime Alex."
-        A "Pshhh."
-        "You approach the janitor trying to hide your true intentions"
-        show janitor neutral1 at janitor_right
-        show alex neutral at alex_midleft
-        with dissolve
-
-        show screen round_rect(66)
-
-        A "Excuse me, my name is Felix and I wanted to ask if you can open my room for me. It looks like I've lost my key"
-
-        show janitor thinking at janitor_right
-        with dissolve
-
-        J "(he looks at you slightly annoyed and suspicious) whats your last name?"
-        A "Felixson" 
-        show janitor neutral2 at janitor_right
-        with dissolve
-
-        J "One second.\" (he checks his phone for a few moments) \"You're from room 014?"
-        A "Yes."
-        J "And you two are?"
-        show leonie neutral at left
-        with dissolve
-
-        L "Leonie."
-        PC "[PN]."
-        L "His roommates"
-        "(he checks his phone again:)"
-        show janitor thinking at janitor_right
-        with dissolve
-
-        J "Ah okay I see. Well, lets go to your room shall we."
-        show bg felix door
-        "The four of you go to felix's room where the janitor opens the door for you."
-        show janitor neutral1 at janitor_right
-        with dissolve
-
-        J "So about a replacement key..."
-        show alex smile at alex_midleft
-        with dissolve
-
-        A "That wont be necessary. I've just got a message from a friend who found my key. Seems like i forgot them at his place."
-        show janitor angry #at janitor_angry_right
-        with dissolve
-        J "And you didn't think of that before?."
-
-        A "Well... "
-        show alex neutral at alex_midleft
-        with dissolve
-
-        A "Apperently not."
-
-        "the janitor looks at Alex with disapprovement"
-        A "Still. Thanks a lot for helping me out."
-        J "Just don't lose them again you hear me"
-        show janitor thinking at janitor_right
-        with dissolve
-        A "I promise"
-        show janitor smile at janitor_right
-        with dissolve
-
-        "He takes his leave and you gained access to Felix's room:"
-        hide janitor
-        with dissolve
-
+        jump help_from_janitor
     
     "Bribe the janitor":
         show alex smile at alex_right
@@ -277,6 +180,202 @@ menu:
 
         "The janitor, visibly furious of what stunt you're trying to pull off here, grabs you by the shirt and shoves you against the wall"
         jump game_over
+
+label help_from_janitor:
+    PC "I think you have the best chances Alex"
+    show alex neutral at alex_right
+    with dissolve
+
+    A "Yeaaah, im not so sure about that"
+    show leonie thinking at left
+    with dissolve
+
+    L "Dont be so humble. Your the most charismatic out of us and your Felix impression is unmatched. Besides you look the most like him"
+    show alex smile at alex_right
+    with dissolve
+
+    A "Thats great and all but I think we're counting on him not knowing who felix is, because otherwise we're screwed"
+    PC "Either way you're our best shot and we need to get into this room"
+    show leonie neutral at left
+    with dissolve
+
+    L "And since we a re Felixe's room mates we can back up your story"
+    show alex neutral at alex_right
+    with dissolve
+
+    A "Alright alright I'll do it but you better have my back"
+    show leonie happy at left
+    with dissolve
+
+    L "Sure thing Felix"
+    A "Ha Ha"
+    show bg hallway
+    with dissolve
+
+    "All three of you head out to find the janitor. Traversing the building you see him in a hallway heading your dircetion"
+    PC "Showtime Alex."
+    L "Pay attention to what he's saying and react accordingly"
+    A "Pshhh i know."
+    hide leonie
+    hide alex
+    with dissolve
+    "Alex approaches the janitor trying to hide his true intentions"
+    show janitor neutral2 at janitor_right
+    show alex smileleft at alex_left
+    with dissolve
+
+    show screen round_rect(trust)
+    with dissolve
+
+    A "Excuse me, my name is Felix and I wanted to ask if you can open my room for me. It looks like I've lost my key"
+    
+    show janitor neutral1 at janitor_right
+    with dissolve
+
+    menu:
+        J "Is this urgent? I'm already on my way to help with the printers and I've got my hands full of work."
+        "Understanding that his hands  are full":
+            show alex surprisedleft at alex_left
+            with dissolve
+            A "Jm sorry that your hands are full of work however I really have to get into my room and I can't find my keys. Our assignment is due in an hour and we need a book in my room to complete it"
+            $ trust += 20
+        
+        "Should be easy":
+            show alex happyleft at alex_left
+            with dissolve
+            A "unfortunately I've somehow lost or misplaced my keys and I have to get in. Unlocking a door shouldnt take all too long."
+            $ trust -= 20
+
+        "Its very urgent":
+            show alex surprisedleft at alex_left
+            with dissolve
+            A "please help us this is very urgent. I've miss placed my key and there are things inside my room I really need"
+            $ trust -= 20
+ 
+
+    call janitor_look(trust)
+    show screen round_rect(trust)
+
+    menu:
+        J "Have you tried looking for your key? How about tracing back your last steps?"
+        "Already looked":
+            show alex smileleft at alex_left
+            with dissolve
+            A "We already looked in our dorms but found nothing"
+            $ trust -= 20
+
+        "traced back every step":
+            show alex neutralleft at alex_left
+            with dissolve
+            A "The first thing we did was trace back every one of our steps"
+            $ trust += 20
+
+        "isn't this your job to help":
+            show alex neutralleft at alex_left
+            with dissolve
+            A "Isn't this your job, now go and help us"
+            $ trust -= 20
+
+    call janitor_look(trust)
+    show screen round_rect(trust)
+
+    menu:
+        J "Let me see your ID. I can't just give out access without verifying this kinda stuff."
+        "that's personal information":
+            show alex happyleft at alex_left
+            with dissolve
+            A "No, you have no right to see personal information like that"
+            $ trust -= 20
+        
+        "Left the ID at my parents place":
+            show alex surprisedleft at alex_left
+            with dissolve
+            A "Im soo sorry, I left my ID at my parent's over the weekend. Maybe you could make an exception"
+            $ trust += 20
+
+        "lost it":
+            show alex surprisedleft at alex_left
+            with dissolve
+            A "Ive lost it a couple of days ago im sorry."
+            $ trust -= 20
+
+    call janitor_look(trust)
+    show screen round_rect(trust)
+
+    menu:
+        J " Well, I'm not so sure if I'll be able to let you in then . I don't want to get in trouble with Mrs Mill again."
+        "I wont tell anyone":
+            show alex neutralleft at alex_left
+            with dissolve
+            A "I won't rat you out. Come on just help me this one time"
+            $ trust -= 20
+
+        "I'll explain to Mrs Mill":
+            show alex smileleft at alex_left
+            with dissolve
+            A "That won't be a problem, I'll call Mrs Mill first thing tomorrow to explain the situation"
+            $ trust += 20
+
+        "the office would understand":
+            show alex smileleft at alex_left
+            with dissolve
+            A "I'm sure the office will understand you helping out a student in need"
+            $ trust -= 20
+
+    call janitor_look(trust)
+    show screen round_rect(trust)
+    
+    if trust > 75:
+        J "Well you seem to be honest."
+        J "Lets go to your room then shall we."
+        hide screen round_rect
+        jump janitor_trust
+    else:
+        hide screen round_rect
+        J "Your not going to fool me. Who are you really"
+        "After being pressured by the janitor alex admits he is not felix and gets kicked out of the building and his rental contract."
+        jump game_over
+
+label janitor_trust:
+    show bg felix door 
+    show janitor neutral2 at janitor_right
+    show leonie happy at left
+    show alex smile at alex_midleft
+    with dissolve
+
+    "The four of you go to felix's room where the janitor opens the door for you."
+    show janitor neutral1 at janitor_right
+    with dissolve
+
+    J "So about a replacement key..."
+    show alex happy at alex_midleft
+    with dissolve
+
+    A "That wont be necessary. I've just got a message from a friend who found my key. Seems like i forgot them at his place."
+    show janitor angry #at janitor_angry_right
+    with dissolve
+    J "And you didn't think of that before?."
+
+    A "Well... "
+    show alex neutral at alex_midleft
+    with dissolve
+
+    A "Apperently not."
+
+    "the janitor looks at Alex with disapprovement"
+    A "Still. Thanks a lot for helping me out."
+    J "Just don't lose them again you hear me"
+    show janitor thinking at janitor_right
+    with dissolve
+    A "I promise"
+    show janitor smile at janitor_right
+    with dissolve
+
+    "He takes his leave and you gained access to Felix's room:"
+    hide janitor
+    with dissolve
+
+
 
 label felix_room:
     scene bg felix room

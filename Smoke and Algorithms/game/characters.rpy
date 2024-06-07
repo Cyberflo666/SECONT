@@ -1,11 +1,14 @@
 # Smoke and Algorithms - Project 2024 SECont
 # This file contains all characters and their corresponding images
 
-# Characters
-define A = Character("Alex", what_prefix='"', what_suffix='"', color="7FFF00")
-define F = Character("Felix", what_prefix='"', what_suffix='"', color="00008B")
-define L = Character("Leonie", what_prefix='"', what_suffix='"', color="FF7F50")
-define J = Character("Janitor", what_prefix='"', what_suffix='"', color="AA4473")
+#Characters
+define narrator = Character(    what_italic=True, what_outlines=[(0, "#080808", 5, 5)])
+define PC = Character("[PN]",   what_prefix='"', what_suffix='"', who_color="#ffffff", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+define A = Character("Alex",    what_prefix='"', what_suffix='"', who_color="#27e700", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+define F = Character("Felix",   what_prefix='"', what_suffix='"', who_color="#2469ff", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+define L = Character("Leonie",  what_prefix='"', what_suffix='"', who_color="#FF7F50", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+define J = Character("Janitor", what_prefix='"', what_suffix='"', who_color="#AA4473", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+
 
 # Character Sprites
 # Leonie
@@ -41,11 +44,26 @@ image alex surprised:
 image alex smile:
     "images/characters/player/male/pcm smile.png"
     zoom 1.4
+image alex neutralleft:
+    "images/characters/player/male/pcm neutral left.png"
+    zoom 1.4
+image alex happyleft:
+    "images/characters/player/male/pcm happy left.png"
+    zoom 1.4
+image alex surprisedleft:
+    "images/characters/player/male/pcm surprised left.png"
+    zoom 1.4
+image alex smileleft:
+    "images/characters/player/male/pcm smile left1.png"
+    zoom 1.4
 transform alex_right:
     xalign 1.65
     yalign -0.8
 transform alex_midleft:
-    xalign 0.15
+    xalign  0.15
+    yalign -0.8
+transform alex_left:
+    xalign -1
     yalign -0.8
 
 # Felix
@@ -79,3 +97,14 @@ transform janitor_right:
 transform janitor_middle:
     xalign 0.5
     yalign 1.0
+
+label janitor_look(trust):
+    if (trust > 75 ):
+        show janitor thinking at janitor_right
+        with dissolve
+    elif (trust > 40):
+        show janitor neutral1 at janitor_right
+        with dissolve
+    else:
+        show janitor angry at janitor_right
+        with dissolve

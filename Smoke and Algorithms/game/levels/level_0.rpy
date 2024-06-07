@@ -3,15 +3,11 @@
 
 
 
-define PC = Character("[PN]", what_prefix='"', what_suffix='"')
 default PN = "Robert Paulson"
 default gender = "neutral"
 default heshe = "they"
 default himher = "them"
 default hishers = "their"
-define A = Character("Alex", what_prefix='"', what_suffix='"', color="7FFF00")
-define F = Character("Felix", what_prefix='"', what_suffix='"', color="00008B")
-define L = Character("Leoni", what_prefix='"', what_suffix='"', color="FF7F50")
 define follow = False
 define check = False
 define ignore = False
