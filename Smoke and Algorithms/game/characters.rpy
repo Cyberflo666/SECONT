@@ -44,6 +44,21 @@ image alex surprised:
 image alex smile:
     "images/characters/player/male/pcm smile.png"
     zoom 1.4
+image alex serious1:
+    "images/characters/player/male/pcm serious1.png"
+    zoom 1.4
+image alex serious2:
+    "images/characters/player/male/pcm serious2.png"
+    zoom 1.4
+image alex serious2left:
+    "images/characters/player/male/pcm serious2 left.png"
+    zoom 1.4
+image alex angry:
+    "images/characters/player/male/pcm angry.png"
+    zoom 1.4
+image alex angryleft:
+    "images/characters/player/male/pcm angry left.png"
+    zoom 1.4
 image alex neutralleft:
     "images/characters/player/male/pcm neutral left.png"
     zoom 1.4

@@ -14,7 +14,7 @@ define ignore = False
 
 
 label level_0_start:
-    
+    play music suspense_music1 volume loudness
     
     "Buckle up for a journey where trust is a weapon, truth is a labyrinth, and the choices you make could unravel a conspiracy that reaches far beyond the walls of your imagination"
 
@@ -39,7 +39,8 @@ label level_0_start:
 
 
 label dorm_1:
-    scene bg common area
+    play music funky_music1 volume loudness fadeout 1.0
+    scene bg new kitchen
     with dissolve
 
     "The late afternoon sun filters through the blinds, casting long shadows across a cluttered dorm room. Books, papers, and empty snack wrappers are scattered haphazardly across the floor, a testament to the chaotic energy of finals week."
@@ -88,7 +89,7 @@ label dorm_1:
 
     "[PN] smiles, but the worry doesn't quite fade. Felix, their conspiracy-obsessed friend, had been acting strangely lately. His usual playful banter had taken on a darker tone, his excitement about his BioSyn internship replaced by a growing unease."
 
-    show alex surprised at alex_right
+    show alex serious2 at alex_right
     with dissolve
 
     A "Actually, now that you mention it... he seemed a little freaked out this morning. Almost like he was...scared"
@@ -97,6 +98,8 @@ label dorm_1:
     with dissolve 
 
     L "Scared? Of what?"
+    show alex serious1 at alex_right
+    with dissolve
 
     A "I don't know. He was mumbling something about his internship at BioSyn, some experiment called NeuroMend... It was all very cryptic."
 
@@ -104,6 +107,7 @@ label dorm_1:
     hide leonie
     with dissolve
 
+    stop music
     "Suddenly, the dorm room door is thrown open, slamming against the wall with a resounding crash."
 
     show felix running at center
@@ -121,6 +125,7 @@ label dorm_1:
     hide felix
     with dissolve
 
+    play music mystery_music1 volume loudness 
     "The air crackles with tension, and a million thoughts race through my mind. What was that all about? Why is Felix so scared? What's on this flash drive? The flash drive feels heavy in [PN]'s hand."
 
     show alex surprised at alex_right
@@ -153,10 +158,10 @@ label choice0_done:
 
 label choice0_ignore:
 
-        scene bg common area
+        scene bg new kitchen
         with dissolve
 
-        show alex neutral at alex_right
+        show alex serious2 at alex_right
         with dissolve
 
         A "(His eyes widening in disbelief) Are you serious? [PN], Felix is our friend. We can't just abandon him!"
@@ -168,7 +173,7 @@ label choice0_ignore:
 
         "[PN] hesitates, torn between caution and concern for [hishers] friend."
 
-        show alex smile at alex_right
+        show alex neutral at alex_right
         with dissolve
 
         A "Exactly! And that's why we need to find out. Come on, [PN], let's go after him."
@@ -210,14 +215,16 @@ label choice0_ignore:
 
         
 
-        jump gameover 
+        jump game_over 
  
 label choice0_check:
 
-        scene bg common area
+        scene bg new kitchen
+        show leonie sad at left
+        show alex serious1 at alex_right
         with dissolve
 
-        PC "He said this was important. Maybe it has answers. Leoni, can you take a look?"
+        A "He said this was important. Maybe it has answers. Leoni, can you take a look?"
 
         show leonie serious at left
         with dissolve
@@ -226,28 +233,19 @@ label choice0_check:
 
         "Her fingers fly across the keyboard, a series of complex commands appearing on the screen."
 
-        show leonie sad at left
-        with dissolve
-
         L "It's encrypted...heavily. This isn't something I can crack easily. We'll need more information, maybe something in Felix's room can help."
 
-        show alex neutral at alex_right
-        with dissolve
+        PC "His room? You think he might have left something behind?"
 
-        A "His room? You think he might have left something behind?"
-
-        PC "It's worth a shot. Let's go check it out."
-
-        "The three friends leave the dorm room, a sense of urgency propelling them towards Felix's room. The encrypted drive seems to be a dead end for now, but perhaps the answers they seek lie hidden elsewhere."
 
         jump level_1_start
 
 label choice0_follow:
+        
+        PC "We can't just let him run off like that. He's obviously terrified. Something's wrong."
 
         scene bg hallway blur
         with dissolve
-        
-        PC "We can't just let him run off like that. He's obviously terrified. Something's wrong."
 
         "[PN] rushes out the door, following the direction Felix took. Alex and Leoni exchange a worried glance before hurrying after [himher]."
 

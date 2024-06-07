@@ -11,8 +11,10 @@ define map_seen = False
 define newspaper_seen = False
 
 define trust = 40
+define trust_delta = 20
 
 label level_1_start:
+    show alex serious2 at alex_right
     A "We have to get our hands on the info inside this drive. Felix wouldn't have just handed it to us if this wasn't important to him."
 
 menu:
@@ -23,7 +25,7 @@ menu:
         jump choice_1_1_room
 
 label choice_1_1_police:
-    show bg police
+    scene bg police station
     with dissolve
 
     "The police take the flash drive as evidence and you don't ever hear anything of the case again."
@@ -31,12 +33,12 @@ label choice_1_1_police:
     jump game_over
 
 label choice_1_1_room:
-    show bg hallway
+    scene bg felix door
     with dissolve
 
-    "You step out into the hallway and head towards Felix's room but find out that it's locked."
-    show bg felix door
+    "You step outside the kitchen and head towards Felix's room but find out that it's locked."
     show leonie serious at left
+    show alex serious1 at alex_right
     with dissolve
 
     L "As I expected, too bad he is too paranoid to let his door open like the rest of us."
@@ -44,18 +46,18 @@ label choice_1_1_room:
 
 label choice_1_1_done:
     show bg felix door
-    show leonie neutral at left
-    show alex smile at alex_right
+    show alex serious2 at alex_right
     with dissolve
 
     A "So. Anyone's got a clue as to how we're going to get into his room"
 
 label menu_1_2:
     show bg felix door
-    show leonie neutral at left
-    show alex neutral at alex_right
+    show leonie sad at left
+    show alex serious2 at alex_right
     with dissolve
 
+play music main_music1 volume loudness fadeout 1.0
 menu:
     "Take a look at his windows" if window_not_done:
         PC "His windows, if they're still open, Leonie can climb up there and open the door from inside"
@@ -103,7 +105,7 @@ menu:
         show leonie serious at left
         with dissolve
 
-        L "I have a few paper clips in my room we could use, but no idea how to pick a lock with the."
+        L "I have a few paper clips in my room we could use, but no idea how to pick a lock with them."
         show alex happy at alex_right
         with dissolve
 
@@ -112,7 +114,7 @@ menu:
         jump choice_1_2_lock_pick
 
 label choice_1_2_windows:
-    scene bg windows
+    scene bg window view
     with dissolve
 
     "Looks like luck is not on your side today. The window to his room is closed and there is no way to open it except brute force."
@@ -121,6 +123,7 @@ label choice_1_2_windows:
     jump menu_1_2
 
 label choice_1_2_lock_pick:
+    scene bg felix door
     "After dismanteling 13 paper clips and watching the tutorial for the 6th time you decide that there may yet be a better way to get inside."
     $ lock_not_done = False
     jump menu_1_2
@@ -137,13 +140,15 @@ menu:
         A "Everyone is vulnerable to money"
         A "If I offer him a few bucks he surely won't say no to lending us his keys for a minute"
         PC "All right Alex, you have my trust"
-        show bg hallway
-        hide alex
+        scene bg hallway
         with dissolve
 
-        "Alex leaves behind the corner and heads to the janitor."
+        "All of you head into the hallway and Alex leaves behind the corner to find the janitor."
+        show leonie thinking at left
+        with dissolve
+
         "You hear a loud exchange of words and soon after Alex returns defeated"
-        show alex neutral at alex_right
+        show alex serious1 at alex_right
         with dissolve
 
         A "He said wasn't taking any money from me"
@@ -179,11 +184,12 @@ menu:
         with vpunch
 
         "The janitor, visibly furious of what stunt you're trying to pull off here, grabs you by the shirt and shoves you against the wall"
-        jump game_over
+        jump game_over_police
+
 
 label help_from_janitor:
     PC "I think you have the best chances Alex"
-    show alex neutral at alex_right
+    show alex serious1 at alex_right
     with dissolve
 
     A "Yeaaah, im not so sure about that"
@@ -191,7 +197,7 @@ label help_from_janitor:
     with dissolve
 
     L "Dont be so humble. Your the most charismatic out of us and your Felix impression is unmatched. Besides you look the most like him"
-    show alex smile at alex_right
+    show alex serious2 at alex_right
     with dissolve
 
     A "Thats great and all but I think we're counting on him not knowing who felix is, because otherwise we're screwed"
@@ -208,13 +214,23 @@ label help_from_janitor:
     with dissolve
 
     L "Sure thing Felix"
+    show alex serious1 at alex_right
+    with dissolve
+
     A "Ha Ha"
-    show bg hallway
+    scene bg hallway
     with dissolve
 
     "All three of you head out to find the janitor. Traversing the building you see him in a hallway heading your dircetion"
     PC "Showtime Alex."
+    show leonie serious at left
+    show alex neutral at alex_right
+    with dissolve
+
     L "Pay attention to what he's saying and react accordingly"
+    show alex serious1 at alex_right
+    with dissolve
+
     A "Pshhh i know."
     hide leonie
     hide alex
@@ -224,12 +240,11 @@ label help_from_janitor:
     show alex smileleft at alex_left
     with dissolve
 
-    show screen round_rect(trust)
-    with dissolve
-
     A "Excuse me, my name is Felix and I wanted to ask if you can open my room for me. It looks like I've lost my key"
     
     show janitor neutral1 at janitor_right
+    with dissolve
+    show screen round_rect(trust)
     with dissolve
 
     menu:
@@ -238,19 +253,19 @@ label help_from_janitor:
             show alex surprisedleft at alex_left
             with dissolve
             A "Jm sorry that your hands are full of work however I really have to get into my room and I can't find my keys. Our assignment is due in an hour and we need a book in my room to complete it"
-            $ trust += 20
+            $ trust += trust_delta
         
         "Should be easy":
             show alex happyleft at alex_left
             with dissolve
             A "unfortunately I've somehow lost or misplaced my keys and I have to get in. Unlocking a door shouldnt take all too long."
-            $ trust -= 20
+            $ trust -= trust_delta
 
         "Its very urgent":
             show alex surprisedleft at alex_left
             with dissolve
             A "please help us this is very urgent. I've miss placed my key and there are things inside my room I really need"
-            $ trust -= 20
+            $ trust -= trust_delta
  
 
     call janitor_look(trust)
@@ -262,19 +277,19 @@ label help_from_janitor:
             show alex smileleft at alex_left
             with dissolve
             A "We already looked in our dorms but found nothing"
-            $ trust -= 20
+            $ trust -= trust_delta
 
         "traced back every step":
             show alex neutralleft at alex_left
             with dissolve
             A "The first thing we did was trace back every one of our steps"
-            $ trust += 20
+            $ trust += trust_delta
 
         "isn't this your job to help":
-            show alex neutralleft at alex_left
+            show alex serious2left at alex_left
             with dissolve
             A "Isn't this your job, now go and help us"
-            $ trust -= 20
+            $ trust -= trust_delta
 
     call janitor_look(trust)
     show screen round_rect(trust)
@@ -282,22 +297,22 @@ label help_from_janitor:
     menu:
         J "Let me see your ID. I can't just give out access without verifying this kinda stuff."
         "that's personal information":
-            show alex happyleft at alex_left
+            show alex angryleft at alex_left
             with dissolve
             A "No, you have no right to see personal information like that"
-            $ trust -= 20
+            $ trust -= trust_delta
         
         "Left the ID at my parents place":
             show alex surprisedleft at alex_left
             with dissolve
             A "Im soo sorry, I left my ID at my parent's over the weekend. Maybe you could make an exception"
-            $ trust += 20
+            $ trust += trust_delta
 
         "lost it":
             show alex surprisedleft at alex_left
             with dissolve
             A "Ive lost it a couple of days ago im sorry."
-            $ trust -= 20
+            $ trust -= trust_delta
 
     call janitor_look(trust)
     show screen round_rect(trust)
@@ -308,19 +323,19 @@ label help_from_janitor:
             show alex neutralleft at alex_left
             with dissolve
             A "I won't rat you out. Come on just help me this one time"
-            $ trust -= 20
+            $ trust -= trust_delta
 
         "I'll explain to Mrs Mill":
-            show alex smileleft at alex_left
+            show alex serious2left at alex_left
             with dissolve
             A "That won't be a problem, I'll call Mrs Mill first thing tomorrow to explain the situation"
-            $ trust += 20
+            $ trust += trust_delta
 
         "the office would understand":
-            show alex smileleft at alex_left
+            show alex serious2left at alex_left
             with dissolve
             A "I'm sure the office will understand you helping out a student in need"
-            $ trust -= 20
+            $ trust -= trust_delta
 
     call janitor_look(trust)
     show screen round_rect(trust)
@@ -333,6 +348,7 @@ label help_from_janitor:
     else:
         hide screen round_rect
         J "Your not going to fool me. Who are you really"
+        scene bg hallway
         "After being pressured by the janitor alex admits he is not felix and gets kicked out of the building and his rental contract."
         jump game_over
 
@@ -355,44 +371,54 @@ label janitor_trust:
     show janitor angry #at janitor_angry_right
     with dissolve
     J "And you didn't think of that before?."
+    show alex serious1 at alex_midleft
+    with dissolve
 
     A "Well... "
+
+    A "Apperently not"
+
+    "the janitor looks at Alex with disapprovement"
+    show alex smile at alex_midleft
+    with dissolve
+
+    A "Still. Thanks a lot for helping me out"
+    show janitor thinking at janitor_right
+    with dissolve
+
+    J "Just don't lose them again you hear me"
     show alex neutral at alex_midleft
     with dissolve
 
-    A "Apperently not."
-
-    "the janitor looks at Alex with disapprovement"
-    A "Still. Thanks a lot for helping me out."
-    J "Just don't lose them again you hear me"
-    show janitor thinking at janitor_right
-    with dissolve
     A "I promise"
-    show janitor smile at janitor_right
+    show janitor neutral2 at janitor_right
     with dissolve
 
-    "He takes his leave and you gained access to Felix's room:"
+    "He takes his leave and you gained access to Felix's room"
     hide janitor
     with dissolve
 
 
-
+play music suspense_music1 volume loudness fadeout 1.0
 label felix_room:
     scene bg felix room
+    with dissolve
+
+    "As you go through the door a gust of bad air comes your way"
+    show alex serious1 at alex_right
+    show leonie serious at left
+    with dissolve
+
+
+    L "Wow, this room is quite messy. And it smells like something died in here"
+
     show alex neutral at alex_right
-    show leonie neutral at left
     with dissolve
 
-
-    L "Wow, this room is quite messy."
-
-    show alex smile at alex_right
-    with dissolve
-
-    A "Well, Felix did leave in a rush."
+    A "Well, we know Felix and he did leave in quite a rush"
     PC "Let's focus on why we're here. We don't have time to waste. Who knows if and when the janitor will return to lock the door."
     
-    show alex neutral at alex_right
+    show alex serious2 at alex_right
     with dissolve
 
     A "What exactly are we looking for, anyway?"
@@ -402,6 +428,8 @@ label felix_room:
 
     L "Typically, people choose passwords they can easily remember. Given Felix's conspiratorial nature, I doubt he has something simple like \"qwerty\" , \"123456\" or \"password.\" Let's look around for any hints."
 
+    scene bg felix room
+    "Investigate the room with your mouse"
 label felix_room_menu:
 
     scene bg felix room
@@ -569,12 +597,15 @@ label password_cracked:
     hide screen phone_icon
     hide screen phone_hand
     show leonie happy at left
+    show alex neutral at alex_right
     with dissolve
 
+
+    play music mystery_music1 volume loudness fadeout 1.0
     L "Nice that did it. Time to see why he was so stressed out."
     "You see Felix's notes about his work at biosync. At first there is nothing unusual but the deeper you go, the more distressed the writing becomes. He seems to have discovered some kind of conspiracy about the implants from biosync. One name pops up several times throughout the files. \"Bob Anderson\""
     PC "Is he talking about the implants from biosync? I thought they're used to treat diseases"
-    show alex neutral at alex_right
+    show alex serious1 at alex_right
     with dissolve
 
     A "Neurological disorders, yes."
@@ -599,7 +630,7 @@ label password_cracked:
     with dissolve
 
     L "Yeah. I've never seen him like that before. Do you think they were onto him. I mean why would he give us the flash drive in such a hurry. Maybe he's been kidnapped."
-    show alex neutral at alex_right
+    show alex serious1 at alex_right
     with dissolve
 
     A "Thats a pretty big jump your taking dont you think. From what we know there is no hard evidence against biosync and Felix is not known to be the most rational person."
@@ -615,13 +646,14 @@ label password_cracked:
 
 menu:
     "Go to the police with the information you got":
+        scene bg police station
         "You go to the police and show them the information you got from the drive. They ask you questions about Felix and the answers make it sound like Felix is making this whole story up."
         "The fact that you have no hard evidence to show also doesn't help. In the end the police claims the drive as property of biosync and puts out a missing person report"
-        show leonie neutral at left
+        show leonie serious at left
         with dissolve
 
         L "Good thing I made a copy of everything so we didn't lose anything."
-        show alex neutral at alex_right
+        show alex serious1 at alex_right
         with dissolve
 
         A "At least now we know that the police wont be much help against biosync. Looks like we're on our own"
@@ -635,7 +667,16 @@ label investigate_biosync:
 
 
 label game_over:
+    play music funky_music1 volume 1
     scene kommt noch
+    show alex laughing:
+        zoom 6.0
+        xalign 0.5
+        yalign 0.24
+    "YOU DIED"
+
+label game_over_police:
+    scene bg jail 
     show alex laughing:
         zoom 6.0
         xalign 0.5
