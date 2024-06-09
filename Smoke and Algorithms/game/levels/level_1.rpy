@@ -9,6 +9,7 @@ define poster_seen = False
 define calendar_seen = False
 define map_seen = False
 define newspaper_seen = False
+define password_icon = True
 
 define trust = 40
 define trust_delta = 20
@@ -431,7 +432,6 @@ label felix_room:
     scene bg felix room
     "Investigate the room with your mouse"
 label felix_room_menu:
-
     scene bg felix room
     show screen felixes_bin
     show screen felixes_bed
@@ -586,6 +586,7 @@ label pc:
 
 label phone_minigame:    
 label password_cracked:
+    $ password_icon = False
     hide screen felixes_bin
     hide screen felixes_bed
     hide screen felixes_pc
@@ -594,8 +595,8 @@ label password_cracked:
     hide screen felixes_wall1
     hide screen felixes_wall2
     hide screen felixes_wall3
-    hide screen phone_icon
     hide screen phone_hand
+    show screen phone_icon
     show leonie happy at left
     show alex neutral at alex_right
     with dissolve
