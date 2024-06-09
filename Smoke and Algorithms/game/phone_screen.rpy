@@ -203,6 +203,9 @@ screen phone_hand_map():
         focus_mask True
         action Hide("phone_hand_map"), Show("phone_hand")
 
+
+# Screen for displaying the notes the player collects throughout the game
+define notes_font_size = 25
 screen phone_hand_notes():
     zorder 2
     modal True
@@ -217,6 +220,25 @@ screen phone_hand_notes():
         idle "return idle" 
         focus_mask True
         action Hide("phone_hand_notes"), Show("phone_hand")
+    
+    viewport:
+        # xStartOffset, yStartOffset, xWidth, yHeight
+        area(675, 140, 470, 730)
+        draggable True
+        mousewheel True
+        scrollbars "vertical"
+        yinitial 1.0
+
+        # Content of the notes
+        vbox:
+            spacing 20
+            $ temp_items = notes.get_items_list()
+            if len(temp_items) == 0:
+                text "{size=[notes_font_size]}no information in your notebook{/size}"
+            else:
+                for entry in notes.get_items_list():
+                    text "{size=[notes_font_size]}[entry.text]{/size}"
+
 
 screen phone_hand_glossary():
     zorder 2
@@ -232,6 +254,7 @@ screen phone_hand_glossary():
         idle "return idle" 
         focus_mask True
         action Hide("phone_hand_glossary"), Show("phone_hand")
+
 
 screen phone_icon():
     

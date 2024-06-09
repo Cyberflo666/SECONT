@@ -2,6 +2,7 @@ $ renpy.include("inventory.rpy")
 
 #Smoke and Algorithms - Project 2024 SECont
 
+# Level related variables:
 define window_not_done = True
 define lock_not_done = True
 define book_seen = False
@@ -10,9 +11,9 @@ define calendar_seen = False
 define map_seen = False
 define newspaper_seen = False
 define password_icon = True
-
 define trust = 40
 define trust_delta = 20
+
 
 label level_1_start:
     show alex serious2 at alex_right
@@ -469,7 +470,9 @@ label notebooks:
     "Looking through his books you find a few books about cyber security, one book about the fall of the roman empire and a few books about conspiracy theories."
     "One worn down book especially catches your sight. It's about the [[9/11] attacks and seems to have quite a few sticky notes and annotations in it."
     $ book_seen = True
+    $ notes.add_data(NoteData("info: 9/11"))
     jump felix_room_menu
+
 label bin:
     hide screen felixes_bin
     hide screen felixes_bed
@@ -486,6 +489,7 @@ label bin:
     "You close your nose with your fingers as you lean down uppon the trash bin. This is not the day to be petty. You force yourself to take aside some old pizza crusts and used tissues."
     "After the bin is empty you accept that you'll probably only find trash and put the garbage back into the bin."
     jump felix_room_menu
+
 label bed:
     hide screen felixes_bin
     hide screen felixes_bed
@@ -501,6 +505,7 @@ label bed:
 
     "Under Felix's bed located, are some dirty clothes, empty bottles, and spiderwebs"
     jump felix_room_menu
+
 label wall2:
     hide screen felixes_bin
     hide screen felixes_bed
@@ -516,7 +521,9 @@ label wall2:
 
     "you catch sight of a portal poster. The following quote sticks out:\"the cake is a lie\""
     $ poster_seen = True
+    $ notes.add_data(NoteData("info: \"the cake is a lie\""))
     jump felix_room_menu
+
 label wall3:
     hide screen felixes_bin
     hide screen felixes_bed
@@ -532,7 +539,9 @@ label wall3:
 
     "your eyes meet a Calendar with marked dates. A red circled date [[04/17] labeld with \"Half Life 3\" stands out"
     $ calendar_seen = True
+    $ notes.add_data(NoteData("info: 04/17 Half Life 3 release"))
     jump felix_room_menu
+
 label map:
     hide screen felixes_bin
     hide screen felixes_bed
@@ -548,7 +557,9 @@ label map:
 
     "You catch sight of a Nevada map, with multiple pins on an specific Area. Written beneath it reads [[Area51]"
     $ map_seen = True
+    $ notes.add_data(NoteData("info: Area 51"))
     jump felix_room_menu
+
 label wall1:
     hide screen felixes_bin
     hide screen felixes_bed
@@ -565,6 +576,7 @@ label wall1:
     "you see some hung up newspaper articles about some apparent proof that the earth is actually flat"
     $ newspaper_seen = True
     jump felix_room_menu
+
 label pc:
     hide screen felixes_bin
     hide screen felixes_bed
@@ -577,7 +589,6 @@ label pc:
     hide screen phone_icon
     scene bg f pc zoom
     with dissolve
-
 
     "you try to get access to his PC but it's password protected"
     L "who would have thought"
@@ -675,6 +686,7 @@ label game_over:
         xalign 0.5
         yalign 0.24
     "YOU DIED"
+return
 
 label game_over_police:
     scene bg jail 
@@ -683,5 +695,4 @@ label game_over_police:
         xalign 0.5
         yalign 0.24
     "YOU DIED"
-
 return

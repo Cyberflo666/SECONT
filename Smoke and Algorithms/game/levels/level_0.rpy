@@ -1,13 +1,13 @@
 #Smoke and Algorithms - Project 2024 SECont 
 
-
-
-
 default PN = "Robert Paulson"
 default gender = "neutral"
 default heshe = "they"
 default himher = "them"
 default hishers = "their"
+
+
+# Level related variables:
 define follow = False
 define check = False
 define ignore = False
