@@ -434,14 +434,7 @@ label felix_room:
     "Investigate the room with your mouse"
 label felix_room_menu:
     scene bg felix room
-    show screen felixes_bin
-    show screen felixes_bed
-    show screen felixes_pc
-    show screen felixes_notebook
-    show screen felixes_map
-    show screen felixes_wall1
-    show screen felixes_wall2
-    show screen felixes_wall3
+    call show_felix_room_interactables
     show screen phone_icon
     with dissolve
 
@@ -455,15 +448,9 @@ menu:
 """
 
 label notebooks:
-    hide screen felixes_bin
-    hide screen felixes_bed
-    hide screen felixes_pc
-    hide screen felixes_notebook
-    hide screen felixes_map
-    hide screen felixes_wall1
-    hide screen felixes_wall2
-    hide screen felixes_wall3
+    call hide_felix_room_interactables
     hide screen phone_icon
+
     scene bg f notebooks zoom
     with dissolve
 
@@ -474,15 +461,9 @@ label notebooks:
     jump felix_room_menu
 
 label bin:
-    hide screen felixes_bin
-    hide screen felixes_bed
-    hide screen felixes_pc
-    hide screen felixes_notebook
-    hide screen felixes_map
-    hide screen felixes_wall1
-    hide screen felixes_wall2
-    hide screen felixes_wall3
+    call hide_felix_room_interactables
     hide screen phone_icon
+
     scene bg f bin zoom
     with dissolve
 
@@ -491,15 +472,9 @@ label bin:
     jump felix_room_menu
 
 label bed:
-    hide screen felixes_bin
-    hide screen felixes_bed
-    hide screen felixes_pc
-    hide screen felixes_notebook
-    hide screen felixes_map
-    hide screen felixes_wall1
-    hide screen felixes_wall2
-    hide screen felixes_wall3
+    call hide_felix_room_interactables
     hide screen phone_icon
+
     scene bg f bed zoom
     with dissolve
 
@@ -507,15 +482,9 @@ label bed:
     jump felix_room_menu
 
 label wall2:
-    hide screen felixes_bin
-    hide screen felixes_bed
-    hide screen felixes_pc
-    hide screen felixes_notebook
-    hide screen felixes_map
-    hide screen felixes_wall1
-    hide screen felixes_wall2
-    hide screen felixes_wall3
+    call hide_felix_room_interactables
     hide screen phone_icon
+
     scene bg f wall2 zoom
     with dissolve
 
@@ -525,15 +494,9 @@ label wall2:
     jump felix_room_menu
 
 label wall3:
-    hide screen felixes_bin
-    hide screen felixes_bed
-    hide screen felixes_pc
-    hide screen felixes_notebook
-    hide screen felixes_map
-    hide screen felixes_wall1
-    hide screen felixes_wall2
-    hide screen felixes_wall3
+    call hide_felix_room_interactables
     hide screen phone_icon
+
     scene bg f wall3 zoom
     with dissolve
 
@@ -543,15 +506,9 @@ label wall3:
     jump felix_room_menu
 
 label map:
-    hide screen felixes_bin
-    hide screen felixes_bed
-    hide screen felixes_pc
-    hide screen felixes_notebook
-    hide screen felixes_map
-    hide screen felixes_wall1
-    hide screen felixes_wall2
-    hide screen felixes_wall3
+    call hide_felix_room_interactables
     hide screen phone_icon
+
     scene bg f map zoom
     with dissolve
 
@@ -561,15 +518,9 @@ label map:
     jump felix_room_menu
 
 label wall1:
-    hide screen felixes_bin
-    hide screen felixes_bed
-    hide screen felixes_pc
-    hide screen felixes_notebook
-    hide screen felixes_map
-    hide screen felixes_wall1
-    hide screen felixes_wall2
-    hide screen felixes_wall3
+    call hide_felix_room_interactables
     hide screen phone_icon
+
     scene bg f wall1 zoom
     with dissolve
 
@@ -578,15 +529,9 @@ label wall1:
     jump felix_room_menu
 
 label pc:
-    hide screen felixes_bin
-    hide screen felixes_bed
-    hide screen felixes_pc
-    hide screen felixes_notebook
-    hide screen felixes_map
-    hide screen felixes_wall1
-    hide screen felixes_wall2
-    hide screen felixes_wall3
+    call hide_felix_room_interactables
     hide screen phone_icon
+
     scene bg f pc zoom
     with dissolve
 
@@ -598,14 +543,7 @@ label pc:
 label phone_minigame:    
 label password_cracked:
     $ password_icon = False
-    hide screen felixes_bin
-    hide screen felixes_bed
-    hide screen felixes_pc
-    hide screen felixes_notebook
-    hide screen felixes_map
-    hide screen felixes_wall1
-    hide screen felixes_wall2
-    hide screen felixes_wall3
+    call hide_felix_room_interactables
     hide screen phone_hand
     show screen phone_icon
     show leonie happy at left
@@ -668,14 +606,30 @@ menu:
         show alex serious1 at alex_right
         with dissolve
 
-        A "At least now we know that the police wont be much help against biosync. Looks like we're on our own"
-        jump investigate_biosync
+        A "At least now we know that the police wont be much help against biosync. Looks like we're on our own."
+        L "lets get back to our doorm and take matter in our own hands."
+        PC "I left my laptop in the kitchen, so lets just get going there."
+
+        jump level_2_start
 
     "Investigate on your own what is happening at biosync":
-        jump investigate_biosync
+        scene bg felix room
+        show leonie thinking at left 
+        show alex serious1 at alex_right
+        with dissolve 
+        A "Well then, I think it’s best if we do our research on Biosync. There should be more room in the kitchen for all of us."
+        show leonie serious at left
+        with dissolve
+        L "Mhm. We need to act fast. Who knows what actually happened to Felix…"
+        show leonie thinking at left 
+        with dissolve 
+        L "From what I know, Biosync is quite a large company. We should be able to find out a lot online."
+        PC "I left my laptop there anyway, so I guess I’ll take over the research."
+        PC "From there, I guess we can fulfill Felix’s wish and investigate properly."
+        with dissolve
+        jump level_2_start
 
-label investigate_biosync:
-    "to be continued"
+
 
 
 label game_over:
