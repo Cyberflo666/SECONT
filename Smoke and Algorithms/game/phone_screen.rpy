@@ -99,7 +99,12 @@ transform phone_pos:
 transform arrow_pos:
     zoom 0.7
     xalign 0.07
-    yalign 0
+    yalign 0.1
+
+
+# Variables
+define phone_usable_area = (675, 140, 470, 730)
+define phone_normal_text_color = "#000000"
 
 
 screen phone_hand():
@@ -111,11 +116,14 @@ screen phone_hand():
         xalign 0.7
         
     
-    # Return arrow
+    # Return arrow (closes phone)
     imagebutton:
+        idle "return arrow idle"
         hover "return arrow hover" at arrow_pos
-        idle "return arrow idle" 
-        focus_mask True
+        xpos 200
+        ypos 0
+        xsize 500
+        ysize 300
         action Hide("phone_hand"), Show("phone_icon")
     
     # Phone icons
@@ -173,6 +181,8 @@ screen phone_hand_camera():
         action Hide("phone_hand_camera"), Show("phone_hand")
 
 
+# Screen for displaying the contacts of the player
+define contacts_font_size = 45
 screen phone_hand_contact():
     zorder 2
     modal True
@@ -187,6 +197,47 @@ screen phone_hand_contact():
         idle "return idle" 
         focus_mask True
         action Hide("phone_hand_contact"), Show("phone_hand")
+    
+    viewport:
+        area phone_usable_area
+        draggable False
+        mousewheel False
+
+        # Content of the contacts
+        vbox:
+            spacing 90
+            frame:
+                area(0, 0 , 500, 122)
+                background "#00000000"
+                imagebutton:
+                    xpos 0.08
+                    idle "contact box idle"
+                    hover "contact box hover"
+                    focus_mask True
+                    action Call("call_alex")
+                text "{size=[contacts_font_size]}{color=[phone_normal_text_color]}Alex{/color}{/size}" at center 
+
+            frame:
+                area(0, 0, 500, 122)
+                background "#00000000"
+                imagebutton:
+                    xpos 0.08
+                    idle "contact box idle"
+                    hover "contact box hover"
+                    focus_mask True
+                    action Call("call_leonie")
+                text "{size=[contacts_font_size]}{color=[phone_normal_text_color]}Leonie{/color}{/size}" at center
+
+            frame:
+                area(0, 0, 500, 122)
+                background "#00000000"
+                imagebutton:
+                    xpos 0.08
+                    idle "contact box idle"
+                    hover "contact box hover"
+                    focus_mask True
+                    action Call("call_felix")
+                text "{size=[contacts_font_size]}{color=[phone_normal_text_color]}Felix{/color}{/size}" at center
 
 screen phone_hand_map():
     zorder 2
@@ -223,7 +274,7 @@ screen phone_hand_notes():
     
     viewport:
         # xStartOffset, yStartOffset, xWidth, yHeight
-        area(675, 140, 470, 730)
+        area phone_usable_area
         draggable True
         mousewheel True
         scrollbars "vertical"
@@ -234,10 +285,10 @@ screen phone_hand_notes():
             spacing 20
             $ temp_items = notes.get_items_list()
             if len(temp_items) == 0:
-                text "{size=[notes_font_size]}no information in your notebook{/size}"
+                text "{size=[notes_font_size]}{color=[phone_normal_text_color]}There is no information in your notebook{/color}{/size}"
             else:
                 for entry in notes.get_items_list():
-                    text "{size=[notes_font_size]}[entry.text]{/size}"
+                    text "{size=[notes_font_size]}{color=[phone_normal_text_color]}[entry.text]{/color}{/size}"
 
 
 screen phone_hand_glossary():

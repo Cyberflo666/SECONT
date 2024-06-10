@@ -1,3 +1,25 @@
+label hide_felix_room_interactables():
+    hide screen felixes_bin
+    hide screen felixes_bed
+    hide screen felixes_pc
+    hide screen felixes_notebook
+    hide screen felixes_map
+    hide screen felixes_wall1
+    hide screen felixes_wall2
+    hide screen felixes_wall3
+    return
+
+label show_felix_room_interactables():
+    show screen felixes_bin
+    show screen felixes_bed
+    show screen felixes_pc
+    show screen felixes_notebook
+    show screen felixes_map
+    show screen felixes_wall1
+    show screen felixes_wall2
+    show screen felixes_wall3
+    return
+
 screen felixes_notebook():
     zorder 0
     modal False
