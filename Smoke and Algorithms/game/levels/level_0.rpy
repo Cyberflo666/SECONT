@@ -45,7 +45,7 @@ label dorm_1:
 
     "The late afternoon sun filters through the blinds, casting long shadows across a cluttered dorm room. Books, papers, and empty snack wrappers are scattered haphazardly across the floor, a testament to the chaotic energy of finals week."
     
-    "[PN], [hishers] dark hair pulled into a messy bun, sits hunched over [hishers] laptop, the glow of the screen illuminating the intricate henna tattoos on [hishers] left hand."
+    "[PN], with your dark hair pulled into a messy bun, you sit hunched over your laptop, the glow of the screen illuminating the intricate henna tattoos on your left hand."
 
     PC "I can't focus. Complex systems theory is proving to be...well, complex. My eyes glaze over the lines of code and algorithms, and my mind starts to drift."
 
@@ -59,7 +59,7 @@ label dorm_1:
 
     A "Okay, I officially surrender to the forces of academia. My brain is officially mush."
 
-    "[PN] chuckles, a welcome distraction from [hishers] studies."
+    "you chuckle, a welcome distraction from your studies."
 
     PC "Don't worry, Alex. We're almost through this. Just a few more hours of this delightful torture."
     
@@ -87,7 +87,7 @@ label dorm_1:
 
     A "Oh, you know Felix. He's probably off chasing UFOs or decoding secret messages in the cafeteria's meatloaf."
 
-    "[PN] smiles, but the worry doesn't quite fade. Felix, their conspiracy-obsessed friend, had been acting strangely lately. His usual playful banter had taken on a darker tone, his excitement about his BioSyn internship replaced by a growing unease."
+    "you smile, but the worry doesn't quite fade. Felix, their conspiracy-obsessed friend, had been acting strangely lately. His usual playful banter had taken on a darker tone, his excitement about his BioSyn internship replaced by a growing unease."
 
     show alex serious2 at alex_right
     with dissolve
@@ -120,19 +120,19 @@ label dorm_1:
 
     F "(Gasping for air, his voice barely a whisper) BioSyn! They're not what they seem. This... this is everything. Trust no one."
 
-    "With trembling hands, he thrusts a battered flash drive into [PN]'s hand, then turns and flees, disappearing into the dimly lit hallway."
+    "With trembling hands, he thrusts a battered flash drive into your hand, then turns and flees, disappearing into the dimly lit hallway."
 
     hide felix
     with dissolve
 
     play music mystery_music1 volume loudness 
-    "The air crackles with tension, and a million thoughts race through my mind. What was that all about? Why is Felix so scared? What's on this flash drive? The flash drive feels heavy in [PN]'s hand."
+    "The air crackles with tension, and a million thoughts race through your mind. What was that all about? Why is Felix so scared? What's on this flash drive? The flash drive feels heavy in your hand."
 
     show alex surprised at alex_right
     show leonie surprised at left
     with dissolve 
 
-    "[PN] looks between Alex and Leoni, weighing her options."
+    "your looks alter between Alex and Leoni, weighing your options."
 
 menu:
     "(Alex' breaking the silence, his voice filled with concern)) Do you think we should go after him?":
@@ -171,7 +171,7 @@ label choice0_ignore:
 
         L "Besides, curiosity is killing me. I want to know what's on that drive."
 
-        "[PN] hesitates, torn between caution and concern for [hishers] friend."
+        "youre hesitatant, torn between caution and concern for your friend."
 
         show alex neutral at alex_right
         with dissolve
@@ -183,7 +183,7 @@ label choice0_ignore:
    
         L "I'll stay here and see if I can find anything on the drive. Maybe it'll give us some clues."
 
-        "[PN] hesitates, torn between caution and concern for [hishers] friend. But the weight of the unknown proves too heavy. [PN] sinks back onto [hishers] bed, a sense of unease settling in."
+        "you hesitate, torn between caution and concern for your friend. But the weight of the unknown proves too heavy. You sink back onto your bed, a sense of unease settling in."
 
         show alex surprised at alex_right 
         with dissolve
@@ -203,15 +203,15 @@ label choice0_ignore:
 
         hide leonie
 
-        "Hours turn into days, and Felix remains missing. The unanswered questions gnaw at [PN], a constant reminder of their inaction. The flash drive remains a mystery, its secrets locked away."
+        "Hours turn into days, and Felix remains missing. The unanswered questions gnaw at you, a constant reminder of their inaction. The flash drive remains a mystery, its secrets locked away."
 
-        "Weeks later, a small article buried in a conspiracy theory tabloid catches [PN]'s eye. The headline reads: 'Shocking Discovery: Human DNA Found in Dog Food.'"
+        "Weeks later, a small article buried in a conspiracy theory tabloid catch your eyes. The headline reads: 'Shocking Discovery: Human DNA Found in Dog Food.'"
 
-        "A chill runs down [PN]'s spine. The article details a bizarre finding at a local pet food factory, a trace of human genetic material amidst the meat and grains. The source of the DNA remains unknown, the investigation ongoing."
+        "A chill runs down your spine. The article details a bizarre finding at a local pet food factory, a trace of human genetic material amidst the meat and grains. The source of the DNA remains unknown, the investigation ongoing."
 
-        "[PN] can't shake the feeling that this is somehow connected to Felix, to BioSyn, to the cryptic warning he delivered that fateful night. But without proof, it's just another unsolved mystery, a whisper in the wind."
+        "You can't shake the feeling that this is somehow connected to Felix, to BioSyn, to the cryptic warning he delivered that fateful night. But without proof, it's just another unsolved mystery, a whisper in the wind."
 
-        "The weight of regret settles heavily on [PN]'s shoulders. The choice to ignore Felix's plea, to prioritize safety over friendship, has left a bitter taste in [hishers] mouth. The story ends not with a bang, but with a whimper, a silent echo of what could have been."
+        "The weight of regret settles heavily on your shoulders. The choice to ignore Felix's plea, to prioritize safety over friendship, has left a bitter taste in your mouth. The story ends not with a bang, but with a whimper, a silent echo of what could have been."
 
         
 
@@ -229,7 +229,7 @@ label choice0_check:
         show leonie serious at left
         with dissolve
         
-        "Leoni nods, taking the flash drive from [PN]. She plugs it into her laptop and begins examining its contents."
+        "Leoni nods, taking the flash drive from you. She plugs it into her laptop and begins examining its contents."
 
         "Her fingers fly across the keyboard, a series of complex commands appearing on the screen."
 
@@ -247,9 +247,9 @@ label choice0_follow:
         scene bg hallway blur
         with dissolve
 
-        "[PN] rushes out the door, following the direction Felix took. Alex and Leoni exchange a worried glance before hurrying after [himher]."
+        "you rush out of the door, following the direction Felix took. Alex and Leoni exchange a worried glance before hurrying after you."
 
-        "The hallway is dimly lit, the air heavy with the scent of stale pizza and disinfectant. Felix is nowhere to be seen. [PN] quickens [hishers] pace, [hishers] heart pounding in [hishers] chest."
+        "The hallway is dimly lit, the air heavy with the scent of stale pizza and disinfectant. Felix is nowhere to be seen. you quicken your pace, as your heart is pounding harder and harder ."
 
         A "Felix! Where are you?"
 
