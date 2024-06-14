@@ -253,7 +253,7 @@ label choice0_follow:
 
         $ check = True
 
-        jump choice0_done
+        jump choice0_check
 
 
 return 
