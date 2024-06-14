@@ -1,24 +1,38 @@
-define laptop_usable_area = (240, 110, 1441, 793)
+define laptop_usable_area = (240, 186, 1441, 702)
 define website_area = (0, 0, 1441, 4323)
-define website_1_not_seen = True
-define website_2_not_seen = True
-define website_3_not_seen = True
 define website_1_scrollbar_pos = 0
+define website_2_scrollbar_pos = 0
+define website_3_scrollbar_pos = 0
 init python:
-    def viewport_change(value):
+    def viewport_change1(value):
         global website_1_scrollbar_pos
         website_1_scrollbar_pos = value
-        renpy.notify(website_1_scrollbar_pos)
+        #renpy.notify(website_1_scrollbar_pos)
+init python:
+    def viewport_change2(value):
+        global website_2_scrollbar_pos
+        website_2_scrollbar_pos = value
+        #renpy.notify(website_2_scrollbar_pos)
+init python:
+    def viewport_change3(value):
+        global website_3_scrollbar_pos
+        website_3_scrollbar_pos = value
+        #renpy.notify(website_3_scrollbar_pos)
 
 transform website1_icon:
-    xalign 0.3
-    yalign 0.5
+    xalign 0.15
+    yalign 0.2
 transform website2_icon:
-    xalign 0.3
-    yalign 0.6
+    xalign 0.15
+    yalign 0.25
 transform website3_icon:
-    xalign 0.3
-    yalign 0.7
+    xalign 0.15
+    yalign 0.3
+transform return_arrow_black_pos:
+    zoom 0.2
+    xalign 0.14
+    yalign 0.1
+
 screen laptop_screen():
     zorder 2
     modal False
@@ -86,90 +100,134 @@ screen social_screen():
         image "alex laughing"
 
 screen web_screen():
-    zorder 2
+    zorder 0
     modal True
     image "bg browser"
+    imagebutton:
+        idle "return arrow black idle" 
+        hover "return arrow black hover" at return_arrow_black_pos
+        xpos 200
+        ypos 600
+        xsize 500
+        ysize 400
+        #focus_mask True
+        action Hide("web_screen"), Show("laptop_screen")
     imagebutton:
         focus_mask True
         idle "website1 icon idle" at website1_icon
         hover "website1 icon hover"
-        action Hide("web_screen"), Show("website1_screen")
+        action Hide("web_screen"), Jump("website1_call")
     imagebutton:
         focus_mask True
         idle "website2 icon idle" at website2_icon
         hover "website2 icon hover"
-        action Hide("web_screen"), Show("website2_screen")
+        action Hide("web_screen"), Jump("website2_call")
     imagebutton:
         focus_mask True
         idle "website3 icon idle" at website3_icon
         hover "website3 icon hover"
-        action Hide("web_screen"), Show("website3_screen")
+        action Hide("web_screen"), Jump("website3_call")
 
 screen website1_screen():
     zorder 0
     modal False
+    image "bg browser"
+    imagebutton:
+        idle "return arrow black idle" 
+        hover "return arrow black hover" at return_arrow_black_pos
+        xpos 200
+        ypos 600
+        xsize 500
+        ysize 400
+        #focus_mask True
+        action Hide("website1_screen"), Show("web_screen")
     viewport:
         area laptop_usable_area
         draggable True
         mousewheel True
         scrollbars "vertical"
-
-        yadjustment ui.adjustment(1, website_1_scrollbar_pos, changed=viewport_change)
-
-
+        yadjustment ui.adjustment(1, website_1_scrollbar_pos, changed=viewport_change1)
         #define laptop_usable_area = (240, 110, 1441, 830)
         vbox:
             frame:
                 area website_area
                 background "#00000000"
                 image "website 1"
-                if True:
+                if website_1_not_seen:
                     imagebutton:
                         idle "website 1 button idle"
                         hover "website 1 button hover"
                         focus_mask True
-                        action Jump("website1_button")
+                        action Hide("website1_screen"), Function(set_function, website_1_not_seen), Jump("website1_button")
 
 screen website2_screen():
     zorder 0
     modal False
+    image "bg browser"
+    imagebutton:
+        idle "return arrow black idle" 
+        hover "return arrow black hover" at return_arrow_black_pos
+        xpos 200
+        ypos 600
+        xsize 500
+        ysize 400
+        #focus_mask True
+        action Hide("website2_screen"), Show("web_screen")
     viewport:
         area laptop_usable_area
         draggable True
         mousewheel True
         scrollbars "vertical"
+        yadjustment ui.adjustment(1, website_2_scrollbar_pos, changed=viewport_change2)
         #define laptop_usable_area = (240, 110, 1441, 830)
         vbox:
             frame:
                 area website_area
                 background "#00000000"
                 image "website 2"
-                imagebutton:
-                    idle "website 2 button idle"
-                    hover "website 2 button hover"
-                    focus_mask True
-                    action Jump("website2_button")
+                if website_2_not_seen:
+                    imagebutton:
+                        idle "websites 2 button idle"
+                        hover "websites 2 button hover"
+                        focus_mask True
+                        action Hide("website2_screen"), Function(set_function, website_2_not_seen), Jump("website2_button")
 
 screen website3_screen():
     zorder 0
     modal False
+    image "bg browser"
+    imagebutton:
+        idle "return arrow black idle" 
+        hover "return arrow black hover" at return_arrow_black_pos
+        xpos 200
+        ypos 600
+        xsize 500
+        ysize 400
+        #focus_mask True
+        action Hide("website3_screen"), Show("web_screen")
     viewport:
         area laptop_usable_area
         draggable True
         mousewheel True
         scrollbars "vertical"
+        yadjustment ui.adjustment(1, website_3_scrollbar_pos, changed=viewport_change3)
         #define laptop_usable_area = (240, 110, 1441, 830)
         vbox:
             frame:
                 area website_area
                 background "#00000000"
                 image "website 3"
-                imagebutton:
-                    idle "website 3 button idle"
-                    hover "website 3 button hover"
-                    focus_mask True
-                    action Jump("website3_button")
-
+                if website_3_not_seen:
+                    imagebutton:
+                        idle "website 3 button idle"
+                        hover "website 3 button hover"
+                        focus_mask True
+                        action Hide("website3_screen"), Function(set_function, website_3_not_seen), Jump("website3_button")
 screen website1_button_text:
     window:
         text "something useless"
+
+# only known way to make it work (no idea why)
+init python:
+    def set_function(value):
+        value = False
