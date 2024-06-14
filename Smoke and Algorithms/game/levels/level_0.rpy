@@ -87,7 +87,7 @@ label dorm_1:
 
     A "Oh, you know Felix. He's probably off chasing UFOs or decoding secret messages in the cafeteria's meatloaf."
 
-    "you smile, but the worry doesn't quite fade. Felix, their conspiracy-obsessed friend, had been acting strangely lately. His usual playful banter had taken on a darker tone, his excitement about his BioSyn internship replaced by a growing unease."
+    "you smile, but the worry doesn't quite fade. Felix, their conspiracy-obsessed friend, had been acting strangely lately. His usual playful banter had taken on a darker tone, his excitement about his Medievil internship replaced by a growing unease."
 
     show alex serious2 at alex_right
     with dissolve
@@ -101,7 +101,7 @@ label dorm_1:
     show alex serious1 at alex_right
     with dissolve
 
-    A "I don't know. He was mumbling something about his internship at BioSyn, some experiment called NeuroMend... It was all very cryptic."
+    A "I don't know. He was mumbling something about his internship at Medievil, some experiment called NeuroMend... It was all very cryptic."
 
     hide alex
     hide leonie
@@ -118,7 +118,7 @@ label dorm_1:
     show felix shouting at center 
     with dissolve
 
-    F "(Gasping for air, his voice barely a whisper) BioSyn! They're not what they seem. This... this is everything. Trust no one."
+    F "(Gasping for air, his voice barely a whisper) Medievil! They're not what they seem. This... this is everything. Trust no one."
 
     "With trembling hands, he thrusts a battered flash drive into your hand, then turns and flees, disappearing into the dimly lit hallway."
 
@@ -126,34 +126,27 @@ label dorm_1:
     with dissolve
 
     play music mystery_music1 volume loudness 
-    "The air crackles with tension, and a million thoughts race through your mind. What was that all about? Why is Felix so scared? What's on this flash drive? The flash drive feels heavy in your hand."
+    "The air crackles with tension, and a million thoughts race through your mind. What was that all about? Why is Felix so scared? What's on this flash drive? It feels heavy in your hand."
 
     show alex surprised at alex_right
     show leonie surprised at left
     with dissolve 
 
-    "your looks alter between Alex and Leoni, weighing your options."
-
 menu:
-    "(Alex' breaking the silence, his voice filled with concern)) Do you think we should go after him?":
-        $ follow = True
-        jump choice0_done
-    
-    "(Leoni pushing up her glasses) Or maybe we should see what's on this drive first?":
-        $ check = True
-        jump choice0_done
-
-    "This could be dangerous. Maybe we shouldn't get involved.":
-        $ ignore = True
-        jump choice0_done
-        
-label choice0_done:
-    if ignore == True:
-        jump choice0_ignore
-    elif check == True:
-        jump choice0_check
-    elif follow == True:
+    "Try to go after him":
+        PC "We can't just let him run off like that. He's obviously terrified. Something's wrong."
         jump choice0_follow
+    
+    "Look what is on the drive he handed you":
+        PC "He said this was important. Maybe it has answers. Leoni, can you take a look?"
+        jump choice0_check
+
+    "Try not to get involved.":
+        PC "This looks like it could be dangerous. Maybe we should stay out of it"
+        jump choice0_ignore
+        
+
+        
 
 
 label choice0_ignore:
@@ -209,7 +202,7 @@ label choice0_ignore:
 
         "A chill runs down your spine. The article details a bizarre finding at a local pet food factory, a trace of human genetic material amidst the meat and grains. The source of the DNA remains unknown, the investigation ongoing."
 
-        "You can't shake the feeling that this is somehow connected to Felix, to BioSyn, to the cryptic warning he delivered that fateful night. But without proof, it's just another unsolved mystery, a whisper in the wind."
+        "You can't shake the feeling that this is somehow connected to Felix, to Medievil, to the cryptic warning he delivered that fateful night. But without proof, it's just another unsolved mystery, a whisper in the wind."
 
         "The weight of regret settles heavily on your shoulders. The choice to ignore Felix's plea, to prioritize safety over friendship, has left a bitter taste in your mouth. The story ends not with a bang, but with a whimper, a silent echo of what could have been."
 
@@ -223,8 +216,6 @@ label choice0_check:
         show leonie sad at left
         show alex serious1 at alex_right
         with dissolve
-
-        A "He said this was important. Maybe it has answers. Leoni, can you take a look?"
 
         show leonie serious at left
         with dissolve
@@ -241,9 +232,6 @@ label choice0_check:
         jump level_1_start
 
 label choice0_follow:
-        
-        PC "We can't just let him run off like that. He's obviously terrified. Something's wrong."
-
         scene bg hallway blur
         with dissolve
 

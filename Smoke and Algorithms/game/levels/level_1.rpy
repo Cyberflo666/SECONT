@@ -20,10 +20,12 @@ label level_1_start:
     A "We have to get our hands on the info inside this drive. Felix wouldn't have just handed it to us if this wasn't important to him."
 
 menu:
-    "Yes, we should go to the police and hand them the drive, they will know what to do":
+    "Take the drive to the police":
+        PC "Yes, we should go to the police and hand them the drive, they will know what to do"
         jump choice_1_1_police
     
-    "He must have left us some info on how to get access to this data. Let's take a look into his room":
+    "Take a look at his room to find more information":
+        PC "He must have left us some info on how to get access to this data. Let's take a look into his room"
         jump choice_1_1_room
 
 label choice_1_1_police:
@@ -133,13 +135,15 @@ label choice_1_2_lock_pick:
 label choice_1_2_janitor:
 menu:
     "Try to impersonate as Felix to get him to open the door" :
+        PC "Maybe one of us should try to pose as felix to get him to open the door"
         jump help_from_janitor
     
     "Bribe the janitor":
+        PC "Do you think he's bribeable"
         show alex smile at alex_right
         with dissolve
 
-        A "Everyone is vulnerable to money"
+        A "Sure. Everyone is vulnerable to money"
         A "If I offer him a few bucks he surely won't say no to lending us his keys for a minute"
         PC "All right Alex, you have my trust"
         scene bg hallway
@@ -260,13 +264,13 @@ label help_from_janitor:
         "Should be easy":
             show alex happyleft at alex_left
             with dissolve
-            A "unfortunately I've somehow lost or misplaced my keys and I have to get in. Unlocking a door shouldnt take all too long."
+            A "Unfortunately I've somehow lost or misplaced my keys and I have to get in. Unlocking a door shouldnt take all too long."
             $ trust -= trust_delta
 
         "Its very urgent":
             show alex surprisedleft at alex_left
             with dissolve
-            A "please help us this is very urgent. I've miss placed my key and there are things inside my room I really need"
+            A "Please help us this is very urgent. I've miss placed my key and there are things inside my room I really need"
             $ trust -= trust_delta
  
 
@@ -281,13 +285,13 @@ label help_from_janitor:
             A "We already looked in our dorms but found nothing"
             $ trust -= trust_delta
 
-        "traced back every step":
+        "Traced back every step":
             show alex neutralleft at alex_left
             with dissolve
             A "The first thing we did was trace back every one of our steps"
             $ trust += trust_delta
 
-        "isn't this your job to help":
+        "Isn't this your job to help":
             show alex serious2left at alex_left
             with dissolve
             A "Isn't this your job, now go and help us"
@@ -298,7 +302,7 @@ label help_from_janitor:
 
     menu:
         J "Let me see your ID. I can't just give out access without verifying this kinda stuff."
-        "that's personal information":
+        "That's personal information":
             show alex angryleft at alex_left
             with dissolve
             A "No, you have no right to see personal information like that"
@@ -310,7 +314,7 @@ label help_from_janitor:
             A "Im soo sorry, I left my ID at my parent's over the weekend. Maybe you could make an exception"
             $ trust += trust_delta
 
-        "lost it":
+        "Lost it":
             show alex surprisedleft at alex_left
             with dissolve
             A "Ive lost it a couple of days ago im sorry."
@@ -333,7 +337,7 @@ label help_from_janitor:
             A "That won't be a problem, I'll call Mrs Mill first thing tomorrow to explain the situation"
             $ trust += trust_delta
 
-        "the office would understand":
+        "The office would understand":
             show alex serious2left at alex_left
             with dissolve
             A "I'm sure the office will understand you helping out a student in need"
@@ -553,8 +557,8 @@ label password_cracked:
 
     play music mystery_music1 volume loudness fadeout 1.0
     L "Nice that did it. Time to see why he was so stressed out."
-    "You see Felix's notes about his work at biosync. At first there is nothing unusual but the deeper you go, the more distressed the writing becomes. He seems to have discovered some kind of conspiracy about the implants from biosync. One name pops up several times throughout the files. \"Bob Anderson\""
-    PC "Is he talking about the implants from biosync? I thought they're used to treat diseases"
+    "You see Felix's notes about his work at Medievil. At first there is nothing unusual but the deeper you go, the more distressed the writing becomes. He seems to have discovered some kind of conspiracy about the implants from Medievil. One name pops up several times throughout the files. \"Bob Anderson\""
+    PC "Is he talking about the implants from Medievil? I thought they're used to treat diseases"
     show alex serious1 at alex_right
     with dissolve
 
@@ -562,7 +566,7 @@ label password_cracked:
     show leonie neutral at left
     with dissolve
 
-    L "Well, according to him biosync is looking to use them for something else, but he doesn't specify what. Only that its about profit and he thinks its dangerous."
+    L "Well, according to him Medievil is looking to use them for something else, but he doesn't specify what. Only that its about profit and he thinks its dangerous."
     show alex surprised at alex_right
     with dissolve
 
@@ -583,12 +587,12 @@ label password_cracked:
     show alex serious1 at alex_right
     with dissolve
 
-    A "Thats a pretty big jump your taking dont you think. From what we know there is no hard evidence against biosync and Felix is not known to be the most rational person."
+    A "Thats a pretty big jump your taking dont you think. From what we know there is no hard evidence against Medievil and Felix is not known to be the most rational person."
     show leonie thinking at left
     with dissolve
 
     L "Yes yes but he's not here and he hasn't answered any of our calls. Do you not think that's odd even form him."
-    PC "Maybe he wants us to investigate biosyn. I mean what else is the drive good for other than raising our suspicion."
+    PC "Maybe he wants us to investigate Medievil. I mean what else is the drive good for other than raising our suspicion."
     show alex neutral at alex_right
     with dissolve
 
@@ -598,7 +602,7 @@ menu:
     "Go to the police with the information you got":
         scene bg police station
         "You go to the police and show them the information you got from the drive. They ask you questions about Felix and the answers make it sound like Felix is making this whole story up."
-        "The fact that you have no hard evidence to show also doesn't help. In the end the police claims the drive as property of biosync and puts out a missing person report"
+        "The fact that you have no hard evidence to show also doesn't help. In the end the police claims the drive as property of Medievil and puts out a missing person report"
         show leonie serious at left
         with dissolve
 
@@ -606,26 +610,26 @@ menu:
         show alex serious1 at alex_right
         with dissolve
 
-        A "At least now we know that the police wont be much help against biosync. Looks like we're on our own."
+        A "At least now we know that the police wont be much help against Medievil. Looks like we're on our own."
         L "lets get back to our doorm and take matter in our own hands."
         PC "I left my laptop in the kitchen, so lets just get going there."
 
         jump level_2_start
 
-    "Investigate on your own what is happening at biosync":
+    "Investigate on your own what is happening at Medievil":
         scene bg felix room
         show leonie thinking at left 
         show alex serious1 at alex_right
         with dissolve 
-        A "Well then, I think it’s best if we do our research on Biosync. There should be more room in the kitchen for all of us."
-        show leonie serious at left
+        PC "Well then, I think it's best if we do our research on Medievil. There should be more room in the kitchen for all of us."
+        show alex serious2 at alex_right
         with dissolve
-        L "Mhm. We need to act fast. Who knows what actually happened to Felix…"
+        A "Mhm. We need to act fast. Who knows what actually happened to Felix…"
         show leonie thinking at left 
         with dissolve 
-        L "From what I know, Biosync is quite a large company. We should be able to find out a lot online."
-        PC "I left my laptop there anyway, so I guess I’ll take over the research."
-        PC "From there, I guess we can fulfill Felix’s wish and investigate properly."
+        L "From what I know, Medievil is quite a large company. We should be able to find out a lot online."
+        PC "I left my laptop there anyway, so I guess I'll take over the research."
+        PC "From there, I guess we can fulfill Felix's wish and investigate properly."
         with dissolve
         jump level_2_start
 
