@@ -166,20 +166,45 @@ screen phone_hand_contact():
                     action Call("call_felix")
                 text "{size=[contacts_font_size]}{color=[phone_normal_text_color]}Felix{/color}{/size}" at center
 
+label map_done:
+    $ renpy.notify("you have new objectives on your map")
+    return
+
 screen phone_hand_map():
     zorder 2
     modal True
     add Solid("#000c")
 
-    image "images/objects/phone/phone hand empty.png":
-        zoom 1.3
-        xalign 0.7
+    image "images/objects/phone/map/map.png"
     
-    # Return arrow
     imagebutton:
-        hover "return hover" at icon_pos
-        idle "return idle" 
+        idle "map dorms idle"
+        hover "map dorms hover"  
         focus_mask True
+        action Call("map_done")
+
+    if website_2_not_seen == False:
+        imagebutton:
+            idle "map university idle"
+            hover "map university hover"
+            focus_mask True
+            action Call("map_done")
+
+    if website_3_not_seen == False:
+        imagebutton:
+            idle "map medievil idle"
+            hover "map medievil hover"
+            focus_mask True
+            action Hide("phone_hand_map"), Hide("web_screen"), Jump("dumpsterdive")
+
+    # Return arrow (closes phone)
+    imagebutton:
+        idle "return arrow idle"
+        hover "return arrow hover" at arrow_pos
+        xpos 200
+        ypos 0
+        xsize 500
+        ysize 300
         action Hide("phone_hand_map"), Show("phone_hand")
 
 
@@ -196,8 +221,8 @@ screen phone_hand_notes():
     
     # Return arrow
     imagebutton:
-        hover "return hover" at icon_pos
         idle "return idle" 
+        hover "return hover" at icon_pos
         focus_mask True
         action Hide("phone_hand_notes"), Show("phone_hand")
     
@@ -230,8 +255,8 @@ screen phone_hand_glossary():
     
     # Return arrow
     imagebutton:
-        hover "return hover" at icon_pos
         idle "return idle" 
+        hover "return hover" at icon_pos
         focus_mask True
         action Hide("phone_hand_glossary"), Show("phone_hand")
 
@@ -242,8 +267,8 @@ screen phone_icon():
     modal False
 
     imagebutton:
-        hover "phone_icon_hover" at phone_pos
         idle "phone_icon_idle" 
+        hover "phone_icon_hover" at phone_pos
         
         focus_mask True
         action Show("phone_hand"), Hide("phone_icon")

@@ -76,7 +76,16 @@ screen mail_screen():
         scrollbars "vertical"
         yinitial 1.0
         image "alex laughing"
-
+    imagebutton:
+        idle "return arrow black idle" 
+        hover "return arrow black hover" at return_arrow_black_pos
+        xpos 200
+        ypos 600
+        xsize 500
+        ysize 400
+        #focus_mask True
+        action Hide("mail_screen"), Show("laptop_screen")
+        
 screen power_screen():
     zorder 2
     modal True
@@ -100,6 +109,15 @@ screen social_screen():
         scrollbars "vertical"
         yinitial 1.0
         image "alex laughing"
+    imagebutton:
+        idle "return arrow black idle" 
+        hover "return arrow black hover" at return_arrow_black_pos
+        xpos 200
+        ypos 600
+        xsize 500
+        ysize 400
+        #focus_mask True
+        action Hide("social_screen"), Show("laptop_screen")
 
 screen web_screen():
     zorder 0
@@ -126,18 +144,18 @@ screen web_screen():
 
     imagebutton:
         focus_mask True
-        idle "website1 icon idle" at website1_icon
-        hover "website1 icon hover"
+        idle "website 1 icon idle" at website1_icon
+        hover "website 1 icon hover"
         action Hide("web_screen"), Jump("website1_call")
     imagebutton:
         focus_mask True
-        idle "website2 icon idle" at website2_icon
-        hover "website2 icon hover"
+        idle "website 2 icon idle" at website2_icon
+        hover "website 2 icon hover"
         action Hide("web_screen"), Jump("website2_call")
     imagebutton:
         focus_mask True
-        idle "website3 icon idle" at website3_icon
-        hover "website3 icon hover"
+        idle "website 3 icon idle" at website3_icon
+        hover "website 3 icon hover"
         action Hide("web_screen"), Jump("website3_call")
 
 screen website1_screen():
@@ -145,7 +163,7 @@ screen website1_screen():
     modal False
     image "bg browser"
     frame: 
-        xalign 0.30
+        xalign 0.37
         yalign 0.138
         background "#00000000"
         text "{color=[search_result]}WestNews.com/456487568/Medievil {/color}" at center
@@ -209,8 +227,8 @@ screen website2_screen():
                 image "website 2"
                 if website_2_not_seen:
                     imagebutton:
-                        idle "websites 2 button idle"
-                        hover "websites 2 button hover"
+                        idle "website 2 button idle"
+                        hover "website 2 button hover"
                         focus_mask True
                         action Hide("website2_screen"), Function(set_function, website_2_not_seen), Jump("website2_button")
 

@@ -17,6 +17,7 @@ define trust_delta = 20
 
 label level_1_start:
     show alex serious2 at alex_right
+    with dissolve
     A "We have to get our hands on the info inside this drive. Felix wouldn't have just handed it to us if this wasn't important to him."
 
 menu:

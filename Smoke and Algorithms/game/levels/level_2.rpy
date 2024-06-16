@@ -65,6 +65,63 @@ label new_objectives:
     L "How about we use the information we've gathered to infiltrate them?"
     A "Isn't that a bit too hasty? We don't know much about the building or Bob Anderson."
     PC "Going in without a proper plan could be very risky. They'd be onto us quickly. Let's weigh all the options first."
-    A "We could stay and dig deeper into Bob Anderson's background. Maybe check his social media? how about we look into the university's partnered lab?"
-    L "We could also write a phishing email to gather more intel on Bob Anderson and his building. Alternatively, we could go dumpster diving near his facility. What do you think we should do first?"
+    L "We could also write a phishing email to gather more intel on Bob Anderson and his building. We could stay and dig deeper into Bob Anderson's background.Maybe check his social media?"
+    A "Alternatively, we could go dumpster diving near his facility.how about we look into the university's partnered lab?What do you think we should do first?"
+     
     call screen laptop_screen
+
+label dumpsterdive:
+    scene bg new kitchen
+    show leonie serious at left
+    show alex serious1 at alex_right
+    with dissolve
+    
+    PC "Lets head to Bob Andersons office. I wonder what we can find there."
+    show leonie thinking at left 
+    with dissolve
+
+    L "What are we going to do there though? Its not like we can just step in."
+    show alex neutral at alex_right
+    with dissolve
+
+    A "We dont have to step in. We can stay outside and do dumpsterdiving, to find out more information."
+    show leonie surprised at left
+    with dissolve
+
+    L "How is there going to be information in trash?"
+    show alex serious2 at alex_right
+    with dissolve
+
+    A "People often times throw away sensitive information without disposing of it correctly. If we look at the trash we could find something compromising that could get us a lead."
+    "You, Alex and Leoni go to the building."
+
+    scene bg officeoutside #its dark outside
+
+    show leonie neutral at left
+    with  moveinleft
+    show alex neutral at alex_right
+    with  moveinright
+
+    PC "Hm the building seems smaller than described on the internet"
+    show leonie happy at left
+    with dissolve
+
+    L "Well that means we dont have to search for too much. Look, the garbage bins are directly over there."
+    show alex angry at alex_right
+    with dissolve
+
+    A "I think someone has to look out for anyone incoming, not that they see us searching through the trash as thats pretty suspicious. Ill take on the role and whistle loudly to warn you."
+    PC "Thank you bro. Lets get going then"
+
+    scene bg wastepaper 
+
+    jump dumpster_diving_minigame_start
+
+label after_dumpsterdive:
+    jump game_over #this is just a placholder
+    
+
+
+
+label visitlab:
+   
