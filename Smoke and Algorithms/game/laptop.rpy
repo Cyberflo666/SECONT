@@ -3,6 +3,8 @@ define website_area = (0, 0, 1441, 4323)
 define website_1_scrollbar_pos = 0
 define website_2_scrollbar_pos = 0
 define website_3_scrollbar_pos = 0
+define search_result = "#000000FF"
+
 init python:
     def viewport_change1(value):
         global website_1_scrollbar_pos
@@ -38,7 +40,7 @@ screen laptop_screen():
     modal False
         
     
-    # Return arrow (closes phone)
+# Return arrow (closes phone)
     imagebutton:
         idle "mail idle"
         hover "mail hover"
@@ -103,15 +105,25 @@ screen web_screen():
     zorder 0
     modal True
     image "bg browser"
-    imagebutton:
-        idle "return arrow black idle" 
-        hover "return arrow black hover" at return_arrow_black_pos
-        xpos 200
-        ypos 600
-        xsize 500
-        ysize 400
-        #focus_mask True
-        action Hide("web_screen"), Show("laptop_screen")
+    frame: 
+        xalign 0.30
+        yalign 0.138
+        background "#00000000"
+        text "{color=[search_result]}Search: Medievil{/color}" at center
+    if not website_2_not_seen and not website_3_not_seen:
+        imagebutton:
+            idle "return arrow black idle" 
+            hover "return arrow black hover" at return_arrow_black_pos
+            xpos 200
+            ypos 600
+            xsize 500
+            ysize 400
+            #focus_mask True
+            if new_objectives_not_heard:
+                action Hide("web_screen"), Show("laptop_screen"), Jump("new_objectives")
+            else:
+                action Hide("web_screen"), Show("laptop_screen")
+
     imagebutton:
         focus_mask True
         idle "website1 icon idle" at website1_icon
@@ -132,6 +144,11 @@ screen website1_screen():
     zorder 0
     modal False
     image "bg browser"
+    frame: 
+        xalign 0.30
+        yalign 0.138
+        background "#00000000"
+        text "{color=[search_result]}WestNews.com/456487568/Medievil {/color}" at center
     imagebutton:
         idle "return arrow black idle" 
         hover "return arrow black hover" at return_arrow_black_pos
@@ -164,6 +181,11 @@ screen website2_screen():
     zorder 0
     modal False
     image "bg browser"
+    frame: 
+        xalign 0.46
+        yalign 0.138
+        background "#00000000"
+        text "{color=[search_result]}WesterosUniversityNews.com/80909783456/Medievil{/color}" at center
     imagebutton:
         idle "return arrow black idle" 
         hover "return arrow black hover" at return_arrow_black_pos
@@ -196,6 +218,11 @@ screen website3_screen():
     zorder 0
     modal False
     image "bg browser"
+    frame: 
+        xalign 0.4
+        yalign 0.138
+        background "#00000000"
+        text "{color=[search_result]}LinkedOut.com/765433907644358/Medievil{/color}" at center
     imagebutton:
         idle "return arrow black idle" 
         hover "return arrow black hover" at return_arrow_black_pos
@@ -223,6 +250,7 @@ screen website3_screen():
                         hover "website 3 button hover"
                         focus_mask True
                         action Hide("website3_screen"), Function(set_function, website_3_not_seen), Jump("website3_button")
+
 screen website1_button_text:
     window:
         text "something useless"

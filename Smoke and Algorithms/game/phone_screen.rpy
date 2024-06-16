@@ -8,85 +8,6 @@ image phone_icon_hover :
 image phone_icon_idle :
     "images/objects/phone/phone idle.png"
     zoom 0.15
-    
-
-image return_arrow_hover :
-    "images/objects/phone/return_arrow_hover.png"
-    zoom 0.3
-    
-
-image return_arrow_idle :
-    "images/objects/phone/return_arrow_idle.png"
-    zoom 0.3
-   
-image camera_idle:
-    "images/objects/phone/camera idle.png"
-    zoom 2
-
-
-image camera_hover:
-    "images/objects/phone/camera hover.png"
-    zoom 2
-
-image contact_idle:
-    "images/objects/phone/camera idle.png"
-    zoom 1.3
-    xalign 0.7
-
-image contact_hover:
-    "images/objects/phone/camera hover.png"
-    zoom 1.3
-    xalign 0.7
-
-image glossary_idle:
-    "images/objects/phone/glossary idle.png"
-    zoom 1.3
-    xalign 0.7
-
-image glossary_hover:
-    "images/objects/phone/glossary hover.png"
-    zoom 1.3
-    xalign 0.7
-
-image map_idle:
-    "images/objects/phone/map idle.png"
-    zoom 1.3
-    xalign 0.7
-
-image map_hover:
-    "images/objects/phone/map hover.png"
-    zoom 1.3
-    xalign 0.7
-
-image notes_idle:
-    "images/objects/phone/notes idle.png"
-    zoom 1.3
-    xalign 0.7
-
-image notes_hover:
-    "images/objects/phone/notes hover.png"
-    zoom 1.3
-    xalign 0.7
-
-image return_idle:
-    "images/objects/phone/return idle.png"
-    zoom 1.3
-    xalign 0.7
-
-image return_hover:
-    "images/objects/phone/return hover.png"
-    zoom 1.3
-    xalign 0.7
-
-image password_idle:
-    "images/objects/phone/password idle.png"
-    zoom 1.3
-    xalign 0.7
-
-image password_hover:
-    "images/objects/phone/password hover.png"
-    zoom 1.3
-    xalign 0.7
 
 transform icon_pos:
     zoom 1.3
@@ -110,11 +31,15 @@ define phone_normal_text_color = "#000000"
 screen phone_hand():
     zorder 2
     modal True
-
-    image "images/objects/phone/phone hand empty.png":
-        zoom 1.3
-        xalign 0.7
-        
+    add Solid("#000c")
+    if password_icon == True:
+        image "images/objects/phone/phone hand with pw.png":
+            zoom 1.3
+            xalign 0.7
+    else:
+        image "images/objects/phone/phone hand.png":
+            zoom 1.3
+            xalign 0.7
     
     # Return arrow (closes phone)
     imagebutton:
@@ -134,8 +59,8 @@ screen phone_hand():
         action Hide("phone_hand"), Show("phone_hand_camera")
     
     imagebutton:
-        hover "contact hover" at icon_pos
-        idle "contact idle"
+        hover "contacts hover" at icon_pos
+        idle "contacts idle"
         focus_mask True
         action Hide("phone_hand"), Show("phone_hand_contact")
     
@@ -168,6 +93,7 @@ screen phone_hand():
 screen phone_hand_camera():
     zorder 2
     modal True
+    add Solid("#000c")
 
     image "images/objects/phone/phone hand empty.png":
         zoom 1.3
@@ -186,6 +112,7 @@ define contacts_font_size = 45
 screen phone_hand_contact():
     zorder 2
     modal True
+    add Solid("#000c")
 
     image "images/objects/phone/phone hand empty.png":
         zoom 1.3
@@ -242,6 +169,7 @@ screen phone_hand_contact():
 screen phone_hand_map():
     zorder 2
     modal True
+    add Solid("#000c")
 
     image "images/objects/phone/phone hand empty.png":
         zoom 1.3
@@ -260,6 +188,7 @@ define notes_font_size = 25
 screen phone_hand_notes():
     zorder 2
     modal True
+    add Solid("#000c")
 
     image "images/objects/phone/phone hand empty.png":
         zoom 1.3
@@ -273,7 +202,6 @@ screen phone_hand_notes():
         action Hide("phone_hand_notes"), Show("phone_hand")
     
     viewport:
-        # xStartOffset, yStartOffset, xWidth, yHeight
         area phone_usable_area
         draggable True
         mousewheel True
@@ -294,6 +222,7 @@ screen phone_hand_notes():
 screen phone_hand_glossary():
     zorder 2
     modal True
+    add Solid("#000c")
 
     image "images/objects/phone/phone hand empty.png":
         zoom 1.3
