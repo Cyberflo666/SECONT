@@ -95,9 +95,12 @@ label dumpsterdive:
     A "People often times throw away sensitive information without disposing of it correctly. If we look at the trash we could find something compromising that could get us a lead."
     "You, Alex and Leoni go to the building."
 
-    scene bg officeoutside #its dark outside
+    hide alex with moveoutright
+    hide leonie with moveoutleft
 
-    show leonie neutral at left
+    scene bg officebehind #its dark outside
+    with dissolve
+    show leonie happy at left
     with  moveinleft
     show alex neutral at alex_right
     with  moveinright
@@ -118,6 +121,16 @@ label dumpsterdive:
     jump dumpster_diving_minigame_start
 
 label after_dumpsterdive:
+    scene bg officebehind
+    with dissolve
+    show leonie happy at left
+    with  moveinleft
+    show alex neutral at alex_right
+    with  moveinright
+    A "Nice one, now what does it say?"
+    PC "It's a receipt from an expensive restaurant."
+    PC "Seems like Bob Anderson went there with someone"
+
     jump game_over #this is just a placholder
     
 

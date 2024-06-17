@@ -166,8 +166,12 @@ screen phone_hand_contact():
                     action Call("call_felix")
                 text "{size=[contacts_font_size]}{color=[phone_normal_text_color]}Felix{/color}{/size}" at center
 
+label map_already_here:
+    $ renpy.notify("You are already here")
+    return
+
 label map_done:
-    $ renpy.notify("you have new objectives on your map")
+    $ renpy.notify("Not implemented yet")
     return
 
 screen phone_hand_map():
@@ -181,7 +185,7 @@ screen phone_hand_map():
         idle "map dorms idle"
         hover "map dorms hover"  
         focus_mask True
-        action Call("map_done")
+        action Call("map_already_here")
 
     if website_2_not_seen == False:
         imagebutton:

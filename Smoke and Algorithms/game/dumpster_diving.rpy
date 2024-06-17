@@ -9,9 +9,6 @@ label dumpster_diving_minigame_completed:
     scene bg new kitchen
     $ renpy.notify("A picture has been added to your notes")
     pause 1.5
-    A "Nice one, now what does it say?"
-    PC "It's a receipt from an expensive restaurant."
-    PC "Seems like Bob Anderson went there with someone"
     jump after_dumpsterdive
 
 # Variables

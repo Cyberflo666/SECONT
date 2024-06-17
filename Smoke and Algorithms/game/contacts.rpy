@@ -3,7 +3,7 @@
 label call_alex:
     hide screen phone_hand_contact
     with dissolve
-    A "Are you blind? I'm standing right next to you"
+    A "Are you blind? I'm standing right next to you, Haha."
     show screen phone_hand_contact
     with dissolve
     return
@@ -11,7 +11,7 @@ label call_alex:
 label call_leonie:
     hide screen phone_hand_contact
     with dissolve
-    L "Oh, reception's bad, we're entering a tunnel right now krsch sch sch sch ..."
+    L "Hey, I'm right here [PN]"
     show screen phone_hand_contact
     with dissolve
     return
@@ -19,7 +19,9 @@ label call_leonie:
 label call_felix:
     hide screen phone_hand_contact
     with dissolve
-    F "Antonios, where can I deliver the pizza?"
+    "beep beep beep"
+    "..."
+    "It seems like noone answers the phone"
     show screen phone_hand_contact
     with dissolve
     return
