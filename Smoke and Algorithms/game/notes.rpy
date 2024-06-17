@@ -11,6 +11,7 @@ init python:
                 if it_item.text == item.text:
                     return
             self.items.append(item)
+            renpy.notify("Information added to your notebook")
         
         def remove_data(self, item):
             self.items.remove(item)
