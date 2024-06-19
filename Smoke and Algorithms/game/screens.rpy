@@ -102,11 +102,14 @@ style frame:
 ## https://www.renpy.org/doc/html/screen_special.html#say
 
 screen say(who, what):
+    zorder 1
     style_prefix "say"
-
+    if show_textbox == True:
+        add "gui/textbox.png" xalign 0.5 yalign 1.0
+    else:
+        pass
     window:
-        id "window"
-
+        #id "window"
         if who is not None:
 
             window:
@@ -127,7 +130,8 @@ screen say(who, what):
 init python:
     config.character_id_prefixes.append('namebox')
 
-style window is default
+#style window is default
+style window1 is default
 style say_label is default
 style say_dialogue is default
 style say_thought is say_dialogue
@@ -141,8 +145,14 @@ style window:
     xfill True
     yalign gui.textbox_yalign
     ysize gui.textbox_height
+    #background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
 
-    background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
+style window1:
+    xalign 0.5
+    xfill True
+    yalign gui.textbox_yalign
+    ysize gui.textbox_height
+    background "#00000000"
 
 style namebox:
     xpos gui.name_xpos
@@ -1426,7 +1436,7 @@ screen bubble(who, what):
     style_prefix "bubble"
 
     window:
-        id "window"
+        id "window1"
 
         if who is not None:
 

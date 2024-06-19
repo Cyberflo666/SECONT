@@ -67,7 +67,7 @@ screen laptop_screen():
 
 screen mail_screen():
     zorder 2
-    modal True
+    modal False
     image "bg mail"
     viewport:
         area laptop_usable_area
@@ -88,7 +88,7 @@ screen mail_screen():
         
 screen power_screen():
     zorder 2
-    modal True
+    modal False
     image "blank laptop"
     viewport:
         area laptop_usable_area
@@ -100,7 +100,7 @@ screen power_screen():
 
 screen social_screen():
     zorder 2
-    modal True
+    modal False
     image "blank laptop"
     viewport:
         area laptop_usable_area
@@ -121,7 +121,7 @@ screen social_screen():
 
 screen web_screen():
     zorder 0
-    modal True
+    modal False
     image "bg browser"
     frame: 
         xalign 0.30

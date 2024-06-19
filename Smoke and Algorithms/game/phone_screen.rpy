@@ -199,7 +199,7 @@ screen phone_hand_map():
             idle "map medievil idle"
             hover "map medievil hover"
             focus_mask True
-            action Hide("phone_hand_map"), Hide("web_screen"), Jump("dumpsterdive")
+            action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("laptop_screen"), Jump("dumpsterdive")
 
     # Return arrow (closes phone)
     imagebutton:

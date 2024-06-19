@@ -8,21 +8,27 @@ label level_2_start:
     scene bg new kitchen 
     "you gather around the kitchen table while opening up your laptop"
     "You walk over and gather around a table while opening up your laptop."
-    scene laptop
+    scene bg laptop
     A "I think it's best if we start by looking up what exactly Medievil is."
-    call screen web_screen
+    show screen laptop_screen
+    $ show_textbox = False
     ""
+    jump empty_label
 
 label website1_button:
+    $ show_textbox = True
     $ website_1_not_seen = False
     show screen website1_screen
     PC "Apparently Medievil is getting funds from our city."
     A "Is there a reason?"
     L "Not really. Just for stronger industry and more workplaces"
     call websearch_done
-    call screen website1_screen
+    show screen website1_screen
+    $ show_textbox = False
+    jump empty_label
     ""
 label website2_button:
+    $ show_textbox = True
     $ website_2_not_seen = False
     show screen website2_screen
     PC "Here is something about a lab at our university. According to these news it was offered to Medievil for research."
@@ -30,9 +36,12 @@ label website2_button:
     A "You think we have access?"
     L "I think we can get it if we really want."
     call websearch_done
-    call screen website2_screen
+    show screen website2_screen
+    $ show_textbox = False
+    jump empty_label
     ""
 label website3_button:
+    $ show_textbox = True
     $ website_3_not_seen = False
     show screen website3_screen
     PC "Our good friend Mr Anderson had a meeting today."
@@ -41,24 +50,30 @@ label website3_button:
     L "Never heard of him."
     A "But maybe worth a look. We could try finding him on brainrot."
     call websearch_done
-    call screen website3_screen
+    show screen website3_screen
+    $ show_textbox = False
+    jump empty_label
     ""
 
 label website1_call:
-    call screen website1_screen
+    show screen website1_screen
     ""
+    jump empty_label
 label website2_call:
-    call screen website2_screen
+    show screen website2_screen
     ""
+    jump empty_label
 label website3_call:
-    call screen website3_screen
+    show screen website3_screen
     ""
+    jump empty_label
 label websearch_done:
     if not website_2_not_seen and not website_3_not_seen:
         PC ""
         $ renpy.notify("you have new objectives on your map")
     return
 label new_objectives:
+    $ show_textbox = True
     $ new_objectives_not_heard = False
     L "It's good that we were able to learn a lot about Mr. Anderson. How are we going to proceed, though?"
     PC "I believe Anderson should be our priority since he is the link between Medievil and Felix."
@@ -68,9 +83,12 @@ label new_objectives:
     L "We could also write a phishing email to gather more intel on Bob Anderson and his building. We could stay and dig deeper into Bob Anderson's background.Maybe check his social media?"
     A "Alternatively, we could go dumpster diving near his facility.how about we look into the university's partnered lab?What do you think we should do first?"
      
-    call screen laptop_screen
+    show screen laptop_screen
+    $ show_textbox = False
+    jump empty_label
 
 label dumpsterdive:
+    $ show_textbox = True
     scene bg new kitchen
     show leonie serious at left
     show alex serious1 at alex_right
@@ -121,6 +139,7 @@ label dumpsterdive:
     jump dumpster_diving_minigame_start
 
 label after_dumpsterdive:
+    $ show_textbox = True
     scene bg officebehind
     with dissolve
     show leonie happy at left
@@ -138,3 +157,7 @@ label after_dumpsterdive:
 
 label visitlab:
    
+label empty_label:
+    ""
+    $ renpy.notify("all good")
+    jump empty_label
