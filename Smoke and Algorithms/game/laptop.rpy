@@ -49,12 +49,6 @@ screen laptop_screen():
             action Hide("laptop_screen"), Show("mail_screen")
 
         imagebutton:
-            idle "power idle"
-            hover "power hover"
-            focus_mask True
-            action Hide("laptop_screen"), Show("power_screen")
-
-        imagebutton:
             idle "social idle"
             hover "social hover"
             focus_mask True
@@ -126,6 +120,7 @@ screen web_screen():
     zorder 0
     modal False
     image "bg browser"
+    image"return arrow black idle" at return_arrow_black_pos
     frame: 
         xalign 0.30
         yalign 0.138
@@ -218,13 +213,13 @@ screen website2_screen():
             ysize 400
             #focus_mask True
             action Hide("website2_screen"), Show("web_screen")
-        viewport:
-            area laptop_usable_area
-            draggable True
-            mousewheel True
-            scrollbars "vertical"
-            yadjustment ui.adjustment(1, website_2_scrollbar_pos, changed=viewport_change2)
-            #define laptop_usable_area = (240, 110, 1441, 830)
+    viewport:
+        area laptop_usable_area
+        draggable True
+        mousewheel True
+        scrollbars "vertical"
+        yadjustment ui.adjustment(1, website_2_scrollbar_pos, changed=viewport_change2)
+        #define laptop_usable_area = (240, 110, 1441, 830)
         vbox:
             frame:
                 area website_area

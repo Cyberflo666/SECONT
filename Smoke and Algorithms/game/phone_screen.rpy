@@ -170,10 +170,6 @@ label map_already_here:
     $ renpy.notify("You are already here")
     return
 
-label map_done:
-    $ renpy.notify("Not implemented yet")
-    return
-
 screen phone_hand_map():
     zorder 2
     modal True
@@ -192,7 +188,7 @@ screen phone_hand_map():
             idle "map university idle"
             hover "map university hover"
             focus_mask True
-            action Call("map_done")
+            action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("laptop_screen"), Jump("visitlab")
 
     if website_3_not_seen == False:
         imagebutton:

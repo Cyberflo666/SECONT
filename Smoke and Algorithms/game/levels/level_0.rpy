@@ -18,7 +18,7 @@ label level_0_start:
     
     "Buckle up for a journey where trust is a weapon, truth is a labyrinth, and the choices you make could unravel a conspiracy that reaches far beyond the walls of your imagination"
 
-    $ PN = renpy.input("Enter your name.", "Robert Paulson", length=15, exclude=" 0123456789+=,.?!<>[]{}").strip() 
+    $ PN = renpy.input("Enter your name.", "Robert Paulson", length=15, exclude=" 0123456789+=,.?!<>@[]{}").strip() 
     menu:
         "Are you..."
         "A Boy":
