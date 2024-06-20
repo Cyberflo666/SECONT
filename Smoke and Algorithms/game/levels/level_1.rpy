@@ -437,12 +437,12 @@ label felix_room:
 
     scene bg felix room
     "Investigate the room with your mouse"
+    show screen phone_icon
+
 label felix_room_menu:
     scene bg felix room
     call show_felix_room_interactables
-    show screen phone_icon
     with dissolve
-
     "use your phone to crack the password"
     jump felix_room_menu
 
@@ -463,6 +463,7 @@ label notebooks:
     "One worn down book especially catches your sight. It's about the [[9/11] attacks and seems to have quite a few sticky notes and annotations in it."
     $ book_seen = True
     $ notes.add_data(NoteData("info: 9/11"))
+    show screen phone_icon
     jump felix_room_menu
 
 label bin:
@@ -474,6 +475,7 @@ label bin:
 
     "You close your nose with your fingers as you lean down uppon the trash bin. This is not the day to be petty. You force yourself to take aside some old pizza crusts and used tissues."
     "After the bin is empty you accept that you'll probably only find trash and put the garbage back into the bin."
+    show screen phone_icon
     jump felix_room_menu
 
 label bed:
@@ -484,6 +486,7 @@ label bed:
     with dissolve
 
     "Under Felix's bed located, are some dirty clothes, empty bottles, and spiderwebs"
+    show screen phone_icon
     jump felix_room_menu
 
 label wall2:
@@ -496,6 +499,7 @@ label wall2:
     "you catch sight of a portal poster. The following quote sticks out:\"the cake is a lie\""
     $ poster_seen = True
     $ notes.add_data(NoteData("info: \"the cake is a lie\""))
+    show screen phone_icon
     jump felix_room_menu
 
 label wall3:
@@ -508,6 +512,7 @@ label wall3:
     "your eyes meet a Calendar with marked dates. A red circled date [[04/17] labeld with \"Half Life 3\" stands out"
     $ calendar_seen = True
     $ notes.add_data(NoteData("info: 04/17 Half Life 3 release"))
+    show screen phone_icon
     jump felix_room_menu
 
 label map:
@@ -520,6 +525,7 @@ label map:
     "You catch sight of a Nevada map, with multiple pins on an specific Area. Written beneath it reads [[Area51]"
     $ map_seen = True
     $ notes.add_data(NoteData("info: Area 51"))
+    show screen phone_icon
     jump felix_room_menu
 
 label wall1:
@@ -531,6 +537,7 @@ label wall1:
 
     "you see some hung up newspaper articles about some apparent proof that the earth is actually flat"
     $ newspaper_seen = True
+    show screen phone_icon
     jump felix_room_menu
 
 label pc:
@@ -542,6 +549,7 @@ label pc:
 
     "you try to get access to his PC but it's password protected"
     L "who would have thought"
+    show screen phone_icon
     jump felix_room_menu
 
 

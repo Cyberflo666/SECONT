@@ -1155,7 +1155,6 @@ style help_label_text:
 ## https://www.renpy.org/doc/html/screen_special.html#confirm
 
 screen confirm(message, yes_action, no_action):
-
     ## Ensure other screens do not get input while this screen is displayed.
     modal True
 
@@ -1313,7 +1312,6 @@ style notify_text:
 
 
 screen nvl(dialogue, items=None):
-
     window:
         style "nvl_window"
 
@@ -1345,7 +1343,6 @@ screen nvl(dialogue, items=None):
 
 
 screen nvl_dialogue(dialogue):
-
     for d in dialogue:
 
         window:
