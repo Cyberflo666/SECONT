@@ -166,9 +166,9 @@ screen phone_hand_contact():
                     action Call("call_felix")
                 text "{size=[contacts_font_size]}{color=[phone_normal_text_color]}Felix{/color}{/size}" at center
 
-label map_already_here:
-    $ renpy.notify("You are already here")
-    return
+init python:
+    def notify_function():
+        renpy.notify("You are already here")
 
 screen phone_hand_map():
     zorder 2
@@ -181,21 +181,33 @@ screen phone_hand_map():
         idle "map dorms idle"
         hover "map dorms hover"  
         focus_mask True
-        action Call("map_already_here")
+        action Function(notify_function)
 
     if website_2_not_seen == False:
         imagebutton:
             idle "map university idle"
             hover "map university hover"
             focus_mask True
-            action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("laptop_screen"), Jump("visitlab")
+            if hide_map:
+                action Call("map_disabled")
+            elif uni_access_denied:
+                action Call("lab_access_denied")
+            elif lab_seen:
+                action Call("lab_visited")
+            else:
+                action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("laptop_screen"), Jump("visitlab")
 
     if website_3_not_seen == False:
         imagebutton:
             idle "map medievil idle"
             hover "map medievil hover"
             focus_mask True
-            action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("laptop_screen"), Jump("dumpsterdive")
+            if hide_map:
+                action Call("map_disabled")
+            elif dumpster_doven:
+                action Call("dumpster_empty")
+            else:
+                action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("laptop_screen"), Jump("dumpsterdive")
 
     # Return arrow (closes phone)
     imagebutton:
@@ -265,10 +277,10 @@ screen phone_icon():
     
     zorder 2
     modal False
-
-    imagebutton:
-        idle "phone_icon_idle" 
-        hover "phone_icon_hover" at phone_pos
-        
-        focus_mask True
-        action Show("phone_hand"), Hide("phone_icon")
+    if show_image_buttons:
+        imagebutton:
+            idle "phone_icon_idle" 
+            hover "phone_icon_hover" at phone_pos
+            
+            focus_mask True
+            action Show("phone_hand"), Hide("phone_icon")

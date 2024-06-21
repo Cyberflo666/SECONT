@@ -2,19 +2,41 @@ define website_1_not_seen = True
 define website_2_not_seen = True
 define website_3_not_seen = True
 define new_objectives_not_heard = True
+default lab_seen = False
+default uni_access_denied = False
+default dumpster_doven = False
+default player_warned = False
 
 label level_2_start:
     play music main_music1 volume 0.1
     scene bg new kitchen 
     "you gather around the kitchen table while opening up your laptop"
     "You walk over and gather around a table while opening up your laptop."
-    scene bg laptop
+    scene bg laptop full
     A "I think it's best if we start by looking up what exactly Medievil is."
+
+label research:
+    scene bg laptop full
+    show screen phone_icon
     show screen laptop_screen
     $ show_textbox = False
     ""
     jump empty_label
 
+label warning:
+    $ show_image_buttons = False
+    $ player_warned = True
+    if show_textbox == False:
+        $ show_textbox = True
+        $ hide_textbox = True
+    with dissolve
+    L "Are you sure we have enough information for a phishing mail?"
+    with dissolve
+    $ show_image_buttons = True
+    if hide_textbox == True:
+        $ show_textbox = False
+        $ hide_textbox = False
+    return
 label website1_button:
     $ show_image_buttons = False
     $ show_textbox = True
@@ -80,6 +102,7 @@ label websearch_done:
     return
 label new_objectives:
     $ show_textbox = True
+    $ show_image_buttons = False
     $ new_objectives_not_heard = False
     L "It's good that we were able to learn a lot about Mr. Anderson. How are we going to proceed, though?"
     PC "I believe Anderson should be our priority since he is the link between Medievil and Felix."
@@ -88,10 +111,9 @@ label new_objectives:
     PC "Going in without a proper plan could be very risky. They'd be onto us quickly. Let's weigh all the options first."
     L "We could also write a phishing email to gather more intel on Bob Anderson and his building. We could stay and dig deeper into Bob Anderson's background.Maybe check his social media?"
     A "Alternatively, we could go dumpster diving near his facility.how about we look into the university's partnered lab?What do you think we should do first?"
-     
-    show screen laptop_screen
     $ show_textbox = False
-    jump empty_label
+    $ show_image_buttons = True
+    jump research
 
 label dumpsterdive:
     $ show_textbox = True
@@ -158,10 +180,51 @@ label after_dumpsterdive:
     A "Yup ive heard alot of wild things about that restaurant. Youre right, only the higher classes can afford it"
     PC "Seems like Bob Anderson went there with someone"
     L "I wonder who he went there with. The food and drinks definetly look like for 2 people"
+    $ dumpster_doven = True
 
+    jump research 
 
-    jump game_over #this is just a placholder
-    
+label lab_access_denied:
+    $ show_image_buttons = False
+    if show_textbox == False:
+        $ show_textbox = True
+        $ hide_textbox = True
+    hide screen phone_hand_map 
+    "The security is alert of your attemted inrusion. They will surely not let you near the lab again."
+    if hide_textbox == True:
+        $ show_textbox = False
+        $ hide_textbox = False
+    $ show_image_buttons = True
+    show screen phone_hand_map
+    return
+
+label lab_visited:
+    $ show_image_buttons = False
+    if show_textbox == False:
+        $ show_textbox = True
+        $ hide_textbox = True
+    hide screen phone_hand_map 
+    "You have already seen everything there is to see here."
+    if hide_textbox == True:
+        $ show_textbox = False
+        $ hide_textbox = False
+    $ show_image_buttons = True
+    show screen phone_hand_map
+    return
+
+label dumpster_empty:
+    $ show_image_buttons = False
+    if show_textbox == False:
+        $ show_textbox = True
+        $ hide_textbox = True
+    hide screen phone_hand_map 
+    "You already have all the information from the bin."
+    if hide_textbox == True:
+        $ show_textbox = False
+        $ hide_textbox = False
+    $ show_image_buttons = True
+    show screen phone_hand_map
+    return
 
 label visitlab:
     $ show_textbox = True
@@ -216,7 +279,7 @@ label visitlab:
     hide alex 
     hide leonie 
 
-    "you head to the door of the lab, and see that theres a pin needed to unlock the door "
+    "You head to the door of the lab, and see that theres a pin needed to unlock the door "
 
     show leonie thinking at left
     with dissolve
@@ -226,12 +289,96 @@ label visitlab:
     L "What should we do now?"
 
     menu: 
-        "wait for someone to enter the lab in disguise":
-            jump game_over
-        "ask around to get access":
-            jump game_over
+        "Wait for someone to enter the lab in disguise":
+            show leonie neutral at left
+            with dissolve
+            L "Maybe we can wait until someone opens the door for us."
+            show alex serious1 at alex_right
+            with dissolve
+            A "And then sneak inside without them noticing. Really!?"
+            show leonie serious at left
+            with dissolve
+            L "No, we simply watch what they input and then wait for them to leave."
+            show alex neutral at alex_right
+            with dissolve
+            A "We would have to wait quite far away to stay hidden."
+            PC "Thats fine. I have binoculars at home i can get."
+            show leonie happy at left
+            with dissolve
+            L "And we will find a good spot for observation"
+            scene black
+            with dissolve
+            "The three of you split up. Alex and leonie search for a location that has line of sight to the door while still being far enough away to not raise suspicion while you get your binoculars from home."
+            jump lab_wait
+        "Ask around to get access":
+            $ uni_access_denied = True
+            hide leonie
+            hide alex
+            with dissolve
+            "You ask the first person you see trying to enter to give you access."
+            "They deny your request and notifiy the security about your presence."
+            "Because you dont want to meddle with them any further you decide to return home and continue your research."
+            jump research
 
-
+    label lab_wait:
+        scene bg university observe
+        "As you return you got to the location leonie sent you. A desk at the snack maschine with four chairs."
+        show leonie neutral at left
+        show alex neutral at alex_right
+        with dissolve
+        "You sit down and wait for what feels like eternity until..."
+        show alex surprised at alex_right
+        with dissolve
+        A "Guys look. We caught one."
+        show leonie serious at left
+        with dissolve
+        L "Quiet, we don't want him to notice us. Just oserve what he presses."
+        show alex serious1 at alex_right
+        with dissolve
+        "You see a ominous person walking up to the door. He does not look like any univerity employee you know."
+        "You watch as he puts his hand on the pinboard and inputs: \n '4' '7' '1' '9' '6' '5'."
+        "While you observe you whisper to your friends what you see."
+        show alex serious2 at alex_right
+        with dissolve
+        A "Is that all?"
+        PC "Yup. The door is open."
+        show leonie happy at left
+        with dissolve
+        L "Great. Now we just have to wait until he leaves."
+        show alex smile at alex_right
+        with dissolve
+        A "Perfket. I needed a break after all the previous waiting."
+        PC "You can follow him if you want, but dont expect us to follow."
+        show alex happy at alex_right
+        with dissolve
+        A "Nah im good. Just kidding."
+        show leonie thinking at left
+        with dissolve
+        L "We should change locations to avoid getting his attention. It could make him suspicious if we were still here when he leaves."
+        show alex neutral at alex_right
+        with dissolve
+        A "We could wait outside for him to exit."
+        show leonie serious at left
+        with dissolve
+        L "Ok. Alex and I wait at the front and you wait at the back."
+        PC "Roger that."
+        scene bg university backside
+        "You get into position and start waiting."
+        "After a short while you get a message from alex telling you to get to the lab."
+        "When you approach the lab you see your friends infront of the open door."
+        show leonie neutral at left
+        show alex neutral at alex_right
+        with dissolve
+        PC "I assume he left."
+        show alex smile at alex_right
+        with dissolve
+        A "No he invited us in."
+        show leonie sad at left
+        with dissolve
+        "..."
+        show leonie neutral at left
+        with dissolve
+        L "Anyways, lets continue."
 
 
 

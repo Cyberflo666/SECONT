@@ -46,7 +46,10 @@ screen laptop_screen():
             idle "mail idle"
             hover "mail hover"
             focus_mask True
-            action Hide("laptop_screen"), Show("mail_screen")
+            if player_warned == False:
+                action Call("warning")
+            else:
+                action Hide("laptop_screen"), Show("mail_screen")
 
         imagebutton:
             idle "social idle"
@@ -59,7 +62,7 @@ screen laptop_screen():
             hover "web hover"
             focus_mask True
             action Hide("laptop_screen"), Show("web_screen")
-
+            
 screen mail_screen():
     zorder 2
     modal False
