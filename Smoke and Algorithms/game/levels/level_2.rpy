@@ -180,6 +180,7 @@ label after_dumpsterdive:
     A "Yup ive heard alot of wild things about that restaurant. Youre right, only the higher classes can afford it"
     PC "Seems like Bob Anderson went there with someone"
     L "I wonder who he went there with. The food and drinks definetly look like for 2 people"
+    $ gloss_dumpster_seen = True
     $ dumpster_doven = True
 
     jump research 
@@ -321,6 +322,7 @@ label visitlab:
             jump research
 
     label lab_wait:
+        $ gloss_tailgating_seen = True
         scene bg university observe
         "As you return you got to the location leonie sent you. A desk at the snack maschine with four chairs."
         show leonie neutral at left
@@ -347,7 +349,7 @@ label visitlab:
         L "Great. Now we just have to wait until he leaves."
         show alex smile at alex_right
         with dissolve
-        A "Perfket. I needed a break after all the previous waiting."
+        A "Perfect. I needed a break after all the previous waiting."
         PC "You can follow him if you want, but dont expect us to follow."
         show alex happy at alex_right
         with dissolve

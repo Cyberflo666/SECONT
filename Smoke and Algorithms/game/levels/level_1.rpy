@@ -134,6 +134,8 @@ label choice_1_2_lock_pick:
     jump menu_1_2
 
 label choice_1_2_janitor:
+    $ gloss_bribery_seen = True
+    $ gloss_impersonation_seen = True
 menu:
     "Try to impersonate as Felix to get him to open the door" :
         PC "Maybe one of us should try to pose as felix to get him to open the door"

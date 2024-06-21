@@ -256,6 +256,37 @@ screen phone_hand_notes():
                     text "{size=[notes_font_size]}{color=[phone_normal_text_color]}[entry.text]{/color}{/size}"
 
 
+
+################################### Glossary ##########################################
+define gloss_font_size_big = 40
+define gloss_font_size_normal = 25
+
+default gloss_bribery_seen = False
+default gloss_impersonation_seen = False
+default gloss_dumpster_seen = False
+default gloss_tailgating_seen = False
+default gloss_phishing_seen = False
+
+define gloss_bribery_text = """{b}{size=[gloss_font_size_big]}Bribery{/size}{/b}\nAlso known as “Quid pro quo”, Latin for “something for something”. Involves an exchange of information or services for a compensation. Subjects of bribery are usually aware of their wrongdoings although the true scale of the consequences may not be comprehensible to them at first."""
+define gloss_impersonation_text = """{b}{size=[gloss_font_size_big]}Impersonation{/size}{/b}\nExplains the act of posing as someone you are not in an attempt to deceive someone. Impersonation can come in different styles: over the phone, where the voice is enough to pretend to be someone else, or even in person if the one being tricked doesn't know the impersonated one. Appearance, equipment and even other people can help strengthen the deception for example when wearing a warning vest and holding a clipboard."""
+define gloss_dumpster_text = """{b}{size=[gloss_font_size_big]}Dumpster Diving{/size}{/b}\nMost people don't dispose of their trash properly, leaving a lot of sensitive information in the form of letters, notes or invoices free to access for anyone willing to rummage through the garbage. If hardware is being disposed of, the data can also often still be accessed if the contents of drives haven't been overwritten properly. Usually people forget their stuff once it's in the trash. “Out of sight out of mind”, but with enough patience, adversaries can get a lot of compromising data through dumpster diving."""
+define gloss_tailgatin_text = """{b}{size=[gloss_font_size_big]}Tailgating{/size}{/b}\n[[TODO]"""
+define gloss_phishing_text = """{b}{size=[gloss_font_size_big]}Phishing Mail{/size}{/b}\n[[TODO]"""
+
+default gloss_entry_text = ""
+
+style gloss_buttons:
+    color "#000000"
+    hover_color "#9c0000"
+    underline False
+    hover_underline True
+    size gloss_font_size_big
+
+style gloss_text:
+    color "#000000"
+    size gloss_font_size_normal
+
+# General overview Screen
 screen phone_hand_glossary():
     zorder 2
     modal True
@@ -271,7 +302,70 @@ screen phone_hand_glossary():
         hover "return hover" at icon_pos
         focus_mask True
         action Hide("phone_hand_glossary"), Show("phone_hand")
+    
+    viewport:
+        area phone_usable_area
+        draggable True
+        mousewheel True
+        scrollbars "vertical"
+        yinitial 1.0
 
+        # List of buttons for the social engineering techniques
+        vbox:
+            spacing 20
+            if gloss_bribery_seen:
+                textbutton "Bribery":
+                    text_style "gloss_buttons"
+                    action Function(set_gloss_text, gloss_bribery_text), Hide("phone_hand_glossary"), Show("phone_hand_glossary_entry")
+            if gloss_impersonation_seen:
+                textbutton "Impersonation":
+                    text_style "gloss_buttons"
+                    action Function(set_gloss_text, gloss_impersonation_text), Hide("phone_hand_glossary"), Show("phone_hand_glossary_entry")
+            if gloss_dumpster_seen:
+                textbutton "Dumpster Diving":
+                    text_style "gloss_buttons"
+                    action Function(set_gloss_text, gloss_dumpster_text), Hide("phone_hand_glossary"), Show("phone_hand_glossary_entry")
+            if gloss_tailgating_seen:
+                textbutton "Tailgating":
+                    text_style "gloss_buttons"
+                    action Function(set_gloss_text, gloss_tailgatin_text), Hide("phone_hand_glossary"), Show("phone_hand_glossary_entry")
+            if gloss_phishing_seen:
+                textbutton "Phishing":
+                    text_style "gloss_buttons"
+                    action Function(set_gloss_text, gloss_phishing_text), Hide("phone_hand_glossary"), Show("phone_hand_glossary_entry")
+
+# Seperate glossary entry screens
+screen phone_hand_glossary_entry():
+    zorder 2
+    modal True
+    add Solid("#000c")
+
+    image "images/objects/phone/phone hand empty.png":
+        zoom 1.3
+        xalign 0.7
+    
+    # Return arrow
+    imagebutton:
+        idle "return idle" 
+        hover "return hover" at icon_pos
+        focus_mask True
+        action Hide("phone_hand_glossary_entry"), Show("phone_hand_glossary")
+    
+    viewport:
+        area phone_usable_area
+        draggable True
+        mousewheel True
+        yinitial 1.0
+
+        # List of buttons for the social engineering techniques
+        text [gloss_entry_text] style "gloss_text"
+
+init python:
+    def set_gloss_text(input_text):
+        global gloss_entry_text
+        gloss_entry_text = input_text
+
+################################## Phone Icon #########################################
 
 screen phone_icon():
     
