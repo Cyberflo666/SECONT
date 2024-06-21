@@ -174,7 +174,7 @@ label after_dumpsterdive:
     with  moveinleft
     show alex neutral at alex_right
     with  moveinright
-    A "Nice one, now what does it say?"
+    A "Nice one, that's more like what we're looking for. Now what does it say?"
     PC "It's a receipt from the (name)."
     L "Isnt that the super fancy expensive restaurant where only celebreties and rich people go?"
     A "Yup ive heard alot of wild things about that restaurant. Youre right, only the higher classes can afford it"
