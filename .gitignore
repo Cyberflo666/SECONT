@@ -6,7 +6,8 @@
 
 # Visuals and SFX
 images
-sound
+audio
+gui
 
 # Caches and Saves
 cache

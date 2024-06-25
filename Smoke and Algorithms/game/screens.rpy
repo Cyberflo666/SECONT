@@ -5,6 +5,12 @@
 init offset = -1
 
 
+
+# OWN CHANGES:
+define quick_menu = False
+
+
+
 ################################################################################
 ## Styles
 ################################################################################
@@ -96,11 +102,14 @@ style frame:
 ## https://www.renpy.org/doc/html/screen_special.html#say
 
 screen say(who, what):
+    zorder 1
     style_prefix "say"
-
+    if show_textbox == True:
+        add "gui/textbox.png" xalign 0.5 yalign 1.0
+    else:
+        pass
     window:
-        id "window"
-
+        #id "window"
         if who is not None:
 
             window:
@@ -121,7 +130,8 @@ screen say(who, what):
 init python:
     config.character_id_prefixes.append('namebox')
 
-style window is default
+#style window is default
+style window1 is default
 style say_label is default
 style say_dialogue is default
 style say_thought is say_dialogue
@@ -135,8 +145,14 @@ style window:
     xfill True
     yalign gui.textbox_yalign
     ysize gui.textbox_height
+    #background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
 
-    background Image("gui/textbox.png", xalign=0.5, yalign=1.0)
+style window1:
+    xalign 0.5
+    xfill True
+    yalign gui.textbox_yalign
+    ysize gui.textbox_height
+    background "#00000000"
 
 style namebox:
     xpos gui.name_xpos
@@ -231,7 +247,7 @@ style choice_button_text is default:
     properties gui.text_properties("choice_button")
 
 
-## Quick Menu screen ###########################################################
+## Quick Menu screen fr###########################################################
 ##
 ## The quick menu is displayed in-game to provide easy access to the out-of-game
 ## menus.
@@ -247,8 +263,7 @@ screen quick_menu():
             style_prefix "quick"
 
             xalign 0.5
-            yalign 1.0
-
+            yalign 0.985
             textbutton _("Back") action Rollback()
             textbutton _("History") action ShowMenu('history')
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
@@ -264,8 +279,6 @@ screen quick_menu():
 init python:
     config.overlay_screens.append("quick_menu")
 
-default quick_menu = True
-
 style quick_button is default
 style quick_button_text is button_text
 
@@ -274,7 +287,7 @@ style quick_button:
 
 style quick_button_text:
     properties gui.text_properties("quick_button")
-
+    idle_color "#000000"
 
 ################################################################################
 ## Main and Game Menu Screens
@@ -1142,7 +1155,6 @@ style help_label_text:
 ## https://www.renpy.org/doc/html/screen_special.html#confirm
 
 screen confirm(message, yes_action, no_action):
-
     ## Ensure other screens do not get input while this screen is displayed.
     modal True
 
@@ -1300,7 +1312,6 @@ style notify_text:
 
 
 screen nvl(dialogue, items=None):
-
     window:
         style "nvl_window"
 
@@ -1332,7 +1343,6 @@ screen nvl(dialogue, items=None):
 
 
 screen nvl_dialogue(dialogue):
-
     for d in dialogue:
 
         window:
@@ -1423,7 +1433,7 @@ screen bubble(who, what):
     style_prefix "bubble"
 
     window:
-        id "window"
+        id "window1"
 
         if who is not None:
 
