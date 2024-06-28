@@ -125,6 +125,43 @@ screen round_rect(trust):
         size 40
         color "00bdff"
 
+# lab room point and click -----------------------------------------------------
+
+label hide_lab_screens:
+    hide screen rat_cage
+    hide screen symbol_screen
+    hide screen medical_tools
+    return
+
+screen rat_cage:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton :
+            hover "images/backgrounds/felix room/f wall1.png" 
+            idle "images/backgrounds/felix room/fb wall1.png" 
+            focus_mask True
+            action Hide("rat_cage"),Jump("rat_in_cage")
+
+screen symbol_screen:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton :
+            hover "images/backgrounds/felix room/f wall2.png" 
+            idle "images/backgrounds/felix room/fb wall2.png" 
+            focus_mask True
+            action Hide("symbol_screen"),Jump("symbols_on_screen")
+
+screen medical_tools:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton :
+            hover "images/backgrounds/felix room/f wall3.png" 
+            idle "images/backgrounds/felix room/fb wall3.png" 
+            focus_mask True
+            action Hide("medical_tools"),Jump("used_medical_tools")
 
             
                 

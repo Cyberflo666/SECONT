@@ -1,5 +1,5 @@
 $ renpy.include("screens.rpy")
-
+default current_index = 0
 image phone_icon_hover :
     "images/objects/phone/phone hover.png"
     zoom 0.15
@@ -21,6 +21,10 @@ transform arrow_pos:
     zoom 0.7
     xalign 0.07
     yalign 0.1
+
+transform change_arrow:
+    zoom 0.35
+
 
 
 # Variables
@@ -105,6 +109,34 @@ screen phone_hand_camera():
         idle "return idle" 
         focus_mask True
         action Hide("phone_hand_camera"), Show("phone_hand")
+    imagebutton:
+        xpos 0.345
+        ypos 0.06
+        idle "left arrow black idle" at change_arrow
+        hover "left arrow black hover"
+        focus_mask True
+        action Function(change_index,1), Hide("phone_hand_camera"), Show("phone_hand_camera")
+    imagebutton:
+        xpos 0.54
+        ypos 0.06
+        idle "right arrow black idle" at change_arrow
+        hover "right arrow black hover"
+        focus_mask True
+        action Function(change_index,-1), Hide("phone_hand_camera"), Show("phone_hand_camera")
+    frame:
+        area(670, 140, 467, 730)
+        background "#00000000"
+        image gallery.get_picture(current_index % len(gallery.items)) at center
+        
+        
+
+init python:
+    def change_index(x):
+        global current_index
+        if x < 0:
+            current_index += 1
+        else:
+            current_index -= 1
 
 
 # Screen for displaying the contacts of the player

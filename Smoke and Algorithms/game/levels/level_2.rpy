@@ -13,6 +13,8 @@ label level_2_start:
     "you gather around the kitchen table while opening up your laptop"
     "You walk over and gather around a table while opening up your laptop."
     scene bg laptop full
+    $ gallery.add_data(["gallery_alex"])
+    $ gallery.add_data(["gallery_janitor"])
     A "I think it's best if we start by looking up what exactly Medievil is."
 
 label research:
@@ -321,69 +323,115 @@ label visitlab:
             "Because you dont want to meddle with them any further you decide to return home and continue your research."
             jump research
 
-    label lab_wait:
-        $ gloss_tailgating_seen = True
-        scene bg university observe
-        "As you return you got to the location leonie sent you. A desk at the snack maschine with four chairs."
-        show leonie neutral at left
-        show alex neutral at alex_right
-        with dissolve
-        "You sit down and wait for what feels like eternity until..."
-        show alex surprised at alex_right
-        with dissolve
-        A "Guys look. We caught one."
-        show leonie serious at left
-        with dissolve
-        L "Quiet, we don't want him to notice us. Just oserve what he presses."
-        show alex serious1 at alex_right
-        with dissolve
-        "You see a ominous person walking up to the door. He does not look like any univerity employee you know."
-        "You watch as he puts his hand on the pinboard and inputs: \n '4' '7' '1' '9' '6' '5'."
-        "While you observe you whisper to your friends what you see."
-        show alex serious2 at alex_right
-        with dissolve
-        A "Is that all?"
-        PC "Yup. The door is open."
-        show leonie happy at left
-        with dissolve
-        L "Great. Now we just have to wait until he leaves."
-        show alex smile at alex_right
-        with dissolve
-        A "Perfect. I needed a break after all the previous waiting."
-        PC "You can follow him if you want, but dont expect us to follow."
-        show alex happy at alex_right
-        with dissolve
-        A "Nah im good. Just kidding."
-        show leonie thinking at left
-        with dissolve
-        L "We should change locations to avoid getting his attention. It could make him suspicious if we were still here when he leaves."
-        show alex neutral at alex_right
-        with dissolve
-        A "We could wait outside for him to exit."
-        show leonie serious at left
-        with dissolve
-        L "Ok. Alex and I wait at the front and you wait at the back."
-        PC "Roger that."
-        scene bg university backside
-        "You get into position and start waiting."
-        "After a short while you get a message from alex telling you to get to the lab."
-        "When you approach the lab you see your friends infront of the open door."
-        show leonie neutral at left
-        show alex neutral at alex_right
-        with dissolve
-        PC "I assume he left."
-        show alex smile at alex_right
-        with dissolve
-        A "No he invited us in."
-        show leonie sad at left
-        with dissolve
-        "..."
-        show leonie neutral at left
-        with dissolve
-        L "Anyways, lets continue."
+label lab_wait:
+    $ gloss_tailgating_seen = True
+    scene bg university observe
+    "As you return you got to the location leonie sent you. A desk at the snack maschine with four chairs."
+    show leonie neutral at left
+    show alex neutral at alex_right
+    with dissolve
+    "You sit down and wait for what feels like eternity until..."
+    show alex surprised at alex_right
+    with dissolve
+    A "Guys look. We caught one."
+    show leonie serious at left
+    with dissolve
+    L "Quiet, we don't want him to notice us. Just oserve what he presses."
+    show alex serious1 at alex_right
+    with dissolve
+    "You see a ominous person walking up to the door. He does not look like any univerity employee you know."
+    "You watch as he puts his hand on the pinboard and inputs: \n '4' '7' '1' '9' '6' '5'."
+    "While you observe you whisper to your friends what you see."
+    show alex serious2 at alex_right
+    with dissolve
+    A "Is that all?"
+    PC "Yup. The door is open."
+    show leonie happy at left
+    with dissolve
+    L "Great. Now we just have to wait until he leaves."
+    show alex smile at alex_right
+    with dissolve
+    A "Perfect. I needed a break after all the previous waiting."
+    PC "You can follow him if you want, but dont expect us to follow."
+    show alex happy at alex_right
+    with dissolve
+    A "Nah im good. Just kidding."
+    show leonie thinking at left
+    with dissolve
+    L "We should change locations to avoid getting his attention. It could make him suspicious if we were still here when he leaves."
+    show alex neutral at alex_right
+    with dissolve
+    A "We could wait outside for him to exit."
+    show leonie serious at left
+    with dissolve
+    L "Ok. Alex and I wait at the front and you wait at the back."
+    PC "Roger that."
+    scene bg university backside
+    "You get into position and start waiting."
+    "After a short while you get a message from alex telling you to get to the lab."
+    "When you approach the lab you see your friends infront of the open door."
+    show leonie neutral at left
+    show alex neutral at alex_right
+    with dissolve
+    PC "I assume he left."
+    show alex smile at alex_right
+    with dissolve
+    A "No he invited us in."
+    show leonie sad at left
+    with dissolve
+    "..."
+    show leonie neutral at left
+    with dissolve
+    L "Anyways."
+    "Upon entering the lab the three of you start to investigate" 
+
+label inside_lab:
+    if rat_seen and medical_tools_seen and symbols_seen:
+        jump inside_lab_done
+    $ show_textbox = False
+    scene bg uni lab
+    show screen rat_cage
+    show screen medical_tools
+    show screen symbol_screen
+    jump empty_label
 
 
-
+label rat_in_cage:
+    call hide_lab_screens
+    show bg rat cage
+    $ show_textbox = True
+    "When observing the cage you see a rat inside with a small scar on its head. Other than that the cage contains only food, water a some obstacels for the animal to walk around"
+    $ show_textbox = False
+    $ rat_seen = True
+    jump inside_lab
+label symbols_on_screen:
+    call hide_lab_screens
+    show bg symbol screen
+    $ show_textbox = True
+    "You see a screen with three symbols. A arrow pointing left another pointing right and a circle between them. They seem to be lighting up on random. When observing them a bit more you notice that only one of the is active at a time"
+    $ show_textbox = False
+    $ symbols_seen = True
+    jump inside_lab
+label used_medical_tools:
+    call hide_lab_screens
+    show bg medical tools
+    $ show_textbox = True
+    "Searching on a desk you find some chemicals and medical tools alongside what looks like a few of medievils implants but way smaller."
+    $ show_textbox = False
+    $ medical_tools_seen = True
+    jump inside_lab
+label inside_lab_done:
+    call hide_lab_screens
+    $ show_textbox = True
+    PC "The symbols on the screen. Do they show the movement of the rat."
+    L "It looks like it. But its a bit offset. Like the screen knows what the rat will do in befor it does it"
+    PC "Why would medievil develop something like that?"
+    A "From what i know that is nothing that they're advertising so its probaply not for the world to know."
+    L "That can't be good. Looks like felix was onto something for real."
+    PC "In any case i think we should'nt stick around in here any longer than we need to."
+    A "Agreed."
+    "As you leave the lab you make sure that everything is left like you found it when you entered. After that you head out the back entrance and venture on home."
+    jump research
 
 
 label empty_label:

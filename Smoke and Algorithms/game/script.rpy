@@ -3,6 +3,7 @@
 
 default notes = Notes([])
 default show_textbox = True
+default gallery = Pictures([])
 default hide_map = False
 
 label map_disabled:
