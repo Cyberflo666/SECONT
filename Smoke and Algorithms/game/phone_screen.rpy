@@ -30,6 +30,7 @@ transform change_arrow:
 # Variables
 define phone_usable_area = (675, 140, 470, 730)
 define phone_normal_text_color = "#000000"
+define gil_social_media_seen = False 
 
 
 screen phone_hand():
@@ -214,6 +215,18 @@ screen phone_hand_map():
         hover "map dorms hover"  
         focus_mask True
         action Function(notify_function)
+    if gil_social_media_seen == True: # need to add flag when implementing social media site.
+        imagebutton: 
+            idle "map gils house idle" # needs to get added
+            hover "map gils house hover"
+            focus_mask True
+            if hide_map:
+                action Call("map_disabled")
+            elif dumpster2_doven:
+                action Call("dumpster_empty")
+            else:
+                action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("laptop_screen"), Jump("dumpsterdive2")
+
 
     if website_2_not_seen == False:
         imagebutton:

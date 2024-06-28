@@ -133,6 +133,9 @@ label hide_lab_screens:
     #hide screen medical_tools
     hide screen left_wall
     hide screen symbol_screen
+    hide screen right_cage
+    hide screen right_pc
+    hide screen trash
     return
 
 screen left_cage:
@@ -143,7 +146,7 @@ screen left_cage:
             hover "images/backgrounds/lab/left cage hover.png" 
             idle "images/backgrounds/lab/left cage idle.png" 
             focus_mask True
-            action Hide("left_cage"),Jump("rat_in_cage")
+            action Hide("left_cage"),Jump("rat_in_cage_left")
 
 screen left_pc:
     zorder 0
@@ -174,6 +177,35 @@ screen symbol_screen:
             idle "images/backgrounds/lab/monitor idle.png" 
             focus_mask True
             action Hide("symbol_screen"),Jump("symbols_on_screen")
+
+screen right_cage:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton :
+            hover "images/backgrounds/lab/right cage hover.png" 
+            idle "images/backgrounds/lab/right cage idle.png" 
+            focus_mask True
+            action Hide("right_cage"),Jump("rat_in_cage_right")
+
+screen right_pc:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton :
+            hover "images/backgrounds/lab/right pc hover.png" 
+            idle "images/backgrounds/lab/right pc idle.png" 
+            focus_mask True
+            action Hide("right_pc"),Jump("right_pc_stats")
+screen trash:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton :
+            hover "images/backgrounds/lab/trash hover.png" 
+            idle "images/backgrounds/lab/trash idle.png" 
+            focus_mask True
+            action Hide("trash"),Jump("empty_trash")
 
 #screen medical_tools:
     #zorder 0
