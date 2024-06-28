@@ -128,40 +128,62 @@ screen round_rect(trust):
 # lab room point and click -----------------------------------------------------
 
 label hide_lab_screens:
-    hide screen rat_cage
+    hide screen left_cage
+    hide screen left_pc
+    #hide screen medical_tools
+    hide screen left_wall
     hide screen symbol_screen
-    hide screen medical_tools
     return
 
-screen rat_cage:
+screen left_cage:
     zorder 0
     modal False
     if show_image_buttons == True:
         imagebutton :
-            hover "images/backgrounds/felix room/f wall1.png" 
-            idle "images/backgrounds/felix room/fb wall1.png" 
+            hover "images/backgrounds/lab/left cage hover.png" 
+            idle "images/backgrounds/lab/left cage idle.png" 
             focus_mask True
-            action Hide("rat_cage"),Jump("rat_in_cage")
+            action Hide("left_cage"),Jump("rat_in_cage")
+
+screen left_pc:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton :
+            hover "images/backgrounds/lab/left pc hover.png" 
+            idle "images/backgrounds/lab/left pc idle.png" 
+            focus_mask True
+            action Hide("left_pc"),Jump("left_pc_stats")
+
+screen left_wall:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton :
+            hover "images/backgrounds/lab/left wall hover.png" 
+            idle "images/backgrounds/lab/left wall idle.png" 
+            focus_mask True
+            action Hide("left_wall"),Jump("left_wall_obj")
 
 screen symbol_screen:
     zorder 0
     modal False
     if show_image_buttons == True:
         imagebutton :
-            hover "images/backgrounds/felix room/f wall2.png" 
-            idle "images/backgrounds/felix room/fb wall2.png" 
+            hover "images/backgrounds/lab/monitor hover.png" 
+            idle "images/backgrounds/lab/monitor idle.png" 
             focus_mask True
             action Hide("symbol_screen"),Jump("symbols_on_screen")
 
-screen medical_tools:
-    zorder 0
-    modal False
-    if show_image_buttons == True:
-        imagebutton :
-            hover "images/backgrounds/felix room/f wall3.png" 
-            idle "images/backgrounds/felix room/fb wall3.png" 
-            focus_mask True
-            action Hide("medical_tools"),Jump("used_medical_tools")
+#screen medical_tools:
+    #zorder 0
+    #modal False
+    #if show_image_buttons == True:
+        #imagebutton :
+            #hover "images/backgrounds/felix room/f wall3.png" 
+            #idle "images/backgrounds/felix room/fb wall3.png" 
+            #focus_mask True
+            #action Hide("medical_tools"),Jump("used_medical_tools")
 
             
                 

@@ -6,6 +6,11 @@ default lab_seen = False
 default uni_access_denied = False
 default dumpster_doven = False
 default player_warned = False
+default rat_seen = False
+default medical_tools_seen = False
+default symbols_seen = False 
+default left_pc_seen = False 
+default left_wall_seen = False 
 
 label level_2_start:
     play music main_music1 volume 0.1
@@ -255,7 +260,7 @@ label visitlab:
     hide alex with moveoutright
     hide leonie with moveoutleft
 
-    scene bg university hall
+    scene bg uni hallway
     with dissolve
     show leonie thinking at left
     with  moveinleft
@@ -283,6 +288,9 @@ label visitlab:
     hide leonie 
 
     "You head to the door of the lab, and see that theres a pin needed to unlock the door "
+
+    scene bg medievil lab front 
+    with dissolve
 
     show leonie thinking at left
     with dissolve
@@ -325,7 +333,8 @@ label visitlab:
 
 label lab_wait:
     $ gloss_tailgating_seen = True
-    scene bg university observe
+    scene bg uni hallway #need better spot than hallway
+    with dissolve
     "As you return you got to the location leonie sent you. A desk at the snack maschine with four chairs."
     show leonie neutral at left
     show alex neutral at alex_right
@@ -339,9 +348,13 @@ label lab_wait:
     L "Quiet, we don't want him to notice us. Just oserve what he presses."
     show alex serious1 at alex_right
     with dissolve
+    scene bg pinpad
+    with dissolve
     "You see a ominous person walking up to the door. He does not look like any univerity employee you know."
     "You watch as he puts his hand on the pinboard and inputs: \n '4' '7' '1' '9' '6' '5'."
     "While you observe you whisper to your friends what you see."
+    scene bg medievil lab front
+    with dissolve
     show alex serious2 at alex_right
     with dissolve
     A "Is that all?"
@@ -366,10 +379,14 @@ label lab_wait:
     with dissolve
     L "Ok. Alex and I wait at the front and you wait at the back."
     PC "Roger that."
-    scene bg university backside
+    scene bg university backside #still needed
+    with dissolve
     "You get into position and start waiting."
     "After a short while you get a message from alex telling you to get to the lab."
     "When you approach the lab you see your friends infront of the open door."
+    scene bg medievil lab front
+    with dissolve
+    
     show leonie neutral at left
     show alex neutral at alex_right
     with dissolve
@@ -386,40 +403,58 @@ label lab_wait:
     "Upon entering the lab the three of you start to investigate" 
 
 label inside_lab:
-    if rat_seen and medical_tools_seen and symbols_seen:
+    if rat_seen and left_pc_seen and left_wall_seen and symbols_seen:
         jump inside_lab_done
     $ show_textbox = False
-    scene bg uni lab
-    show screen rat_cage
-    show screen medical_tools
+    scene bg medievil lab
+    show screen left_cage
+    show screen left_pc
+    show screen left_wall
+    #show screen medical_tools
     show screen symbol_screen
     jump empty_label
 
 
 label rat_in_cage:
     call hide_lab_screens
-    show bg rat cage
+    scene bg left cage zoom 
     $ show_textbox = True
     "When observing the cage you see a rat inside with a small scar on its head. Other than that the cage contains only food, water a some obstacels for the animal to walk around"
     $ show_textbox = False
     $ rat_seen = True
     jump inside_lab
+label left_pc_stats:
+    call hide_lab_screens
+    scene bg left pc zoom
+    $ show_textbox = True
+    "you look at the pc and see suspicious stats. You see percentages, probabilites and results."
+    $ show_textbox = False
+    $ left_pc_seen = True
+    jump inside_lab
+label left_wall_obj:
+    call hide_lab_screens
+    scene bg left wall zoom
+    $ show_textbox = True
+    "your eye site hover over the left wall. You see alot of tubes and experimental equipment"
+    $ show_textbox = False
+    $ left_wall_seen = True 
+    jump inside_lab
 label symbols_on_screen:
     call hide_lab_screens
-    show bg symbol screen
+    show bg symbol screen zoom
     $ show_textbox = True
     "You see a screen with three symbols. A arrow pointing left another pointing right and a circle between them. They seem to be lighting up on random. When observing them a bit more you notice that only one of the is active at a time"
     $ show_textbox = False
     $ symbols_seen = True
     jump inside_lab
-label used_medical_tools:
-    call hide_lab_screens
-    show bg medical tools
-    $ show_textbox = True
-    "Searching on a desk you find some chemicals and medical tools alongside what looks like a few of medievils implants but way smaller."
-    $ show_textbox = False
-    $ medical_tools_seen = True
-    jump inside_lab
+#label used_medical_tools:
+    #call hide_lab_screens
+    #show bg medical tools
+    #$ show_textbox = True
+    #"Searching on a desk you find some chemicals and medical tools alongside what looks like a few of medievils implants but way smaller."
+    #$ show_textbox = False
+    #$ medical_tools_seen = True
+    #jump inside_lab
 label inside_lab_done:
     call hide_lab_screens
     $ show_textbox = True
@@ -431,6 +466,7 @@ label inside_lab_done:
     PC "In any case i think we should'nt stick around in here any longer than we need to."
     A "Agreed."
     "As you leave the lab you make sure that everything is left like you found it when you entered. After that you head out the back entrance and venture on home."
+    $ lab_seen = True
     jump research
 
 
