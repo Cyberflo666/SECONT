@@ -70,12 +70,11 @@ screen phone_hand():
         focus_mask True
         action Hide("phone_hand"), Show("phone_hand_contact")
     
-    if map_active == True:
-        imagebutton:
-            hover "map hover" at icon_pos
-            idle "map idle"
-            focus_mask True
-            action Hide("phone_hand"), Show("phone_hand_map")
+    imagebutton:
+        hover "map hover" at icon_pos
+        idle "map idle"
+        focus_mask True
+        action Hide("phone_hand"), Show("phone_hand_map")
 
     imagebutton:
         hover "notes hover" at icon_pos

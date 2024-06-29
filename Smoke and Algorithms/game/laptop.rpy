@@ -69,18 +69,55 @@ screen laptop_screen():
             hover "web hover"
             focus_mask True
             action Hide("laptop_screen"), Show("web_screen")
-            
+
+################################### Mail ##########################################
+# Variables
+define mail_1_placement_sens = 100 # How sensitive the pieces must be aligned with their assigned spot (lower is more sensitive)
+define mail_1_pieces_total = 9
+define mail_1_piece_pos_goal = [(566, 301), (566, 449), (566, 599)]
+define mail_1_piece_pos_initial = [(1000, 200), (1050, 220), (1100, 240), (1000, 400), (1050, 420), (1100, 440), (1000, 600), (1050, 620), (1100, 640)]
+define mail_1_correct_order = [1, 2, 3]
+default mail_1_current_order = [0, 0, 0]
 screen mail_screen():
     zorder 2
     modal False
     image "bg mail"
-    viewport:
-        area laptop_usable_area
-        draggable True
-        mousewheel True
-        scrollbars "vertical"
-        yinitial 1.0
-        image "alex laughing"
+    image "phishing mail screen"
+
+    # Draggable pieces to assemble the correct mail
+    draggroup:
+        # Draggable mail pieces
+        for i in range(mail_1_pieces_total):
+            drag:
+                drag_name i
+                pos mail_1_piece_pos_initial[i]
+
+                focus_mask True
+                draggable True
+                drag_raise True
+                dragged dragged_mail
+
+                image "images/objects/laptop/phishing mail/phishing mail text %s.png" %(i + 1)
+
+        # Spots where the pieces should snap onto
+        for i in range(3):
+            drag:
+                drag_name i
+                pos mail_1_piece_pos_goal[i]
+
+                focus_mask True
+                draggable False
+                droppable True              # Other drags can be dropped onto this drag
+                dropped dropped_onto_mail   # Function beeing called when dropped onto
+
+                image "images/objects/laptop/phishing mail/phishing mail slot.png"
+
+    imagebutton:
+        idle "phishing mail send idle"
+        hover "phishing mail send hover"
+        focus_mask True
+        action Function(send_mail)
+
     if show_image_buttons == True:
         imagebutton:
             idle "return arrow black idle" 
@@ -91,7 +128,35 @@ screen mail_screen():
             #ysize 400
             #focus_mask True
             action Hide("mail_screen"), Show("laptop_screen")
-        
+
+init python:
+    import math
+    
+    # Function called when one of the dragged_pieces is being dropped onto on of the snap_spots
+    def dropped_onto_mail(snap_spot, dragged_piece):
+        global mail_1_pieces_total
+
+        # Snap piece
+        distance = math.sqrt((snap_spot.x - dragged_piece[0].x)**2 + (snap_spot.y - dragged_piece[0].y)**2)
+        if distance < mail_1_placement_sens:
+            dragged_piece[0].snap(snap_spot.x, snap_spot.y, 0.1)
+            mail_1_current_order[snap_spot.drag_name] = dragged_piece[0].drag_name + 1
+            renpy.notify(mail_1_current_order)
+
+    def dragged_mail(dragged_piece, dropped_onto):
+        if (dragged_piece[0].drag_name + 1) in mail_1_current_order:
+            indx = mail_1_current_order.index(dragged_piece[0].drag_name + 1)
+            mail_1_current_order[indx] = 0
+        renpy.notify(mail_1_current_order)
+
+    def send_mail():
+        if mail_1_current_order == mail_1_correct_order:
+            renpy.notify("correct mail")
+        else:
+            renpy.notify("not the correct mail")
+
+###################################################################################
+
 screen power_screen():
     zorder 2
     modal False
