@@ -72,6 +72,7 @@ screen laptop_screen():
 
 ################################### Mail ##########################################
 # Variables
+default mail_1_text_unlocked = [0, 0, 0] # 1 means the i-th text is unlocked
 define mail_1_placement_sens = 100 # How sensitive the pieces must be aligned with their assigned spot (lower is more sensitive)
 define mail_1_pieces_total = 9
 define mail_1_piece_pos_goal = [(566, 301), (566, 449), (566, 599)]
@@ -88,6 +89,11 @@ screen mail_screen():
     draggroup:
         # Draggable mail pieces
         for i in range(mail_1_pieces_total):
+            # Skips the pieces that need to be unlocked if they are still locked
+            if i < len(mail_1_text_unlocked):
+                if mail_1_text_unlocked[i] != 1:
+                    continue
+
             drag:
                 drag_name i
                 pos mail_1_piece_pos_initial[i]

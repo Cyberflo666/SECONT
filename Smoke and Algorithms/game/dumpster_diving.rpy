@@ -10,6 +10,7 @@ label dumpster_diving_minigame_start:
 
 label dumpster_diving_minigame_completed_1:
     $ diving1completed = True
+    $ mail_1_text_unlocked[2] = 1 # Sets variable to show the phishing mail text in the phishing mail mini game
     scene bg dumpster diving 0 finished
     pause 1.5
     # scene bg new kitchen
@@ -56,7 +57,7 @@ screen dumpster_diving_minigame_1:
                 image "images/objects/dumpster diving/pieces 0/piece %s.png" %(i + 1) alpha 0.0
 
 
-label dumpster_diving_minigame2_start :
+label dumpster_diving_minigame2_start:
     $ diving_minigame_active_index = 1
     hide screen phone_icon
     call screen dumpster_diving_minigame_2 # Calling a screen hides the dialogue box
@@ -74,6 +75,9 @@ label dumpster_diving_minigame2_completed:
 
 label dumpster_diving_minigame3_completed:
     $ diving1completed = True
+    $ mail_1_text_unlocked[0] = 1 # Sets variable to show the phishing mail text in the phishing mail mini game
+    $ mail_1_text_unlocked[1] = 1
+
     scene bg dumpster diving 0 finished
     pause 1.5
     scene bg new kitchen
