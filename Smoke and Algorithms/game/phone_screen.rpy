@@ -171,33 +171,31 @@ screen phone_hand_contact():
                 background "#00000000"
                 imagebutton:
                     xpos 0.08
-                    idle "contact box idle"
-                    hover "contact box hover"
+                    idle "contact box alex idle"
+                    hover "contact box alex hover"
                     focus_mask True
                     action Call("call_alex")
-                text "{size=[contacts_font_size]}{color=[phone_normal_text_color]}Alex{/color}{/size}" at center 
 
             frame:
                 area(0, 0, 500, 122)
                 background "#00000000"
                 imagebutton:
                     xpos 0.08
-                    idle "contact box idle"
-                    hover "contact box hover"
+                    idle "contact box leonie idle"
+                    hover "contact box leonie hover"
                     focus_mask True
                     action Call("call_leonie")
-                text "{size=[contacts_font_size]}{color=[phone_normal_text_color]}Leonie{/color}{/size}" at center
 
             frame:
                 area(0, 0, 500, 122)
                 background "#00000000"
                 imagebutton:
                     xpos 0.08
-                    idle "contact box idle"
-                    hover "contact box hover"
+                    idle "contact box felix idle"
+                    hover "contact box felix hover"
                     focus_mask True
                     action Call("call_felix")
-                text "{size=[contacts_font_size]}{color=[phone_normal_text_color]}Felix{/color}{/size}" at center
+
 
 init python:
     def notify_function():
