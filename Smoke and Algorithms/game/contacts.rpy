@@ -1,6 +1,9 @@
 # File contains dialogues for the contacts-screen on the phone
 default hide_textbox = False
 default show_image_buttons = True
+
+
+
 label call_alex:
     $ show_image_buttons = False
     if show_textbox == False:

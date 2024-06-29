@@ -1,5 +1,6 @@
 $ renpy.include("screens.rpy")
 default current_index = 0
+
 image phone_icon_hover :
     "images/objects/phone/phone hover.png"
     zoom 0.15
@@ -69,11 +70,12 @@ screen phone_hand():
         focus_mask True
         action Hide("phone_hand"), Show("phone_hand_contact")
     
-    imagebutton:
-        hover "map hover" at icon_pos
-        idle "map idle"
-        focus_mask True
-        action Hide("phone_hand"), Show("phone_hand_map")
+    if map_active == True:
+        imagebutton:
+            hover "map hover" at icon_pos
+            idle "map idle"
+            focus_mask True
+            action Hide("phone_hand"), Show("phone_hand_map")
 
     imagebutton:
         hover "notes hover" at icon_pos
@@ -223,7 +225,7 @@ screen phone_hand_map():
             elif dumpster2_doven:
                 action Call("dumpster_empty")
             else:
-                action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("laptop_screen"), Jump("dumpsterdive2")
+                action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("website4_screen"), Hide("laptop_screen"), Jump("dumpsterdive2")
 
 
     if website_2_not_seen == False:
@@ -238,7 +240,7 @@ screen phone_hand_map():
             elif lab_seen:
                 action Call("lab_visited")
             else:
-                action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("laptop_screen"), Jump("visitlab")
+                action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"),  Hide("website4_screen"), Hide("laptop_screen"), Jump("visitlab")
 
     if website_3_not_seen == False:
         imagebutton:
@@ -250,7 +252,7 @@ screen phone_hand_map():
             elif dumpster_doven:
                 action Call("dumpster_empty")
             else:
-                action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("laptop_screen"), Jump("dumpsterdive")
+                action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("website4_screen"), Hide("laptop_screen"), Jump("dumpsterdive")
 
     if False == False:
         imagebutton:
@@ -262,7 +264,7 @@ screen phone_hand_map():
             elif dumpster2_doven:
                 action Call("dumpster_empty")
             else:
-                action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("laptop_screen"), Jump("dumpsterdive2")
+                action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("website4_screen"), Hide("laptop_screen"), Jump("dumpsterdive2")
     
     # Return arrow (closes phone)
     imagebutton:

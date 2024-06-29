@@ -12,6 +12,7 @@ default medical_tools_seen = False
 default symbols_seen = False 
 default left_pc_seen = False 
 default left_wall_seen = False 
+default trash_seen = False
 default dumpster_explained = False
 
 label level_2_start:
@@ -20,14 +21,14 @@ label level_2_start:
     "you gather around the kitchen table while opening up your laptop"
     "You walk over and gather around a table while opening up your laptop."
     scene bg laptop full
-    $ gallery.add_data(["gallery_alex"])
-    $ gallery.add_data(["gallery_janitor"])
+    $ gallery.add_data(["gallery_meme"])
     A "I think it's best if we start by looking up what exactly Medievil is."
 
 label research:
     scene bg laptop full
     show screen phone_icon
     show screen laptop_screen
+    with dissolve
     $ show_textbox = False
     ""
     jump empty_label
@@ -106,6 +107,7 @@ label website3_call:
 label website4_call:
     show screen website4_screen
     ""
+    jump empty_label
 label websearch_done:
     if not website_2_not_seen and not website_3_not_seen:
         PC ""
@@ -448,7 +450,7 @@ label lab_wait:
     "You see a ominous person walking up to the door. He does not look like any univerity employee you know."
     "You watch as he puts his hand on the pinboard and inputs: \n '4' '7' '1' '9' '6' '5'."
     "While you observe you whisper to your friends what you see."
-    scene bg medievil lab front
+    scene bg uni hallway
     with dissolve
     show alex serious2 at alex_right
     with dissolve
@@ -474,7 +476,7 @@ label lab_wait:
     with dissolve
     L "Ok. Alex and I wait at the front and you wait at the back."
     PC "Roger that."
-    scene bg university backside #still needed
+    scene bg uni hallway # could be changed to uni backside instead if we have the image
     with dissolve
     "You get into position and start waiting."
     "After a short while you get a message from alex telling you to get to the lab."
@@ -496,6 +498,9 @@ label lab_wait:
     with dissolve
     L "Anyways."
     "Upon entering the lab the three of you start to investigate" 
+    scene bg medievil lab
+    with dissolve
+    L "Let's take a look around this lab"
 
 label inside_lab:
     if rat_seen and left_pc_seen and left_wall_seen and symbols_seen and trash_seen:
@@ -505,17 +510,23 @@ label inside_lab:
     show screen left_cage
     show screen left_pc
     show screen left_wall
-    #show screen medical_tools
     show screen symbol_screen
     show screen right_cage
     show screen right_pc
     show screen trash
+    with dissolve
+    #show screen medical_tools
+
+    $ hide_map = True
+    show screen phone_icon
+    with moveinright
     jump empty_label
 
 
 label rat_in_cage_left:
     call hide_lab_screens
-    scene bg left cage zoom 
+    scene bg left cage zoom
+    with dissolve 
     $ show_textbox = True
     "When observing the cage you see a rat inside with a small scar on its head. Other than that the cage contains only food, water a some obstacels for the animal to walk around"
     $ show_textbox = False
@@ -524,6 +535,7 @@ label rat_in_cage_left:
 label left_pc_stats:
     call hide_lab_screens
     scene bg left pc zoom
+    with dissolve 
     $ show_textbox = True
     "you look at the pc and see suspicious stats. You see percentages, probabilites and results."
     $ show_textbox = False
@@ -532,6 +544,7 @@ label left_pc_stats:
 label left_wall_obj:
     call hide_lab_screens
     scene bg left wall zoom
+    with dissolve
     $ show_textbox = True
     "Searching on the left coubard you find some chemicals and medical tools alongside what looks like a few of medievils implants but way smaller"
     $ show_textbox = False
@@ -539,7 +552,8 @@ label left_wall_obj:
     jump inside_lab
 label symbols_on_screen:
     call hide_lab_screens
-    show bg monitor zoom
+    scene bg monitor zoom
+    with dissolve
     $ show_textbox = True
     "You see a screen with three symbols. A arrow pointing left another pointing right and a circle between them. They seem to be lighting up on random. When observing them a bit more you notice that only one of the is active at a time"
     $ show_textbox = False
@@ -547,7 +561,8 @@ label symbols_on_screen:
     jump inside_lab
 label rat_in_cage_right:
     call hide_lab_screens
-    scene bg right cage zoom 
+    scene bg right cage zoom
+    with dissolve
     $ show_textbox = True
     "When observing the cage you see a rat inside with a small scar on its head. Other than that the cage contains only food, water a some obstacels for the animal to walk around"
     $ show_textbox = False
@@ -555,13 +570,16 @@ label rat_in_cage_right:
 label right_pc_stats:
     call hide_lab_screens
     scene bg right pc zoom
+    with dissolve
     $ show_textbox = True
     "you look at the pc and see suspicious stats. You see percentages, probabilites and results."
     $ show_textbox = False
+    $ left_pc_seen = True
     jump inside_lab
 label empty_trash:
     call hide_lab_screens
     scene bg trash zoom
+    with dissolve
     $ show_textbox = True
     " you look in and realise the bin is empty"
     $ show_textbox = False
@@ -578,18 +596,37 @@ label empty_trash:
     #jump inside_lab
 label inside_lab_done:
     call hide_lab_screens
+    scene bg medievil lab
+    with dissolve
     $ show_textbox = True
-    PC "The symbols on the screen. Do they show the movement of the rat."
+    show leonie neutral at left
+    show alex neutral at alex_right
+    with dissolve
+    PC "The symbols on the screen. Do they show the movement of the rat?"
+
+    show leonie serious at leftR
+    with dissolve
     L "It looks like it. But its a bit offset. Like the screen knows what the rat will do in befor it does it"
+
     PC "Why would medievil develop something like that?"
+
+    show alex serious1 at alex_right
+    with dissolve
     A "From what i know that is nothing that they're advertising so its probaply not for the world to know."
+
+    show leonie sad at left
+    with dissolve
     L "That can't be good. Looks like felix was onto something for real."
+
     PC "In any case i think we should'nt stick around in here any longer than we need to."
+
+    show alex serious2 at alex_right
+    with dissolve
     A "Agreed."
     "As you leave the lab you make sure that everything is left like you found it when you entered. After that you head out the back entrance and venture on home."
     $ lab_seen = True
+    with dissolve
     jump research
-
 
 label empty_label:
     ""

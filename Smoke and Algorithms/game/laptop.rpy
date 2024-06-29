@@ -197,7 +197,6 @@ screen website1_screen():
             action Hide("website1_screen"), Show("web_screen")
     viewport:
         area laptop_usable_area
-        draggable True
         mousewheel True
         scrollbars "vertical"
         yadjustment ui.adjustment(1, website_1_scrollbar_pos, changed=viewport_change1)
@@ -235,7 +234,6 @@ screen website2_screen():
             action Hide("website2_screen"), Show("web_screen")
     viewport:
         area laptop_usable_area
-        draggable True
         mousewheel True
         scrollbars "vertical"
         yadjustment ui.adjustment(1, website_2_scrollbar_pos, changed=viewport_change2)
@@ -273,7 +271,6 @@ screen website4_screen():
             action Hide("website4_screen"), Show("web_screen")
     viewport:
         area laptop_usable_area
-        draggable True
         mousewheel True
         scrollbars "vertical"
         yadjustment ui.adjustment(1, website_4_scrollbar_pos, changed=viewport_change4)
@@ -311,7 +308,6 @@ screen website3_screen():
             action Hide("website3_screen"), Show("web_screen")
     viewport:
         area laptop_usable_area
-        draggable True
         mousewheel True
         scrollbars "vertical"
         yadjustment ui.adjustment(1, website_3_scrollbar_pos, changed=viewport_change3)
