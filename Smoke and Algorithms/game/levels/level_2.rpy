@@ -75,19 +75,18 @@ label website2_button:
     $ show_textbox = False
     jump empty_label
     ""
-label website3_button:
+label website4_button:
     $ show_image_buttons = False
     $ show_textbox = True
     $ website_3_not_seen = False
-    show screen website3_screen
-    PC "Our good friend Mr Anderson had a meeting today."
-    A "With whom."
-    PC "Someone called Gill Cameron."
-    L "Never heard of him."
-    A "But maybe worth a look. We could try finding him on brainrot."
+    show screen website4_screen
+    PC "Here's something intersesting."
+    A "What?"
+    PC "The location of Mr. Andersons Office."
+    L "Maybe w should pay him a visit."
     $ show_image_buttons = True
     call websearch_done
-    show screen website3_screen
+    show screen website4_screen
     $ show_textbox = False
     jump empty_label
     ""
@@ -104,6 +103,9 @@ label website3_call:
     show screen website3_screen
     ""
     jump empty_label
+label website4_call:
+    show screen website4_screen
+    ""
 label websearch_done:
     if not website_2_not_seen and not website_3_not_seen:
         PC ""
@@ -222,7 +224,8 @@ label dumpsterdive2:
     hide alex with moveoutright
     hide leonie with moveoutleft
 
-    scene bg gilshouse #its dark outside
+    #scene bg gilshouse #its dark outside
+    scene bg facility 1
     with dissolve
     show leonie happy at left
     with  moveinleft

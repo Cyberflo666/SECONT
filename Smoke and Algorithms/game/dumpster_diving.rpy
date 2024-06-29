@@ -28,7 +28,7 @@ define dd1_piece_pos_initial = [(1050, 140), (1020, 160), (1010, 130), (1100, 25
 
 screen dumpster_diving_minigame_1:
     image "images/objects/dumpster diving/bg dumpster diving 0.png"
-
+    add Solid("#0008")
     draggroup:
         # Draggable image pieces
         for i in range(dd1_pieces_total):
@@ -74,7 +74,7 @@ label dumpster_diving_minigame2_completed:
 
 label dumpster_diving_minigame3_completed:
     $ diving1completed = True
-    scene bg dumpster diving 1 finished
+    scene bg dumpster diving 0 finished
     pause 1.5
     scene bg new kitchen
 
@@ -92,7 +92,7 @@ define dd2_piece_pos_initial = [(1050, 140), (1020, 160), (1010, 130), (1100, 25
 
 screen dumpster_diving_minigame_2:
     image "images/objects/dumpster diving/bg dumpster diving 1.png"
-
+    add Solid("#0008")
     draggroup:
         # Draggable image pieces
         for i in range(dd2_pieces_total):
@@ -126,7 +126,7 @@ define dd3_piece_pos_initial = [(1050, 140), (1020, 160), (1010, 130), (1100, 25
 
 screen dumpster_diving_minigame_3:
     image "images/objects/dumpster diving/bg dumpster diving 0.png"
-
+    add Solid("#0008")
     draggroup:
         # Draggable image pieces
         for i in range(dd3_pieces_total):

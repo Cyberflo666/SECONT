@@ -252,6 +252,18 @@ screen phone_hand_map():
             else:
                 action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("laptop_screen"), Jump("dumpsterdive")
 
+    if False == False:
+        imagebutton:
+            idle "map gill idle"
+            hover "map gill hover"
+            focus_mask True
+            if hide_map:
+                action Call("map_disabled")
+            elif dumpster2_doven:
+                action Call("dumpster_empty")
+            else:
+                action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("laptop_screen"), Jump("dumpsterdive2")
+    
     # Return arrow (closes phone)
     imagebutton:
         idle "return arrow idle"
