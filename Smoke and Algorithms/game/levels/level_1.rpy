@@ -122,14 +122,14 @@ label choice_1_2_windows:
     scene bg window view
     with dissolve
 
-    "Looks like luck is not on your side today. The window to his room is closed and there is no way to open it except brute force."
-    "Since you neither want to break your friends window nor get in trouble with the janitor you decide to look for another way in."
+    "Lady Luck isn't on your side. The window is closed tight, and there's no way in without brute force."
+    "You decide against breaking the window or angering the janitor, so you start looking for another way in."
     $ window_not_done = False
     jump menu_1_2
 
 label choice_1_2_lock_pick:
     scene bg felix door
-    "After dismanteling 13 paper clips and watching the tutorial for the 6th time you decide that there may yet be a better way to get inside."
+    "After mangling thirteen paper clips and rewatching the tutorial six times, you conclude there might be a better way inside."
     $ lock_not_done = False
     jump menu_1_2
 
@@ -137,124 +137,123 @@ label choice_1_2_janitor:
     $ gloss_bribery_seen = True
     $ gloss_impersonation_seen = True
 menu:
-    "Try to impersonate as Felix to get him to open the door" :
-        PC "Maybe one of us should try to pose as felix to get him to open the door"
+    "Impersonate Felix to get the janitor to open the door":
+        PC "Maybe one of us should pretend to be Felix and ask him to open the door."
         jump help_from_janitor
     
     "Bribe the janitor":
-        PC "Do you think he's bribeable"
+        PC "Do you think he's the type who'd take a bribe?"
         show alex smile at alex_right
         with dissolve
 
-        A "Sure. Everyone is vulnerable to money"
-        A "If I offer him a few bucks he surely won't say no to lending us his keys for a minute"
-        PC "All right Alex, you have my trust"
+        A "Sure, everyone has a price. A few bucks should do the trick."
+        PC "Alright, Alex. You have my blessing."
         scene bg hallway
         with dissolve
 
-        "All of you head into the hallway and Alex leaves behind the corner to find the janitor."
+        "You head into the hallway, and Alex disappears around the corner to find the janitor."
         show leonie thinking at left
         with dissolve
 
-        "You hear a loud exchange of words and soon after Alex returns defeated"
+        "You hear a heated exchange, and Alex returns looking defeated."
         show alex serious1 at alex_right
         with dissolve
 
-        A "He said wasn't taking any money from me"
+        A "He wouldn't take my money."
 
         show leonie sad at left
         with dissolve
 
-        L "Damn, I suspect he won't fall for any of our tricks now"
+        L "Damn. I doubt he'll fall for any of our other tricks now."
         jump game_over
 
     "Steal the keys from the janitor":
-        PC "How about I go grab his keys"
+        PC "How about I try to grab his keys?"
         show alex neutral at alex_right
         with dissolve
 
-        A "I'm not so sure this is a good idea"
-        PC "Leave it to me. I've seen it in plenty of movies"
+        A "I'm not so sure about that..."
+        PC "Leave it to me. I've seen it done in plenty of movies."
         scene bg hallway
         with dissolve
-
 
         show janitor neutral2 at janitor_middle
         with dissolve
 
-        "As you approach the janitor you stumble in front of him on purpose, fall right onto him and get a hold of his key chain"
+        "You approach the janitor and 'accidentally' stumble into him, grabbing his keychain."
 
         show janitor angry #at janitor_angry_middle
         show bg hallway blur
         with vpunch
 
-        "The victorious spirits start rushing to your brain, but as you pull on his keys they won't come loose"
+        "Victory seems within reach, but the keys won't budge."
         scene bg stars
         with vpunch
 
-        "The janitor, visibly furious of what stunt you're trying to pull off here, grabs you by the shirt and shoves you against the wall"
+        "The janitor, furious at your clumsy attempt, grabs your shirt and slams you against the wall."
         jump game_over_police
 
 
 label help_from_janitor:
-    PC "I think you have the best chances Alex"
+    PC "Alex, I think you're our best bet here."
     show alex serious1 at alex_right
     with dissolve
 
-    A "Yeaaah, im not so sure about that"
+    A "Yeah, I'm not so convinced about that..."
     show leonie thinking at left
     with dissolve
 
-    L "Dont be so humble. Your the most charismatic out of us and your Felix impression is unmatched. Besides you look the most like him"
+    L "Don't sell yourself short. You're the smoothest talker of the bunch, and your Felix impression is dead-on. Plus, you even look a little bit like him."
     show alex serious2 at alex_right
     with dissolve
 
-    A "Thats great and all but I think we're counting on him not knowing who felix is, because otherwise we're screwed"
-    PC "Either way you're our best shot and we need to get into this room"
+    A "That's all fine and dandy, but this whole plan falls apart if the janitor actually *knows* Felix."
+    PC "We don't have many options, and we *need* to get into that room. You're our best shot."
     show leonie neutral at left
     with dissolve
 
-    L "And since we a re Felixe's room mates we can back up your story"
+    L "And remember, we're Felix's roommates. We can back up your story."
     show alex neutral at alex_right
     with dissolve
 
-    A "Alright alright I'll do it but you better have my back"
+    A "Fine, fine. I'll do it. But if this blows up in our faces, it's on you two."
     show leonie happy at left
     with dissolve
 
-    L "Sure thing Felix"
+    L "Good luck, 'Felix'!"
     show alex serious1 at alex_right
     with dissolve
 
-    A "Ha Ha"
+    A "Very funny."
     scene bg hallway
     with dissolve
 
-    "All three of you head out to find the janitor. Traversing the building you see him in a hallway heading your dircetion"
-    PC "Showtime Alex."
+    "The three of you head out in search of the janitor. As you navigate the maze-like building, you spot him in a nearby hallway."
+    PC "Showtime, Alex. Don't mess this up."
     show leonie serious at left
     show alex neutral at alex_right
     with dissolve
 
-    L "Pay attention to what he's saying and react accordingly"
+    L "Remember, pay attention to what he says and respond accordingly. Stay cool."
     show alex serious1 at alex_right
     with dissolve
 
-    A "Pshhh i know."
+    A "Yeah, yeah. I've got this."
     hide leonie
     hide alex
     with dissolve
-    "Alex approaches the janitor trying to hide his true intentions"
+    "Alex approaches the janitor, putting on his best 'Felix' act."
     show janitor neutral2 at janitor_right
     show alex smileleft at alex_left
     with dissolve
 
-    A "Excuse me, my name is Felix and I wanted to ask if you can open my room for me. It looks like I've lost my key"
+    A "Hey there! Felix here. Listen, could you possibly unlock my room for me? I seem to have lost my key."
     
     show janitor neutral1 at janitor_right
     with dissolve
     show screen round_rect(trust)
     with dissolve
+
 
     menu:
         J "Is this urgent? I'm already on my way to help with the printers and I've got my hands full of work."
@@ -368,42 +367,42 @@ label janitor_trust:
     show alex smile at alex_midleft
     with dissolve
 
-    "The four of you go to felix's room where the janitor opens the door for you."
+    "The four of you arrive at Felix's room, and the janitor unlocks the door."
     show janitor neutral1 at janitor_right
     with dissolve
 
-    J "So about a replacement key..."
+    J "So, about getting you a replacement key..."
     show alex happy at alex_midleft
     with dissolve
 
-    A "That wont be necessary. I've just got a message from a friend who found my key. Seems like i forgot them at his place."
+    A "Oh, that won't be necessary. A friend just texted me. Seems I left my keys at their place after all."
     show janitor angry #at janitor_angry_right
     with dissolve
-    J "And you didn't think of that before?."
+    J "You couldn't have figured that out *before* I dragged myself all the way over here?"
     show alex serious1 at alex_midleft
     with dissolve
 
-    A "Well... "
+    A "Well..."
 
-    A "Apperently not"
+    A "...apparently not."
 
-    "the janitor looks at Alex with disapprovement"
+    "The janitor shoots Alex a disapproving look."
     show alex smile at alex_midleft
     with dissolve
 
-    A "Still. Thanks a lot for helping me out"
+    A "But hey, thanks for the help anyway."
     show janitor thinking at janitor_right
     with dissolve
 
-    J "Just don't lose them again you hear me"
+    J "Just try not to lose them again, okay?"
     show alex neutral at alex_midleft
     with dissolve
 
-    A "I promise"
+    A "I promise."
     show janitor neutral2 at janitor_right
     with dissolve
 
-    "He takes his leave and you gained access to Felix's room"
+    "He leaves, and you've successfully gained access to Felix's room."
     hide janitor
     with dissolve
 
@@ -566,64 +565,73 @@ label password_cracked:
     with dissolve
 
 
-    play music mystery_music1 volume loudness fadeout 1.0
-    L "Nice that did it. Time to see why he was so stressed out."
-    "You see Felix's notes about his work at Medievil. At first there is nothing unusual but the deeper you go, the more distressed the writing becomes. He seems to have discovered some kind of conspiracy about the implants from Medievil. One name pops up several times throughout the files. \"Bob Anderson\""
-    PC "Is he talking about the implants from Medievil? I thought they're used to treat diseases"
+play music mystery_music1 volume loudness fadeout 1.0
+label password_cracked:
+    $ password_icon = False
+    call hide_felix_room_interactables
+    hide screen phone_hand
+    show screen phone_icon
+    show leonie happy at left
+    show alex neutral at alex_right
+    with dissolve
+
+    L "Nailed it! Now let's see what has Felix so spooked."
+    "You delve into Felix's notes on his work at Medievil. At first, everything seems normal, but the deeper you dig, the more frantic and desperate his writing becomes. It appears he stumbled upon some kind of conspiracy surrounding Medievil's implants. One name keeps popping up: 'Bob Anderson.'"
+    PC "He's talking about those Medievil implants? I thought those were supposed to treat diseases."
     show alex serious1 at alex_right
     with dissolve
 
-    A "Neurological disorders, yes."
+    A "Neurological disorders, to be specific."
     show leonie neutral at left
     with dissolve
 
-    L "Well, according to him Medievil is looking to use them for something else, but he doesn't specify what. Only that its about profit and he thinks its dangerous."
+    L "Well, according to Felix, Medievil has something else in mind for these implants. He doesn't elaborate, just mentions it's all about profit and that he believes they're dangerous."
     show alex surprised at alex_right
     with dissolve
 
-    A "And whats up whit Bob Anderson. Any clue who that guy is."
+    A "And who's this Bob Anderson guy? Any idea?"
     show leonie serious at left
     with dissolve
 
-    L "Looks like he's Felixes supervisor or something."
-    PC "Is this shit real or is Felix just getting too far into his conspiracy obsession."
+    L "Looks like he's Felix's supervisor or something."
+    PC "Is this for real, or is Felix just going down another conspiracy rabbit hole?"
     show alex neutral at alex_right
     with dissolve
 
-    A "I dont know, but he seemd really scared today. Maybe there is really more to it"
+    A "I don't know, but he seemed genuinely terrified earlier. Maybe there's more to this than we thought."
     show leonie neutral at left
     with dissolve
 
-    L "Yeah. I've never seen him like that before. Do you think they were onto him. I mean why would he give us the flash drive in such a hurry. Maybe he's been kidnapped."
+    L "Definitely. I've never seen him like that. Do you think they were onto him? Why else would he dump that flash drive on us and take off? Maybe he's been kidnapped."
     show alex serious1 at alex_right
     with dissolve
 
-    A "Thats a pretty big jump your taking dont you think. From what we know there is no hard evidence against Medievil and Felix is not known to be the most rational person."
+    A "Hold on, let's not jump to conclusions. We don't have any hard evidence against Medievil, and Felix isn't exactly known for his levelheadedness."
     show leonie thinking at left
     with dissolve
 
-    L "Yes yes but he's not here and he hasn't answered any of our calls. Do you not think that's odd even form him."
-    PC "Maybe he wants us to investigate Medievil. I mean what else is the drive good for other than raising our suspicion."
+    L "True, but he's gone, and he's not answering his phone. That's not like him, even for Felix."
+    PC "Maybe he wants us to look into Medievil. I mean, what else would he give us this flash drive for, if not to raise our suspicions?"
     show alex neutral at alex_right
     with dissolve
 
-    A "If you think there is actually something messed up going on than maybe going to the police should be our next move."
+    A "If you really think something shady is going on, maybe we should go to the police."
 
 menu:
     "Go to the police with the information you got":
         scene bg police station
-        "You go to the police and show them the information you got from the drive. They ask you questions about Felix and the answers make it sound like Felix is making this whole story up."
-        "The fact that you have no hard evidence to show also doesn't help. In the end the police claims the drive as property of Medievil and puts out a missing person report"
+        "You take the information from the flash drive to the police. They grill you about Felix, and your answers make it sound like he's fabricated the whole thing."
+        "Without any hard evidence, your story falls flat. The police confiscate the drive, claiming it's Medievil property, and file a missing person report for Felix."
         show leonie serious at left
         with dissolve
 
-        L "Good thing I made a copy of everything so we didn't lose anything."
+        L "At least I made a copy of everything, so we haven't lost all hope."
         show alex serious1 at alex_right
         with dissolve
 
-        A "At least now we know that the police wont be much help against Medievil. Looks like we're on our own."
-        L "lets get back to our doorm and take matter in our own hands."
-        PC "I left my laptop in the kitchen, so lets just get going there."
+        A "Well, that was a bust. Looks like the police aren't going to help us against Medievil. We're on our own now."
+        L "Let's head back to the dorm and figure out our next move."
+        PC "My laptop's still in the kitchen. Let's regroup there."
 
         jump level_2_start
 
@@ -632,18 +640,17 @@ menu:
         show leonie thinking at left 
         show alex serious1 at alex_right
         with dissolve 
-        PC "Well then, I think it's best if we do our research on Medievil. There should be more room in the kitchen for all of us."
+        PC "Alright then, let's do some digging on Medievil. We'll have more space to spread out in the kitchen."
         show alex serious2 at alex_right
         with dissolve
-        A "Mhm. We need to act fast. Who knows what actually happened to Felix…"
+        A "Agreed. We need to move quickly. Who knows what's happened to Felix..."
         show leonie thinking at left 
         with dissolve 
-        L "From what I know, Medievil is quite a large company. We should be able to find out a lot online."
-        PC "I left my laptop there anyway, so I guess I'll take over the research."
-        PC "From there, I guess we can fulfill Felix's wish and investigate properly."
+        L "Medievil's a pretty big company. We should be able to find plenty of information online."
+        PC "I'll handle the research since I left my laptop back in the kitchen."
+        PC "Then we can follow up on Felix's lead and get to the bottom of this."
         with dissolve
         jump level_2_start
-
 
 
 
