@@ -11,7 +11,7 @@ label dumpster_diving_minigame_start:
 label dumpster_diving_minigame_completed_1:
     $ diving1completed = True
     $ mail_1_text_unlocked[2] = 1 # Sets variable to show the phishing mail text in the phishing mail mini game
-    scene bg dumpster diving 0 finished
+    scene bg dumpster diving 3 finished
     pause 1.5
     # scene bg new kitchen
     $ renpy.notify("A picture has been added to your notes")
@@ -22,13 +22,13 @@ label dumpster_diving_minigame_completed_1:
     
 # Variables
 define placement_sens = 20 # How sensitive the pieces must be aligned with their assigned spot (lower is more sensitive)
-define dd1_pieces_total = 7
+define dd1_pieces_total = 16
 default dd1_pieces_completed = 0
-define dd1_piece_pos_goal = [(92, 28), (92, 137), (299, 28), (338, 216), (92, 345), (92, 553), (335, 654)]
-define dd1_piece_pos_initial = [(1050, 140), (1020, 160), (1010, 130), (1100, 250), (1030, 180), (960, 150), (1000, 150)]
+define dd1_piece_pos_goal = [(129, 36), (411, 35), (200, 37), (130, 334), (130, 238), (445, 255), (351, 289), (132, 459), (313, 448), (130, 552), (130, 712), (222, 725), (128, 775), (386, 617), (259, 899), (409, 753)]
+define dd1_piece_pos_initial = [(1050, 140), (1020, 160), (1010, 130), (1100, 250), (1030, 180), (960, 150), (1040, 150), (1000, 170), (1000, 130), (1000, 190), (1020, 150), (970, 150), (1000, 160), (980, 130), (1080, 150), (1000, 120)]
 
 screen dumpster_diving_minigame_1:
-    image "images/objects/dumpster diving/bg dumpster diving 0.png"
+    image "images/objects/dumpster diving/bg dumpster diving 3.png"
     add Solid("#0008")
     draggroup:
         # Draggable image pieces
@@ -41,7 +41,7 @@ screen dumpster_diving_minigame_1:
                 draggable True
                 drag_raise True
 
-                image "images/objects/dumpster diving/pieces 0/piece %s.png" %(i + 1)
+                image "images/objects/dumpster diving/pieces 3/piece %s.png" %(i + 1)
 
         # Spots where the pieces should snap onto
         for i in range(dd1_pieces_total):
@@ -54,7 +54,7 @@ screen dumpster_diving_minigame_1:
                 droppable True          # Other drags can be dropped onto this drag
                 dropped dropped_onto    # Function beeing called when dropped onto
 
-                image "images/objects/dumpster diving/pieces 0/piece %s.png" %(i + 1) alpha 0.0
+                image "images/objects/dumpster diving/pieces 3/piece %s.png" %(i + 1) alpha 0.0
 
 
 label dumpster_diving_minigame2_start:
@@ -78,7 +78,7 @@ label dumpster_diving_minigame3_completed:
     $ mail_1_text_unlocked[0] = 1 # Sets variable to show the phishing mail text in the phishing mail mini game
     $ mail_1_text_unlocked[1] = 1
 
-    scene bg dumpster diving 0 finished
+    scene bg dumpster diving 2 finished
     pause 1.5
     scene bg new kitchen
 
@@ -123,13 +123,13 @@ screen dumpster_diving_minigame_2:
 
                 image "images/objects/dumpster diving/pieces 1/piece %s.png" %(i + 1) alpha 0.0
 
-define dd3_pieces_total = 7
+define dd3_pieces_total = 18
 default dd3_pieces_completed = 0
-define dd3_piece_pos_goal = [(92, 28), (92, 137), (299, 28), (338, 216), (92, 345), (92, 553), (335, 654)]
-define dd3_piece_pos_initial = [(1050, 140), (1020, 160), (1010, 130), (1100, 250), (1030, 180), (960, 150), (1000, 150)]
+define dd3_piece_pos_goal = [(49, 24), (260, 24), (134, 250), (49, 454), (49, 673), (124, 672), (193, 476), (486, 24), (560, 24), (648, 100), (617, 307), (410, 444), (283, 646), (283, 822), (437, 840), (664, 713), (548, 585), (630, 457)]
+define dd3_piece_pos_initial = [(1050, 140), (1050, 140), (1050, 140), (1050, 140), (1050, 140), (1050, 140), (1050, 140), (1050, 140), (1050, 140), (1050, 140), (1050, 140), (1050, 140), (1050, 140), (1050, 140), (1050, 140), (1050, 140), (1050, 140), (1050, 140)]
 
 screen dumpster_diving_minigame_3:
-    image "images/objects/dumpster diving/bg dumpster diving 0.png"
+    image "images/objects/dumpster diving/bg dumpster diving 2.png"
     add Solid("#0008")
     draggroup:
         # Draggable image pieces
@@ -142,7 +142,7 @@ screen dumpster_diving_minigame_3:
                 draggable True
                 drag_raise True
 
-                image "images/objects/dumpster diving/pieces 0/piece %s.png" %(i + 1)
+                image "images/objects/dumpster diving/pieces 2/piece %s.png" %(i + 1)
 
         # Spots where the pieces should snap onto
         for i in range(dd3_pieces_total):
@@ -155,7 +155,7 @@ screen dumpster_diving_minigame_3:
                 droppable True          # Other drags can be dropped onto this drag
                 dropped dropped_onto    # Function beeing called when dropped onto
 
-                image "images/objects/dumpster diving/pieces 0/piece %s.png" %(i + 1) alpha 0.0
+                image "images/objects/dumpster diving/pieces 2/piece %s.png" %(i + 1) alpha 0.0
 
 
 init python:
