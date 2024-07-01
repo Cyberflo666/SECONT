@@ -5,7 +5,15 @@ define new_objectives_not_heard = True
 default lab_seen = False
 default uni_access_denied = False
 default dumpster_doven = False
+default dumpster2_doven = False
 default player_warned = False
+default rat_seen = False
+default medical_tools_seen = False
+default symbols_seen = False 
+default left_pc_seen = False 
+default left_wall_seen = False 
+default trash_seen = False
+default dumpster_explained = False
 
 label level_2_start:
     play music main_music1 volume 0.1
@@ -13,12 +21,14 @@ label level_2_start:
     "you gather around the kitchen table while opening up your laptop"
     "You walk over and gather around a table while opening up your laptop."
     scene bg laptop full
+    $ gallery.add_data(["gallery_meme"])
     A "I think it's best if we start by looking up what exactly Medievil is."
 
 label research:
     scene bg laptop full
     show screen phone_icon
     show screen laptop_screen
+    with dissolve
     $ show_textbox = False
     ""
     jump empty_label
@@ -66,19 +76,18 @@ label website2_button:
     $ show_textbox = False
     jump empty_label
     ""
-label website3_button:
+label website4_button:
     $ show_image_buttons = False
     $ show_textbox = True
     $ website_3_not_seen = False
-    show screen website3_screen
-    PC "Our good friend Mr Anderson had a meeting today."
-    A "With whom."
-    PC "Someone called Gill Cameron."
-    L "Never heard of him."
-    A "But maybe worth a look. We could try finding him on brainrot."
+    show screen website4_screen
+    PC "Here's something intersesting."
+    A "What?"
+    PC "The location of Mr. Andersons Office."
+    L "Maybe w should pay him a visit."
     $ show_image_buttons = True
     call websearch_done
-    show screen website3_screen
+    show screen website4_screen
     $ show_textbox = False
     jump empty_label
     ""
@@ -93,6 +102,10 @@ label website2_call:
     jump empty_label
 label website3_call:
     show screen website3_screen
+    ""
+    jump empty_label
+label website4_call:
+    show screen website4_screen
     ""
     jump empty_label
 label websearch_done:
@@ -123,23 +136,23 @@ label dumpsterdive:
     with dissolve
     
     PC "Lets head to Bob Andersons office. I wonder what we can find there."
-    show leonie thinking at left 
-    with dissolve
+   
 
-    L "What are we going to do there though? Its not like we can just step in."
-    show alex neutral at alex_right
-    with dissolve
-
-    A "We dont have to step in. We can stay outside and do dumpsterdiving, to find out more information."
-    show leonie surprised at left
-    with dissolve
-
-    L "How is there going to be information in trash?"
-    show alex serious2 at alex_right
-    with dissolve
-
-    A "People often times throw away sensitive information without disposing of it correctly. If we look at the trash we could find something compromising that could get us a lead."
-    "You, Alex and Leoni go to the building."
+    if dumpster_explained == False:
+        show leonie thinking at left 
+        with dissolve
+        L "What are we going to do there though? Its not like we can just step in."
+        show alex neutral at alex_right
+        with dissolve
+        A "We dont have to step in. We can stay outside and do dumpsterdiving, to find out more information."
+        show leonie surprised at left
+        with dissolve
+        L "How is there going to be information in trash?"
+        show alex serious2 at alex_right
+        with dissolve
+        A "People often times throw away sensitive information without disposing of it correctly. If we look at the trash we could find something compromising that could get us a lead."
+        "You, Alex and Leoni go to the building."
+        $ dumpster_explained = True 
 
     hide alex with moveoutright
     hide leonie with moveoutleft
@@ -185,6 +198,97 @@ label after_dumpsterdive:
 
     jump research 
 
+label dumpsterdive2:
+    $ show_textbox = True
+    scene bg new kitchen
+    show leonie serious at left
+    show alex serious1 at alex_right
+    with dissolve
+
+    PC "Well then i suggest we should head out to Gills place and investigate there."
+
+    if dumpster_explained == False:
+        show leonie thinking at left 
+        with dissolve
+        L "What are we going to do there though? Its not like we can just step in."
+        show alex neutral at alex_right
+        with dissolve
+        A "We dont have to step in. We can stay outside and do dumpsterdiving, to find out more information."
+        show leonie surprised at left
+        with dissolve
+        L "How is there going to be information in trash?"
+        show alex serious2 at alex_right
+        with dissolve
+        A "People often times throw away sensitive information without disposing of it correctly. If we look at the trash we could find something compromising that could get us a lead."
+        "You, Alex and Leoni go to the building."
+        $ dumpster_explained = True 
+
+    hide alex with moveoutright
+    hide leonie with moveoutleft
+
+    #scene bg gilshouse #its dark outside
+    scene bg facility 1
+    with dissolve
+    show leonie happy at left
+    with  moveinleft
+    show alex neutral at alex_right
+    with  moveinright
+
+    PC "Wow what a beautiful looking house"
+    show leonie happy at left
+    with dissolve
+
+    L "Are we sure Gil is a bad guy? no way an evil person has such a wonderful house"
+    show alex neutral at alex_right
+    with dissolve
+    A "Well in movies the bad guys tend to own a more expensive house, since they earn more money through illegal ways, than the average people do."
+
+    PC "I suggest we should just go ahead and start, the more time we spend here the more suspicioun we raise"
+
+    show alex happy at alex_right 
+    with dissolve 
+
+    A "alright lets get digging then"
+
+    show leonie sad at left
+    with dissolve
+    L "digging into trash ... yippie"
+
+    show alex angry at alex_right
+    with dissolve
+    A " well if youre not so enthusiastic about it then i suggest you look out and warn us incase anyone comes here. Me and [PN] will go on then dont worry"
+
+    show leonie happy at left 
+    with dissolve
+
+    L "mhm"
+
+    scene bg wastepaper 
+    jump dumpster_diving_minigame2_start
+
+label after_dumpsterdive2:
+    $ show_textbox = True
+    scene bg officebehind
+    with dissolve
+    show leonie happy at left
+    with  moveinleft
+    show alex neutral at alex_right
+    with  moveinright
+    A "Nice one, that's more like what we're looking for. Now what does it say?"
+    PC "It's a note from gil."
+    L "Says something about a handover."
+    A "Interesting"
+    PC "I wonder if this can be of any use for us"
+    $ gloss_dumpster_seen = True
+    $ dumpster2_doven = True
+    jump research 
+
+
+
+
+    
+
+
 label lab_access_denied:
     $ show_image_buttons = False
     if show_textbox == False:
@@ -219,7 +323,7 @@ label dumpster_empty:
         $ show_textbox = True
         $ hide_textbox = True
     hide screen phone_hand_map 
-    "You already have all the information from the bin."
+    "You already have all the information from this garbage."
     if hide_textbox == True:
         $ show_textbox = False
         $ hide_textbox = False
@@ -253,7 +357,7 @@ label visitlab:
     hide alex with moveoutright
     hide leonie with moveoutleft
 
-    scene bg university hall
+    scene bg uni hallway
     with dissolve
     show leonie thinking at left
     with  moveinleft
@@ -281,6 +385,9 @@ label visitlab:
     hide leonie 
 
     "You head to the door of the lab, and see that theres a pin needed to unlock the door "
+
+    scene bg medievil lab front 
+    with dissolve
 
     show leonie thinking at left
     with dissolve
@@ -321,70 +428,205 @@ label visitlab:
             "Because you dont want to meddle with them any further you decide to return home and continue your research."
             jump research
 
-    label lab_wait:
-        $ gloss_tailgating_seen = True
-        scene bg university observe
-        "As you return you got to the location leonie sent you. A desk at the snack maschine with four chairs."
-        show leonie neutral at left
-        show alex neutral at alex_right
-        with dissolve
-        "You sit down and wait for what feels like eternity until..."
-        show alex surprised at alex_right
-        with dissolve
-        A "Guys look. We caught one."
-        show leonie serious at left
-        with dissolve
-        L "Quiet, we don't want him to notice us. Just oserve what he presses."
-        show alex serious1 at alex_right
-        with dissolve
-        "You see a ominous person walking up to the door. He does not look like any univerity employee you know."
-        "You watch as he puts his hand on the pinboard and inputs: \n '4' '7' '1' '9' '6' '5'."
-        "While you observe you whisper to your friends what you see."
-        show alex serious2 at alex_right
-        with dissolve
-        A "Is that all?"
-        PC "Yup. The door is open."
-        show leonie happy at left
-        with dissolve
-        L "Great. Now we just have to wait until he leaves."
-        show alex smile at alex_right
-        with dissolve
-        A "Perfect. I needed a break after all the previous waiting."
-        PC "You can follow him if you want, but dont expect us to follow."
-        show alex happy at alex_right
-        with dissolve
-        A "Nah im good. Just kidding."
-        show leonie thinking at left
-        with dissolve
-        L "We should change locations to avoid getting his attention. It could make him suspicious if we were still here when he leaves."
-        show alex neutral at alex_right
-        with dissolve
-        A "We could wait outside for him to exit."
-        show leonie serious at left
-        with dissolve
-        L "Ok. Alex and I wait at the front and you wait at the back."
-        PC "Roger that."
-        scene bg university backside
-        "You get into position and start waiting."
-        "After a short while you get a message from alex telling you to get to the lab."
-        "When you approach the lab you see your friends infront of the open door."
-        show leonie neutral at left
-        show alex neutral at alex_right
-        with dissolve
-        PC "I assume he left."
-        show alex smile at alex_right
-        with dissolve
-        A "No he invited us in."
-        show leonie sad at left
-        with dissolve
-        "..."
-        show leonie neutral at left
-        with dissolve
-        L "Anyways, lets continue."
+label lab_wait:
+    $ gloss_tailgating_seen = True
+    scene bg uni hallway #need better spot than hallway
+    with dissolve
+    "As you return you got to the location leonie sent you. A desk at the snack maschine with four chairs."
+    show leonie neutral at left
+    show alex neutral at alex_right
+    with dissolve
+    "You sit down and wait for what feels like eternity until..."
+    show alex surprised at alex_right
+    with dissolve
+    A "Guys look. We caught one."
+    show leonie serious at left
+    with dissolve
+    L "Quiet, we don't want him to notice us. Just oserve what he presses."
+    show alex serious1 at alex_right
+    with dissolve
+    scene bg pinpad
+    with dissolve
+    "You see a ominous person walking up to the door. He does not look like any univerity employee you know."
+    "You watch as he puts his hand on the pinboard and inputs: \n '4' '7' '1' '9' '6' '5'."
+    "While you observe you whisper to your friends what you see."
+    scene bg uni hallway
+    with dissolve
+    show alex serious2 at alex_right
+    with dissolve
+    A "Is that all?"
+    PC "Yup. The door is open."
+    show leonie happy at left
+    with dissolve
+    L "Great. Now we just have to wait until he leaves."
+    show alex smile at alex_right
+    with dissolve
+    A "Perfect. I needed a break after all the previous waiting."
+    PC "You can follow him if you want, but dont expect us to follow."
+    show alex happy at alex_right
+    with dissolve
+    A "Nah im good. Just kidding."
+    show leonie thinking at left
+    with dissolve
+    L "We should change locations to avoid getting his attention. It could make him suspicious if we were still here when he leaves."
+    show alex neutral at alex_right
+    with dissolve
+    A "We could wait outside for him to exit."
+    show leonie serious at left
+    with dissolve
+    L "Ok. Alex and I wait at the front and you wait at the back."
+    PC "Roger that."
+    scene bg uni hallway # could be changed to uni backside instead if we have the image
+    with dissolve
+    "You get into position and start waiting."
+    "After a short while you get a message from alex telling you to get to the lab."
+    "When you approach the lab you see your friends infront of the open door."
+    scene bg medievil lab front
+    with dissolve
+    
+    show leonie neutral at left
+    show alex neutral at alex_right
+    with dissolve
+    PC "I assume he left."
+    show alex smile at alex_right
+    with dissolve
+    A "No he invited us in."
+    show leonie sad at left
+    with dissolve
+    "..."
+    show leonie neutral at left
+    with dissolve
+    L "Anyways."
+    "Upon entering the lab the three of you start to investigate" 
+    scene bg medievil lab
+    with dissolve
+    L "Let's take a look around this lab"
+
+label inside_lab:
+    if rat_seen and left_pc_seen and left_wall_seen and symbols_seen and trash_seen:
+        jump inside_lab_done
+    $ show_textbox = False
+    scene bg medievil lab
+    show screen left_cage
+    show screen left_pc
+    show screen left_wall
+    show screen symbol_screen
+    show screen right_cage
+    show screen right_pc
+    show screen trash
+    with dissolve
+    #show screen medical_tools
+
+    $ hide_map = True
+    show screen phone_icon
+    with moveinright
+    jump empty_label
 
 
+label rat_in_cage_left:
+    call hide_lab_screens
+    scene bg left cage zoom
+    with dissolve 
+    $ show_textbox = True
+    "When observing the cage you see a rat inside with a small scar on its head. Other than that the cage contains only food, water a some obstacels for the animal to walk around"
+    $ show_textbox = False
+    $ rat_seen = True
+    jump inside_lab
+label left_pc_stats:
+    call hide_lab_screens
+    scene bg left pc zoom
+    with dissolve 
+    $ show_textbox = True
+    "you look at the pc and see suspicious stats. You see percentages, probabilites and results."
+    $ show_textbox = False
+    $ left_pc_seen = True
+    jump inside_lab
+label left_wall_obj:
+    call hide_lab_screens
+    scene bg left wall zoom
+    with dissolve
+    $ show_textbox = True
+    "Searching on the left coubard you find some chemicals and medical tools alongside what looks like a few of medievils implants but way smaller"
+    $ show_textbox = False
+    $ left_wall_seen = True 
+    jump inside_lab
+label symbols_on_screen:
+    call hide_lab_screens
+    scene bg monitor zoom
+    with dissolve
+    $ show_textbox = True
+    "You see a screen with three symbols. A arrow pointing left another pointing right and a circle between them. They seem to be lighting up on random. When observing them a bit more you notice that only one of the is active at a time"
+    $ show_textbox = False
+    $ symbols_seen = True
+    jump inside_lab
+label rat_in_cage_right:
+    call hide_lab_screens
+    scene bg right cage zoom
+    with dissolve
+    $ show_textbox = True
+    "When observing the cage you see a rat inside with a small scar on its head. Other than that the cage contains only food, water a some obstacels for the animal to walk around"
+    $ show_textbox = False
+    jump inside_lab
+label right_pc_stats:
+    call hide_lab_screens
+    scene bg right pc zoom
+    with dissolve
+    $ show_textbox = True
+    "you look at the pc and see suspicious stats. You see percentages, probabilites and results."
+    $ show_textbox = False
+    $ left_pc_seen = True
+    jump inside_lab
+label empty_trash:
+    call hide_lab_screens
+    scene bg trash zoom
+    with dissolve
+    $ show_textbox = True
+    " you look in and realise the bin is empty"
+    $ show_textbox = False
+    $ trash_seen = True
+    jump inside_lab 
 
+#label used_medical_tools:
+    #call hide_lab_screens
+    #show  medical tools
+    #$ show_textbox = True
+    #"Searching on a desk you find some chemicals and medical tools alongside what looks like a few of medievils implants but way smaller."
+    #$ show_textbox = False
+    #$ medical_tools_seen = True
+    #jump inside_lab
+label inside_lab_done:
+    call hide_lab_screens
+    scene bg medievil lab
+    with dissolve
+    $ show_textbox = True
+    show leonie neutral at left
+    show alex neutral at alex_right
+    with dissolve
+    PC "The symbols on the screen. Do they show the movement of the rat?"
 
+    show leonie serious at leftR
+    with dissolve
+    L "It looks like it. But its a bit offset. Like the screen knows what the rat will do in befor it does it"
+
+    PC "Why would medievil develop something like that?"
+
+    show alex serious1 at alex_right
+    with dissolve
+    A "From what i know that is nothing that they're advertising so its probaply not for the world to know."
+
+    show leonie sad at left
+    with dissolve
+    L "That can't be good. Looks like felix was onto something for real."
+
+    PC "In any case i think we should'nt stick around in here any longer than we need to."
+
+    show alex serious2 at alex_right
+    with dissolve
+    A "Agreed."
+    "As you leave the lab you make sure that everything is left like you found it when you entered. After that you head out the back entrance and venture on home."
+    $ lab_seen = True
+    with dissolve
+    jump research
 
 label empty_label:
     ""

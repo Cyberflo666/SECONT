@@ -125,6 +125,97 @@ screen round_rect(trust):
         size 40
         color "00bdff"
 
+# lab room point and click -----------------------------------------------------
+
+label hide_lab_screens:
+    hide screen left_cage
+    hide screen left_pc
+    #hide screen medical_tools
+    hide screen left_wall
+    hide screen symbol_screen
+    hide screen right_cage
+    hide screen right_pc
+    hide screen trash
+    return
+
+screen left_cage:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton :
+            hover "images/backgrounds/lab/left cage hover.png" 
+            idle "images/backgrounds/lab/left cage idle.png" 
+            focus_mask True
+            action Hide("left_cage"),Jump("rat_in_cage_left")
+
+screen left_pc:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton :
+            hover "images/backgrounds/lab/left pc hover.png" 
+            idle "images/backgrounds/lab/left pc idle.png" 
+            focus_mask True
+            action Hide("left_pc"),Jump("left_pc_stats")
+
+screen left_wall:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton :
+            hover "images/backgrounds/lab/left wall hover.png" 
+            idle "images/backgrounds/lab/left wall idle.png" 
+            focus_mask True
+            action Hide("left_wall"),Jump("left_wall_obj")
+
+screen symbol_screen:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton :
+            hover "images/backgrounds/lab/monitor hover.png" 
+            idle "images/backgrounds/lab/monitor idle.png" 
+            focus_mask True
+            action Hide("symbol_screen"),Jump("symbols_on_screen")
+
+screen right_cage:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton :
+            hover "images/backgrounds/lab/right cage hover.png" 
+            idle "images/backgrounds/lab/right cage idle.png" 
+            focus_mask True
+            action Hide("right_cage"),Jump("rat_in_cage_right")
+
+screen right_pc:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton :
+            hover "images/backgrounds/lab/right pc hover.png" 
+            idle "images/backgrounds/lab/right pc idle.png" 
+            focus_mask True
+            action Hide("right_pc"),Jump("right_pc_stats")
+screen trash:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton :
+            hover "images/backgrounds/lab/trash hover.png" 
+            idle "images/backgrounds/lab/trash idle.png" 
+            focus_mask True
+            action Hide("trash"),Jump("empty_trash")
+
+#screen medical_tools:
+    #zorder 0
+    #modal False
+    #if show_image_buttons == True:
+        #imagebutton :
+            #hover "images/backgrounds/felix room/f wall3.png" 
+            #idle "images/backgrounds/felix room/fb wall3.png" 
+            #focus_mask True
+            #action Hide("medical_tools"),Jump("used_medical_tools")
 
             
                 
