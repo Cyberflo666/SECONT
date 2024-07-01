@@ -31,12 +31,13 @@ init python:
         
         # Method adds an element 'item' to the items list of Notes
         # ...if the text of the new item doesn't exist already somewhere in this list
-        def add_data(self, item):
+        def add_data(self, item, notification):
             #for it_item in self.items:
                 #if it_item.text == item.text:
                     #return
             self.items.append(item)
-            renpy.notify("Picture added to your gallery")
+            if notification:
+                renpy.notify("Picture added to your gallery")
         
         def remove_data(self, item):
             self.items.remove(item)

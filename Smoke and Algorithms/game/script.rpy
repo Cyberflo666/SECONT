@@ -4,6 +4,7 @@
 default notes = Notes([])
 default show_textbox = True
 default gallery = Pictures([])
+
 default hide_map = False
 
 label map_disabled:
@@ -23,4 +24,5 @@ label map_disabled:
     return
 
 label start:
+    $ gallery.add_data(["gallery_meme"], False)
     jump level_0_start

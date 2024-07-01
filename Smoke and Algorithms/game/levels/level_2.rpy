@@ -21,7 +21,6 @@ label level_2_start:
     "you gather around the kitchen table while opening up your laptop"
     "You walk over and gather around a table while opening up your laptop."
     scene bg laptop full
-    $ gallery.add_data(["gallery_meme"])
     A "I think it's best if we start by looking up what exactly Medievil is."
 
 label research:

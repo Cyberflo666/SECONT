@@ -14,7 +14,7 @@ label dumpster_diving_minigame_completed_1:
     scene bg dumpster diving 3 finished
     pause 1.5
     # scene bg new kitchen
-    $ renpy.notify("A picture has been added to your notes")
+    $ gallery.add_data(["gallery_dd_receipt"], True)
     pause 1.5
     L "Interesting"
     jump after_dumpsterdive
@@ -28,7 +28,7 @@ define dd1_piece_pos_goal = [(129, 36), (411, 35), (200, 37), (130, 334), (130, 
 define dd1_piece_pos_initial = [(1050, 140), (1020, 160), (1010, 130), (1100, 250), (1030, 180), (960, 150), (1040, 150), (1000, 170), (1000, 130), (1000, 190), (1020, 150), (970, 150), (1000, 160), (980, 130), (1080, 150), (1000, 120)]
 
 screen dumpster_diving_minigame_1:
-    image "images/objects/dumpster diving/bg dumpster diving 3.png"
+    image "images/objects/dumpster diving/bg dumpster diving 3.jpg"
     add Solid("#0008")
     draggroup:
         # Draggable image pieces
@@ -41,7 +41,7 @@ screen dumpster_diving_minigame_1:
                 draggable True
                 drag_raise True
 
-                image "images/objects/dumpster diving/pieces 3/piece %s.png" %(i + 1)
+                image "images/objects/dumpster diving/pieces 3/piece %s.jpg" %(i + 1)
 
         # Spots where the pieces should snap onto
         for i in range(dd1_pieces_total):
@@ -54,7 +54,7 @@ screen dumpster_diving_minigame_1:
                 droppable True          # Other drags can be dropped onto this drag
                 dropped dropped_onto    # Function beeing called when dropped onto
 
-                image "images/objects/dumpster diving/pieces 3/piece %s.png" %(i + 1) alpha 0.0
+                image "images/objects/dumpster diving/pieces 3/piece %s.jpg" %(i + 1) alpha 0.0
 
 
 label dumpster_diving_minigame2_start:
@@ -67,8 +67,6 @@ label dumpster_diving_minigame2_completed:
     scene bg dumpster diving 1 finished
     pause 1.5
     scene bg new kitchen
-    $ renpy.notify("A picture has been added to your notes")
-    pause 1.5
     L "Seems like that's just useless trash, go on"
     $ diving_minigame_active_index = 2
     call screen dumpster_diving_minigame_3
@@ -82,7 +80,7 @@ label dumpster_diving_minigame3_completed:
     pause 1.5
     scene bg new kitchen
 
-    $ renpy.notify("A picture has been added to your notes")
+    $ gallery.add_data(["gallery_dd_notepage"], True)
     pause 1.5
     jump after_dumpsterdive2
     

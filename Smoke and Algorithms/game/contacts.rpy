@@ -18,6 +18,7 @@ label call_alex:
         $ show_textbox = False
         $ hide_textbox = False
     show screen phone_hand_contact
+    with dissolve
     return
 
 label call_leonie:
@@ -34,6 +35,7 @@ label call_leonie:
         $ show_textbox = False
         $ hide_textbox = False
     show screen phone_hand_contact
+    with dissolve
     return
 
 label call_felix:
@@ -52,6 +54,7 @@ label call_felix:
         $ show_textbox = False
         $ hide_textbox = False
     show screen phone_hand_contact
+    with dissolve
     return
 
 screen call_screen:
