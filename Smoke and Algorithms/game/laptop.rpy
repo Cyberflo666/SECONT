@@ -87,17 +87,6 @@ default count_offset = 0
 default count_changed = 0
 define j = 0
 
-init python:
-    def randomize_indices():
-        global mail_1_piece_pos_index
-        for i in range (0,100):
-            renpy.notify("something")
-            x = renpy.random.randint(0,9)
-            y = renpy.random.randint(0,9)
-            temp = mail_1_piece_pos_index[x]
-            mail_1_piece_pos_index[x] = mail_1_piece_pos_index[y]
-            mail_1_piece_pos_index[y] = temp
-
 screen mail_screen():
     zorder 2
     modal False
@@ -107,7 +96,6 @@ screen mail_screen():
     # Draggable pieces to assemble the correct mail
     draggroup:
         # Draggable mail pieces
-        #$ count_offset = 0
         $ j = 0
         for i in range(mail_1_pieces_total):
             # Skips the pieces that need to be unlocked if they are still locked
@@ -116,7 +104,6 @@ screen mail_screen():
                     continue
             drag:
                 drag_name mail_1_piece_pos_index[i]
-                
                 pos mail_1_piece_pos_initial[j]
 
                 focus_mask True
@@ -126,6 +113,7 @@ screen mail_screen():
 
                 image "images/objects/laptop/phishing mail/phishing mail text %s.png" %(mail_1_piece_pos_index[i] + 1)
             $ j += 1
+
         # Spots where the pieces should snap onto
         for i in range(3):
             drag:
@@ -159,6 +147,17 @@ screen mail_screen():
 init python:
     import math
     
+    # Randomizes indices so as to create a permutation for the indices of the mail pieces
+    def randomize_indices():
+        global mail_1_piece_pos_index
+        for i in range (0,100):
+            renpy.notify("something")
+            x = renpy.random.randint(0,9)
+            y = renpy.random.randint(0,9)
+            temp = mail_1_piece_pos_index[x]
+            mail_1_piece_pos_index[x] = mail_1_piece_pos_index[y]
+            mail_1_piece_pos_index[y] = temp
+
     # Function called when one of the dragged_pieces is being dropped onto on of the snap_spots
     def dropped_onto_mail(snap_spot, dragged_piece):
         global mail_1_pieces_total
@@ -170,12 +169,14 @@ init python:
             mail_1_current_order[snap_spot.drag_name] = dragged_piece[0].drag_name + 1
             renpy.notify(mail_1_current_order)
 
+    # Function called when one of the dragged_pieces is being lifted
     def dragged_mail(dragged_piece, dropped_onto):
         if (dragged_piece[0].drag_name + 1) in mail_1_current_order:
             indx = mail_1_current_order.index(dragged_piece[0].drag_name + 1)
             mail_1_current_order[indx] = 0
         renpy.notify(mail_1_current_order)
 
+    # Function called when player wants to send the mail
     def send_mail():
         if mail_1_current_order == mail_1_correct_order:
             renpy.notify("correct mail")
