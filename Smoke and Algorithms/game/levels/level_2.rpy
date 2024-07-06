@@ -14,14 +14,22 @@ default left_pc_seen = False
 default left_wall_seen = False 
 default trash_seen = False
 default dumpster_explained = False
+default machine_struck_counter = 0
+default snack_gotten = False
 
 label level_2_start:
     play music main_music1 volume 0.1
     scene bg new kitchen 
-    "you gather around the kitchen table while opening up your laptop"
+    
     "You walk over and gather around a table while opening up your laptop."
     scene bg laptop full
-    A "I think it's best if we start by looking up what exactly Medievil is."
+    L "What excactly is our plan now? What are we doing with the information we find?"
+    PC "We could go to the facility Bob Anderson works at and look for felix?"
+    PC "I also dont think that we have access to his workplace and we probaply wont find it just sitting on some website."
+    L "If that is the problem we could try to write a phishing email to Bob Anderson so that he grants us access."
+    A "Do you think it's realistic that we can convince him to do that?"
+    L "Depends on what we fin out about Bob Anderson's background. Maybe we there is something we can use on his social media or some medievil web page?"
+    PC "Either way we should do some research on him."
 
 label research:
     scene bg laptop full
@@ -55,7 +63,6 @@ label website1_button:
     A "Is there a reason?"
     L "Not really. Just for stronger industry and more workplaces"
     $ show_image_buttons = True
-    call websearch_done
     show screen website1_screen
     $ show_textbox = False
     jump empty_label
@@ -109,23 +116,8 @@ label website4_call:
     jump empty_label
 label websearch_done:
     if not website_2_not_seen and not website_3_not_seen:
-        PC ""
         $ renpy.notify("you have new objectives on your map")
     return
-label new_objectives:
-    $ show_textbox = True
-    $ show_image_buttons = False
-    $ new_objectives_not_heard = False
-    L "It's good that we were able to learn a lot about Mr. Anderson. How are we going to proceed, though?"
-    PC "I believe Anderson should be our priority since he is the link between Medievil and Felix."
-    L "How about we use the information we've gathered to infiltrate them?"
-    A "Isn't that a bit too hasty? We don't know much about the building or Bob Anderson."
-    PC "Going in without a proper plan could be very risky. They'd be onto us quickly. Let's weigh all the options first."
-    L "We could also write a phishing email to gather more intel on Bob Anderson and his building. We could stay and dig deeper into Bob Anderson's background.Maybe check his social media?"
-    A "Alternatively, we could go dumpster diving near his facility.how about we look into the university's partnered lab?What do you think we should do first?"
-    $ show_textbox = False
-    $ show_image_buttons = True
-    jump research
 
 label dumpsterdive:
     $ show_textbox = True
@@ -156,18 +148,18 @@ label dumpsterdive:
     hide alex with moveoutright
     hide leonie with moveoutleft
 
-    scene bg officebehind #its dark outside
+    scene bg facility 3 #its dark outside
     with dissolve
     show leonie happy at left
     with  moveinleft
     show alex neutral at alex_right
     with  moveinright
 
-    PC "Hm the building seems smaller than described on the internet"
+    PC "Hm the building seems bigger than described on the internet."
     show leonie happy at left
     with dissolve
 
-    L "Well that means we dont have to search for too much. Look, the garbage bins are directly over there."
+    L "Yes but luckily the garbage bins are directly over there."
     show alex angry at alex_right
     with dissolve
 
@@ -180,7 +172,7 @@ label dumpsterdive:
 
 label after_dumpsterdive:
     $ show_textbox = True
-    scene bg officebehind
+    scene bg facility
     with dissolve
     show leonie happy at left
     with  moveinleft
@@ -226,7 +218,7 @@ label dumpsterdive2:
     hide leonie with moveoutleft
 
     #scene bg gilshouse #its dark outside
-    scene bg facility 1
+    scene bg gill house front
     with dissolve
     show leonie happy at left
     with  moveinleft
@@ -249,7 +241,7 @@ label dumpsterdive2:
 
     A "alright lets get digging then"
 
-    show leonie sad at left
+    show leonie neutral at left
     with dissolve
     L "digging into trash ... yippie"
 
@@ -257,17 +249,17 @@ label dumpsterdive2:
     with dissolve
     A " well if youre not so enthusiastic about it then i suggest you look out and warn us incase anyone comes here. Me and [PN] will go on then dont worry"
 
-    show leonie happy at left 
+    show leonie sad at left 
     with dissolve
 
     L "mhm"
 
-    scene bg wastepaper 
+    scene bg gill dumpster 
     jump dumpster_diving_minigame2_start
 
 label after_dumpsterdive2:
     $ show_textbox = True
-    scene bg officebehind
+    scene bg gill house front
     with dissolve
     show leonie happy at left
     with  moveinleft
@@ -353,8 +345,9 @@ label visitlab:
 
     A "I really wonder where he is, i miss that little fella. We should get going for his sake."
 
-    hide alex with moveoutright
-    hide leonie with moveoutleft
+    hide alex 
+    hide leonie
+    with dissolve
 
     scene bg uni hallway
     with dissolve
@@ -385,7 +378,8 @@ label visitlab:
 
     "You head to the door of the lab, and see that theres a pin needed to unlock the door "
 
-    scene bg medievil lab front 
+label lab_entry_choice:
+    scene bg medievil front lab 
     with dissolve
 
     show leonie thinking at left
@@ -426,6 +420,31 @@ label visitlab:
             "They deny your request and notifiy the security about your presence."
             "Because you dont want to meddle with them any further you decide to return home and continue your research."
             jump research
+        "Get a snack from the nearby wending machine" if snack_gotten == False:
+            hide leonie
+            hide alex
+            with dissolve
+            $ snack_gotten = True
+            "Researching all day made you kinda hungry and since there is nothing else nearby you decide to get a snack from the local wending machine"
+            "After paying 1,20$ for an overpriced chocolate bar you watch as your snack gets stuck in the spiral of a lower row."
+            jump wending_maschine
+
+label wending_maschine:
+    menu:
+        "shake the wending maschine to get your snack" if machine_struck_counter == 0:
+            $ machine_struck_counter += 1
+            "you begin shaking the maschine but the bar doesent move."
+            jump wending_maschine
+
+        "shake the wending maschine even harder to get your snack" if machine_struck_counter == 1:
+            #$ machine_struck_counter += 1
+            "again you shake the machine like a maniac and though the bar doesent move you get noticed by a guy who was about to enter the lab."
+            "you try to play it off but the person informs the security about your fight with the machine and even though you stay low for the next half hour they wont take their eyes of you."
+            "since the entire facility is now alert to your presence you decide to head home and continue your investigation from there."
+            jump research
+        "return to the lab door to figure out a way to get in":
+            "you surrender your snack and your dignity to the machine and continue your mission."
+            jump lab_entry_choice
 
 label lab_wait:
     $ gloss_tailgating_seen = True
@@ -480,7 +499,7 @@ label lab_wait:
     "You get into position and start waiting."
     "After a short while you get a message from alex telling you to get to the lab."
     "When you approach the lab you see your friends infront of the open door."
-    scene bg medievil lab front
+    scene bg medievil front lab
     with dissolve
     
     show leonie neutral at left
@@ -527,6 +546,7 @@ label rat_in_cage_left:
     scene bg left cage zoom
     with dissolve 
     $ show_textbox = True
+    $ mail_1_text_unlocked[3] = 1
     "When observing the cage you see a rat inside with a small scar on its head. Other than that the cage contains only food, water a some obstacels for the animal to walk around"
     $ show_textbox = False
     $ rat_seen = True
@@ -563,8 +583,10 @@ label rat_in_cage_right:
     scene bg right cage zoom
     with dissolve
     $ show_textbox = True
+    $ mail_1_text_unlocked[3] = 1
     "When observing the cage you see a rat inside with a small scar on its head. Other than that the cage contains only food, water a some obstacels for the animal to walk around"
     $ show_textbox = False
+    $ rat_seen = True
     jump inside_lab
 label right_pc_stats:
     call hide_lab_screens
@@ -603,7 +625,7 @@ label inside_lab_done:
     with dissolve
     PC "The symbols on the screen. Do they show the movement of the rat?"
 
-    show leonie serious at leftR
+    show leonie serious at left
     with dissolve
     L "It looks like it. But its a bit offset. Like the screen knows what the rat will do in befor it does it"
 
@@ -625,6 +647,7 @@ label inside_lab_done:
     "As you leave the lab you make sure that everything is left like you found it when you entered. After that you head out the back entrance and venture on home."
     $ lab_seen = True
     with dissolve
+    $ hide_map = False
     jump research
 
 label empty_label:

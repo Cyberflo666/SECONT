@@ -643,8 +643,7 @@ menu:
         PC "From there, I guess we can fulfill Felix's wish and investigate properly."
         with dissolve
         jump level_2_start
-
-
+    
 
 
 label game_over:

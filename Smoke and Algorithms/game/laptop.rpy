@@ -53,7 +53,7 @@ screen laptop_screen():
             idle "mail idle"
             hover "mail hover"
             focus_mask True
-            if player_warned == False:
+            if player_warned == False and mail_1_text_unlocked[0] == 1 and mail_1_text_unlocked[1] == 1 and mail_1_text_unlocked[2] == 1:
                 action Call("warning")
             else:
                 action Hide("laptop_screen"), Show("mail_screen")
@@ -72,39 +72,60 @@ screen laptop_screen():
 
 ################################### Mail ##########################################
 # Variables
-default mail_1_text_unlocked = [0, 0, 0] # 1 means the i-th text is unlocked
+default offset = 0
+default mail_1_text_unlocked = [0, 0, 0, 0] # 1 means the i-th text is unlocked
 define mail_1_placement_sens = 100 # How sensitive the pieces must be aligned with their assigned spot (lower is more sensitive)
-define mail_1_pieces_total = 9
+define mail_1_pieces_total = 10
 define mail_1_piece_pos_goal = [(566, 301), (566, 449), (566, 599)]
-define mail_1_piece_pos_initial = [(1000, 200), (1050, 220), (1100, 240), (1000, 400), (1050, 420), (1100, 440), (1000, 600), (1050, 620), (1100, 640)]
+define mail_1_piece_pos_initial = [(1000, 220), (1000, 280), (1000, 340), (1000, 400), (1000, 460), (1000, 520), (1000, 580), (1000, 640), (1000, 700), (1000, 760)]
+define mail_1_piece_pos_index = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 define mail_1_correct_order = [1, 2, 3]
 default mail_1_current_order = [0, 0, 0]
+default mail_1_current_piece_count = 0
+default mail_1_previous_piece_count = 0
+default count_offset = 0
+default count_changed = 0
+define j = 0
+
+init python:
+    def randomize_indices():
+        global mail_1_piece_pos_index
+        for i in range (0,100):
+            renpy.notify("something")
+            x = renpy.random.randint(0,9)
+            y = renpy.random.randint(0,9)
+            temp = mail_1_piece_pos_index[x]
+            mail_1_piece_pos_index[x] = mail_1_piece_pos_index[y]
+            mail_1_piece_pos_index[y] = temp
+
 screen mail_screen():
     zorder 2
     modal False
     image "bg mail"
     image "phishing mail screen"
-
+        
     # Draggable pieces to assemble the correct mail
     draggroup:
         # Draggable mail pieces
+        #$ count_offset = 0
+        $ j = 0
         for i in range(mail_1_pieces_total):
             # Skips the pieces that need to be unlocked if they are still locked
-            if i < len(mail_1_text_unlocked):
-                if mail_1_text_unlocked[i] != 1:
+            if mail_1_piece_pos_index[i] < len(mail_1_text_unlocked):
+                if mail_1_text_unlocked[mail_1_piece_pos_index[i]] != 1:
                     continue
-
             drag:
-                drag_name i
-                pos mail_1_piece_pos_initial[i]
+                drag_name mail_1_piece_pos_index[i]
+                
+                pos mail_1_piece_pos_initial[j]
 
                 focus_mask True
                 draggable True
                 drag_raise True
                 dragged dragged_mail
 
-                image "images/objects/laptop/phishing mail/phishing mail text %s.png" %(i + 1)
-
+                image "images/objects/laptop/phishing mail/phishing mail text %s.png" %(mail_1_piece_pos_index[i] + 1)
+            $ j += 1
         # Spots where the pieces should snap onto
         for i in range(3):
             drag:
@@ -212,7 +233,7 @@ screen web_screen():
         yalign 0.200
         background "#00000000"
         text "{color=[search_result]}Medievil{/color}" at center
-    if not website_2_not_seen and not website_3_not_seen and show_image_buttons:
+    if show_image_buttons == True:
         imagebutton:
             idle "return arrow black idle" 
             hover "return arrow black hover" at return_arrow_black_pos
@@ -221,10 +242,7 @@ screen web_screen():
             #xsize 500
             #ysize 400
             #focus_mask True
-            if new_objectives_not_heard:
-                action Hide("web_screen"), Show("laptop_screen"), Jump("new_objectives")
-            else:
-                action Hide("web_screen"), Show("laptop_screen")
+            action Hide("web_screen"), Show("laptop_screen")
     if show_image_buttons == True:
         imagebutton:
             focus_mask True

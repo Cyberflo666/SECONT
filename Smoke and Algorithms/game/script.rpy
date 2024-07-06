@@ -7,6 +7,9 @@ default gallery = Pictures([])
 
 default hide_map = False
 
+init python:
+    offset = renpy.random.randint(0,10)
+
 label map_disabled:
     $ show_image_buttons = False
     if show_textbox == False:
@@ -24,5 +27,6 @@ label map_disabled:
     return
 
 label start:
+    $ randomize_indices()
     $ gallery.add_data(["gallery_meme"], False)
     jump level_0_start

@@ -41,7 +41,7 @@ screen dumpster_diving_minigame_1:
                 draggable True
                 drag_raise True
 
-                image "images/objects/dumpster diving/pieces 3/piece %s.jpg" %(i + 1)
+                image "images/objects/dumpster diving/pieces 3/piece %s.png" %(i + 1)
 
         # Spots where the pieces should snap onto
         for i in range(dd1_pieces_total):
@@ -54,7 +54,7 @@ screen dumpster_diving_minigame_1:
                 droppable True          # Other drags can be dropped onto this drag
                 dropped dropped_onto    # Function beeing called when dropped onto
 
-                image "images/objects/dumpster diving/pieces 3/piece %s.jpg" %(i + 1) alpha 0.0
+                image "images/objects/dumpster diving/pieces 3/piece %s.png" %(i + 1) alpha 0.0
 
 
 label dumpster_diving_minigame2_start:
@@ -66,7 +66,7 @@ label dumpster_diving_minigame2_completed:
     $ diving1completed = True
     scene bg dumpster diving 1 finished
     pause 1.5
-    scene bg new kitchen
+    scene bg gill dumpster
     L "Seems like that's just useless trash, go on"
     $ diving_minigame_active_index = 2
     call screen dumpster_diving_minigame_3
@@ -78,7 +78,7 @@ label dumpster_diving_minigame3_completed:
 
     scene bg dumpster diving 2 finished
     pause 1.5
-    scene bg new kitchen
+    scene bg gill dumpster
 
     $ gallery.add_data(["gallery_dd_notepage"], True)
     pause 1.5
