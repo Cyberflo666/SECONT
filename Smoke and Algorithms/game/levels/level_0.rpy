@@ -1,6 +1,6 @@
 #Smoke and Algorithms - Project 2024 SECont 
 
-default PN = "Robert Paulson"
+default PN = "Max"
 default gender = "neutral"
 default heshe = "they"
 default himher = "them"
@@ -16,9 +16,9 @@ define ignore = False
 label level_0_start:
     play music suspense_music1 volume loudness
     
-    "Buckle up for a journey where trust is a weapon, truth is a labyrinth, and the choices you make could unravel a conspiracy that reaches far beyond the walls of your imagination"
+    "Buckle up for a journey where trust is a weapon, truth is a labyrinth, and the choices you make could unravel a conspiracy that reaches far beyond the walls of your imagination."
 
-    $ PN = renpy.input("Enter your name.", "Robert Paulson", length=15, exclude=" 0123456789+=,.?!<>@[]{}").strip() 
+    $ PN = renpy.input("Enter your name.", "Max", length=15, exclude=" 0123456789+=,.?!<>@[]{}").strip() 
     menu:
         "Are you..."
         "A Boy":
@@ -37,7 +37,6 @@ label level_0_start:
 
 
 
-
 label dorm_1:
     play music funky_music1 volume loudness fadeout 1.0
     scene bg new kitchen
@@ -47,7 +46,7 @@ label dorm_1:
     
     "[PN], with your dark hair pulled into a messy bun, you sit hunched over your laptop, the glow of the screen illuminating the intricate henna tattoos on your left hand."
 
-    PC "I can't focus. Complex systems theory is proving to be...well, complex. My eyes glaze over the lines of code and algorithms, and my mind starts to drift."
+    PC "I can't focus. Complex systems theory is proving to be... well, complex. My eyes glaze over the lines of code and algorithms, and my mind starts to drift."
 
     show alex neutral at alex_right
     with dissolve 
@@ -59,7 +58,7 @@ label dorm_1:
 
     A "Okay, I officially surrender to the forces of academia. My brain is officially mush."
 
-    "you chuckle, a welcome distraction from your studies."
+    "You chuckle, a welcome distraction from your studies."
 
     PC "Don't worry, Alex. We're almost through this. Just a few more hours of this delightful torture."
     
@@ -73,7 +72,7 @@ label dorm_1:
     show leonie neutral at left
     with dissolve 
 
-    "A comfortable silence settles over the room, punctuated only by the rhythmic tapping of Leoni's keyboard from her beanbag chair in the corner."
+    "A comfortable silence settles over the room, punctuated only by the rhythmic tapping of Leonie's keyboard from her beanbag chair in the corner."
 
     show leonie sad at left
     with dissolve
@@ -87,12 +86,12 @@ label dorm_1:
 
     A "Oh, you know Felix. He's probably off chasing UFOs or decoding secret messages in the cafeteria's meatloaf."
 
-    "you smile, but the worry doesn't quite fade. Felix, their conspiracy-obsessed friend, had been acting strangely lately. His usual playful banter had taken on a darker tone, his excitement about his Medievil internship replaced by a growing unease."
+    "You smile, but the worry doesn't quite fade. Felix, their conspiracy-obsessed friend, had been acting strangely lately. His usual playful banter had taken on a darker tone, his excitement about his internship at Medievil replaced by a growing unease."
 
     show alex serious2 at alex_right
     with dissolve
 
-    A "Actually, now that you mention it... he seemed a little freaked out this morning. Almost like he was...scared"
+    A "Actually, now that you mention it... he seemed a little freaked out this morning. Almost like he was... scared."
 
     show leonie surprised at left
     with dissolve 
@@ -133,19 +132,17 @@ label dorm_1:
     with dissolve 
 
 menu:
-    "Try to go after him":
+    "Try to go after him.":
         PC "We can't just let him run off like that. He's obviously terrified. Something's wrong."
         jump choice0_follow
     
-    "Look what is on the drive he handed you":
+    "Look what is on the drive he handed to you.":
         PC "He said this was important. Maybe it has answers. Leoni, can you take a look?"
         jump choice0_check
 
     "Try not to get involved.":
-        PC "This looks like it could be dangerous. Maybe we should stay out of it"
+        PC "This looks like it could be dangerous. Maybe we should stay out of it."
         jump choice0_ignore
-        
-
         
 
 
@@ -164,7 +161,7 @@ label choice0_ignore:
 
         L "Besides, curiosity is killing me. I want to know what's on that drive."
 
-        "youre hesitatant, torn between caution and concern for your friend."
+        "You're hesitatant, torn between caution and concern for your friend."
 
         show alex neutral at alex_right
         with dissolve
@@ -176,7 +173,7 @@ label choice0_ignore:
    
         L "I'll stay here and see if I can find anything on the drive. Maybe it'll give us some clues."
 
-        "you hesitate, torn between caution and concern for your friend. But the weight of the unknown proves too heavy. You sink back onto your bed, a sense of unease settling in."
+        "You hesitate, torn between caution and concern for your friend. But the weight of the unknown proves too heavy. You sink back onto your bed, a sense of unease settling in."
 
         show alex surprised at alex_right 
         with dissolve
@@ -185,7 +182,7 @@ label choice0_ignore:
 
         PC "I... I don't know what to do. I'm scared."
 
-        "Leoni looks up from her laptop, her expression a mix of concern and determination."
+        "Leonie looks up from her laptop, her expression a mix of concern and determination."
 
         show leonie sad at left
         with dissolve
@@ -196,17 +193,15 @@ label choice0_ignore:
 
         hide leonie
 
-        "Hours turn into days, and Felix remains missing. The unanswered questions gnaw at you, a constant reminder of their inaction. The flash drive remains a mystery, its secrets locked away."
+        "Hours turn into days, and Felix remains missing. The unanswered questions gnaw at you, a constant reminder of your inaction. The flash drive remains a mystery, its secrets locked away."
 
-        "Weeks later, a small article buried in a conspiracy theory tabloid catch your eyes. The headline reads: 'Shocking Discovery: Human DNA Found in Dog Food.'"
+        "Weeks later, a small article buried in a conspiracy theory tabloid catches your eyes. The headline reads: 'Shocking Discovery: Human DNA Found in Dog Food.'"
 
         "A chill runs down your spine. The article details a bizarre finding at a local pet food factory, a trace of human genetic material amidst the meat and grains. The source of the DNA remains unknown, the investigation ongoing."
 
         "You can't shake the feeling that this is somehow connected to Felix, to Medievil, to the cryptic warning he delivered that fateful night. But without proof, it's just another unsolved mystery, a whisper in the wind."
 
         "The weight of regret settles heavily on your shoulders. The choice to ignore Felix's plea, to prioritize safety over friendship, has left a bitter taste in your mouth. The story ends not with a bang, but with a whimper, a silent echo of what could have been."
-
-        
 
         jump game_over 
  
@@ -220,11 +215,11 @@ label choice0_check:
         show leonie serious at left
         with dissolve
         
-        "Leoni nods, taking the flash drive from you. She plugs it into her laptop and begins examining its contents."
+        "Leonie nods, taking the flash drive from you. She plugs it into her laptop and begins examining its contents."
 
         "Her fingers fly across the keyboard, a series of complex commands appearing on the screen."
 
-        L "It's encrypted...heavily. This isn't something I can crack easily. We'll need more information, maybe something in Felix's room can help."
+        L "It's encrypted... heavily. This isn't something I can crack easily. We'll need more information, maybe something in Felix's room can help."
 
         PC "His room? You think he might have left something behind?"
 
@@ -235,9 +230,9 @@ label choice0_follow:
         scene bg hallway blur
         with dissolve
 
-        "you rush out of the door, following the direction Felix took. Alex and Leoni exchange a worried glance before hurrying after you."
+        "You rush out of the door, following the direction Felix took. Alex and Leonie exchange a worried glance before hurrying after you."
 
-        "The hallway is dimly lit, the air heavy with the scent of stale pizza and disinfectant. Felix is nowhere to be seen. you quicken your pace, as your heart is pounding harder and harder ."
+        "The hallway is dimly lit, the air heavy with the scent of stale pizza and disinfectant. Felix is nowhere to be seen. you quicken your pace, as your heart is pounding harder and harder."
 
         A "Felix! Where are you?"
 
@@ -245,7 +240,7 @@ label choice0_follow:
 
         PC "Damn it! We lost him."
 
-        "Defeated, they return to the dorm room, the silence amplifying their worry. Leoni picks up the flash drive Felix left behind, a sense of urgency washing over her."
+        "Defeated, they return to the dorm room, the silence amplifying their worry. Leonie picks up the flash drive Felix left behind, a sense of urgency washing over her."
 
         L "We have to figure out what's on this drive. Maybe it holds the answers to where Felix went and what he's so scared of."
 
