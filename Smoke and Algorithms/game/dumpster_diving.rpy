@@ -16,7 +16,7 @@ label dumpster_diving_minigame_completed_1:
     # scene bg new kitchen
     $ gallery.add_data(["gallery_dd_receipt"], True)
     pause 1.5
-    L "Interesting"
+    L "Interesting."
     jump after_dumpsterdive
 
     
@@ -67,7 +67,7 @@ label dumpster_diving_minigame2_completed:
     scene bg dumpster diving 1 finished
     pause 1.5
     scene bg gill dumpster
-    L "Seems like that's just useless trash, go on"
+    L "Seems like that's just useless trash, go on."
     $ diving_minigame_active_index = 2
     call screen dumpster_diving_minigame_3
 

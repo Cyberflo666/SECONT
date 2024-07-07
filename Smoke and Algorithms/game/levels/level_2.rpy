@@ -27,12 +27,12 @@ label level_2_start:
     
     "You walk over and gather around a table while opening up your laptop."
     scene bg laptop full
-    L "What excactly is our plan now? What are we doing with the information we find?"
-    PC "We could go to the facility Bob Anderson works at and look for felix?"
-    PC "I also dont think that we have access to his workplace and we probaply wont find it just sitting on some website."
+    L "What exactly is our plan now? What are we doing with the information we find?"
+    PC "We could go to the facility Bob Anderson works at and look for Felix?"
+    PC "I also don't think that we have access to his workplace and we probably won't find it just sitting on some website."
     L "If that is the problem we could try to write a phishing email to Bob Anderson so that he grants us access."
     A "Do you think it's realistic that we can convince him to do that?"
-    L "Depends on what we fin out about Bob Anderson's background. Maybe we there is something we can use on his social media or some medievil web page?"
+    L "Depends on what we fin out about Bob Anderson's background. Maybe we there is something we can use on his social media or some {color=[medievilColor]}Medievil{/color} web page?"
     PC "Either way we should do some research on him."
 
 label research:
@@ -80,9 +80,9 @@ label social_button_2:
     $ show_textbox = True
     if bob_visited == False:
         show screen social_screen_bob
-        PC "Interesting profile "
-        L "Good that he isnt private"
-        A "what a good looking man"
+        PC "Interesting profile."
+        L "Good that he isn't private."
+        A "What a good looking man."
         $ show_image_buttons = True
         show screen social_screen_bob
         $ show_textbox = False
@@ -101,7 +101,7 @@ label social_button_3:
     if open_gil_post == False:
         PC "Who is that person? "
         L "He seems like an important person"
-        A "Well then, lets check that guy out"
+        A "Well then, let's check that guy out"
         $ show_image_buttons = True
         show screen social_screen_gill
         $ show_textbox = False
@@ -141,9 +141,9 @@ label website1_button:
     $ show_textbox = True
     $ website_1_not_seen = False
     show screen website1_screen
-    PC "Apparently Medievil is getting funds from our city."
+    PC "Apparently {color=[medievilColor]}Medievil{/color} is getting funds from our city."
     A "Is there a reason?"
-    L "Not really. Just for stronger industry and more workplaces"
+    L "Not really. Just for stronger industry and more workplaces."
     $ show_image_buttons = True
     show screen website1_screen
     $ show_textbox = False
@@ -154,7 +154,7 @@ label website2_button:
     $ show_textbox = True
     $ website_2_not_seen = False
     show screen website2_screen
-    PC "Here is something about a lab at our university. According to these news it was offered to Medievil for research."
+    PC "Here is something about a lab at our university. According to these news it was offered to {color=[medievilColor]}Medievil{/color} for research."
     L "Maybe we should check it out."
     A "You think we have access?"
     L "I think we can get it if we really want."
@@ -169,10 +169,10 @@ label website4_button:
     $ show_textbox = True
     $ website_3_not_seen = False
     show screen website4_screen
-    PC "Here's something intersesting."
+    PC "Here's something interesting."
     A "What?"
     PC "The location of Mr. Andersons Office."
-    L "Maybe w should pay him a visit."
+    L "Maybe we should pay him a visit."
     $ show_image_buttons = True
     call websearch_done
     show screen website4_screen
@@ -198,7 +198,7 @@ label website4_call:
     jump empty_label
 label websearch_done:
     if not website_2_not_seen and not website_3_not_seen:
-        $ renpy.notify("you have new objectives on your map")
+        $ renpy.notify("You have new objectives on your map.")
     return
 
 label dumpsterdive:
@@ -208,16 +208,16 @@ label dumpsterdive:
     show alex serious1 at alex_right
     with dissolve
     
-    PC "Lets head to Bob Andersons office. I wonder what we can find there."
+    PC "Let's head to Bob Andersons office. I wonder what we can find there."
    
 
     if dumpster_explained == False:
         show leonie thinking at left 
         with dissolve
-        L "What are we going to do there though? Its not like we can just step in."
+        L "What are we going to do there though? It's not like we can just step in."
         show alex neutral at alex_right
         with dissolve
-        A "We dont have to step in. We can stay outside and do dumpsterdiving, to find out more information."
+        A "We don't have to step in. We can stay outside and do dumpsterdiving, to find out more information."
         show leonie surprised at left
         with dissolve
         L "How is there going to be information in trash?"
@@ -237,7 +237,7 @@ label dumpsterdive:
     show alex neutral at alex_right
     with  moveinright
 
-    PC "Hm the building seems bigger than described on the internet."
+    PC "Hmm, the building seems bigger than described on the internet."
     show leonie happy at left
     with dissolve
 
@@ -246,7 +246,7 @@ label dumpsterdive:
     with dissolve
 
     A "I think someone has to look out for anyone incoming, not that they see us searching through the trash as thats pretty suspicious. Ill take on the role and whistle loudly to warn you."
-    PC "Thank you bro. Lets get going then"
+    PC "Thank you bro. Let's get going then."
 
     scene bg wastepaper 
 
@@ -262,10 +262,10 @@ label after_dumpsterdive:
     with  moveinright
     A "Nice one, that's more like what we're looking for. Now what does it say?"
     PC "It's a receipt from the (name)."
-    L "Isnt that the super fancy expensive restaurant where only celebreties and rich people go?"
-    A "Yup ive heard alot of wild things about that restaurant. Youre right, only the higher classes can afford it"
-    PC "Seems like Bob Anderson went there with someone"
-    L "I wonder who he went there with. The food and drinks definetly look like for 2 people"
+    L "Isn't that the super fancy expensive restaurant where only celebrities and rich people go?"
+    A "Yup ive heard a lot of wild things about that restaurant. You're right, only the higher classes can afford it."
+    PC "Seems like Bob Anderson went there with someone."
+    L "I wonder who he went there with. The food and drinks definitely look like for 2 people."
     $ gloss_dumpster_seen = True
     $ dumpster_doven = True
 
@@ -278,15 +278,15 @@ label dumpsterdive2:
     show alex serious1 at alex_right
     with dissolve
 
-    PC "Well then i suggest we should head out to Gills place and investigate there."
+    PC "Well then i suggest we should head out to Gill's place and investigate there."
 
     if dumpster_explained == False:
         show leonie thinking at left 
         with dissolve
-        L "What are we going to do there though? Its not like we can just step in."
+        L "What are we going to do there though? It's not like we can just step in."
         show alex neutral at alex_right
         with dissolve
-        A "We dont have to step in. We can stay outside and do dumpsterdiving, to find out more information."
+        A "We don't have to step in. We can stay outside and do dumpster diving, to find out more information."
         show leonie surprised at left
         with dissolve
         L "How is there going to be information in trash?"
@@ -307,34 +307,34 @@ label dumpsterdive2:
     show alex neutral at alex_right
     with  moveinright
 
-    PC "Wow what a beautiful looking house"
+    PC "Wow what a beautiful looking house."
     show leonie happy at left
     with dissolve
 
-    L "Are we sure Gil is a bad guy? no way an evil person has such a wonderful house"
+    L "Are we sure Gill is a bad guy? no way an evil person has such a wonderful house."
     show alex neutral at alex_right
     with dissolve
     A "Well in movies the bad guys tend to own a more expensive house, since they earn more money through illegal ways, than the average people do."
 
-    PC "I suggest we should just go ahead and start, the more time we spend here the more suspicioun we raise"
+    PC "I suggest we should just go ahead and start, the more time we spend here the more suspicion we raise."
 
     show alex happy at alex_right 
     with dissolve 
 
-    A "alright lets get digging then"
+    A "Alright, let's get digging then."
 
     show leonie neutral at left
     with dissolve
-    L "digging into trash ... yippie"
+    L "Digging into trash... yippee."
 
     show alex angry at alex_right
     with dissolve
-    A " well if youre not so enthusiastic about it then i suggest you look out and warn us incase anyone comes here. Me and [PN] will go on then dont worry"
+    A "Well if you're not so enthusiastic about it then I suggest you look out and warn us in case anyone comes here. Me and [PN] will go on then don't worry."
 
     show leonie sad at left 
     with dissolve
 
-    L "mhm"
+    L "Mhmm."
 
     scene bg gill dumpster 
     jump dumpster_diving_minigame2_start
@@ -348,10 +348,10 @@ label after_dumpsterdive2:
     show alex neutral at alex_right
     with  moveinright
     A "Nice one, that's more like what we're looking for. Now what does it say?"
-    PC "It's a note from gil."
+    PC "It's a note from Gill."
     L "Says something about a handover."
-    A "Interesting"
-    PC "I wonder if this can be of any use for us"
+    A "Interesting."
+    PC "I wonder if this can be of any use for us."
     $ gloss_dumpster_seen = True
     $ dumpster2_doven = True
     jump research 
@@ -368,7 +368,7 @@ label lab_access_denied:
         $ show_textbox = True
         $ hide_textbox = True
     hide screen phone_hand_map 
-    "The security is alert of your attemted inrusion. They will surely not let you near the lab again."
+    "The security is alert of your attempted intrusion. They will surely not let you near the lab again."
     if hide_textbox == True:
         $ show_textbox = False
         $ hide_textbox = False
@@ -411,21 +411,21 @@ label visitlab:
     show alex serious1 at alex_right
     with dissolve
 
-    PC "Fine ill suggest that we head to the university lab then. The lab is in a part of the campus that practically never gets used so thats quite shady"
+    PC "Fine I'll suggest that we head to the university lab then. The lab is in a part of the campus that practically never gets used so that's quite shady."
     show leonie thinking at left 
     with dissolve
 
-    L "Good point but maybe they just dont want to disturb others with their noises or get distracted?"
+    L "Good point, but maybe they just don't want to disturb others with their noises or get distracted?"
     show alex neutral at alex_right
     with dissolve
 
     A "Or maybe they want to keep their activities hidden."
    
-    PC "damn dude you almost sound like Felix"
+    PC "Damn dude, you almost sound like Felix."
     show alex serious2 at alex_right
     with dissolve
 
-    A "I really wonder where he is, i miss that little fella. We should get going for his sake."
+    A "I really wonder where he is, I miss that little fella. We should get going for his sake."
 
     hide alex 
     hide leonie
@@ -445,7 +445,7 @@ label visitlab:
     show alexserious2 at alex_right
     with dissolve
 
-    A "Ive never been at this part of the university."
+    A "I've never been at this part of the university."
 
     show leonie neutral at left
     with dissolve
@@ -457,12 +457,12 @@ label visitlab:
     show alex angry at alex_right
     with dissolve
 
-    A "Since you all seem so scared i guess ill take the lead and get us going"
+    A "Since you all seem so scared I guess I'll take the lead and get us going."
 
     hide alex 
     hide leonie 
 
-    "You head to the door of the lab, and see that theres a pin needed to unlock the door "
+    "You head to the door of the lab, and see that there's a pin needed to unlock the door."
 
 label lab_entry_choice:
     scene bg medievil front lab 
@@ -476,7 +476,7 @@ label lab_entry_choice:
     L "What should we do now?"
 
     menu: 
-        "Wait for someone to enter the lab in disguise":
+        "Wait for someone to enter the lab in disguise.":
             show leonie neutral at left
             with dissolve
             L "Maybe we can wait until someone opens the door for us."
@@ -489,15 +489,15 @@ label lab_entry_choice:
             show alex neutral at alex_right
             with dissolve
             A "We would have to wait quite far away to stay hidden."
-            PC "Thats fine. I have binoculars at home i can get."
+            PC "That's fine. I have binoculars at home i can get."
             show leonie happy at left
             with dissolve
-            L "And we will find a good spot for observation"
+            L "And we will find a good spot for observation."
             scene black
             with dissolve
-            "The three of you split up. Alex and leonie search for a location that has line of sight to the door while still being far enough away to not raise suspicion while you get your binoculars from home."
+            "The three of you split up. Alex and Leonie search for a location that has a line of sight to the door while still being far enough away to not raise suspicions while you get your binoculars from home."
             jump lab_wait
-        "Ask around to get access":
+        "Ask around to get access.":
             $ uni_access_denied = True
             hide leonie
             hide alex
@@ -512,49 +512,49 @@ label lab_entry_choice:
             show bg vending machine 1
             with dissolve
             $ snack_gotten = True
-            "Researching all day made you kinda hungry and since there is nothing else nearby you decide to get a snack from the local wending machine"
+            "Researching all day made you kinda hungry and since there is nothing else nearby you decide to get a snack from the local wending machine."
             "After paying 1,20$ for an overpriced chocolate bar you watch as your snack gets stuck in the spiral of a lower row."
             jump wending_maschine
 
 label wending_maschine:
     menu:
-        "shake the vending maschine to get your snack" if machine_struck_counter == 0:
+        "Shake the vending machine to get your snack" if machine_struck_counter == 0:
             $ machine_struck_counter += 1
-            "you begin shaking the maschine but the bar doesent move."
+            "You begin shaking the machine but the bar doesn't move."
             jump wending_maschine
 
-        "shake the wending maschine even harder to get your snack" if machine_struck_counter == 1:
+        "Shake the wending machine even harder to get your snack" if machine_struck_counter == 1:
             #$ machine_struck_counter += 1
-            "again you shake the machine like a maniac and though the bar doesent move you get noticed by a guy who was about to enter the lab."
-            "you try to play it off but the person informs the security about your fight with the machine and even though you stay low for the next half hour they wont take their eyes of you."
-            "since the entire facility is now alert to your presence you decide to head home and continue your investigation from there."
+            "Again you shake the machine like a maniac and though the bar doesn't move you get noticed by a guy who was about to enter the lab."
+            "You try to play it off but the person informs the security about your fight with the machine and even though you stay low for the next half hour they won't take their eyes off you."
+            "Since the entire facility is now alert to your presence you decide to head home and continue your investigation from there."
             jump research
-        "return to the lab door to figure out a way to get in":
-            "you surrender your snack and your dignity to the machine and continue your mission."
+        "Return to the lab door to figure out a way to get in":
+            "You surrender your snack and your dignity to the machine and continue your mission."
             jump lab_entry_choice
 
 label lab_wait:
     $ gloss_tailgating_seen = True
     scene bg uni hallway #need better spot than hallway
     with dissolve
-    "As you return you got to the location leonie sent you. A desk at the snack maschine with four chairs."
+    "As you return you got to the location Leonie sent you. A desk at the snack machine with four chairs."
     show leonie neutral at left
     show alex neutral at alex_right
     with dissolve
-    "You sit down and wait for what feels like eternity until..."
+    "You sit down and wait for what feels like an eternity until..."
     show alex surprised at alex_right
     with dissolve
     A "Guys look. We caught one."
     show leonie serious at left
     with dissolve
-    L "Quiet, we don't want him to notice us. Just oserve what he presses."
+    L "Quiet, we don't want him to notice us. Just observe what he presses."
     show alex serious1 at alex_right
     with dissolve
     scene bg pinpad binoculars
     with dissolve
-    "You see a ominous person walking up to the door. He does not look like any univerity employee you know."
+    "You see an ominous person walking up to the door. He does not look like any university employee you know."
     "You watch as he puts his hand on the pinboard and inputs: \n '4' '7' '1' '9' '6' '5'."
-    "While you observe you whisper to your friends what you see."
+    "While you observe, you whisper to your friends what you see."
     scene bg uni hallway
     with dissolve
     show alex serious2 at alex_right
@@ -567,10 +567,10 @@ label lab_wait:
     show alex smile at alex_right
     with dissolve
     A "Perfect. I needed a break after all the previous waiting."
-    PC "You can follow him if you want, but dont expect us to follow."
+    PC "You can follow him if you want, but don't expect us to follow."
     show alex happy at alex_right
     with dissolve
-    A "Nah im good. Just kidding."
+    A "Nah I'm good. Just kidding."
     show leonie thinking at left
     with dissolve
     L "We should change locations to avoid getting his attention. It could make him suspicious if we were still here when he leaves."
@@ -584,8 +584,8 @@ label lab_wait:
     scene black # could be changed to uni backside instead if we have the image
     with dissolve
     "You get into position and start waiting."
-    "After a short while you get a message from alex telling you to get to the lab."
-    "When you approach the lab you see your friends infront of the open door."
+    "After a short while you get a message from Alex telling you to get to the lab."
+    "When you approach the lab you see your friends in front of the open door."
     scene bg medievil front lab
     with dissolve
     
@@ -602,10 +602,10 @@ label lab_wait:
     show leonie neutral at left
     with dissolve
     L "Anyways."
-    "Upon entering the lab the three of you start to investigate" 
+    "Upon entering the lab the three of you start to investigate." 
     scene bg medievil lab
     with dissolve
-    L "Let's take a look around this lab"
+    L "Let's take a look around this lab."
 
 label inside_lab:
     if rat_seen and left_pc_seen and left_wall_seen and symbols_seen and trash_seen:
@@ -634,7 +634,7 @@ label rat_in_cage_left:
     with dissolve 
     $ show_textbox = True
     $ mail_1_text_unlocked[3] = 1
-    "When observing the cage you see a rat inside with a small scar on its head. Other than that the cage contains only food, water a some obstacels for the animal to walk around"
+    "When observing the cage you see a rat inside with a small scar on its head. Other than that the cage contains only food, water and some obstacles for the animal to walk around"
     $ show_textbox = False
     $ rat_seen = True
     jump inside_lab
@@ -643,7 +643,7 @@ label left_pc_stats:
     scene bg left pc zoom
     with dissolve 
     $ show_textbox = True
-    "you look at the pc and see suspicious stats. You see percentages, probabilites and results."
+    "You look at the pic and see suspicious stats. You see percentages, probabilities and results."
     $ show_textbox = False
     $ left_pc_seen = True
     jump inside_lab
@@ -652,7 +652,7 @@ label left_wall_obj:
     scene bg left wall zoom
     with dissolve
     $ show_textbox = True
-    "Searching on the left coubard you find some chemicals and medical tools alongside what looks like a few of medievils implants but way smaller"
+    "Searching on the left cupboard you find some chemicals and medical tools alongside what looks like a few of {color=[medievilColor]}Medievil{/color}s implants but way smaller."
     $ show_textbox = False
     $ left_wall_seen = True 
     jump inside_lab
@@ -661,7 +661,7 @@ label symbols_on_screen:
     scene bg monitor zoom
     with dissolve
     $ show_textbox = True
-    "You see a screen with three symbols. A arrow pointing left another pointing right and a circle between them. They seem to be lighting up on random. When observing them a bit more you notice that only one of the is active at a time"
+    "You see a screen with three symbols. A arrow pointing left another pointing right and a circle between them. They seem to be lighting up on random. When observing them a bit more you notice that only one of the is active at a time."
     $ show_textbox = False
     $ symbols_seen = True
     jump inside_lab
@@ -671,7 +671,7 @@ label rat_in_cage_right:
     with dissolve
     $ show_textbox = True
     $ mail_1_text_unlocked[3] = 1
-    "When observing the cage you see a rat inside with a small scar on its head. Other than that the cage contains only food, water a some obstacels for the animal to walk around"
+    "When observing the cage you see a rat inside with a small scar on its head. Other than that the cage contains only food, water and some obstacles for the animal to walk around."
     $ show_textbox = False
     $ rat_seen = True
     jump inside_lab
@@ -680,7 +680,7 @@ label right_pc_stats:
     scene bg right pc zoom
     with dissolve
     $ show_textbox = True
-    "you look at the pc and see suspicious stats. You see percentages, probabilites and results."
+    "You look at the pic and see suspicious stats. You see percentages, probabilities and results."
     $ show_textbox = False
     $ left_pc_seen = True
     jump inside_lab
@@ -689,7 +689,7 @@ label empty_trash:
     scene bg trash zoom
     with dissolve
     $ show_textbox = True
-    " you look in and realise the bin is empty"
+    "You look in and realise the bin is empty."
     $ show_textbox = False
     $ trash_seen = True
     jump inside_lab 
@@ -714,19 +714,19 @@ label inside_lab_done:
 
     show leonie serious at left
     with dissolve
-    L "It looks like it. But its a bit offset. Like the screen knows what the rat will do in befor it does it"
+    L "It looks like it. But its a bit offset. Like the screen knows what the rat will do before it does it."
 
-    PC "Why would medievil develop something like that?"
+    PC "Why would {color=[medievilColor]}Medievil{/color} develop something like that?"
 
     show alex serious1 at alex_right
     with dissolve
-    A "From what i know that is nothing that they're advertising so its probaply not for the world to know."
+    A "From what i know that is nothing that they're advertising so it's probably not for the world to know."
 
     show leonie sad at left
     with dissolve
-    L "That can't be good. Looks like felix was onto something for real."
+    L "That can't be good. Looks like Felix was onto something for real."
 
-    PC "In any case i think we should'nt stick around in here any longer than we need to."
+    PC "In any case I think we shouldn't stick around in here any longer than we need to."
 
     show alex serious2 at alex_right
     with dissolve

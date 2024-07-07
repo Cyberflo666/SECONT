@@ -11,7 +11,7 @@ init python:
                 if it_item.text == item.text:
                     return
             self.items.append(item)
-            renpy.notify("Information added to your notebook")
+            renpy.notify("Information added to your notebook.")
         
         def remove_data(self, item):
             self.items.remove(item)
@@ -37,7 +37,7 @@ init python:
                     #return
             self.items.append(item)
             if notification:
-                renpy.notify("Picture added to your gallery")
+                renpy.notify("Picture added to your gallery.")
         
         def remove_data(self, item):
             self.items.remove(item)
