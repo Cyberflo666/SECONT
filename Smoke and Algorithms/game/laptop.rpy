@@ -1,9 +1,11 @@
 define laptop_usable_area = (240, 186, 1441, 702)
 define website_area = (0, 0, 1441, 2400)
+define social_area = (-245,-200,600,600)
 define website_1_scrollbar_pos = 0
 define website_2_scrollbar_pos = 0
 define website_3_scrollbar_pos = 0
 define website_4_scrollbar_pos = 0
+define social_1_scrollbar_pos = 0
 define search_result = "#000000FF"
 
 init python:
@@ -26,6 +28,10 @@ init python:
         global website_4_scrollbar_pos
         website_4_scrollbar_pos = value
         #renpy.notify(website_1_scrollbar_pos)
+init python:
+    def viewport_changeS1(value):
+        global social_1_scrollbar_pos
+        social_1_scrollbar_pos = value
 transform website1_icon:
     xalign 0.15
     yalign 0.2
@@ -198,27 +204,142 @@ screen power_screen():
         image "alex laughing"
 
 screen social_screen():
-    zorder 2
+    zorder 0
     modal False
-    image "blank laptop"
-    viewport:
-        area laptop_usable_area
-        draggable True
-        mousewheel True
-        scrollbars "vertical"
-        yinitial 1.0
-        image "alex laughing"
-    if show_image_buttons == True:
+    image "bg social home"
+    if show_image_buttons == True:    
         imagebutton:
             idle "return arrow black idle" 
             hover "return arrow black hover" at return_arrow_black_pos
-            #xpos 200
-            #ypos 600
-            #xsize 500
-            #ysize 400
-            #focus_mask True
             action Hide("social_screen"), Show("laptop_screen")
+    viewport:
+        area laptop_usable_area
+        mousewheel True
+        scrollbars "vertical" 
+        yadjustment ui.adjustment(1, social_1_scrollbar_pos, changed=viewport_changeS1)
+        vbox:
+            frame:
+                area social_area
+                background "#00000000"
+                image "bg home post 1" 
+            frame:
+                area social_area
+                background "#00000000"
+                image "bg home post 2" 
+            frame:
+                area social_area
+                background "#00000000"
+                image "bg home post 3" 
 
+            imagebutton: #when hovering over search
+                    idle "website 1 idle" 
+                    hover "website 1 hover" 
+                    focus_mask True
+                    action Hide("social_screen"), Jump("social_button_1")
+
+screen social_screen_search():
+    zorder 0
+    modal False
+    image "bg social home"
+    if show_image_buttons == True:    
+        imagebutton:
+            idle "return arrow black idle" 
+            hover "return arrow black hover" at return_arrow_black_pos
+            action Hide("social_screen_search"), Show("laptop_screen")
+    viewport:
+        area laptop_usable_area
+        mousewheel True
+        scrollbars "vertical" 
+        yadjustment ui.adjustment(1, social_1_scrollbar_pos, changed=viewport_changeS1)
+        vbox:
+            frame:
+                area social_area
+                background "#00000000"
+                image "bg explore" 
+            imagebutton: #when hovering over bobs name
+                idle "website 2 idle" 
+                hover "website 2 hover" 
+                focus_mask True
+                action Hide("social_screen_search"), Jump("social_button_2")
+
+screen social_screen_bob():
+    zorder 0
+    modal False
+    image "bg social home"
+    if show_image_buttons == True:    
+        imagebutton:
+            idle "return arrow black idle" 
+            hover "return arrow black hover" at return_arrow_black_pos
+            action Hide("social_screen_bob"), Show("laptop_screen")
+    viewport:
+        area laptop_usable_area
+        mousewheel True
+        scrollbars "vertical" 
+        yadjustment ui.adjustment(1, social_1_scrollbar_pos, changed=viewport_changeS1)
+        vbox:
+            frame:
+                area social_area
+                background "#00000000"
+                image "bg social bob" 
+            imagebutton: #when hovering over gils post 
+                idle "website 1 idle" 
+                hover "website 1 hover" 
+                focus_mask True
+                action Hide("social_screen_bob"), Jump("social_button_3")
+
+screen social_screen_post():
+    zorder 0
+    modal False
+    image "bg social home"
+    if show_image_buttons == True:    
+        imagebutton:
+            idle "return arrow black idle" 
+            hover "return arrow black hover" at return_arrow_black_pos
+            action Hide("social_screen_post"), Show("laptop_screen")
+    viewport:
+        area laptop_usable_area
+        mousewheel True
+        scrollbars "vertical" 
+        yadjustment ui.adjustment(1, social_1_scrollbar_pos, changed=viewport_changeS1)
+        vbox:
+            frame:
+                area social_area
+                background "#00000000"
+                image "bg gill and bob post" 
+            imagebutton: #when hovering over gils post 
+                idle "website 1 idle" 
+                hover "website 1 hover" 
+                focus_mask True
+                action Hide("social_screen_post"), Jump("social_button_4")
+
+screen social_screen_gill():
+    zorder 0
+    modal False
+    image "bg social home"
+    if show_image_buttons == True:    
+        imagebutton:
+            idle "return arrow black idle" 
+            hover "return arrow black hover" at return_arrow_black_pos
+            action Hide("social_screen_gill"), Show("laptop_screen")
+    viewport:
+        area laptop_usable_area
+        mousewheel True
+        scrollbars "vertical" 
+        yadjustment ui.adjustment(1, social_1_scrollbar_pos, changed=viewport_changeS1)
+        vbox:
+            frame:
+                area social_area
+                background "#00000000"
+                image "bg gill profile" 
+            imagebutton: #when hovering over gils post 
+                idle "website 1 idle" 
+                hover "website 1 hover" 
+                focus_mask True
+                action Hide("social_screen_gill"), Show("laptop_screen")
+
+
+
+        
 screen web_screen():
     zorder 0
     modal False

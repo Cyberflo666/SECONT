@@ -2,6 +2,10 @@ define website_1_not_seen = True
 define website_2_not_seen = True
 define website_3_not_seen = True
 define new_objectives_not_heard = True
+define search_visited = False
+define bob_visited = False
+define open_gil_post = False
+define gil_visited = False
 default lab_seen = False
 default uni_access_denied = False
 default dumpster_doven = False
@@ -54,6 +58,81 @@ label warning:
         $ show_textbox = False
         $ hide_textbox = False
     return
+label social_button_1:
+    $ show_image_buttons = False
+    $ show_textbox = True
+    if search_visited == False:
+        show screen social_screen_search
+        PC "Maybe we should look up Bob Anderson."
+        $ show_image_buttons = True
+        show screen social_screen_search
+        $ show_textbox = False
+        $ search_visited = True
+        jump empty_label
+    elif search_visited == True:
+        $ show_image_buttons = True
+        show screen social_screen_search
+        $ show_textbox = False
+        jump empty_label
+
+label social_button_2:
+    $ show_image_buttons = False
+    $ show_textbox = True
+    if bob_visited == False:
+        show screen social_screen_bob
+        PC "Interesting profile "
+        L "Good that he isnt private"
+        A "what a good looking man"
+        $ show_image_buttons = True
+        show screen social_screen_bob
+        $ show_textbox = False
+        $ bob_visited = True
+        jump empty_label
+    elif bob_visited == True:
+        $ show_image_buttons = True
+        show screen social_screen_bob
+        $ show_textbox = False
+        jump empty_label
+
+label social_button_3:
+    $ show_image_buttons = False
+    $ show_textbox = True
+    if open_gil_post == False:
+        show screen social_screen_post
+        PC "Who is that person? "
+        L "He seems like an important person"
+        A "look he is tagged. Lets check that guy out"
+        $ show_image_buttons = True
+        show screen social_screen_post
+        $ show_textbox = False
+        $ open_gil_post = True
+        jump empty_label
+    elif open_gil_post == True:
+        $ show_image_buttons = True
+        show screen social_screen_post
+        $ show_textbox = False
+        jump empty_label
+
+label social_button_4:
+    $ show_image_buttons = False
+    $ show_textbox = True
+    if gil_visited == False:
+        show screen social_screen_gill
+        PC "interesting profile"
+        L "So this is gill"
+        A "he has a nice looking house"
+        $ show_image_buttons = True
+        show screen social_screen_gill
+        $ show_textbox = False
+        $ gil_visited = True
+        jump empty_label
+    elif gil_visited == True:
+        $ show_image_buttons = True
+        show screen social_screen_gill
+        $ show_textbox = False
+        jump empty_label
+
+
 label website1_button:
     $ show_image_buttons = False
     $ show_textbox = True
