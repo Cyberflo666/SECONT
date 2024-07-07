@@ -568,7 +568,8 @@ label password_cracked:
 
     play music mystery_music1 volume loudness fadeout 1.0
     L "Nice that did it. Time to see why he was so stressed out."
-    "You see Felix's notes about his work at {color=[medievilColor]}Medievil{/color}. At first there is nothing unusual, but the deeper you go, the more distressed the writing becomes. He seems to have discovered some kind of conspiracy about the implants from {color=[medievilColor]}Medievil{/color}. One name pops up several times throughout the files. \"Bob Anderson\"."
+    "You see Felix's notes about his work at {color=[medievilColor]}Medievil{/color}. At first there is nothing unusual, but the deeper you go, the more distressed the writing becomes."
+    "He seems to have discovered some kind of conspiracy about the implants from {color=[medievilColor]}Medievil{/color}. One name pops up several times throughout the files. \"Bob Anderson\"."
     PC "Is he talking about the implants from {color=[medievilColor]}Medievil{/color}? I thought they're used to treat diseases."
     show alex serious1 at alex_right
     with dissolve
