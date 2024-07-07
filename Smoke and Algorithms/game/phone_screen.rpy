@@ -95,11 +95,14 @@ screen phone_hand():
             focus_mask True
             action Hide("phone_hand"), Show("phone_hand_password"),
 
+################################### Password ##########################################
+
 default password =""
 default password_check_text = ""
 default first_guess = ""
 default password_check_color = "00000000"
 default password_guessed = False
+default password_guessed_correct = False
 
 screen phone_hand_password():
     zorder 2
@@ -120,27 +123,42 @@ screen phone_hand_password():
         focus_mask True
         action Hide("phone_hand_password"), Show("phone_hand")
     frame:
+        background "#00000000"
+        area(675, 150, 460, 50)
+        text "{color=[search_result]}{size=50}{b}Access USB{/b}{/size}{/color}" at center
+    
+    frame:
+        background "#00000000"
+        area(675, 200, 460, 50)
+        text "{color=[search_result]}{size=50}{b}Drive{/b}{/size}{/color}" at center
+    frame:
         background "#58585800"
-        area(675, 75, 460, 50)
-        text "{color=[search_result]}input password{/color}" at center
+        area(675, 300, 460, 50)
+        text "{color=[search_result]}Enter password:{/color}" at center
     frame:
         area (675, 360, 460, 100)
-        background "#58585800"
+        background "#00000000"
         input:
             copypaste True
             default""
             size 30
             pixel_width(440)
+            color "#000000"
             value VariableInputValue('password')
     imagebutton:
         hover "phone hand password confirm hover" at icon_pos
         idle "phone hand password confirm idle"
         focus_mask True
-        action Function(password_input,password)
+        action Function(password_input,password), Show("reset_password_text_timer")
     frame:
         background "#58585800"
         area(675, 700, 460, 50)
-        text "{color=[password_check_color]}[password_check_text]{/color}" at center
+        text "{size=30}{color=[password_check_color]}{b}[password_check_text]{/b}{/color}{/size}" at center
+
+
+screen reset_password_text_timer():
+    timer 2.0 action Function(reset_password_text), Hide("reset_password_text_timer")
+
 
 define correct_password =[ 
                         ["9/11", "911", "9.11"],
@@ -154,11 +172,13 @@ init python:
         global password_guessed
         global password_check_text
         global first_guess
+        global password_guessed_correct
+
         if password_guessed == False or first_guess == password_guess:
             first_guess = password_guess
             password_guessed = True
             password_check_color = "#970000ff"
-            password_check_text = "incorrect password"
+            password_check_text = "Incorrect password"
             return
         for i in range(0,3):
             part_found = False
@@ -167,14 +187,23 @@ init python:
                     part_found = True
             if part_found == False:
                 password_check_color = "#970000ff"
-                password_check_text = "incorrect password"
+                password_check_text = "Incorrect password"
                 return
         password_check_color = "#288f00ff"
-        password_check_text = "correct password"
+        password_check_text = "Correct password"
             
-        renpy.notify(password)
-        renpy.jump("password_cracked")
-        #thecakeisalie0417911
+        password_guessed_correct = True
+
+        # Correct Password: thecakeisalie0417911
+    
+    def reset_password_text():
+        global password_check_text
+        global password_guessed_correct
+        password_check_text = ""
+
+        if password_guessed_correct:
+            renpy.jump("password_cracked")
+
 
 screen phone_hand_camera():
     zorder 2

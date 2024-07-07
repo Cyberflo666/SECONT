@@ -261,7 +261,7 @@ label after_dumpsterdive:
     show alex neutral at alex_right
     with  moveinright
     A "Nice one, that's more like what we're looking for. Now what does it say?"
-    PC "It's a receipt from the (name)."
+    PC "It's a receipt from Restaurante Italiano."
     L "Isn't that the super fancy expensive restaurant where only celebrities and rich people go?"
     A "Yup ive heard a lot of wild things about that restaurant. You're right, only the higher classes can afford it."
     PC "Seems like Bob Anderson went there with someone."
@@ -742,5 +742,5 @@ label inside_lab_done:
 
 label empty_label:
     ""
-    $ renpy.notify("all good")
+    # $ renpy.notify("all good")
     jump empty_label

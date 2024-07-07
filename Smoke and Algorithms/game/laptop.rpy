@@ -158,7 +158,7 @@ init python:
     def randomize_indices():
         global mail_1_piece_pos_index
         for i in range (0,100):
-            renpy.notify("something")
+            # renpy.notify("something")
             x = renpy.random.randint(0,9)
             y = renpy.random.randint(0,9)
             temp = mail_1_piece_pos_index[x]
@@ -174,14 +174,14 @@ init python:
         if distance < mail_1_placement_sens:
             dragged_piece[0].snap(snap_spot.x, snap_spot.y, 0.1)
             mail_1_current_order[snap_spot.drag_name] = dragged_piece[0].drag_name + 1
-            renpy.notify(mail_1_current_order)
+            #renpy.notify(mail_1_current_order)
 
     # Function called when one of the dragged_pieces is being lifted
     def dragged_mail(dragged_piece, dropped_onto):
         if (dragged_piece[0].drag_name + 1) in mail_1_current_order:
             indx = mail_1_current_order.index(dragged_piece[0].drag_name + 1)
             mail_1_current_order[indx] = 0
-        renpy.notify(mail_1_current_order)
+        #renpy.notify(mail_1_current_order)
 
     # Function called when player wants to send the mail
     def send_mail():

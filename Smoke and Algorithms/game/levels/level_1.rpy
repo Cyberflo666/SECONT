@@ -557,6 +557,7 @@ label pc:
 
 label phone_minigame:    
 label password_cracked:
+    show screen phone_hand_password
     $ password_icon = False
     call hide_felix_room_interactables
     hide screen phone_hand_password
@@ -650,10 +651,17 @@ menu:
 label game_over:
     #play music funky_music1 volume 1
     scene bg game over 1
+    with dissolve
     pause 1.5
 return
 
+define red_game_over_color = "#d40e0eff"
 label game_over_police:
+    scene bg jail
+    with dissolve
+    $ show_textbox = False
+    "{color=[red_game_over_color]}{size=120}You got arrested{/size}{/color}"
     scene bg game over 1
+    with dissolve
     pause 1.5
 return
