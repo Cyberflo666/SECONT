@@ -93,8 +93,88 @@ screen phone_hand():
             hover "password hover" at icon_pos
             idle "password idle"
             focus_mask True
-            action Hide("phone_hand"), Jump("password_cracked")
+            action Hide("phone_hand"), Show("phone_hand_password"),
 
+default password =""
+default password_check_text = ""
+default first_guess = ""
+default password_check_color = "00000000"
+default password_guessed = False
+
+screen phone_hand_password():
+    zorder 2
+    modal True
+    add Solid("#000c")
+
+    image "images/objects/phone/phone hand empty.png":
+        zoom 1.3
+        xalign 0.7
+    image "images/objects/phone/phone hand password box.png":
+        zoom 1.3
+        xalign 0.7
+
+    # Return arrow
+    imagebutton:
+        hover "return hover" at icon_pos
+        idle "return idle" 
+        focus_mask True
+        action Hide("phone_hand_password"), Show("phone_hand")
+    frame:
+        background "#58585800"
+        area(675, 75, 460, 50)
+        text "{color=[search_result]}input password{/color}" at center
+    frame:
+        area (675, 360, 460, 100)
+        background "#58585800"
+        input:
+            copypaste True
+            default""
+            size 30
+            pixel_width(440)
+            value VariableInputValue('password')
+    imagebutton:
+        hover "phone hand password confirm hover" at icon_pos
+        idle "phone hand password confirm idle"
+        focus_mask True
+        action Function(password_input,password)
+    frame:
+        background "#58585800"
+        area(675, 700, 460, 50)
+        text "{color=[password_check_color]}[password_check_text]{/color}" at center
+
+define correct_password =[ 
+                        ["9/11", "911", "9.11"],
+                        ["the_cake_is_a_lie", "the cake is a lie", "thecakeisalie"],
+                        [ "0417", "04.17", "04/17"],
+                        ]
+
+init python:
+    def password_input(password_guess):
+        global password_check_color
+        global password_guessed
+        global password_check_text
+        global first_guess
+        if password_guessed == False or first_guess == password_guess:
+            first_guess = password_guess
+            password_guessed = True
+            password_check_color = "#970000ff"
+            password_check_text = "incorrect password"
+            return
+        for i in range(0,3):
+            part_found = False
+            for j in range(0,3):
+                if correct_password[i][j] in password_guess:
+                    part_found = True
+            if part_found == False:
+                password_check_color = "#970000ff"
+                password_check_text = "incorrect password"
+                return
+        password_check_color = "#288f00ff"
+        password_check_text = "correct password"
+            
+        renpy.notify(password)
+        renpy.jump("password_cracked")
+        #thecakeisalie0417911
 
 screen phone_hand_camera():
     zorder 2
@@ -214,7 +294,7 @@ screen phone_hand_map():
         hover "map dorms hover"  
         focus_mask True
         action Function(notify_function)
-    if gil_social_media_seen == True: # need to add flag when implementing social media site.
+    if gil_visited == True: # need to add flag when implementing social media site.
         imagebutton: 
             idle "map gils house idle" # needs to get added
             hover "map gils house hover"
@@ -253,7 +333,7 @@ screen phone_hand_map():
             else:
                 action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("website4_screen"), Hide("laptop_screen"), Jump("dumpsterdive")
 
-    if False == False:
+    if gil_visited == True:
         imagebutton:
             idle "map gill idle"
             hover "map gill hover"

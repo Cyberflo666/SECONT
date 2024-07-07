@@ -1,4 +1,5 @@
 define laptop_usable_area = (240, 186, 1441, 702)
+define laptop_usable_area_social = (239, 196, 1441, 643)
 define website_area = (0, 0, 1441, 2400)
 define social_area = (-245,-200,600,600)
 define website_1_scrollbar_pos = 0
@@ -213,24 +214,24 @@ screen social_screen():
             hover "return arrow black hover" at return_arrow_black_pos
             action Hide("social_screen"), Show("laptop_screen")
     viewport:
-        area laptop_usable_area
+        area laptop_usable_area_social
         mousewheel True
         scrollbars "vertical" 
         yadjustment ui.adjustment(1, social_1_scrollbar_pos, changed=viewport_changeS1)
-        vbox:
-            frame:
-                area social_area
-                background "#00000000"
-                image "bg home post 1" 
-            frame:
-                area social_area
-                background "#00000000"
-                image "bg home post 2" 
-            frame:
-                area social_area
-                background "#00000000"
-                image "bg home post 3" 
-
+    vbox:
+        frame:
+            area social_area
+            background "#00000000"
+            image "bg home post 1" 
+        frame:
+            area social_area
+            background "#00000000"
+            image "bg home post 2" 
+        frame:
+            area social_area
+            background "#00000000"
+            image "bg home post 3" 
+        if show_image_buttons == True:
             imagebutton: #when hovering over search
                     idle "website 1 idle" 
                     hover "website 1 hover" 
@@ -246,19 +247,16 @@ screen social_screen_search():
             idle "return arrow black idle" 
             hover "return arrow black hover" at return_arrow_black_pos
             action Hide("social_screen_search"), Show("laptop_screen")
-    viewport:
-        area laptop_usable_area
-        mousewheel True
-        scrollbars "vertical" 
-        yadjustment ui.adjustment(1, social_1_scrollbar_pos, changed=viewport_changeS1)
-        vbox:
-            frame:
-                area social_area
-                background "#00000000"
-                image "bg explore" 
+    vbox:
+        area laptop_usable_area_social
+        frame:
+            area social_area
+            background "#00000000"
+            image "bg explore" 
+        if show_image_buttons == True:
             imagebutton: #when hovering over bobs name
-                idle "website 2 idle" 
-                hover "website 2 hover" 
+                idle "notes idle" 
+                hover "notes hover" 
                 focus_mask True
                 action Hide("social_screen_search"), Jump("social_button_2")
 
@@ -271,46 +269,18 @@ screen social_screen_bob():
             idle "return arrow black idle" 
             hover "return arrow black hover" at return_arrow_black_pos
             action Hide("social_screen_bob"), Show("laptop_screen")
-    viewport:
-        area laptop_usable_area
-        mousewheel True
-        scrollbars "vertical" 
-        yadjustment ui.adjustment(1, social_1_scrollbar_pos, changed=viewport_changeS1)
-        vbox:
-            frame:
-                area social_area
-                background "#00000000"
-                image "bg social bob" 
+    vbox:
+        area laptop_usable_area_social
+        frame:
+            area social_area
+            background "#00000000"
+            image "bg social bob" 
+        if show_image_buttons == True:
             imagebutton: #when hovering over gils post 
-                idle "website 1 idle" 
-                hover "website 1 hover" 
+                idle "notes idle" 
+                hover "notes hover" 
                 focus_mask True
                 action Hide("social_screen_bob"), Jump("social_button_3")
-
-screen social_screen_post():
-    zorder 0
-    modal False
-    image "bg social home"
-    if show_image_buttons == True:    
-        imagebutton:
-            idle "return arrow black idle" 
-            hover "return arrow black hover" at return_arrow_black_pos
-            action Hide("social_screen_post"), Show("laptop_screen")
-    viewport:
-        area laptop_usable_area
-        mousewheel True
-        scrollbars "vertical" 
-        yadjustment ui.adjustment(1, social_1_scrollbar_pos, changed=viewport_changeS1)
-        vbox:
-            frame:
-                area social_area
-                background "#00000000"
-                image "bg gill and bob post" 
-            imagebutton: #when hovering over gils post 
-                idle "website 1 idle" 
-                hover "website 1 hover" 
-                focus_mask True
-                action Hide("social_screen_post"), Jump("social_button_4")
 
 screen social_screen_gill():
     zorder 0
@@ -321,21 +291,18 @@ screen social_screen_gill():
             idle "return arrow black idle" 
             hover "return arrow black hover" at return_arrow_black_pos
             action Hide("social_screen_gill"), Show("laptop_screen")
-    viewport:
-        area laptop_usable_area
-        mousewheel True
-        scrollbars "vertical" 
-        yadjustment ui.adjustment(1, social_1_scrollbar_pos, changed=viewport_changeS1)
-        vbox:
-            frame:
-                area social_area
-                background "#00000000"
-                image "bg gill profile" 
+    vbox:
+        area laptop_usable_area_social
+        frame:
+            area social_area
+            background "#00000000"
+            image "bg gill profile" 
+        if show_image_buttons == True:
             imagebutton: #when hovering over gils post 
-                idle "website 1 idle" 
-                hover "website 1 hover" 
+                idle "notes idle" 
+                hover "notes hover" 
                 focus_mask True
-                action Hide("social_screen_gill"), Show("laptop_screen")
+                action Hide("social_screen_gill"), Jump("social_button_4")
 
 
 
