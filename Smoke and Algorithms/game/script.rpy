@@ -10,6 +10,18 @@ default hide_map = False
 init python:
     offset = renpy.random.randint(0,10)
 
+label splashscreen:
+    scene black
+    with Pause(1)
+    show text "BauhausUni presents"
+    with dissolve
+    with Pause(2)
+    hide text
+    with dissolve
+    with Pause(1)
+    return
+
+
 label map_disabled:
     $ show_image_buttons = False
     if show_textbox == False:

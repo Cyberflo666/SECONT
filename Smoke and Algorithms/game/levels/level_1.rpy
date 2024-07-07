@@ -559,11 +559,11 @@ label phone_minigame:
 label password_cracked:
     $ password_icon = False
     call hide_felix_room_interactables
-    hide screen phone_hand
+    hide screen phone_hand_password
     show screen phone_icon
     show leonie happy at left
     show alex neutral at alex_right
-    with dissolve
+    with Dissolve(1.5)
 
 
     play music mystery_music1 volume loudness fadeout 1.0
@@ -647,20 +647,12 @@ menu:
 
 
 label game_over:
-    play music funky_music1 volume 1
-    scene kommt noch
-    show alex laughing:
-        zoom 6.0
-        xalign 0.5
-        yalign 0.24
-    "YOU DIED"
+    #play music funky_music1 volume 1
+    scene bg game over 1
+    pause 1.5
 return
 
 label game_over_police:
-    scene bg jail 
-    show alex laughing:
-        zoom 6.0
-        xalign 0.5
-        yalign 0.24
-    "YOU DIED"
+    scene bg game over 1
+    pause 1.5
 return

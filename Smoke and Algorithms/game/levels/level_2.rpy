@@ -95,21 +95,21 @@ label social_button_2:
         jump empty_label
 
 label social_button_3:
+    show screen social_screen_gill
     $ show_image_buttons = False
     $ show_textbox = True
     if open_gil_post == False:
-        show screen social_screen_post
         PC "Who is that person? "
         L "He seems like an important person"
-        A "look he is tagged. Lets check that guy out"
+        A "Well then, lets check that guy out"
         $ show_image_buttons = True
-        show screen social_screen_post
+        show screen social_screen_gill
         $ show_textbox = False
         $ open_gil_post = True
         jump empty_label
     elif open_gil_post == True:
         $ show_image_buttons = True
-        show screen social_screen_post
+        show screen social_screen_gill
         $ show_textbox = False
         jump empty_label
 
@@ -118,9 +118,12 @@ label social_button_4:
     $ show_textbox = True
     if gil_visited == False:
         show screen social_screen_gill
-        PC "interesting profile"
-        L "So this is gill"
-        A "he has a nice looking house"
+        PC "Interesting profile."
+        L "So this is gill."
+        A "He has a nice looking house."
+        PC "Even with a street sign."
+        L "You want to go after him?"
+        A "If he has something to do with Mr. Anderson we might get something useful from him."
         $ show_image_buttons = True
         show screen social_screen_gill
         $ show_textbox = False
@@ -227,7 +230,7 @@ label dumpsterdive:
     hide alex with moveoutright
     hide leonie with moveoutleft
 
-    scene bg facility 3 #its dark outside
+    scene bg back office #its dark outside
     with dissolve
     show leonie happy at left
     with  moveinleft
@@ -251,7 +254,7 @@ label dumpsterdive:
 
 label after_dumpsterdive:
     $ show_textbox = True
-    scene bg facility
+    scene bg back office
     with dissolve
     show leonie happy at left
     with  moveinleft
@@ -427,6 +430,10 @@ label visitlab:
     hide alex 
     hide leonie
     with dissolve
+    scene black
+    with dissolve
+
+    "You head out to the university to find the lab the article mentioned."
 
     scene bg uni hallway
     with dissolve
@@ -499,9 +506,10 @@ label lab_entry_choice:
             "They deny your request and notifiy the security about your presence."
             "Because you dont want to meddle with them any further you decide to return home and continue your research."
             jump research
-        "Get a snack from the nearby wending machine" if snack_gotten == False:
+        "Get a snack from the nearby vending machine" if snack_gotten == False:
             hide leonie
             hide alex
+            show bg vending machine 1
             with dissolve
             $ snack_gotten = True
             "Researching all day made you kinda hungry and since there is nothing else nearby you decide to get a snack from the local wending machine"
@@ -510,7 +518,7 @@ label lab_entry_choice:
 
 label wending_maschine:
     menu:
-        "shake the wending maschine to get your snack" if machine_struck_counter == 0:
+        "shake the vending maschine to get your snack" if machine_struck_counter == 0:
             $ machine_struck_counter += 1
             "you begin shaking the maschine but the bar doesent move."
             jump wending_maschine
@@ -542,7 +550,7 @@ label lab_wait:
     L "Quiet, we don't want him to notice us. Just oserve what he presses."
     show alex serious1 at alex_right
     with dissolve
-    scene bg pinpad
+    scene bg pinpad binoculars
     with dissolve
     "You see a ominous person walking up to the door. He does not look like any univerity employee you know."
     "You watch as he puts his hand on the pinboard and inputs: \n '4' '7' '1' '9' '6' '5'."
@@ -573,7 +581,7 @@ label lab_wait:
     with dissolve
     L "Ok. Alex and I wait at the front and you wait at the back."
     PC "Roger that."
-    scene bg uni hallway # could be changed to uni backside instead if we have the image
+    scene black # could be changed to uni backside instead if we have the image
     with dissolve
     "You get into position and start waiting."
     "After a short while you get a message from alex telling you to get to the lab."
@@ -723,6 +731,9 @@ label inside_lab_done:
     show alex serious2 at alex_right
     with dissolve
     A "Agreed."
+    hide screen phone_icon
+    scene black
+    with dissolve
     "As you leave the lab you make sure that everything is left like you found it when you entered. After that you head out the back entrance and venture on home."
     $ lab_seen = True
     with dissolve
