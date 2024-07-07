@@ -16,7 +16,7 @@ image leonie neutral:
     "images/characters/leonie/leonie neutral.png"
     zoom 0.25
 image leonie happy:
-    "images/characters/leonie/leonie happy.png"
+    "images/characters/leonie/leonie happy.png" 
     zoom 0.25
 image leonie surprised:
     "images/characters/leonie/leonie surprised.png"

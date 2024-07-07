@@ -555,16 +555,15 @@ label pc:
     jump felix_room_menu
 
 
-label phone_minigame:    
 label password_cracked:
-    show screen phone_hand_password
+    hide screen reset_password_text_timer
     $ password_icon = False
     call hide_felix_room_interactables
     hide screen phone_hand_password
     show screen phone_icon
     show leonie happy at left
     show alex neutral at alex_right
-    with Dissolve(1.5)
+    with dissolve
 
 
     play music mystery_music1 volume loudness fadeout 1.0

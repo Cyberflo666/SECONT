@@ -93,6 +93,7 @@ default mail_1_previous_piece_count = 0
 default count_offset = 0
 default count_changed = 0
 define j = 0
+define mail_1_mistakes = 0
 
 screen mail_screen():
     zorder 2
@@ -186,9 +187,11 @@ init python:
     # Function called when player wants to send the mail
     def send_mail():
         if mail_1_current_order == mail_1_correct_order:
-            renpy.notify("correct mail")
+            #renpy.notify("correct mail")
+            renpy.jump("phishing_mail_done")
         else:
-            renpy.notify("not the correct mail")
+            #renpy.notify("not the correct mail")
+            renpy.jump("phishing_mail_fail")
 
 ###################################################################################
 
@@ -218,25 +221,25 @@ screen social_screen():
         mousewheel True
         scrollbars "vertical" 
         yadjustment ui.adjustment(1, social_1_scrollbar_pos, changed=viewport_changeS1)
-    vbox:
-        frame:
-            area social_area
-            background "#00000000"
-            image "bg home post 1" 
-        frame:
-            area social_area
-            background "#00000000"
-            image "bg home post 2" 
-        frame:
-            area social_area
-            background "#00000000"
-            image "bg home post 3" 
-        if show_image_buttons == True:
-            imagebutton: #when hovering over search
-                    idle "website 1 idle" 
-                    hover "website 1 hover" 
-                    focus_mask True
-                    action Hide("social_screen"), Jump("social_button_1")
+        vbox:
+            frame:
+                area social_area
+                background "#00000000"
+                image "bg home post 1" 
+            frame:
+                area social_area
+                background "#00000000"
+                image "bg home post 2" 
+            frame:
+                area social_area
+                background "#00000000"
+                image "bg home post 3" 
+            if show_image_buttons == True:
+                imagebutton: #when hovering over search
+                        idle "website 1 idle"
+                        hover "website 1 hover"
+                        focus_mask True
+                        action Hide("social_screen"), Jump("social_button_1")
 
 screen social_screen_search():
     zorder 0

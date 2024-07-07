@@ -14,7 +14,7 @@ init python:
 label splashscreen:
     scene black
     with Pause(1)
-    show text "BauhausUni presents"
+    show text "Bauhaus Uni presents"
     with dissolve
     with Pause(2)
     hide text

@@ -132,7 +132,7 @@ screen phone_hand_password():
         area(675, 200, 460, 50)
         text "{color=[search_result]}{size=50}{b}Drive{/b}{/size}{/color}" at center
     frame:
-        background "#58585800"
+        background "#00000000"
         area(675, 300, 460, 50)
         text "{color=[search_result]}Enter password:{/color}" at center
     frame:
@@ -157,6 +157,7 @@ screen phone_hand_password():
 
 
 screen reset_password_text_timer():
+    image "images/characters/alex/alex laughing.png"
     timer 2.0 action Function(reset_password_text), Hide("reset_password_text_timer")
 
 
@@ -202,7 +203,9 @@ init python:
         password_check_text = ""
 
         if password_guessed_correct:
+            renpy.notify("I come from here")
             renpy.jump("password_cracked")
+        return
 
 
 screen phone_hand_camera():
@@ -306,6 +309,7 @@ screen phone_hand_contact():
                     focus_mask True
                     action Call("call_felix")
 
+###################################### Map ############################################
 
 init python:
     def notify_function():
@@ -316,26 +320,16 @@ screen phone_hand_map():
     modal True
     add Solid("#000c")
 
-    image "images/objects/phone/map/map.png"
+    image "images/objects/phone/map/bg map blank.png"
     
+    # Dorms
     imagebutton:
         idle "map dorms idle"
         hover "map dorms hover"  
         focus_mask True
         action Function(notify_function)
-    if gil_visited == True: # need to add flag when implementing social media site.
-        imagebutton: 
-            idle "map gils house idle" # needs to get added
-            hover "map gils house hover"
-            focus_mask True
-            if hide_map:
-                action Call("map_disabled")
-            elif dumpster2_doven:
-                action Call("dumpster_empty")
-            else:
-                action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("website4_screen"), Hide("laptop_screen"), Jump("dumpsterdive2")
 
-
+    # University
     if website_2_not_seen == False:
         imagebutton:
             idle "map university idle"
@@ -348,8 +342,10 @@ screen phone_hand_map():
             elif lab_seen:
                 action Call("lab_visited")
             else:
-                action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"),  Hide("website4_screen"), Hide("laptop_screen"), Jump("visitlab")
+                # action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"),  Hide("website4_screen"), Hide("laptop_screen"), Jump("visitlab")
+                action Function(hide_all_screens), Jump("visitlab")
 
+    # Medievil
     if website_3_not_seen == False:
         imagebutton:
             idle "map medievil idle"
@@ -360,19 +356,22 @@ screen phone_hand_map():
             elif dumpster_doven:
                 action Call("dumpster_empty")
             else:
-                action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("website4_screen"), Hide("laptop_screen"), Jump("dumpsterdive")
+                # action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("website4_screen"), Hide("laptop_screen"), Jump("dumpsterdive")
+                action Function(hide_all_screens), Jump("dumpsterdive")
 
+    # Gills Place
     if gil_visited == True:
         imagebutton:
-            idle "map gill idle"
-            hover "map gill hover"
+            idle "map gill house idle"
+            hover "map gill house hover"
             focus_mask True
             if hide_map:
                 action Call("map_disabled")
             elif dumpster2_doven:
                 action Call("dumpster_empty")
             else:
-                action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("website4_screen"), Hide("laptop_screen"), Jump("dumpsterdive2")
+                # action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("website4_screen"), Hide("laptop_screen"), Hide("social_screen"), Jump("dumpsterdive2")
+                action Function(hide_all_screens), Jump("dumpsterdive2")
     
     # Return arrow (closes phone)
     imagebutton:
@@ -383,6 +382,21 @@ screen phone_hand_map():
         xsize 500
         ysize 300
         action Hide("phone_hand_map"), Show("phone_hand")
+
+init python:
+    def hide_all_screens():
+        renpy.hide_screen("phone_hand_map")
+        renpy.hide_screen("web_screen")
+        renpy.hide_screen("website1_screen")
+        renpy.hide_screen("website2_screen")
+        renpy.hide_screen("website3_screen")
+        renpy.hide_screen("website4_screen")
+        renpy.hide_screen("laptop_screen")
+        renpy.hide_screen("social_screen")
+        renpy.hide_screen("social_screen_search")
+        renpy.hide_screen("social_screen_bob")
+        renpy.hide_screen("social_screen_gill")
+        return
 
 
 # Screen for displaying the notes the player collects throughout the game

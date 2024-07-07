@@ -740,6 +740,58 @@ label inside_lab_done:
     $ hide_map = False
     jump research
 
+label phishing_mail_done:
+    $ show_textbox = True
+    hide screen phone_icon
+    hide screen mail_screen
+    scene bg new kitchen
+    show leonie thinking at left
+    show alex smile at alex_right
+    with dissolve
+
+    A "Alright, looking good. Now we just need to hope Bob falls for the mail."
+    scene black
+    "The three of you return to your dorms and go to sleep."
+    "As the next day arises you gather around your laptop to read the reply from Bob Anderson."
+    scene bg new kitchen
+    show leonie happy at left
+    show alex happy at alex_right
+    with dissolve
+
+    L "Yes. He fell right into our trap. He believed every word we said."
+
+    show alex smile at alex_right
+    with dissolve
+    A "Look, he even sent us the access codes to the back entrance of the facility. Just like we expected."
+
+label phishing_mail_fail:
+    $ show_textbox = True
+    hide screen phone_icon
+    hide screen mail_screen
+    scene bg new kitchen
+    show leonie serious at left
+    show alex serious1 at alex_right
+    with dissolve
+
+    L "No, that doesn't seem right. We can hope for it but I doubt Bob Anderson will fall for this Mail."
+
+    show alex serious2 at alex_right
+    with dissolve
+    A "Let's still hope for the best."
+    scene black
+    "The three of you return to your dorms and go to sleep."
+    "As the next day arises you gather around your laptop to read the reply from Bob Anderson."
+    scene bg new kitchen
+    show leonie serious at left
+    show alex serious1 at alex_right
+    with dissolve
+    A "Damn it, he replied that we should stop bothering him and that he would block us"
+
+    show leonie sad at left
+    with dissolve
+    L "Hmm. That mail was doomed from the start"
+    jump game_over
+
 label empty_label:
     ""
     # $ renpy.notify("all good")
