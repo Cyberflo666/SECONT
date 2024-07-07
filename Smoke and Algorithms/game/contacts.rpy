@@ -28,7 +28,7 @@ label call_leonie:
         $ hide_textbox = True
     hide screen phone_hand_contact
     with dissolve
-    L "Hey, I'm right here [PN]"
+    L "Hey, I'm right here [PN]."
     with dissolve
     $ show_image_buttons = True
     if hide_textbox == True:
@@ -45,9 +45,9 @@ label call_felix:
         $ hide_textbox = True
     hide screen phone_hand_contact
     with dissolve
-    "beep beep beep"
+    "Beep beep beep."
     "..."
-    "It seems like noone answers the phone"
+    "It seems like noone answers the phone."
     with dissolve
     $ show_image_buttons = True
     if hide_textbox == True:

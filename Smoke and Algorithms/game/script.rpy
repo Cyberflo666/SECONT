@@ -4,6 +4,7 @@
 default notes = Notes([])
 default show_textbox = True
 default gallery = Pictures([])
+define medievilColor = "#e46b6bff"
 
 default hide_map = False
 
@@ -17,7 +18,7 @@ label map_disabled:
         $ hide_textbox = True
     hide screen phone_hand_map
     with dissolve
-    "You cannot leave right now."
+    "You cannot leave right now!"
     if hide_textbox == True:
         $ show_textbox = False
         $ hide_textbox = False

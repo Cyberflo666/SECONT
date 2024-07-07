@@ -19,20 +19,21 @@ label level_0_start:
     "Buckle up for a journey where trust is a weapon, truth is a labyrinth, and the choices you make could unravel a conspiracy that reaches far beyond the walls of your imagination."
 
     $ PN = renpy.input("Enter your name.", "Max", length=15, exclude=" 0123456789+=,.?!<>@[]{}").strip() 
-    menu:
-        "Are you..."
-        "A Boy":
-            $ gender = "male"
-            $ heshe = "he"
-            $ himher = "him"
-            $ hishers = "his"
-        "A Girl":
-            $ gender = "female"
-            $ heshe = "she"
-            $ himher = "her"
-            $ hishers = "hers"
-        "Non-Binary":
-            $ gender = "neutral" 
+    
+#    menu:
+#        "Are you..."
+#        "A Boy":
+#            $ gender = "male"
+#            $ heshe = "he"
+#            $ himher = "him"
+#            $ hishers = "his"
+#        "A Girl":
+#            $ gender = "female"
+#            $ heshe = "she"
+#            $ himher = "her"
+#            $ hishers = "hers"
+#        "Non-Binary":
+#            $ gender = "neutral" 
     "Welcome [PN]. Let's get on with the story."
 
 
@@ -86,7 +87,7 @@ label dorm_1:
 
     A "Oh, you know Felix. He's probably off chasing UFOs or decoding secret messages in the cafeteria's meatloaf."
 
-    "You smile, but the worry doesn't quite fade. Felix, their conspiracy-obsessed friend, had been acting strangely lately. His usual playful banter had taken on a darker tone, his excitement about his internship at Medievil replaced by a growing unease."
+    "You smile, but the worry doesn't quite fade. Felix, their conspiracy-obsessed friend, had been acting strangely lately. His usual playful banter had taken on a darker tone, his excitement about his internship at {color=[medievilColor]}Medievil{/color} replaced by a growing unease."
 
     show alex serious2 at alex_right
     with dissolve
@@ -100,7 +101,7 @@ label dorm_1:
     show alex serious1 at alex_right
     with dissolve
 
-    A "I don't know. He was mumbling something about his internship at Medievil, some experiment called NeuroMend... It was all very cryptic."
+    A "I don't know. He was mumbling something about his internship at {color=[medievilColor]}Medievil{/color}, some experiment called NeuroMend... It was all very cryptic."
 
     hide alex
     hide leonie
@@ -117,7 +118,7 @@ label dorm_1:
     show felix shouting at center 
     with dissolve
 
-    F "(Gasping for air, his voice barely a whisper) Medievil! They're not what they seem. This... this is everything. Trust no one."
+    F "(Gasping for air, his voice barely a whisper) {color=[medievilColor]}Medievil{/color}! They're not what they seem. This... this is everything. Trust no one."
 
     "With trembling hands, he thrusts a battered flash drive into your hand, then turns and flees, disappearing into the dimly lit hallway."
 
@@ -199,7 +200,7 @@ label choice0_ignore:
 
         "A chill runs down your spine. The article details a bizarre finding at a local pet food factory, a trace of human genetic material amidst the meat and grains. The source of the DNA remains unknown, the investigation ongoing."
 
-        "You can't shake the feeling that this is somehow connected to Felix, to Medievil, to the cryptic warning he delivered that fateful night. But without proof, it's just another unsolved mystery, a whisper in the wind."
+        "You can't shake the feeling that this is somehow connected to Felix, to {color=[medievilColor]}Medievil{/color}, to the cryptic warning he delivered that fateful night. But without proof, it's just another unsolved mystery, a whisper in the wind."
 
         "The weight of regret settles heavily on your shoulders. The choice to ignore Felix's plea, to prioritize safety over friendship, has left a bitter taste in your mouth. The story ends not with a bang, but with a whimper, a silent echo of what could have been."
 

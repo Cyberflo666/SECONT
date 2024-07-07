@@ -568,8 +568,8 @@ label password_cracked:
 
     play music mystery_music1 volume loudness fadeout 1.0
     L "Nice that did it. Time to see why he was so stressed out."
-    "You see Felix's notes about his work at Medievil. At first there is nothing unusual, but the deeper you go, the more distressed the writing becomes. He seems to have discovered some kind of conspiracy about the implants from Medievil. One name pops up several times throughout the files. \"Bob Anderson\"."
-    PC "Is he talking about the implants from Medievil? I thought they're used to treat diseases."
+    "You see Felix's notes about his work at {color=[medievilColor]}Medievil{/color}. At first there is nothing unusual, but the deeper you go, the more distressed the writing becomes. He seems to have discovered some kind of conspiracy about the implants from {color=[medievilColor]}Medievil{/color}. One name pops up several times throughout the files. \"Bob Anderson\"."
+    PC "Is he talking about the implants from {color=[medievilColor]}Medievil{/color}? I thought they're used to treat diseases."
     show alex serious1 at alex_right
     with dissolve
 
@@ -577,7 +577,7 @@ label password_cracked:
     show leonie neutral at left
     with dissolve
 
-    L "Well, according to him Medievil is looking to use them for something else, but he doesn't specify what. Only that it's about profit and he thinks it's dangerous."
+    L "Well, according to him {color=[medievilColor]}Medievil{/color} is looking to use them for something else, but he doesn't specify what. Only that it's about profit and he thinks it's dangerous."
     show alex surprised at alex_right
     with dissolve
 
@@ -598,12 +598,12 @@ label password_cracked:
     show alex serious1 at alex_right
     with dissolve
 
-    A "That's a pretty big jump your taking don't you think. From what we know there is no hard evidence against Medievil and Felix is not known to be the most rational person."
+    A "That's a pretty big jump your taking don't you think. From what we know there is no hard evidence against {color=[medievilColor]}Medievil{/color} and Felix is not known to be the most rational person."
     show leonie thinking at left
     with dissolve
 
     L "Yes yes but he's not here and he hasn't answered any of our calls. Do you not think that's odd even for him."
-    PC "Maybe he wants us to investigate Medievil. I mean what else is the drive good for, other than raising our suspicion."
+    PC "Maybe he wants us to investigate {color=[medievilColor]}Medievil{/color}. I mean what else is the drive good for, other than raising our suspicion."
     show alex neutral at alex_right
     with dissolve
 
@@ -613,7 +613,7 @@ menu:
     "Go to the police with the information you got.":
         scene bg police station
         "You go to the police and show them the information you got from the drive. They ask you questions about Felix and the answers make it sound like Felix is making this whole story up."
-        "The fact that you have no hard evidence to show also doesn't help. In the end the police claims the drive as property of Medievil and puts out a missing person report."
+        "The fact that you have no hard evidence to show also doesn't help. In the end the police claims the drive as property of {color=[medievilColor]}Medievil{/color} and puts out a missing person report."
         show leonie serious at left
         with dissolve
 
@@ -621,24 +621,24 @@ menu:
         show alex serious1 at alex_right
         with dissolve
 
-        A "At least now we know that the police won't be much help against Medievil. Looks like we're on our own."
+        A "At least now we know that the police won't be much help against {color=[medievilColor]}Medievil{/color}. Looks like we're on our own."
         L "Let's get back to our dorm and take matters in our own hands."
         PC "I left my laptop in the kitchen, so lets just get going there."
 
         jump level_2_start
 
-    "Investigate on your own what is happening at Medievil.":
+    "Investigate on your own what is happening at {color=[medievilColor]}Medievil{/color}.":
         scene bg felix room
         show leonie thinking at left 
         show alex serious1 at alex_right
         with dissolve 
-        PC "Well then, I think it's best if we do our research on Medievil. There should be more room in the kitchen for all of us."
+        PC "Well then, I think it's best if we do our research on {color=[medievilColor]}Medievil{/color}. There should be more room in the kitchen for all of us."
         show alex serious2 at alex_right
         with dissolve
         A "Mhm. We need to act fast. Who knows what actually happened to Felix…"
         show leonie thinking at left 
         with dissolve 
-        L "From what I know, Medievil is quite a large company. We should be able to find out a lot online."
+        L "From what I know, {color=[medievilColor]}Medievil{/color} is quite a large company. We should be able to find out a lot online."
         PC "I left my laptop there anyway, so I guess I'll take over the research."
         PC "From there, I guess we can fulfill Felix's wish and investigate properly."
         with dissolve

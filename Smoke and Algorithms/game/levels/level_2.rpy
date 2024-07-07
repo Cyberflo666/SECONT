@@ -32,7 +32,7 @@ label level_2_start:
     PC "I also don't think that we have access to his workplace and we probably won't find it just sitting on some website."
     L "If that is the problem we could try to write a phishing email to Bob Anderson so that he grants us access."
     A "Do you think it's realistic that we can convince him to do that?"
-    L "Depends on what we fin out about Bob Anderson's background. Maybe we there is something we can use on his social media or some Medievil web page?"
+    L "Depends on what we fin out about Bob Anderson's background. Maybe we there is something we can use on his social media or some {color=[medievilColor]}Medievil{/color} web page?"
     PC "Either way we should do some research on him."
 
 label research:
@@ -138,7 +138,7 @@ label website1_button:
     $ show_textbox = True
     $ website_1_not_seen = False
     show screen website1_screen
-    PC "Apparently Medievil is getting funds from our city."
+    PC "Apparently {color=[medievilColor]}Medievil{/color} is getting funds from our city."
     A "Is there a reason?"
     L "Not really. Just for stronger industry and more workplaces."
     $ show_image_buttons = True
@@ -151,7 +151,7 @@ label website2_button:
     $ show_textbox = True
     $ website_2_not_seen = False
     show screen website2_screen
-    PC "Here is something about a lab at our university. According to these news it was offered to Medievil for research."
+    PC "Here is something about a lab at our university. According to these news it was offered to {color=[medievilColor]}Medievil{/color} for research."
     L "Maybe we should check it out."
     A "You think we have access?"
     L "I think we can get it if we really want."
@@ -644,7 +644,7 @@ label left_wall_obj:
     scene bg left wall zoom
     with dissolve
     $ show_textbox = True
-    "Searching on the left cupboard you find some chemicals and medical tools alongside what looks like a few of Medievils implants but way smaller."
+    "Searching on the left cupboard you find some chemicals and medical tools alongside what looks like a few of {color=[medievilColor]}Medievil{/color}s implants but way smaller."
     $ show_textbox = False
     $ left_wall_seen = True 
     jump inside_lab
@@ -708,7 +708,7 @@ label inside_lab_done:
     with dissolve
     L "It looks like it. But its a bit offset. Like the screen knows what the rat will do before it does it."
 
-    PC "Why would Medievil develop something like that?"
+    PC "Why would {color=[medievilColor]}Medievil{/color} develop something like that?"
 
     show alex serious1 at alex_right
     with dissolve
