@@ -4,3 +4,1132 @@ Ren'Py 8.2.3.24061702
 
 Early init took 0.05s
 Loading error handling took 0.05s
+Loading script took 0.82s
+Loading save slot metadata took 0.00s
+Loading persistent took 0.00s
+
+File "game/levels/level_2.rpy", line 143: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+        if dumpster_explained == False:
+    ^
+
+File "game/levels/level_2.rpy", line 212: if statement expects a non-empty block.
+        if dumpster_explained == False:
+                                       ^
+
+File "game/levels/level_2.rpy", line 288: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 293: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 302: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 307: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 316: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 321: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 377: if statement expects a non-empty block.
+        if sneak_attempt >= 2:
+                              ^
+
+File "game/levels/level_2.rpy", line 393: if statement expects a non-empty block.
+        if sneak_attempt >= 2:
+                              ^
+
+File "game/levels/level_2.rpy", line 523: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 528: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 537: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 542: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 551: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 556: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 565: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 570: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 690: if statement expects a non-empty block.
+        if email_responded:
+                           ^
+
+File "game/levels/level_2.rpy", line 692: expected statement.
+        else:
+            ^
+
+File "game/levels/level_2.rpy", line 728: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 733: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 740: screen expects a non-empty block.
+    screen phone_hand_map:
+                          ^
+
+File "game/levels/level_2.rpy", line 741: expected statement.
+        tag map
+               ^
+
+File "game/levels/level_2.rpy", line 742: expected statement.
+        imagemap:
+                ^
+
+File "game/levels/level_2.rpy", line 745: expected statement.
+            hotspot (60, 350, 240, 180) action Jump("apartment") 
+                                                   ^
+
+File "game/levels/level_2.rpy", line 746: expected statement.
+            hotspot (300, 350, 240, 180) action Jump("office") 
+                                                    ^
+
+File "game/levels/level_2.rpy", line 747: expected statement.
+            hotspot (540, 350, 240, 180) action Jump("cafe") 
+                                                    ^
+
+File "game/levels/level_2.rpy", line 748: expected statement.
+            hotspot (780, 350, 240, 180) action Jump("unknown_location") 
+                                                    ^
+
+File "game/levels/level_2.rpy", line 750: expected statement.
+        imagebutton:
+                   ^
+
+File "game/levels/level_2.rpy", line 753: expected statement.
+            action Jump("check_email")
+                       ^
+
+File "game/levels/level_2.rpy", line 754: expected statement.
+            xpos 0.9 ypos 0.1
+                  ^
+
+File "game/levels/level_2.rpy", line 755: expected statement.
+            xanchor 0.5 yanchor 0.5
+                     ^
+
+File "game/levels/level_2.rpy", line 781: python block expects a non-empty block.
+    init python:
+                ^
+
+File "game/levels/level_2.rpy", line 782: expected statement.
+        show_textbox = True
+                     ^
+
+File "game/levels/level_2.rpy", line 783: expected statement.
+        hide_textbox = False
+                     ^
+
+File "game/levels/level_2.rpy", line 784: expected statement.
+        show_image_buttons = True
+                           ^
+
+File "game/levels/level_2.rpy", line 785: expected statement.
+        apartment_visited = False
+                          ^
+
+File "game/levels/level_2.rpy", line 786: expected statement.
+        email_responded = False
+                        ^
+
+File "game/levels/level_2.rpy", line 787: expected statement.
+        meeting_prepared = False
+                         ^
+
+File "game/levels/level_2.rpy", line 788: expected statement.
+        meeting_attended = False
+                         ^
+
+File "game/levels/level_2.rpy", line 789: expected statement.
+        mission_ready = False
+                      ^
+
+File "game/levels/level_2.rpy", line 790: expected statement.
+        mission_executed = False
+                         ^
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: b"Couldn't load nvlib." (can be ignored)
+Interface start took 0.40s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1080)
+swap interval: 1 frames
+Windowed mode.
+Vendor: "b'ATI Technologies Inc.'"
+Renderer: b'AMD Radeon(TM) Graphics'
+Version: b'4.6.0 Compatibility Profile Context 24.3.1.240216'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1739, 978) drawable=(1739, 978)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(1920, 1080) physical=(958, 1041) drawable=(958, 1041)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 15.66s
+Loading error handling took 0.03s
+Loading script took 0.76s
+Loading save slot metadata took 0.00s
+Loading persistent took 0.00s
+
+File "game/levels/level_2.rpy", line 143: if statement expects a non-empty block.
+        if dumpster_explained == False:
+                                       ^
+
+File "game/levels/level_2.rpy", line 212: if statement expects a non-empty block.
+        if dumpster_explained == False:
+                                       ^
+
+File "game/levels/level_2.rpy", line 288: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 293: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 302: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 307: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 316: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 321: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 377: if statement expects a non-empty block.
+        if sneak_attempt >= 2:
+                              ^
+
+File "game/levels/level_2.rpy", line 393: if statement expects a non-empty block.
+        if sneak_attempt >= 2:
+                              ^
+
+File "game/levels/level_2.rpy", line 523: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 528: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 537: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 542: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 551: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 556: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 565: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 570: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 690: if statement expects a non-empty block.
+        if email_responded:
+                           ^
+
+File "game/levels/level_2.rpy", line 692: expected statement.
+        else:
+            ^
+
+File "game/levels/level_2.rpy", line 728: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 733: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 740: screen expects a non-empty block.
+    screen phone_hand_map:
+                          ^
+
+File "game/levels/level_2.rpy", line 741: expected statement.
+        tag map
+               ^
+
+File "game/levels/level_2.rpy", line 742: expected statement.
+        imagemap:
+                ^
+
+File "game/levels/level_2.rpy", line 745: expected statement.
+            hotspot (60, 350, 240, 180) action Jump("apartment") 
+                                                   ^
+
+File "game/levels/level_2.rpy", line 746: expected statement.
+            hotspot (300, 350, 240, 180) action Jump("office") 
+                                                    ^
+
+File "game/levels/level_2.rpy", line 747: expected statement.
+            hotspot (540, 350, 240, 180) action Jump("cafe") 
+                                                    ^
+
+File "game/levels/level_2.rpy", line 748: expected statement.
+            hotspot (780, 350, 240, 180) action Jump("unknown_location") 
+                                                    ^
+
+File "game/levels/level_2.rpy", line 750: expected statement.
+        imagebutton:
+                   ^
+
+File "game/levels/level_2.rpy", line 753: expected statement.
+            action Jump("check_email")
+                       ^
+
+File "game/levels/level_2.rpy", line 754: expected statement.
+            xpos 0.9 ypos 0.1
+                  ^
+
+File "game/levels/level_2.rpy", line 755: expected statement.
+            xanchor 0.5 yanchor 0.5
+                     ^
+
+File "game/levels/level_2.rpy", line 781: python block expects a non-empty block.
+    init python:
+                ^
+
+File "game/levels/level_2.rpy", line 782: expected statement.
+        show_textbox = True
+                     ^
+
+File "game/levels/level_2.rpy", line 783: expected statement.
+        hide_textbox = False
+                     ^
+
+File "game/levels/level_2.rpy", line 784: expected statement.
+        show_image_buttons = True
+                           ^
+
+File "game/levels/level_2.rpy", line 785: expected statement.
+        apartment_visited = False
+                          ^
+
+File "game/levels/level_2.rpy", line 786: expected statement.
+        email_responded = False
+                        ^
+
+File "game/levels/level_2.rpy", line 787: expected statement.
+        meeting_prepared = False
+                         ^
+
+File "game/levels/level_2.rpy", line 788: expected statement.
+        meeting_attended = False
+                         ^
+
+File "game/levels/level_2.rpy", line 789: expected statement.
+        mission_ready = False
+                      ^
+
+File "game/levels/level_2.rpy", line 790: expected statement.
+        mission_executed = False
+                         ^
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: b"Couldn't load nvlib." (can be ignored)
+Interface start took 0.31s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1080)
+swap interval: 1 frames
+Windowed mode.
+Vendor: "b'ATI Technologies Inc.'"
+Renderer: b'AMD Radeon(TM) Graphics'
+Version: b'4.6.0 Compatibility Profile Context 24.3.1.240216'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1739, 978) drawable=(1739, 978)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(1920, 1080) physical=(958, 1041) drawable=(958, 1041)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 125.71s
+Loading error handling took 0.03s
+Loading script took 0.76s
+Loading save slot metadata took 0.00s
+Loading persistent took 0.00s
+
+File "game/levels/level_2.rpy", line 212: if statement expects a non-empty block.
+        if dumpster_explained == False:
+                                       ^
+
+File "game/levels/level_2.rpy", line 288: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 293: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 302: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 307: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 316: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 321: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 377: if statement expects a non-empty block.
+        if sneak_attempt >= 2:
+                              ^
+
+File "game/levels/level_2.rpy", line 393: if statement expects a non-empty block.
+        if sneak_attempt >= 2:
+                              ^
+
+File "game/levels/level_2.rpy", line 523: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 528: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 537: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 542: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 551: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 556: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 565: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 570: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 690: if statement expects a non-empty block.
+        if email_responded:
+                           ^
+
+File "game/levels/level_2.rpy", line 692: expected statement.
+        else:
+            ^
+
+File "game/levels/level_2.rpy", line 728: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 733: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 740: screen expects a non-empty block.
+    screen phone_hand_map:
+                          ^
+
+File "game/levels/level_2.rpy", line 741: expected statement.
+        tag map
+               ^
+
+File "game/levels/level_2.rpy", line 742: expected statement.
+        imagemap:
+                ^
+
+File "game/levels/level_2.rpy", line 745: expected statement.
+            hotspot (60, 350, 240, 180) action Jump("apartment") 
+                                                   ^
+
+File "game/levels/level_2.rpy", line 746: expected statement.
+            hotspot (300, 350, 240, 180) action Jump("office") 
+                                                    ^
+
+File "game/levels/level_2.rpy", line 747: expected statement.
+            hotspot (540, 350, 240, 180) action Jump("cafe") 
+                                                    ^
+
+File "game/levels/level_2.rpy", line 748: expected statement.
+            hotspot (780, 350, 240, 180) action Jump("unknown_location") 
+                                                    ^
+
+File "game/levels/level_2.rpy", line 750: expected statement.
+        imagebutton:
+                   ^
+
+File "game/levels/level_2.rpy", line 753: expected statement.
+            action Jump("check_email")
+                       ^
+
+File "game/levels/level_2.rpy", line 754: expected statement.
+            xpos 0.9 ypos 0.1
+                  ^
+
+File "game/levels/level_2.rpy", line 755: expected statement.
+            xanchor 0.5 yanchor 0.5
+                     ^
+
+File "game/levels/level_2.rpy", line 781: python block expects a non-empty block.
+    init python:
+                ^
+
+File "game/levels/level_2.rpy", line 782: expected statement.
+        show_textbox = True
+                     ^
+
+File "game/levels/level_2.rpy", line 783: expected statement.
+        hide_textbox = False
+                     ^
+
+File "game/levels/level_2.rpy", line 784: expected statement.
+        show_image_buttons = True
+                           ^
+
+File "game/levels/level_2.rpy", line 785: expected statement.
+        apartment_visited = False
+                          ^
+
+File "game/levels/level_2.rpy", line 786: expected statement.
+        email_responded = False
+                        ^
+
+File "game/levels/level_2.rpy", line 787: expected statement.
+        meeting_prepared = False
+                         ^
+
+File "game/levels/level_2.rpy", line 788: expected statement.
+        meeting_attended = False
+                         ^
+
+File "game/levels/level_2.rpy", line 789: expected statement.
+        mission_ready = False
+                      ^
+
+File "game/levels/level_2.rpy", line 790: expected statement.
+        mission_executed = False
+                         ^
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: b"Couldn't load nvlib." (can be ignored)
+Interface start took 0.32s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1080)
+swap interval: 1 frames
+Windowed mode.
+Vendor: "b'ATI Technologies Inc.'"
+Renderer: b'AMD Radeon(TM) Graphics'
+Version: b'4.6.0 Compatibility Profile Context 24.3.1.240216'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1739, 978) drawable=(1739, 978)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(1920, 1080) physical=(958, 1041) drawable=(958, 1041)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 249.50s
+Loading error handling took 0.03s
+Loading script took 0.76s
+Loading save slot metadata took 0.00s
+Loading persistent took 0.00s
+
+File "game/levels/level_2.rpy", line 288: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 293: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 302: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 307: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 316: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 321: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 377: if statement expects a non-empty block.
+        if sneak_attempt >= 2:
+                              ^
+
+File "game/levels/level_2.rpy", line 393: if statement expects a non-empty block.
+        if sneak_attempt >= 2:
+                              ^
+
+File "game/levels/level_2.rpy", line 523: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 528: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 537: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 542: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 551: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 556: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 565: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 570: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 690: if statement expects a non-empty block.
+        if email_responded:
+                           ^
+
+File "game/levels/level_2.rpy", line 692: expected statement.
+        else:
+            ^
+
+File "game/levels/level_2.rpy", line 728: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 733: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 740: screen expects a non-empty block.
+    screen phone_hand_map:
+                          ^
+
+File "game/levels/level_2.rpy", line 741: expected statement.
+        tag map
+               ^
+
+File "game/levels/level_2.rpy", line 742: expected statement.
+        imagemap:
+                ^
+
+File "game/levels/level_2.rpy", line 745: expected statement.
+            hotspot (60, 350, 240, 180) action Jump("apartment") 
+                                                   ^
+
+File "game/levels/level_2.rpy", line 746: expected statement.
+            hotspot (300, 350, 240, 180) action Jump("office") 
+                                                    ^
+
+File "game/levels/level_2.rpy", line 747: expected statement.
+            hotspot (540, 350, 240, 180) action Jump("cafe") 
+                                                    ^
+
+File "game/levels/level_2.rpy", line 748: expected statement.
+            hotspot (780, 350, 240, 180) action Jump("unknown_location") 
+                                                    ^
+
+File "game/levels/level_2.rpy", line 750: expected statement.
+        imagebutton:
+                   ^
+
+File "game/levels/level_2.rpy", line 753: expected statement.
+            action Jump("check_email")
+                       ^
+
+File "game/levels/level_2.rpy", line 754: expected statement.
+            xpos 0.9 ypos 0.1
+                  ^
+
+File "game/levels/level_2.rpy", line 755: expected statement.
+            xanchor 0.5 yanchor 0.5
+                     ^
+
+File "game/levels/level_2.rpy", line 781: python block expects a non-empty block.
+    init python:
+                ^
+
+File "game/levels/level_2.rpy", line 782: expected statement.
+        show_textbox = True
+                     ^
+
+File "game/levels/level_2.rpy", line 783: expected statement.
+        hide_textbox = False
+                     ^
+
+File "game/levels/level_2.rpy", line 784: expected statement.
+        show_image_buttons = True
+                           ^
+
+File "game/levels/level_2.rpy", line 785: expected statement.
+        apartment_visited = False
+                          ^
+
+File "game/levels/level_2.rpy", line 786: expected statement.
+        email_responded = False
+                        ^
+
+File "game/levels/level_2.rpy", line 787: expected statement.
+        meeting_prepared = False
+                         ^
+
+File "game/levels/level_2.rpy", line 788: expected statement.
+        meeting_attended = False
+                         ^
+
+File "game/levels/level_2.rpy", line 789: expected statement.
+        mission_ready = False
+                      ^
+
+File "game/levels/level_2.rpy", line 790: expected statement.
+        mission_executed = False
+                         ^
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: b"Couldn't load nvlib." (can be ignored)
+Interface start took 0.32s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1080)
+swap interval: 1 frames
+Windowed mode.
+Vendor: "b'ATI Technologies Inc.'"
+Renderer: b'AMD Radeon(TM) Graphics'
+Version: b'4.6.0 Compatibility Profile Context 24.3.1.240216'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1739, 978) drawable=(1739, 978)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(1920, 1080) physical=(958, 1041) drawable=(958, 1041)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 411.53s
+Loading error handling took 0.03s
+Loading script took 0.77s
+Loading save slot metadata took 0.00s
+Loading persistent took 0.00s
+
+File "game/levels/level_2.rpy", line 288: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if show_textbox == False:
+    ^
+
+File "game/levels/level_2.rpy", line 293: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if hide_textbox == True:
+    ^
+
+File "game/levels/level_2.rpy", line 302: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if show_textbox == False:
+    ^
+
+File "game/levels/level_2.rpy", line 307: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if hide_textbox == True:
+    ^
+
+File "game/levels/level_2.rpy", line 316: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if show_textbox == False:
+    ^
+
+File "game/levels/level_2.rpy", line 321: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if hide_textbox == True:
+    ^
+
+File "game/levels/level_2.rpy", line 377: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if sneak_attempt >= 2:
+    ^
+
+File "game/levels/level_2.rpy", line 393: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if sneak_attempt >= 2:
+    ^
+
+File "game/levels/level_2.rpy", line 523: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if show_textbox == False:
+    ^
+
+File "game/levels/level_2.rpy", line 528: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if hide_textbox == True:
+    ^
+
+File "game/levels/level_2.rpy", line 537: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if show_textbox == False:
+    ^
+
+File "game/levels/level_2.rpy", line 542: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if hide_textbox == True:
+    ^
+
+File "game/levels/level_2.rpy", line 551: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if show_textbox == False:
+    ^
+
+File "game/levels/level_2.rpy", line 556: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if hide_textbox == True:
+    ^
+
+File "game/levels/level_2.rpy", line 565: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if show_textbox == False:
+    ^
+
+File "game/levels/level_2.rpy", line 570: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if hide_textbox == True:
+    ^
+
+File "game/levels/level_2.rpy", line 690: if statement expects a non-empty block.
+    if email_responded:
+                       ^
+
+File "game/levels/level_2.rpy", line 692: expected statement.
+        else:
+            ^
+
+File "game/levels/level_2.rpy", line 728: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 733: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 740: screen expects a non-empty block.
+    screen phone_hand_map:
+                          ^
+
+File "game/levels/level_2.rpy", line 741: expected statement.
+        tag map
+               ^
+
+File "game/levels/level_2.rpy", line 742: expected statement.
+        imagemap:
+                ^
+
+File "game/levels/level_2.rpy", line 745: expected statement.
+            hotspot (60, 350, 240, 180) action Jump("apartment") 
+                                                   ^
+
+File "game/levels/level_2.rpy", line 746: expected statement.
+            hotspot (300, 350, 240, 180) action Jump("office") 
+                                                    ^
+
+File "game/levels/level_2.rpy", line 747: expected statement.
+            hotspot (540, 350, 240, 180) action Jump("cafe") 
+                                                    ^
+
+File "game/levels/level_2.rpy", line 748: expected statement.
+            hotspot (780, 350, 240, 180) action Jump("unknown_location") 
+                                                    ^
+
+File "game/levels/level_2.rpy", line 750: expected statement.
+        imagebutton:
+                   ^
+
+File "game/levels/level_2.rpy", line 753: expected statement.
+            action Jump("check_email")
+                       ^
+
+File "game/levels/level_2.rpy", line 754: expected statement.
+            xpos 0.9 ypos 0.1
+                  ^
+
+File "game/levels/level_2.rpy", line 755: expected statement.
+            xanchor 0.5 yanchor 0.5
+                     ^
+
+File "game/levels/level_2.rpy", line 781: python block expects a non-empty block.
+    init python:
+                ^
+
+File "game/levels/level_2.rpy", line 782: expected statement.
+        show_textbox = True
+                     ^
+
+File "game/levels/level_2.rpy", line 783: expected statement.
+        hide_textbox = False
+                     ^
+
+File "game/levels/level_2.rpy", line 784: expected statement.
+        show_image_buttons = True
+                           ^
+
+File "game/levels/level_2.rpy", line 785: expected statement.
+        apartment_visited = False
+                          ^
+
+File "game/levels/level_2.rpy", line 786: expected statement.
+        email_responded = False
+                        ^
+
+File "game/levels/level_2.rpy", line 787: expected statement.
+        meeting_prepared = False
+                         ^
+
+File "game/levels/level_2.rpy", line 788: expected statement.
+        meeting_attended = False
+                         ^
+
+File "game/levels/level_2.rpy", line 789: expected statement.
+        mission_ready = False
+                      ^
+
+File "game/levels/level_2.rpy", line 790: expected statement.
+        mission_executed = False
+                         ^
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: b"Couldn't load nvlib." (can be ignored)
+Interface start took 0.32s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1080)
+swap interval: 1 frames
+Windowed mode.
+Vendor: "b'ATI Technologies Inc.'"
+Renderer: b'AMD Radeon(TM) Graphics'
+Version: b'4.6.0 Compatibility Profile Context 24.3.1.240216'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1739, 978) drawable=(1739, 978)
+Maximum texture size: 4096x4096
+Screen sizes: virtual=(1920, 1080) physical=(958, 1041) drawable=(958, 1041)
+Maximum texture size: 4096x4096
+Resetting cache.
+Early init took 491.72s
+Loading error handling took 0.04s
+Loading script took 0.77s
+Loading save slot metadata took 0.00s
+Loading persistent took 0.00s
+
+File "game/levels/level_2.rpy", line 288: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if show_textbox == False:
+    ^
+
+File "game/levels/level_2.rpy", line 293: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if hide_textbox == True:
+    ^
+
+File "game/levels/level_2.rpy", line 302: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if show_textbox == False:
+    ^
+
+File "game/levels/level_2.rpy", line 307: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if hide_textbox == True:
+    ^
+
+File "game/levels/level_2.rpy", line 316: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if show_textbox == False:
+    ^
+
+File "game/levels/level_2.rpy", line 321: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if hide_textbox == True:
+    ^
+
+File "game/levels/level_2.rpy", line 377: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if sneak_attempt >= 2:
+    ^
+
+File "game/levels/level_2.rpy", line 393: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if sneak_attempt >= 2:
+    ^
+
+File "game/levels/level_2.rpy", line 523: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if show_textbox == False:
+    ^
+
+File "game/levels/level_2.rpy", line 528: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if hide_textbox == True:
+    ^
+
+File "game/levels/level_2.rpy", line 537: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if show_textbox == False:
+    ^
+
+File "game/levels/level_2.rpy", line 542: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if hide_textbox == True:
+    ^
+
+File "game/levels/level_2.rpy", line 551: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if show_textbox == False:
+    ^
+
+File "game/levels/level_2.rpy", line 556: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if hide_textbox == True:
+    ^
+
+File "game/levels/level_2.rpy", line 565: Line is indented, but the preceding one-line python statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if show_textbox == False:
+    ^
+
+File "game/levels/level_2.rpy", line 570: Line is indented, but the preceding say statement statement does not expect a block. Please check this line's indentation. You may have forgotten a colon (:).
+    if hide_textbox == True:
+    ^
+
+File "game/levels/level_2.rpy", line 728: if statement expects a non-empty block.
+        if show_textbox == False:
+                                 ^
+
+File "game/levels/level_2.rpy", line 733: if statement expects a non-empty block.
+        if hide_textbox == True:
+                                ^
+
+File "game/levels/level_2.rpy", line 740: screen expects a non-empty block.
+    screen phone_hand_map:
+                          ^
+
+File "game/levels/level_2.rpy", line 741: expected statement.
+        tag map
+               ^
+
+File "game/levels/level_2.rpy", line 742: expected statement.
+        imagemap:
+                ^
+
+File "game/levels/level_2.rpy", line 745: expected statement.
+            hotspot (60, 350, 240, 180) action Jump("apartment") 
+                                                   ^
+
+File "game/levels/level_2.rpy", line 746: expected statement.
+            hotspot (300, 350, 240, 180) action Jump("office") 
+                                                    ^
+
+File "game/levels/level_2.rpy", line 747: expected statement.
+            hotspot (540, 350, 240, 180) action Jump("cafe") 
+                                                    ^
+
+File "game/levels/level_2.rpy", line 748: expected statement.
+            hotspot (780, 350, 240, 180) action Jump("unknown_location") 
+                                                    ^
+
+File "game/levels/level_2.rpy", line 750: expected statement.
+        imagebutton:
+                   ^
+
+File "game/levels/level_2.rpy", line 753: expected statement.
+            action Jump("check_email")
+                       ^
+
+File "game/levels/level_2.rpy", line 754: expected statement.
+            xpos 0.9 ypos 0.1
+                  ^
+
+File "game/levels/level_2.rpy", line 755: expected statement.
+            xanchor 0.5 yanchor 0.5
+                     ^
+
+File "game/levels/level_2.rpy", line 781: python block expects a non-empty block.
+    init python:
+                ^
+
+File "game/levels/level_2.rpy", line 782: expected statement.
+        show_textbox = True
+                     ^
+
+File "game/levels/level_2.rpy", line 783: expected statement.
+        hide_textbox = False
+                     ^
+
+File "game/levels/level_2.rpy", line 784: expected statement.
+        show_image_buttons = True
+                           ^
+
+File "game/levels/level_2.rpy", line 785: expected statement.
+        apartment_visited = False
+                          ^
+
+File "game/levels/level_2.rpy", line 786: expected statement.
+        email_responded = False
+                        ^
+
+File "game/levels/level_2.rpy", line 787: expected statement.
+        meeting_prepared = False
+                         ^
+
+File "game/levels/level_2.rpy", line 788: expected statement.
+        meeting_attended = False
+                         ^
+
+File "game/levels/level_2.rpy", line 789: expected statement.
+        mission_ready = False
+                      ^
+
+File "game/levels/level_2.rpy", line 790: expected statement.
+        mission_executed = False
+                         ^
+DPI scale factor: 1.250000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: b"Couldn't load nvlib." (can be ignored)
+Interface start took 0.32s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1920, 1080)
+swap interval: 1 frames
+Windowed mode.
+Vendor: "b'ATI Technologies Inc.'"
+Renderer: b'AMD Radeon(TM) Graphics'
+Version: b'4.6.0 Compatibility Profile Context 24.3.1.240216'
+Display Info: None
+Screen sizes: virtual=(1920, 1080) physical=(1739, 978) drawable=(1739, 978)
+Maximum texture size: 4096x4096
