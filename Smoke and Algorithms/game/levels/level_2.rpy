@@ -1,4 +1,4 @@
-```
+#define website
 define website_1_not_seen = True
 define website_2_not_seen = True
 define website_3_not_seen = True
@@ -141,7 +141,7 @@ label dumpsterdive:
     PC "Let's head to Bob Anderson's office. I wonder what we can find there."
 
     if dumpster_explained == False:
-        show leonie thinking at left 
+        show leonie thinking at left 
         with dissolve
         L "What are we going to do there though? It's not like we can just step in."
         show alex neutral at alex_right
@@ -210,7 +210,7 @@ label dumpsterdive2:
     PC "Well then, I suggest we head out to Gil's place and investigate there."
 
     if dumpster_explained == False:
-        show leonie thinking at left 
+        show leonie thinking at left 
         with dissolve
         L "What are we going to do there though? It's not like we can just step in."
         show alex neutral at alex_right
@@ -285,12 +285,12 @@ label after_dumpsterdive2:
 
 label lab_access_denied:
     $ show_image_buttons = False
-    if show_textbox == False:
-        $ show_textbox = True
-        $ hide_textbox = True
+    if show_textbox == False:
+        $ show_textbox = True
+        $ hide_textbox = True
     hide screen phone_hand_map 
     "The security is alert of your attempted intrusion. They will surely not let you near the lab again."
-    if hide_textbox == True:
+        if hide_textbox == True:
         $ show_textbox = False
         $ hide_textbox = False
     $ show_image_buttons = True
@@ -299,12 +299,12 @@ label lab_access_denied:
 
 label lab_visited:
     $ show_image_buttons = False
-    if show_textbox == False:
+    if show_textbox == False:
         $ show_textbox = True
         $ hide_textbox = True
     hide screen phone_hand_map 
     "You have already seen everything there is to see here."
-    if hide_textbox == True:
+    if hide_textbox == True:
         $ show_textbox = False
         $ hide_textbox = False
     $ show_image_buttons = True
@@ -313,12 +313,12 @@ label lab_visited:
 
 label dumpster_empty:
     $ show_image_buttons = False
-    if show_textbox == False:
+    if show_textbox == False:
         $ show_textbox = True
         $ hide_textbox = True
     hide screen phone_hand_map 
     "You already have all the information from this garbage."
-    if hide_textbox == True:
+    if hide_textbox == True:
         $ show_textbox = False
         $ hide_textbox = False
     $ show_image_buttons = True
@@ -374,7 +374,7 @@ label visitlab:
     with dissolve
 
     $ sneak_attempt += 1
-    if sneak_attempt >= 2:
+    if sneak_attempt >= 2:
         jump lab_access_denied
 
     show alex neutral at left 
@@ -390,7 +390,7 @@ label visitlab:
     A "What a lovely looking lab."
     L "Doesn't look as shady inside as it does from the outside."
     $ sneak_attempt += 1
-    if sneak_attempt >= 2:
+    if sneak_attempt >= 2:
         jump lab_access_denied
 
     jump lab_search_minigame_start
@@ -520,12 +520,12 @@ label dumpster_doven:
 
 label lab_access_denied:
     $ show_image_buttons = False
-    if show_textbox == False:
+    if show_textbox == False:
         $ show_textbox = True
         $ hide_textbox = True
     hide screen phone_hand_map 
     "The security is alert of your attempted intrusion. They will surely not let you near the lab again."
-    if hide_textbox == True:
+    if hide_textbox == True:
         $ show_textbox = False
         $ hide_textbox = False
     $ show_image_buttons = True
@@ -534,12 +534,12 @@ label lab_access_denied:
 
 label lab_visited:
     $ show_image_buttons = False
-    if show_textbox == False:
+    if show_textbox == False:
         $ show_textbox = True
         $ hide_textbox = True
     hide screen phone_hand_map 
     "You have already seen everything there is to see here."
-    if hide_textbox == True:
+    if hide_textbox == True:
         $ show_textbox = False
         $ hide_textbox = False
     $ show_image_buttons = True
@@ -548,12 +548,12 @@ label lab_visited:
 
 label dumpster_empty:
     $ show_image_buttons = False
-    if show_textbox == False:
+    if show_textbox == False:
         $ show_textbox = True
         $ hide_textbox = True
     hide screen phone_hand_map 
     "You already have all the information from this garbage."
-    if hide_textbox == True:
+    if hide_textbox == True:
         $ show_textbox = False
         $ hide_textbox = False
     $ show_image_buttons = True
@@ -562,12 +562,12 @@ label dumpster_empty:
 
 label apartment_visited:
     $ show_image_buttons = False
-    if show_textbox == False:
+    if show_textbox == False:
         $ show_textbox = True
         $ hide_textbox = True
     hide screen phone_hand_map 
     "You've already been to the apartment. There's nothing more to find here."
-    if hide_textbox == True:
+    if hide_textbox == True:
         $ show_textbox = False
         $ hide_textbox = False
     $ show_image_buttons = True
@@ -687,10 +687,10 @@ label mission_outcome:
     return
 
 label check_email:
-    if email_responded:
-        jump email_responded
-    else:
-        $ show_textbox = True
+    if email_responded:
+        jump email_responded
+    else:
+        $ show_textbox = True
         scene bg office
         with dissolve
         PC "Let's check our email to see if we got a response to the phishing attempt."
