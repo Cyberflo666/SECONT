@@ -103,10 +103,13 @@ screen felixes_wall3():
             focus_mask True
             action Hide("felixes_wall3"),Jump("wall3")
 
+################################ Janitor mini game ####################################
+
 screen round_rect(trust):
-
+    image "gui/bar/bottom back.png":
+        xalign 0.976 ypos 297
+        ysize 506
         
-
     vbar:
         xalign 0.974 ypos 300
         ysize 500
@@ -120,12 +123,13 @@ screen round_rect(trust):
             bottom_bar "gui/bar/bottomred.png"
 
     
-    text "TRUST":
-        xalign 0.995 ypos 250
-        size 40
-        color "00bdff"
+    text "{size=50}{b}TRUST{/b}{/size}":
+        xalign 0.99 ypos 210
+        size 50
+        outlines [(3, "#000000ff", 0, 0)]
+        color "#AA4473FF"
 
-# lab room point and click -----------------------------------------------------
+############################# Lab room point and click ################################
 
 label hide_lab_screens:
     hide screen left_cage
