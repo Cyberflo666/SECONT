@@ -20,6 +20,9 @@ default trash_seen = False
 default dumpster_explained = False
 default machine_struck_counter = 0
 default snack_gotten = False
+default open_gil_tag = False
+default gill_house_seen_bob = False
+default gill_house_seen_gill = False
 
 label level_2_start:
     play music main_music1 volume 0.1
@@ -58,11 +61,12 @@ label warning:
         $ show_textbox = False
         $ hide_textbox = False
     return
+
 label social_button_1:
     $ show_image_buttons = False
     $ show_textbox = True
     if search_visited == False:
-        show screen social_screen_search
+        show screen social_screen_explore
         PC "Maybe we should look up Bob Anderson."
         $ show_image_buttons = True
         show screen social_screen_search
@@ -81,7 +85,7 @@ label social_button_2:
     if bob_visited == False:
         show screen social_screen_bob
         PC "Interesting profile."
-        L "Good that he isn't private."
+        L "Lucky that he isn't private."
         A "What a good looking man."
         $ show_image_buttons = True
         show screen social_screen_bob
@@ -95,39 +99,78 @@ label social_button_2:
         jump empty_label
 
 label social_button_3:
-    show screen social_screen_gill
+    show screen social_screen_bob_tag
     $ show_image_buttons = False
     $ show_textbox = True
-    if open_gil_post == False:
-        PC "Who is that person? "
-        L "He seems like an important person"
-        A "Well then, let's check that guy out"
+    if open_gil_tag == False:
+        PC "Who is that person?"
+        L "He seems like someone important."
+        PC "The post is from his Bob's work."
+        A "Then we should check him out as well. If he has something to do with {color=[medievilColor]}Medievil{/color} he might be of interest."
         $ show_image_buttons = True
-        show screen social_screen_gill
         $ show_textbox = False
-        $ open_gil_post = True
-        jump empty_label
-    elif open_gil_post == True:
+        $ open_gil_tag = True
+        jump social_button_5
+    elif open_gil_tag == True:
         $ show_image_buttons = True
+        hide screen social_screen_bob_tag
         show screen social_screen_gill
         $ show_textbox = False
         jump empty_label
 
 label social_button_4:
+    show screen social_screen_bob
     $ show_image_buttons = False
     $ show_textbox = True
+    if gill_house_seen_gill == False:
+        A "Is this Bob's house?"
+        if gil_visited == False:
+            PC "No. It's from someone called Gill Cameron. Mr. Anderson is just visiting?"
+            L "Gotta say it looks pretty nice."
+        else:
+            PC "No. It's Gills house."
+            L "Gotta say it looks pretty nice."
+            A "And even better, there is a street sign. Maybe we can get some information from his place."
+        $ show_image_buttons = True
+        show screen social_screen_bob
+        $ show_textbox = False
+        $ gill_house_seen_bob = True
+        if gil_visited == True:
+            $ renpy.notify("new objektives on your map")
+        jump empty_label
+    else:
+        "You see the same house from the picture on gills profile"
+        $ gill_house_seen_bob = True
+        $ show_image_buttons = True
+        show screen social_screen_bob
+        $ show_textbox = False
+        jump empty_label
+
+label social_button_5:
+    $ show_image_buttons = False
+    $ show_textbox = False
+    hide screen social_screen_bob_tag
+    show screen social_screen_gill
+    pause 1
+    $ show_textbox = True
     if gil_visited == False:
-        show screen social_screen_gill
-        PC "Interesting profile."
-        L "So this is gill."
-        A "He has a nice looking house."
-        PC "Even with a street sign."
-        L "You want to go after him?"
-        A "If he has something to do with Mr. Anderson we might get something useful from him."
+        
+        if gill_house_seen_bob == False:
+            PC "Interesting profile."
+            L "So this person is called Gill Cameron."
+            A "Is there something interesting?"
+            PC "Nothing new. Only that he knows Bob's from work."
+        else:
+            PC "This person, it's Gill Cameron."
+            L "From the house post? Does he work for {color=[medievilColor]}Medievil{/color}?"
+            PC "Not from what i found. But he seems to at least work with them"
+            A "There was a street sign in that post from before. Maybe we could go to his place if we need more information."
         $ show_image_buttons = True
         show screen social_screen_gill
         $ show_textbox = False
         $ gil_visited = True
+        if gill_house_seen_bob == True:
+            $ renpy.notify("new objektives on your map")
         jump empty_label
     elif gil_visited == True:
         $ show_image_buttons = True
@@ -135,6 +178,26 @@ label social_button_4:
         $ show_textbox = False
         jump empty_label
 
+    label social_button_6:
+    show screen social_screen_gill
+    $ show_image_buttons = False
+    $ show_textbox = True
+    if gill_house_seen_bob == False:
+        L "Wow Gill has a nice looking house."
+        A "And even better a visible street sign. If he works with Bob Anderson then maybe we can check out his place if we need more information."
+        show screen social_screen_gill
+        $ show_textbox = False
+        $ gill_house_seen_gill = True
+        if gil_visited == True:
+            $ renpy.notify("new objektives on your map")
+            $ show_image_buttons = True
+        jump empty_label
+    else:
+        "You see the same house from the post on Bobs profile."
+        $ show_textbox = False
+        $ gill_house_seen_gill = True
+        $ show_image_buttons = True
+        jump empty_label
 
 label website1_button:
     $ show_image_buttons = False

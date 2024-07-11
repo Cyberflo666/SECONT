@@ -60,7 +60,7 @@ screen laptop_screen():
             idle "mail idle"
             hover "mail hover"
             focus_mask True
-            if player_warned == False and mail_1_text_unlocked[0] == 1 and mail_1_text_unlocked[1] == 1 and mail_1_text_unlocked[2] == 1:
+            if player_warned == False and mail_1_text_unlocked[0] == 0 and mail_1_text_unlocked[1] == 0 and mail_1_text_unlocked[2] == 0:
                 action Call("warning")
             else:
                 action Hide("laptop_screen"), Show("mail_screen")
@@ -69,7 +69,7 @@ screen laptop_screen():
             idle "social idle"
             hover "social hover"
             focus_mask True
-            action Hide("laptop_screen"), Show("social_screen")
+            action Hide("laptop_screen"), Show("social_screen_explore")
 
         imagebutton:
             idle "web idle"
@@ -96,7 +96,7 @@ define j = 0
 define mail_1_mistakes = 0
 
 screen mail_screen():
-    zorder 2
+    zorder 0
     modal False
     image "bg mail"
     image "phishing mail screen"
@@ -207,7 +207,7 @@ screen power_screen():
         yinitial 1.0
         image "alex laughing"
 
-screen social_screen():
+screen social_screen_explore():
     zorder 0
     modal False
     image "bg social home"
@@ -215,7 +215,13 @@ screen social_screen():
         imagebutton:
             idle "return arrow black idle" 
             hover "return arrow black hover" at return_arrow_black_pos
-            action Hide("social_screen"), Show("laptop_screen")
+            action Hide("social_screen_explore"), Show("laptop_screen")
+    if show_image_buttons == True:
+            imagebutton: #when hovering over bobs name
+                idle "search idle"
+                hover "search hover"
+                focus_mask True
+                action Hide("social_screen_explore"), Jump("social_button_1")
     viewport:
         area laptop_usable_area_social
         mousewheel True
@@ -234,12 +240,7 @@ screen social_screen():
                 area social_area
                 background "#00000000"
                 image "bg home post 3" 
-            if show_image_buttons == True:
-                imagebutton: #when hovering over search
-                        idle "website 1 idle"
-                        hover "website 1 hover"
-                        focus_mask True
-                        action Hide("social_screen"), Jump("social_button_1")
+
 
 screen social_screen_search():
     zorder 0
@@ -249,19 +250,62 @@ screen social_screen_search():
         imagebutton:
             idle "return arrow black idle" 
             hover "return arrow black hover" at return_arrow_black_pos
-            action Hide("social_screen_search"), Show("laptop_screen")
+            action Hide("social_screen_search"), Show("social_screen_explore")
+    if show_image_buttons == True:
+            imagebutton: #when hovering over bobs name
+                idle "home idle" 
+                hover "home hover" 
+                focus_mask True
+                action Hide("social_screen_search"), Show("social_screen_explore")
+    vbox:
+        area laptop_usable_area_social
+        frame:
+            area social_area
+            background "#ffffff00" 
+            image "search result idle"
+            if show_image_buttons == True:
+                imagebutton: #when hovering over gils post 
+                    idle "search result idle" 
+                    hover "search result hover" 
+                    focus_mask True
+                    action Hide("social_screen_search"), Jump("social_button_2")    
+
+screen social_screen_bob_tag():
+    zorder 0
+    modal False
+    image "bg social home"
+    if show_image_buttons == True:    
+        imagebutton:
+            idle "return arrow black idle" 
+            hover "return arrow black hover" at return_arrow_black_pos
+            action Hide("social_screen_bob_tag"), Show("social_screen_search")
+    if show_image_buttons == True:    
+        imagebutton:
+            idle "home idle" 
+            hover "home hover"
+            focus_mask True
+            action Hide("social_screen_bob_tag"), Show("social_screen_search")
+    
     vbox:
         area laptop_usable_area_social
         frame:
             area social_area
             background "#00000000"
-            image "bg explore" 
-        if show_image_buttons == True:
-            imagebutton: #when hovering over bobs name
-                idle "notes idle" 
-                hover "notes hover" 
-                focus_mask True
-                action Hide("social_screen_search"), Jump("social_button_2")
+            image "bg bob anderson tag" 
+            if show_image_buttons == True:
+                imagebutton: #when hovering over gils post 
+                    idle "clue 2 idle" 
+                    hover "clue 2 hover" 
+                    focus_mask True
+                    action Hide("social_screen_bob_tag"), Jump("social_button_3")
+            if show_image_buttons == True:    
+                textbutton"":
+                    #idle "clue 2 idle" 
+                    #hover "clue 2 hover"
+                    #background "#000000ff"
+                    area (690,500,270,78)
+                    #focus_mask False
+                    action Hide("social_screen_bob_tag"), Show("social_screen_bob")
 
 screen social_screen_bob():
     zorder 0
@@ -271,19 +315,36 @@ screen social_screen_bob():
         imagebutton:
             idle "return arrow black idle" 
             hover "return arrow black hover" at return_arrow_black_pos
-            action Hide("social_screen_bob"), Show("laptop_screen")
+            action Hide("social_screen_bob"), Show("social_screen_search")
+    
+    if show_image_buttons == True:    
+        imagebutton:
+            idle "home idle" 
+            hover "home hover"
+            focus_mask True
+            action Hide("social_screen_bob"), Show("social_screen_explore")
+    
     vbox:
         area laptop_usable_area_social
         frame:
             area social_area
             background "#00000000"
-            image "bg social bob" 
-        if show_image_buttons == True:
-            imagebutton: #when hovering over gils post 
-                idle "notes idle" 
-                hover "notes hover" 
-                focus_mask True
-                action Hide("social_screen_bob"), Jump("social_button_3")
+            image "bg bob anderson" 
+            if show_image_buttons == True and gill_house_seen_bob == False:
+                imagebutton: #when hovering over gils post 
+                    idle "clue 1 idle" 
+                    hover "clue 1 hover" 
+                    focus_mask True
+                    action Hide("social_screen_bob"), Jump("social_button_4")
+            if show_image_buttons == True:    
+                textbutton"":
+                    #idle "clue 2 idle" 
+                    #hover "clue 2 hover"
+                    #background "#00000000"
+                    area (950,500,280,78)
+                    #focus_mask False
+                    action Hide("social_screen_bob"), Show("social_screen_bob_tag")
+                
 
 screen social_screen_gill():
     zorder 0
@@ -291,22 +352,27 @@ screen social_screen_gill():
     image "bg social home"
     if show_image_buttons == True:    
         imagebutton:
+            idle "home idle" 
+            hover "home hover"
+            focus_mask True
+            action Hide("social_screen_gill"), Show("social_screen_explore")
+    if show_image_buttons == True:    
+        imagebutton:
             idle "return arrow black idle" 
             hover "return arrow black hover" at return_arrow_black_pos
-            action Hide("social_screen_gill"), Show("laptop_screen")
+            action Hide("social_screen_gill"), Show("social_screen_bob")
     vbox:
         area laptop_usable_area_social
         frame:
             area social_area
             background "#00000000"
-            image "bg gill profile" 
-        if show_image_buttons == True:
-            imagebutton: #when hovering over gils post 
-                idle "notes idle" 
-                hover "notes hover" 
-                focus_mask True
-                action Hide("social_screen_gill"), Jump("social_button_4")
-
+            image "bg gill cameron" 
+            if show_image_buttons == True and gill_house_seen_gill == False:
+                    imagebutton: #when hovering over gils post 
+                        idle "clue 3 idle" 
+                        hover "clue 3 hover" 
+                        focus_mask True
+                        action Hide("social_screen_gill"), Jump("social_button_6")
 
 
         
