@@ -65,7 +65,7 @@ label menu_1_2:
 play music main_music1 volume loudness fadeout 1.0
 menu:
     "Take a look at his windows." if window_not_done:
-        PC "His windows, if they're still open, Leonie can climb up there and open the door from inside."
+        PC "His windows. If they're still open, Leonie can climb up there and open the door from inside."
         show leonie surprised at left
         with dissolve
 
@@ -137,7 +137,7 @@ label choice_1_2_janitor:
     $ gloss_bribery_seen = True
     $ gloss_impersonation_seen = True
 menu:
-    "Try to impersonate as Felix to get him to open the door." :
+    "Try to impersonate as Felix." :
         PC "Maybe one of us should try to pose as Felix to get him to open the door."
         jump help_from_janitor
     
@@ -156,7 +156,7 @@ menu:
         show leonie thinking at left
         with dissolve
 
-        "You hear a loud exchange of words and soon after Alex returns defeated."
+        "You hear a loud exchange of words and soon after, Alex returns defeated."
         show alex serious1 at alex_right
         with dissolve
 
@@ -351,7 +351,7 @@ label help_from_janitor:
     
     if trust > 75:
         J "Well, you seem to be honest."
-        J "Let's go to your room then shall we."
+        J "Let's go to your room then, shall we."
         hide screen round_rect
         jump janitor_trust
     else:
@@ -438,8 +438,10 @@ label felix_room:
     L "Typically, people choose passwords they can easily remember. Given Felix's conspiratorial nature, I doubt he has something simple like \"qwerty\" , \"123456\" or \"password.\" Let's look around for any hints."
 
     scene bg felix room
+    with dissolve
     "Investigate the room with your mouse."
     show screen phone_icon
+    with dissolve
 
 label felix_room_menu:
     scene bg felix room
@@ -498,7 +500,7 @@ label wall2:
     scene bg f wall2 zoom
     with dissolve
 
-    ">ou catch sight of a portal poster. The following quote sticks out:\"the cake is a lie\"."
+    "You catch sight of a \"portal\" poster. The following quote sticks out: \"the cake is a lie\"."
     $ poster_seen = True
     $ notes.add_data(NoteData("info: \"the cake is a lie\""))
     show screen phone_icon
@@ -560,6 +562,9 @@ label password_cracked:
     $ password_icon = False
     call hide_felix_room_interactables
     hide screen phone_hand_password
+    hide screen phone_hand
+    hide screen phone_icon
+    $ show_image_buttons = True
     show screen phone_icon
     show leonie happy at left
     show alex neutral at alex_right
@@ -624,7 +629,7 @@ menu:
 
         A "At least now we know that the police won't be much help against {color=[medievilColor]}Medievil{/color}. Looks like we're on our own."
         L "Let's get back to our dorm and take matters in our own hands."
-        PC "I left my laptop in the kitchen, so lets just get going there."
+        PC "I left my laptop in the kitchen, so let's just get going there."
 
         jump level_2_start
 

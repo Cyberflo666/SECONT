@@ -45,9 +45,9 @@ label dorm_1:
 
     "The late afternoon sun filters through the blinds, casting long shadows across a cluttered dorm room. Books, papers, and empty snack wrappers are scattered haphazardly across the floor, a testament to the chaotic energy of finals week."
     
-    "[PN], with your dark hair pulled into a messy bun, you sit hunched over your laptop, the glow of the screen illuminating the intricate henna tattoos on your left hand."
+    "With your dark hair pulled into a messy bun, you sit hunched over your laptop, the glow of the screen illuminating the intricate henna tattoos on your left hand."
 
-    PC "I can't focus. Complex systems theory is proving to be... well, complex. My eyes glaze over the lines of code and algorithms, and my mind starts to drift."
+    PC "I can't focus. Complex systems theory is proving to be... well, complex."
 
     show alex neutral at alex_right
     with dissolve 
@@ -101,7 +101,7 @@ label dorm_1:
     show alex serious1 at alex_right
     with dissolve
 
-    A "I don't know. He was mumbling something about his internship at {color=[medievilColor]}Medievil{/color}, some experiment called NeuroMend... It was all very cryptic."
+    A "I don't know. He was mumbling something about his internship at {color=[medievilColor]}Medievil{/color}, some experiment called \"NeuroMend\"... It was all very cryptic."
 
     hide alex
     hide leonie
@@ -118,7 +118,9 @@ label dorm_1:
     show felix shouting at center 
     with dissolve
 
-    F "(Gasping for air, his voice barely a whisper) {color=[medievilColor]}Medievil{/color}! They're not what they seem. This... this is everything. Trust no one."
+    "Felix gasps for air, his voice barely a whisper"
+
+    F " {color=[medievilColor]}Medievil{/color}! They're not what they seem. This... this is everything. Trust no one."
 
     "With trembling hands, he thrusts a battered flash drive into your hand, then turns and flees, disappearing into the dimly lit hallway."
 
@@ -155,7 +157,7 @@ label choice0_ignore:
         show alex serious2 at alex_right
         with dissolve
 
-        A "(His eyes widening in disbelief) Are you serious? [PN], Felix is our friend. We can't just abandon him!"
+        A "Are you serious? [PN], Felix is our friend. We can't just abandon him!"
 
         show leonie thinking at left
         with dissolve
@@ -179,7 +181,7 @@ label choice0_ignore:
         show alex surprised at alex_right 
         with dissolve
 
-        A "(Frustration edging into his voice) Seriously? We're just going to let him disappear? What if he's in real trouble?"
+        A "Seriously? We're just going to let him disappear? What if he's in real trouble?"
 
         PC "I... I don't know what to do. I'm scared."
 

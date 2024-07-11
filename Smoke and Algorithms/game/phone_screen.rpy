@@ -117,11 +117,14 @@ screen phone_hand_password():
         xalign 0.7
 
     # Return arrow
-    imagebutton:
-        hover "return hover" at icon_pos
-        idle "return idle" 
-        focus_mask True
-        action Hide("phone_hand_password"), Show("phone_hand")
+    if show_image_buttons:
+        imagebutton:
+            hover "return hover" at icon_pos
+            idle "return idle" 
+            focus_mask True
+            action Hide("phone_hand_password"), Show("phone_hand")
+    else:
+        image "return idle" at icon_pos
     frame:
         background "#00000000"
         area(675, 150, 460, 50)
@@ -157,7 +160,7 @@ screen phone_hand_password():
 
 
 screen reset_password_text_timer():
-    image "images/characters/alex/alex laughing.png"
+    #image "images/characters/alex/alex laughing.png"
     timer 2.0 action Function(reset_password_text), Hide("reset_password_text_timer")
 
 
@@ -174,6 +177,7 @@ init python:
         global password_check_text
         global first_guess
         global password_guessed_correct
+        global show_image_buttons
 
         if password_guessed == False or first_guess == password_guess:
             first_guess = password_guess
@@ -194,16 +198,17 @@ init python:
         password_check_text = "Correct password"
             
         password_guessed_correct = True
+        show_image_buttons = False
 
         # Correct Password: thecakeisalie0417911
     
     def reset_password_text():
+        global show_image_buttons
         global password_check_text
         global password_guessed_correct
         password_check_text = ""
-
         if password_guessed_correct:
-            renpy.notify("I come from here")
+            #renpy.notify("I come from here")
             renpy.jump("password_cracked")
         return
 
@@ -360,7 +365,7 @@ screen phone_hand_map():
                 action Function(hide_all_screens), Jump("dumpsterdive")
 
     # Gills Place
-    if gil_visited == True:
+    if gil_visited == True and open_gil_post:
         imagebutton:
             idle "map gill house idle"
             hover "map gill house hover"
