@@ -156,7 +156,8 @@ screen phone_hand_password():
     frame:
         background "#58585800"
         area(675, 700, 460, 50)
-        text "{size=30}{color=[password_check_color]}{b}[password_check_text]{/b}{/color}{/size}" at center
+        text "{size=30}{color=[password_check_color]}{b}[password_check_text]{/b}{/color}{/size}" at center:
+            outlines [(3, "#000000ff", 0, 0)]
 
 
 screen reset_password_text_timer():
@@ -317,7 +318,7 @@ screen phone_hand_contact():
 ###################################### Map ############################################
 
 init python:
-    def notify_function():
+    def already_here_notify():
         renpy.notify("You are already here.")
 
 screen phone_hand_map():
@@ -332,7 +333,10 @@ screen phone_hand_map():
         idle "map dorms idle"
         hover "map dorms hover"  
         focus_mask True
-        action Function(notify_function)
+        if hide_map:
+            action Call("map_disabled")
+        else:
+            action Function(already_here_notify)
 
     # University
     if website_2_not_seen == False:
@@ -340,7 +344,9 @@ screen phone_hand_map():
             idle "map university idle"
             hover "map university hover"
             focus_mask True
-            if hide_map:
+            if current_location == 1:
+                action Function(already_here_notify)
+            elif hide_map:
                 action Call("map_disabled")
             elif uni_access_denied:
                 action Call("lab_access_denied")
@@ -365,7 +371,7 @@ screen phone_hand_map():
                 action Function(hide_all_screens), Jump("dumpsterdive")
 
     # Gills Place
-    if gil_visited == True and open_gil_post:
+    if gil_visited == True and (gill_house_seen_bob or gill_house_seen_gill):
         imagebutton:
             idle "map gill house idle"
             hover "map gill house hover"

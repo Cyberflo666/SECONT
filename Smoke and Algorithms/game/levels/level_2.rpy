@@ -35,7 +35,7 @@ label level_2_start:
     PC "I also don't think that we have access to his workplace and we probably won't find it just sitting on some website."
     L "If that is the problem we could try to write a phishing email to Bob Anderson so that he grants us access."
     A "Do you think it's realistic that we can convince him to do that?"
-    L "Depends on what we fin out about Bob Anderson's background. Maybe we there is something we can use on his social media or some {color=[medievilColor]}Medievil{/color} web page?"
+    L "Depends on what we find out about Bob Anderson's background. Maybe there is something we can use on his social media or some {color=[medievilColor]}Medievil{/color} web page?"
     PC "Either way we should do some research on him."
 
 label research:
@@ -287,7 +287,7 @@ label dumpsterdive:
         show alex serious2 at alex_right
         with dissolve
         A "People often times throw away sensitive information without disposing of it correctly. If we look at the trash we could find something compromising that could get us a lead."
-        "You, Alex and Leoni go to the building."
+        "You, Alex and Leonie go to the building."
         $ dumpster_explained = True 
 
     hide alex with moveoutright
@@ -326,9 +326,9 @@ label after_dumpsterdive:
     A "Nice one, that's more like what we're looking for. Now what does it say?"
     PC "It's a receipt from Restaurante Italiano."
     L "Isn't that the super fancy expensive restaurant where only celebrities and rich people go?"
-    A "Yup ive heard a lot of wild things about that restaurant. You're right, only the higher classes can afford it."
+    A "Yup, I've heard a lot of wild things about that restaurant. You're right, only the higher classes can afford it."
     PC "Seems like Bob Anderson went there with someone."
-    L "I wonder who he went there with. The food and drinks definitely look like for 2 people."
+    L "I wonder whom he went there with. The food and drinks definitely look like for 2 people."
     $ gloss_dumpster_seen = True
     $ dumpster_doven = True
 
@@ -341,7 +341,7 @@ label dumpsterdive2:
     show alex serious1 at alex_right
     with dissolve
 
-    PC "Well then i suggest we should head out to Gill's place and investigate there."
+    PC "Well then I suggest we should head out to Gill's place and investigate there."
 
     if dumpster_explained == False:
         show leonie thinking at left 
@@ -356,7 +356,7 @@ label dumpsterdive2:
         show alex serious2 at alex_right
         with dissolve
         A "People often times throw away sensitive information without disposing of it correctly. If we look at the trash we could find something compromising that could get us a lead."
-        "You, Alex and Leoni go to the building."
+        "You, Alex and Leonie go to the building."
         $ dumpster_explained = True 
 
     hide alex with moveoutright
@@ -370,14 +370,14 @@ label dumpsterdive2:
     show alex neutral at alex_right
     with  moveinright
 
-    PC "Wow what a beautiful looking house."
+    PC "Wow, what a beautiful looking house."
     show leonie happy at left
     with dissolve
 
     L "Are we sure Gill is a bad guy? no way an evil person has such a wonderful house."
     show alex neutral at alex_right
     with dissolve
-    A "Well in movies the bad guys tend to own a more expensive house, since they earn more money through illegal ways, than the average people do."
+    A "Well, in movies the bad guys tend to own a more expensive house, since they earn more money through illegal ways, than the average people do."
 
     PC "I suggest we should just go ahead and start, the more time we spend here the more suspicion we raise."
 
@@ -392,7 +392,7 @@ label dumpsterdive2:
 
     show alex angry at alex_right
     with dissolve
-    A "Well if you're not so enthusiastic about it then I suggest you look out and warn us in case anyone comes here. Me and [PN] will go on then don't worry."
+    A "Well, if you're not so enthusiastic about it, then I suggest you look out and warn us in case anyone comes here. [PN] and I will go on then don't worry."
 
     show leonie sad at left 
     with dissolve
@@ -469,12 +469,14 @@ label dumpster_empty:
 
 label visitlab:
     $ show_textbox = True
+    $ current_location = 1
+
     scene bg new kitchen
     show leonie serious at left
     show alex serious1 at alex_right
     with dissolve
 
-    PC "Fine I'll suggest that we head to the university lab then. The lab is in a part of the campus that practically never gets used so that's quite shady."
+    PC "Fine, I'll suggest that we head to the university lab then. The lab is in a part of the campus that practically never gets used so that's quite shady."
     show leonie thinking at left 
     with dissolve
 
@@ -765,6 +767,7 @@ label empty_trash:
     #$ show_textbox = False
     #$ medical_tools_seen = True
     #jump inside_lab
+
 label inside_lab_done:
     call hide_lab_screens
     scene bg medievil lab
@@ -773,7 +776,8 @@ label inside_lab_done:
     show leonie neutral at left
     show alex neutral at alex_right
     with dissolve
-    PC "The symbols on the screen. Do they show the movement of the rat?"
+    PC "I believe I got what this place is about."
+    A "The symbols on the screen. Do they show the movement of the rat?"
 
     show leonie serious at left
     with dissolve
@@ -800,7 +804,9 @@ label inside_lab_done:
     "As you leave the lab you make sure that everything is left like you found it when you entered. After that you head out the back entrance and venture on home."
     $ lab_seen = True
     with dissolve
+
     $ hide_map = False
+    $ current_location = 0
     jump research
 
 label phishing_mail_done:

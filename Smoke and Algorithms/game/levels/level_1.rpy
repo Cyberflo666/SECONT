@@ -591,7 +591,7 @@ label password_cracked:
     show leonie serious at left
     with dissolve
 
-    L "Looks like he's Felixes supervisor or something."
+    L "Looks like he's Felix's supervisor or something."
     PC "Is this shit real or is Felix just getting too far into his conspiracy obsession."
     show alex neutral at alex_right
     with dissolve
