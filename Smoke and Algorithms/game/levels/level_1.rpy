@@ -136,6 +136,7 @@ label choice_1_2_lock_pick:
 label choice_1_2_janitor:
     $ gloss_bribery_seen = True
     $ gloss_impersonation_seen = True
+    $ phone_not_glossary = True
 menu:
     "Try to impersonate as Felix." :
         PC "Maybe one of us should try to pose as Felix to get him to open the door."
@@ -565,7 +566,6 @@ label password_cracked:
     hide screen phone_hand
     hide screen phone_icon
     $ show_image_buttons = True
-    show screen phone_icon
     show leonie happy at left
     show alex neutral at alex_right
     with dissolve

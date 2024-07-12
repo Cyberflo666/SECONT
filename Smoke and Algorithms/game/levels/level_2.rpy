@@ -136,7 +136,8 @@ label social_button_4:
         $ show_textbox = False
         $ gill_house_seen_bob = True
         if gil_visited == True:
-            $ renpy.notify("new objektives on your map")
+            $ renpy.notify("new objectives on your map")
+            $ phone_not_map = True
         jump empty_label
     else:
         "You see the same house from the picture on gills profile"
@@ -170,7 +171,8 @@ label social_button_5:
         $ show_textbox = False
         $ gil_visited = True
         if gill_house_seen_bob == True:
-            $ renpy.notify("new objektives on your map")
+            $ renpy.notify("new objectives on your map")
+            $ phone_not_map = True
         jump empty_label
     elif gil_visited == True:
         $ show_image_buttons = True
@@ -189,7 +191,8 @@ label social_button_5:
         $ show_textbox = False
         $ gill_house_seen_gill = True
         if gil_visited == True:
-            $ renpy.notify("new objektives on your map")
+            $ renpy.notify("new objectives on your map")
+            $ pohone_not_map = True
             $ show_image_buttons = True
         jump empty_label
     else:
@@ -216,6 +219,7 @@ label website2_button:
     $ show_image_buttons = False
     $ show_textbox = True
     $ website_2_not_seen = False
+    $ phone_not_map = True
     show screen website2_screen
     PC "Here is something about a lab at our university. According to these news it was offered to {color=[medievilColor]}Medievil{/color} for research."
     L "Maybe we should check it out."
@@ -231,6 +235,7 @@ label website4_button:
     $ show_image_buttons = False
     $ show_textbox = True
     $ website_3_not_seen = False
+    $ phone_not_map = True
     show screen website4_screen
     PC "Here's something interesting."
     A "What?"
@@ -330,6 +335,7 @@ label after_dumpsterdive:
     PC "Seems like Bob Anderson went there with someone."
     L "I wonder whom he went there with. The food and drinks definitely look like for 2 people."
     $ gloss_dumpster_seen = True
+    $ phone_not_glossary = True
     $ dumpster_doven = True
 
     jump research 
@@ -600,6 +606,7 @@ label wending_maschine:
 
 label lab_wait:
     $ gloss_tailgating_seen = True
+    $ phone_not_glossary = True
     scene bg uni hallway #need better spot than hallway
     with dissolve
     "As you return you got to the location Leonie sent you. A desk at the snack machine with four chairs."
@@ -832,6 +839,7 @@ label phishing_mail_done:
     show alex smile at alex_right
     with dissolve
     A "Look, he even sent us the access codes to the back entrance of the facility. Just like we expected."
+    jump in_progress
 
 label phishing_mail_fail:
     $ show_textbox = True
@@ -860,6 +868,16 @@ label phishing_mail_fail:
     with dissolve
     L "Hmm. That mail was doomed from the start"
     jump game_over
+
+label in_progress:
+    scene black
+    with dissolve
+    $ show_textbox = False
+    "{size=90}Work in progress{/size}\nThank you for playing."
+    with dissolve
+    pause 2.5
+    return
+
 
 label empty_label:
     ""

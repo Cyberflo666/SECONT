@@ -31,7 +31,28 @@ transform change_arrow:
 # Variables
 define phone_usable_area = (675, 140, 470, 730)
 define phone_normal_text_color = "#000000"
-define gil_social_media_seen = False 
+define gil_social_media_seen = False
+# Notification variables
+default phone_not_glossary = False
+default phone_not_gallery = False
+default phone_not_notes = False
+default phone_not_map = False
+
+init python:
+    def reset_notification(id):
+        global phone_not_glossary
+        global phone_not_gallery
+        global phone_not_notes
+        global phone_not_map
+        
+        if id == 0:
+            phone_not_glossary = False
+        elif id == 1:
+            phone_not_gallery = False
+        elif id == 2:
+            phone_not_notes = False
+        elif id == 3:
+            phone_not_map = False
 
 
 screen phone_hand():
@@ -63,6 +84,11 @@ screen phone_hand():
         idle "camera idle"
         focus_mask True
         action Hide("phone_hand"), Show("phone_hand_camera")
+    if phone_not_gallery:
+        image "images/objects/phone/phone notify circ.png":
+                zoom 0.2
+                xpos 1085
+                ypos 850
     
     imagebutton:
         hover "contacts hover" at icon_pos
@@ -75,18 +101,33 @@ screen phone_hand():
         idle "map idle"
         focus_mask True
         action Hide("phone_hand"), Show("phone_hand_map")
+    if phone_not_map:
+        image "images/objects/phone/phone notify circ.png":
+                zoom 0.2
+                xpos 840
+                ypos 380
 
     imagebutton:
         hover "notes hover" at icon_pos
         idle "notes idle"
         focus_mask True
         action Hide("phone_hand"), Show("phone_hand_notes")
+    if phone_not_notes:
+        image "images/objects/phone/phone notify circ.png":
+                zoom 0.2
+                xpos 1060
+                ypos 160
 
     imagebutton:
         hover "glossary hover" at icon_pos
         idle "glossary idle"
         focus_mask True
         action Hide("phone_hand"), Show("phone_hand_glossary")
+    if phone_not_glossary:
+        image "images/objects/phone/phone notify circ.png":
+                zoom 0.2
+                xpos 1060
+                ypos 380
 
     if password_icon == True:
         imagebutton:
@@ -213,11 +254,13 @@ init python:
             renpy.jump("password_cracked")
         return
 
-
+#################################### Gallery ##########################################
 screen phone_hand_camera():
     zorder 2
     modal True
     add Solid("#000c")
+
+    on "show" action Function(reset_notification, 1)
 
     image "images/objects/phone/phone hand empty.png":
         zoom 1.3
@@ -326,6 +369,8 @@ screen phone_hand_map():
     modal True
     add Solid("#000c")
 
+    on "show" action Function(reset_notification, 3)
+
     image "images/objects/phone/map/bg map blank.png"
     
     # Dorms
@@ -403,19 +448,21 @@ init python:
         renpy.hide_screen("website3_screen")
         renpy.hide_screen("website4_screen")
         renpy.hide_screen("laptop_screen")
-        renpy.hide_screen("social_screen")
+        renpy.hide_screen("social_screen_explore")
         renpy.hide_screen("social_screen_search")
         renpy.hide_screen("social_screen_bob")
         renpy.hide_screen("social_screen_gill")
+        renpy.hide_screen("social_screen_bob_tag")
         return
 
-
-# Screen for displaying the notes the player collects throughout the game
+##################################### Notes ###########################################
 define notes_font_size = 25
 screen phone_hand_notes():
     zorder 2
     modal True
     add Solid("#000c")
+    
+    on "show" action Function(reset_notification, 2)
 
     image "images/objects/phone/phone hand empty.png":
         zoom 1.3
@@ -481,6 +528,8 @@ screen phone_hand_glossary():
     zorder 2
     modal True
     add Solid("#000c")
+
+    on "show" action Function(reset_notification, 0)
 
     image "images/objects/phone/phone hand empty.png":
         zoom 1.3
@@ -558,7 +607,6 @@ init python:
 ################################## Phone Icon #########################################
 
 screen phone_icon():
-    
     zorder 2
     modal False
     if show_image_buttons:
@@ -568,3 +616,10 @@ screen phone_icon():
             
             focus_mask True
             action Show("phone_hand"), Hide("phone_icon")
+        
+        # Displays notification circ if there's any new notification
+        if phone_not_glossary or phone_not_gallery or phone_not_notes or phone_not_map:
+            image "images/objects/phone/phone notify circ.png":
+                zoom 0.2
+                xpos 225
+                ypos 800
