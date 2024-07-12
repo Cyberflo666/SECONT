@@ -1,6 +1,9 @@
 # Compiled Renpy scripts
 *.rpyc
 
+# Renpy backup files
+*.bak
+
 # Visual studio
 *.vscode
 

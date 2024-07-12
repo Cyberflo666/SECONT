@@ -25,7 +25,6 @@ default gill_house_seen_bob = False
 default gill_house_seen_gill = False
 
 label level_2_start:
-    play music main_music1 volume 0.1
     scene bg new kitchen 
     
     "You walk over and gather around a table while opening up your laptop."
@@ -44,6 +43,7 @@ label research:
     show screen laptop_screen
     with dissolve
     $ show_textbox = False
+    play music main_music1 volume loudness fadeout 1.0
     ""
     jump empty_label
 
@@ -226,7 +226,7 @@ label website2_button:
     A "You think we have access?"
     L "I think we can get it if we really want."
     $ show_image_buttons = True
-    call websearch_done
+    call websearch_done from _call_websearch_done
     show screen website2_screen
     $ show_textbox = False
     jump empty_label
@@ -242,7 +242,7 @@ label website4_button:
     PC "The location of Mr. Andersons Office."
     L "Maybe we should pay him a visit."
     $ show_image_buttons = True
-    call websearch_done
+    call websearch_done from _call_websearch_done_1
     show screen website4_screen
     $ show_textbox = False
     jump empty_label
@@ -304,6 +304,7 @@ label dumpsterdive:
     with  moveinleft
     show alex neutral at alex_right
     with  moveinright
+    play music suspense_music1 volume loudness fadeout 1.0
 
     PC "Hmm, the building seems bigger than described on the internet."
     show leonie happy at left
@@ -337,7 +338,6 @@ label after_dumpsterdive:
     $ gloss_dumpster_seen = True
     $ phone_not_glossary = True
     $ dumpster_doven = True
-
     jump research 
 
 label dumpsterdive2:
@@ -375,6 +375,7 @@ label dumpsterdive2:
     with  moveinleft
     show alex neutral at alex_right
     with  moveinright
+    play music suspense_music1 volume loudness fadeout 1.0
 
     PC "Wow, what a beautiful looking house."
     show leonie happy at left
@@ -609,6 +610,7 @@ label lab_wait:
     $ phone_not_glossary = True
     scene bg uni hallway #need better spot than hallway
     with dissolve
+    play music mystery_music1 volume loudness fadeout 1.0
     "As you return you got to the location Leonie sent you. A desk at the snack machine with four chairs."
     show leonie neutral at left
     show alex neutral at alex_right
@@ -701,7 +703,7 @@ label inside_lab:
 
 
 label rat_in_cage_left:
-    call hide_lab_screens
+    call hide_lab_screens from _call_hide_lab_screens
     scene bg left cage zoom
     with dissolve 
     $ show_textbox = True
@@ -711,7 +713,7 @@ label rat_in_cage_left:
     $ rat_seen = True
     jump inside_lab
 label left_pc_stats:
-    call hide_lab_screens
+    call hide_lab_screens from _call_hide_lab_screens_1
     scene bg left pc zoom
     with dissolve 
     $ show_textbox = True
@@ -720,7 +722,7 @@ label left_pc_stats:
     $ left_pc_seen = True
     jump inside_lab
 label left_wall_obj:
-    call hide_lab_screens
+    call hide_lab_screens from _call_hide_lab_screens_2
     scene bg left wall zoom
     with dissolve
     $ show_textbox = True
@@ -729,7 +731,7 @@ label left_wall_obj:
     $ left_wall_seen = True 
     jump inside_lab
 label symbols_on_screen:
-    call hide_lab_screens
+    call hide_lab_screens from _call_hide_lab_screens_3
     scene bg monitor zoom
     with dissolve
     $ show_textbox = True
@@ -738,7 +740,7 @@ label symbols_on_screen:
     $ symbols_seen = True
     jump inside_lab
 label rat_in_cage_right:
-    call hide_lab_screens
+    call hide_lab_screens from _call_hide_lab_screens_4
     scene bg right cage zoom
     with dissolve
     $ show_textbox = True
@@ -748,7 +750,7 @@ label rat_in_cage_right:
     $ rat_seen = True
     jump inside_lab
 label right_pc_stats:
-    call hide_lab_screens
+    call hide_lab_screens from _call_hide_lab_screens_5
     scene bg right pc zoom
     with dissolve
     $ show_textbox = True
@@ -757,7 +759,7 @@ label right_pc_stats:
     $ left_pc_seen = True
     jump inside_lab
 label empty_trash:
-    call hide_lab_screens
+    call hide_lab_screens from _call_hide_lab_screens_6
     scene bg trash zoom
     with dissolve
     $ show_textbox = True
@@ -776,7 +778,7 @@ label empty_trash:
     #jump inside_lab
 
 label inside_lab_done:
-    call hide_lab_screens
+    call hide_lab_screens from _call_hide_lab_screens_7
     scene bg medievil lab
     with dissolve
     $ show_textbox = True
@@ -824,6 +826,7 @@ label phishing_mail_done:
     show leonie thinking at left
     show alex smile at alex_right
     with dissolve
+    play music main_music1 volume loudness fadeout 1.0
 
     A "Alright, looking good. Now we just need to hope Bob falls for the mail."
     scene black
@@ -849,6 +852,7 @@ label phishing_mail_fail:
     show leonie serious at left
     show alex serious1 at alex_right
     with dissolve
+    play music main_music1 volume loudness fadeout 1.0
 
     L "No, that doesn't seem right. We can hope for it but I doubt Bob Anderson will fall for this Mail."
 

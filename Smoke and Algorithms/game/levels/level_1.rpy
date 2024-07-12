@@ -256,6 +256,7 @@ label help_from_janitor:
     with dissolve
     show screen round_rect(trust)
     with dissolve
+    play music funky_music1 volume loudness fadeout 1.0
 
     menu:
         J "Is this urgent? I'm already on my way to help with the printers and I've got my hands full of work."
@@ -278,7 +279,7 @@ label help_from_janitor:
             $ trust -= trust_delta
  
 
-    call janitor_look(trust)
+    call janitor_look(trust) from _call_janitor_look
     show screen round_rect(trust)
 
     menu:
@@ -301,7 +302,7 @@ label help_from_janitor:
             A "Isn't this your job, now go and help us."
             $ trust -= trust_delta
 
-    call janitor_look(trust)
+    call janitor_look(trust) from _call_janitor_look_1
     show screen round_rect(trust)
 
     menu:
@@ -324,7 +325,7 @@ label help_from_janitor:
             A "I've lost it a couple of days ago im sorry."
             $ trust -= trust_delta
 
-    call janitor_look(trust)
+    call janitor_look(trust) from _call_janitor_look_2
     show screen round_rect(trust)
 
     menu:
@@ -347,9 +348,10 @@ label help_from_janitor:
             A "I'm sure the office will understand, you are helping out a student in need."
             $ trust -= trust_delta
 
-    call janitor_look(trust)
+    call janitor_look(trust) from _call_janitor_look_3
     show screen round_rect(trust)
-    
+    play music main_music1 volume loudness fadeout 1.0
+
     if trust > 75:
         J "Well, you seem to be honest."
         J "Let's go to your room then, shall we."
@@ -446,7 +448,7 @@ label felix_room:
 
 label felix_room_menu:
     scene bg felix room
-    call show_felix_room_interactables
+    call show_felix_room_interactables from _call_show_felix_room_interactables
     with dissolve
     "Use your phone to crack the password."
     jump felix_room_menu
@@ -458,7 +460,7 @@ menu:
 """
 
 label notebooks:
-    call hide_felix_room_interactables
+    call hide_felix_room_interactables from _call_hide_felix_room_interactables
     hide screen phone_icon
 
     scene bg f notebooks zoom
@@ -472,7 +474,7 @@ label notebooks:
     jump felix_room_menu
 
 label bin:
-    call hide_felix_room_interactables
+    call hide_felix_room_interactables from _call_hide_felix_room_interactables_1
     hide screen phone_icon
 
     scene bg f bin zoom
@@ -484,7 +486,7 @@ label bin:
     jump felix_room_menu
 
 label bed:
-    call hide_felix_room_interactables
+    call hide_felix_room_interactables from _call_hide_felix_room_interactables_2
     hide screen phone_icon
 
     scene bg f bed zoom
@@ -495,7 +497,7 @@ label bed:
     jump felix_room_menu
 
 label wall2:
-    call hide_felix_room_interactables
+    call hide_felix_room_interactables from _call_hide_felix_room_interactables_3
     hide screen phone_icon
 
     scene bg f wall2 zoom
@@ -508,7 +510,7 @@ label wall2:
     jump felix_room_menu
 
 label wall3:
-    call hide_felix_room_interactables
+    call hide_felix_room_interactables from _call_hide_felix_room_interactables_4
     hide screen phone_icon
 
     scene bg f wall3 zoom
@@ -521,7 +523,7 @@ label wall3:
     jump felix_room_menu
 
 label map:
-    call hide_felix_room_interactables
+    call hide_felix_room_interactables from _call_hide_felix_room_interactables_5
     hide screen phone_icon
 
     scene bg f map zoom
@@ -534,7 +536,7 @@ label map:
     jump felix_room_menu
 
 label wall1:
-    call hide_felix_room_interactables
+    call hide_felix_room_interactables from _call_hide_felix_room_interactables_6
     hide screen phone_icon
 
     scene bg f wall1 zoom
@@ -546,7 +548,7 @@ label wall1:
     jump felix_room_menu
 
 label pc:
-    call hide_felix_room_interactables
+    call hide_felix_room_interactables from _call_hide_felix_room_interactables_7
     hide screen phone_icon
 
     scene bg f pc zoom
@@ -561,7 +563,7 @@ label pc:
 label password_cracked:
     hide screen reset_password_text_timer
     $ password_icon = False
-    call hide_felix_room_interactables
+    call hide_felix_room_interactables from _call_hide_felix_room_interactables_8
     hide screen phone_hand_password
     hide screen phone_hand
     hide screen phone_icon
