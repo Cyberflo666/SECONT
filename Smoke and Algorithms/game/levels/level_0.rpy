@@ -42,6 +42,10 @@ label dorm_1:
     play music funky_music1 volume loudness fadeout 1.0
     scene bg new kitchen
     with dissolve
+label dorm_1:
+    play music funky_music1 volume loudness fadeout 1.0
+    scene bg new kitchen
+    with dissolve
 
     "The late afternoon sun filters through the blinds, casting long shadows across a cluttered dorm room. Books, papers, and empty snack wrappers are scattered haphazardly across the floor, a testament to the chaotic energy of finals week."
     
@@ -52,11 +56,6 @@ label dorm_1:
     show alex neutral at alex_right
     with dissolve 
 
-    "Alex, sprawled across the floor amidst a sea of open books, lets out a dramatic sigh."
-
-    show alex smile at alex_right
-    with dissolve 
-
     A "Okay, I officially surrender to the forces of academia. My brain is officially mush."
 
     "you chuckle, a welcome distraction from your studies."
@@ -65,8 +64,37 @@ label dorm_1:
     
     "Alex groans dramatically, then reaches for a half-eaten slice of pizza."
 
+    show alex smile at alex_right
+    with dissolve 
+
+label phishing_game:
+
+    A "Hey, speaking of distractions... Oh! My phone just buzzed. Probably another spam email from that Nigerian prince who wants to share his fortune with me."
+
     show alex neutral at alex_right
     with dissolve 
+
+    "Alex picks up their phone and starts scrolling through their inbox with a mischievous grin."
+
+    A "Wanna play a game? It's called 'Spot the Scam.' I'll read you some of these emails, and you tell me if they're legit or a phishing attempt. Winner gets the last slice of pizza!"
+
+    [PC] "You're on! But if I win, you're helping me with my complex systems homework."
+
+    A "Deal! Now, get ready being scammed!"
+
+label phishing_game_script:
+    python:
+        import subprocess
+        result = subprocess.check_output(['python', 'phishing_game.py'])
+        result = int(result.decode().strip())
+    return result
+
+    if player_phishing_score >= 8:  # Adjusted to include 8 as a passing score
+        A "Impressive! You've got a knack for spotting phishing scams. Consider my debt settled as you've gained a valuable Insight."
+    else:
+        A "Don't worry, everyone starts somewhere. Let's tackle my homework together."
+
+    "The gang resumes their whirlwind of note-taking, typing, and page-turning, their academic fervor renewed."
 
     A "If caffeine and sugar were the keys to academic success, we'd all be Nobel laureates by now."
     
