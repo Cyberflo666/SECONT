@@ -600,7 +600,10 @@ label wending_maschine:
             "Again you shake the machine like a maniac and though the bar doesn't move you get noticed by a guy who was about to enter the lab."
             "You try to play it off but the person informs the security about your fight with the machine and even though you stay low for the next half hour they won't take their eyes off you."
             "Since the entire facility is now alert to your presence you decide to head home and continue your investigation from there."
+            $ current_location = 0
+            $ uni_access_denied = True
             jump research
+
         "Return to the lab door to figure out a way to get in":
             "You surrender your snack and your dignity to the machine and continue your mission."
             jump lab_entry_choice

@@ -450,7 +450,7 @@ label felix_room_menu:
     scene bg felix room
     call show_felix_room_interactables from _call_show_felix_room_interactables
     with dissolve
-    "Use your phone to crack the password."
+    "Explore the room or use your phone to crack the password."
     jump felix_room_menu
 
 """
@@ -518,7 +518,7 @@ label wall3:
 
     "Your eyes meet a Calendar with marked dates. A red circled date [[04/17] labeled with \"Half Life 3\" stands out."
     $ calendar_seen = True
-    $ notes.add_data(NoteData("info: 04/17 Half Life 3 release"))
+    $ notes.add_data(NoteData("info: 04/17 (Half Life 3 release)"))
     show screen phone_icon
     jump felix_room_menu
 
@@ -559,6 +559,27 @@ label pc:
     show screen phone_icon
     jump felix_room_menu
 
+
+label password_help:
+    hide screen reset_password_text_timer
+    $ show_image_buttons = False
+    if show_textbox == False:
+        $ show_textbox = True
+        $ hide_textbox = True
+    hide screen phone_hand_password
+    with dissolve
+    L "Hmm, this password is not as simple as we might have thought."
+    A "First we have to make sure we found all the relevant information in the room."
+    L "You can keep track of the information pieces in you notes on your phone."
+    L "The password might be a combination of these informations. Try around with some combinations."
+    with dissolve
+    $ show_image_buttons = True
+    if hide_textbox == True:
+        $ show_textbox = False
+        $ hide_textbox = False
+    show screen phone_hand_password
+    with dissolve
+    jump felix_room
 
 label password_cracked:
     hide screen reset_password_text_timer

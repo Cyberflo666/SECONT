@@ -144,6 +144,7 @@ default first_guess = ""
 default password_check_color = "00000000"
 default password_guessed = False
 default password_guessed_correct = False
+default password_fail_counter = 0
 
 screen phone_hand_password():
     zorder 2
@@ -203,13 +204,13 @@ screen phone_hand_password():
 
 screen reset_password_text_timer():
     #image "images/characters/alex/alex laughing.png"
-    timer 2.0 action Function(reset_password_text), Hide("reset_password_text_timer")
+    timer 1.7 action Function(reset_password_text), Function(after_password_action), Hide("reset_password_text_timer")
 
 
 define correct_password =[ 
-                        ["9/11", "911", "9.11"],
-                        ["the_cake_is_a_lie", "the cake is a lie", "thecakeisalie"],
-                        [ "0417", "04.17", "04/17"],
+                        ["9/11", "911", "9.11", "9-11"],
+                        ["cake"],
+                        ["4/17", "417", "4.17", "4/17"],
                         ]
 
 init python:
@@ -220,6 +221,7 @@ init python:
         global first_guess
         global password_guessed_correct
         global show_image_buttons
+        global password_fail_counter
 
         if password_guessed == False or first_guess == password_guess:
             first_guess = password_guess
@@ -227,14 +229,16 @@ init python:
             password_check_color = "#970000ff"
             password_check_text = "Incorrect password"
             return
-        for i in range(0,3):
+
+        for i in range(0,len(correct_password)):
             part_found = False
-            for j in range(0,3):
-                if correct_password[i][j] in password_guess:
+            for j in range(0,len(correct_password[i])):
+                if correct_password[i][j] in password_guess.lower():
                     part_found = True
             if part_found == False:
                 password_check_color = "#970000ff"
                 password_check_text = "Incorrect password"
+                password_fail_counter += 1
                 return
         password_check_color = "#288f00ff"
         password_check_text = "Correct password"
@@ -242,17 +246,25 @@ init python:
         password_guessed_correct = True
         show_image_buttons = False
 
+
+        renpy.notify(password_fail_counter)
         # Correct Password: thecakeisalie0417911
     
     def reset_password_text():
-        global show_image_buttons
         global password_check_text
-        global password_guessed_correct
         password_check_text = ""
-        if password_guessed_correct:
-            #renpy.notify("I come from here")
-            renpy.jump("password_cracked")
         return
+
+    def after_password_action():
+        global password_guessed_correct
+        global password_fail_counter
+        if password_guessed_correct:
+            renpy.jump("password_cracked")
+        elif password_fail_counter >= 5:
+            password_fail_counter = 0
+            renpy.jump("password_help")
+        return
+
 
 #################################### Gallery ##########################################
 transform change_arrow1:
@@ -524,11 +536,11 @@ default gloss_dumpster_seen = False
 default gloss_tailgating_seen = False
 default gloss_phishing_seen = False
 
-define gloss_bribery_text = """{b}{size=[gloss_font_size_big]}Bribery{/size}{/b}\nAlso known as “Quid pro quo”, Latin for “something for something”. Involves an exchange of information or services for a compensation. Subjects of bribery are usually aware of their wrongdoings although the true scale of the consequences may not be comprehensible to them at first."""
-define gloss_impersonation_text = """{b}{size=[gloss_font_size_big]}Impersonation{/size}{/b}\nExplains the act of posing as someone you are not in an attempt to deceive anyone. Impersonation can come in different styles: over the phone, where the voice is enough to pretend to be someone else, or even in person if the one being tricked doesn't know the impersonated one. Appearance, equipment and even other people can help strengthen the deception for example when wearing a warning vest and holding a clipboard."""
-define gloss_dumpster_text = """{b}{size=[gloss_font_size_big]}Dumpster Diving{/size}{/b}\nMost people don't dispose of their trash properly, leaving a lot of sensitive information in the form of letters, notes or invoices free to access for anyone willing to rummage through the garbage. If hardware is being disposed of, the data can also often still be accessed if the contents of the drives haven't been overwritten properly. Usually people forget their stuff once it's in the trash. “Out of sight out of mind”, but with enough patience, adversaries can get a lot of compromising data through dumpster diving."""
-define gloss_tailgatin_text = """{b}{size=[gloss_font_size_big]}Tailgating{/size}{/b}\nAlso known as “piggybacking”. Describes the act of gaining access to a restricted area by following other people who have access. A perpetrator could, for example, disguise himself as a delivery person or a repair man and wait for someone holding up the door for him in a nice gesture."""
-define gloss_phishing_text = """{b}{size=[gloss_font_size_big]}Phishing Mail{/size}{/b}\nIs  an attack via a message which is used to bait the target into handing out sensitive information or installing malware. In these messages, the attacker pretends to be a legitimate source to gain the trust of the target so they will follow the instructions given. Another variant of this approach is Spear Phishing where the content of the message is directed towards a single individual. In this case, the attacker uses personal information to get to the targeted person."""
+define gloss_bribery_text = """{b}{size=[gloss_font_size_big]}Bribery{/size}{/b}\n\nAlso known as “Quid pro quo”, Latin for “something for something”. Involves an exchange of information or services for a compensation. Subjects of bribery are usually aware of their wrongdoings although the true scale of the consequences may not be comprehensible to them at first."""
+define gloss_impersonation_text = """{b}{size=[gloss_font_size_big]}Impersonation{/size}{/b}\n\nExplains the act of posing as someone you are not in an attempt to deceive anyone. Impersonation can come in different styles: over the phone, where the voice is enough to pretend to be someone else, or even in person if the one being tricked doesn't know the impersonated one. Appearance, equipment and even other people can help strengthen the deception for example when wearing a warning vest and holding a clipboard."""
+define gloss_dumpster_text = """{b}{size=[gloss_font_size_big]}Dumpster Diving{/size}{/b}\n\nMost people don't dispose of their trash properly, leaving a lot of sensitive information in the form of letters, notes or invoices free to access for anyone willing to rummage through the garbage. If hardware is being disposed of, the data can also often still be accessed if the contents of the drives haven't been overwritten properly. Usually people forget their stuff once it's in the trash. “Out of sight out of mind”, but with enough patience, adversaries can get a lot of compromising data through dumpster diving."""
+define gloss_tailgatin_text = """{b}{size=[gloss_font_size_big]}Tailgating{/size}{/b}\n\nAlso known as “piggybacking”. Describes the act of gaining access to a restricted area by following other people who have access. A perpetrator could, for example, disguise himself as a delivery person or a repair man and wait for someone holding up the door for him in a nice gesture."""
+define gloss_phishing_text = """{b}{size=[gloss_font_size_big]}Phishing Mail{/size}{/b}\n\nIs  an attack via a message which is used to bait the target into handing out sensitive information or installing malware. In these messages, the attacker pretends to be a legitimate source to gain the trust of the target so they will follow the instructions given. Another variant of this approach is Spear Phishing where the content of the message is directed towards a single individual. In this case, the attacker uses personal information to get to the targeted person."""
 
 default gloss_entry_text = ""
 
@@ -542,6 +554,12 @@ style gloss_buttons:
 style gloss_text:
     color "#000000"
     size gloss_font_size_normal
+
+style gloss_text_header:
+    color "#000000"
+    bold True
+    size gloss_font_size_big
+
 
 # General overview Screen
 screen phone_hand_glossary():
@@ -572,6 +590,8 @@ screen phone_hand_glossary():
         # List of buttons for the social engineering techniques
         vbox:
             spacing 20
+            text "         Glossary" style "gloss_text_header"
+            text "Read more about various social engineering techniques" style "gloss_text"
             if gloss_bribery_seen:
                 textbutton "Bribery":
                     text_style "gloss_buttons"
