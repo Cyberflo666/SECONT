@@ -260,6 +260,8 @@ init python:
         global password_fail_counter
         if password_guessed_correct:
             renpy.jump("password_cracked")
+        
+        # Gives the player help after some failed attempts
         elif password_fail_counter >= 5:
             password_fail_counter = 0
             renpy.jump("password_help")

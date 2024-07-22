@@ -570,7 +570,7 @@ label password_help:
     with dissolve
     L "Hmm, this password is not as simple as we might have thought."
     A "First we have to make sure we found all the relevant information in the room."
-    L "You can keep track of the information pieces in you notes on your phone."
+    L "You can keep track of the information pieces in your notes on your phone."
     L "The password might be a combination of these informations. Try around with some combinations."
     with dissolve
     $ show_image_buttons = True
@@ -579,7 +579,8 @@ label password_help:
         $ hide_textbox = False
     show screen phone_hand_password
     with dissolve
-    jump felix_room
+    jump felix_room_menu
+
 
 label password_cracked:
     hide screen reset_password_text_timer
