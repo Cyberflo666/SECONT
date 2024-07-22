@@ -45,7 +45,7 @@ label dorm_1:
 
     "The late afternoon sun filters through the blinds, casting long shadows across a cluttered dorm room. Books, papers, and empty snack wrappers are scattered haphazardly across the floor, a testament to the chaotic energy of finals week."
     
-    "With your dark hair pulled into a messy bun, you sit hunched over your laptop, the glow of the screen illuminating the intricate henna tattoos on your left hand."
+    "You sit hunched over your laptop, the glow of the screen illuminating the intricate henna tattoos on your left hand."
 
     PC "I can't focus. Complex systems theory is proving to be... well, complex."
 

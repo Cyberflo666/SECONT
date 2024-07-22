@@ -255,6 +255,19 @@ init python:
         return
 
 #################################### Gallery ##########################################
+transform change_arrow1:
+        xpos 0.035
+        ypos 0.40
+        zoom 1.0
+transform change_arrow2:
+        xpos 0.75
+        ypos 0.40
+        zoom 1.0
+transform index_gallery_pos:
+        xpos 11.9
+        ypos 22.9
+default gallery_length = 1
+$ gallery_length = len(gallery.items) 
 screen phone_hand_camera():
     zorder 2
     modal True
@@ -273,33 +286,40 @@ screen phone_hand_camera():
         focus_mask True
         action Hide("phone_hand_camera"), Show("phone_hand")
     imagebutton:
-        xpos 0.345
-        ypos 0.06
-        idle "left arrow black idle" at change_arrow
-        hover "left arrow black hover"
+       
+        idle "left arrow white idle" at change_arrow1
+        hover "left arrow white hover"
         focus_mask True
         action Function(change_index,1), Hide("phone_hand_camera"), Show("phone_hand_camera")
+        
     imagebutton:
-        xpos 0.54
-        ypos 0.06
-        idle "right arrow black idle" at change_arrow
-        hover "right arrow black hover"
+        idle "right arrow white idle" at change_arrow2
+        hover "right arrow white hover"
         focus_mask True
         action Function(change_index,-1), Hide("phone_hand_camera"), Show("phone_hand_camera")
     frame:
         area(670, 140, 467, 730)
         background "#00000000"
-        image gallery.get_picture(current_index % len(gallery.items)) at center
+        image gallery.get_picture(current_index) at center
+    frame: 
+        text "[current_index +1 ] / [gallery_length]" at index_gallery_pos
+        background "#00000000"
+
         
         
 
 init python:
     def change_index(x):
-        global current_index
+        global gallery
+        global current_index 
+        global gallery_length
+        gallery_length = len(gallery.items)
         if x < 0:
-            current_index += 1
+            current_index += 1 
+            current_index = current_index % gallery_length 
         else:
-            current_index -= 1
+            current_index-= 1  
+            current_index = current_index % gallery_length 
 
 
 # Screen for displaying the contacts of the player

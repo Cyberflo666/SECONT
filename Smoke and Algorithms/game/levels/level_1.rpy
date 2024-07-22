@@ -272,10 +272,10 @@ label help_from_janitor:
             A "Unfortunately I've somehow lost or misplaced my keys and I have to get in. Unlocking a door shouldn't take all too long."
             $ trust -= trust_delta
 
-        "Its very urgent.":
+        "I need access now.":
             show alex surprisedleft at alex_left
             with dissolve
-            A "Please help us, this is very urgent. I've misplaced my key and there are things inside my room I really need."
+            A "Please help us, this is very urgent. I've misplaced my key and there are things inside my room I really need NOW."
             $ trust -= trust_delta
  
 
@@ -284,10 +284,10 @@ label help_from_janitor:
 
     menu:
         J "Have you tried looking for your key? How about tracing back your last steps?"
-        "Already looked.":
+        "No.":
             show alex smileleft at alex_left
             with dissolve
-            A "We already looked in our dorms but found nothing."
+            A "We havent had time for that, and really need to move on."
             $ trust -= trust_delta
 
         "Traced back every step.":
@@ -319,10 +319,10 @@ label help_from_janitor:
             A "I'm soo sorry, I left my ID at my parent's over the weekend. Maybe you could make an exception."
             $ trust += trust_delta
 
-        "Lost it.":
+        "It got stolen or i lost it, not sure":
             show alex surprisedleft at alex_left
             with dissolve
-            A "I've lost it a couple of days ago im sorry."
+            A "Its been gone for a couple of im sorry."
             $ trust -= trust_delta
 
     call janitor_look(trust) from _call_janitor_look_2
