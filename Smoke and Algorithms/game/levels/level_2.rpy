@@ -10,7 +10,7 @@ default lab_seen = False
 default uni_access_denied = False
 default dumpster_doven = False
 default dumpster2_doven = False
-default player_warned = False
+default warning_counter = 0
 default rat_seen = False
 default medical_tools_seen = False
 default symbols_seen = False 
@@ -47,19 +47,66 @@ label research:
     ""
     jump empty_label
 
-label warning:
+label warning_1:
     $ show_image_buttons = False
-    $ player_warned = True
+    $ warning_counter = 1
     if show_textbox == False:
         $ show_textbox = True
         $ hide_textbox = True
     with dissolve
-    L "Are you sure we have enough information for a phishing mail?"
+    L "Im not sure if we have enough information for a phishing mail. We should do more research first!"
     with dissolve
     $ show_image_buttons = True
     if hide_textbox == True:
         $ show_textbox = False
         $ hide_textbox = False
+    return
+
+label warning_2:
+    $ show_image_buttons = False
+    $ warning_counter = 2
+    if show_textbox == False:
+        $ show_textbox = True
+        $ hide_textbox = True
+    with dissolve
+    L "Didn't I already tell you? We need to do more research first!"
+    with dissolve
+    $ show_image_buttons = True
+    if hide_textbox == True:
+        $ show_textbox = False
+        $ hide_textbox = False
+    return
+
+label warning_3:
+    $ show_image_buttons = False
+    $ warning_counter = 3
+    if show_textbox == False:
+        $ show_textbox = True
+        $ hide_textbox = True
+    with dissolve
+    L "Are you hard of hearing? We need more information before we write a phishing mail!"
+    with dissolve
+    $ show_image_buttons = True
+    if hide_textbox == True:
+        $ show_textbox = False
+        $ hide_textbox = False
+    return
+
+label warning_4:
+    $ show_image_buttons = False
+    $ warning_counter = 4
+    if show_textbox == False:
+        $ show_textbox = True
+        $ hide_textbox = True
+    with dissolve
+    L "Ok fine if you are beyond reason, go and write your pathetic email!"
+    with dissolve
+    $ show_image_buttons = True
+    if hide_textbox == True:
+        $ show_textbox = False
+        $ hide_textbox = False
+    hide screen laptop_screen
+    show screen mail_screen
     return
 
 label social_button_1:
@@ -335,6 +382,7 @@ label after_dumpsterdive:
     A "Yup, I've heard a lot of wild things about that restaurant. You're right, only the higher classes can afford it."
     PC "Seems like Bob Anderson went there with someone."
     L "I wonder whom he went there with. The food and drinks definitely look like for 2 people."
+    A "Maybe we can use this for our phishing mail later."
     $ gloss_dumpster_seen = True
     $ phone_not_glossary = True
     $ dumpster_doven = True
@@ -421,7 +469,7 @@ label after_dumpsterdive2:
     PC "It's a note from Gill."
     L "Says something about a handover."
     A "Interesting."
-    PC "I wonder if this can be of any use for us."
+    PC "I wonder if this can be of any use for our phishing mail."
     $ gloss_dumpster_seen = True
     $ dumpster2_doven = True
     jump research 
@@ -685,7 +733,7 @@ label lab_wait:
     L "Let's take a look around this lab."
 
 label inside_lab:
-    if rat_seen and left_pc_seen and left_wall_seen and symbols_seen and trash_seen:
+    if rat_seen and left_pc_seen and left_wall_seen and symbols_seen:
         jump inside_lab_done
     $ show_textbox = False
     scene bg medievil lab
@@ -805,7 +853,7 @@ label inside_lab_done:
     with dissolve
     L "That can't be good. Looks like Felix was onto something for real."
 
-    PC "In any case I think we shouldn't stick around in here any longer than we need to."
+    PC "In any case I think we shouldn't stick around in here any longer than we need to. I dont think we will find more information for our phishing mail here."
 
     show alex serious2 at alex_right
     with dissolve
@@ -846,6 +894,53 @@ label phishing_mail_done:
     with dissolve
     A "Look, he even sent us the access codes to the back entrance of the facility. Just like we expected."
     jump in_progress
+
+label phishing_mail_retry:
+    $ show_textbox = True
+    hide screen phone_icon
+    hide screen mail_screen
+    scene bg new kitchen
+    show leonie serious at left
+    show alex serious1 at alex_right
+    with dissolve
+    play music main_music1 volume loudness fadeout 1.0
+
+    A "I dont think this one will work, but let's see."
+
+    show leonie sad at left
+    with dissolve
+
+    L "I have a bad feeling about this."
+
+    scene black
+    "Hoping for a response the three of you go to bed and wait for tomorrow."
+    "The next day you all go to your dorms room and look through your Emails."
+
+    scene bg new kitchen
+    show leonie serious at left
+    show alex serious2 at alex_right
+    with dissolve
+
+    PC "Hmm. No response yet."
+
+    show alex serious1 at alex_right
+    with dissolve
+
+    A "Maybe he still hasn't read it."
+
+    show leonie sad at left
+    with dissolve
+
+    L "I think he just ignored us. Its probaply best if we try again."
+
+    $ show_textbox = False
+
+    scene bg laptop full
+    show screen phone_icon
+    show screen mail_screen
+    jump empty_label
+
+
 
 label phishing_mail_fail:
     $ show_textbox = True

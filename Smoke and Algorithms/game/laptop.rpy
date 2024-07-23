@@ -7,6 +7,9 @@ define website_2_scrollbar_pos = 0
 define website_3_scrollbar_pos = 0
 define website_4_scrollbar_pos = 0
 define social_1_scrollbar_pos = 0
+define post_1_liked = False
+define post_2_liked = False
+define post_3_liked = False
 define search_result = "#000000FF"
 
 init python:
@@ -60,8 +63,14 @@ screen laptop_screen():
             idle "mail idle"
             hover "mail hover"
             focus_mask True
-            if player_warned == False and mail_1_text_unlocked[0] == 0 and mail_1_text_unlocked[1] == 0 and mail_1_text_unlocked[2] == 0:
-                action Call("warning")
+            if warning_counter == 0 and mail_1_text_unlocked[0] == 0 and mail_1_text_unlocked[1] == 0 and mail_1_text_unlocked[2] == 0:
+                action Call("warning_1")
+            elif warning_counter == 1 and mail_1_text_unlocked[0] == 0 and mail_1_text_unlocked[1] == 0 and mail_1_text_unlocked[2] == 0:
+                action Call("warning_2")
+            elif warning_counter == 2 and mail_1_text_unlocked[0] == 0 and mail_1_text_unlocked[1] == 0 and mail_1_text_unlocked[2] == 0:
+                action Call("warning_3")
+            elif warning_counter == 3 and mail_1_text_unlocked[0] == 0 and mail_1_text_unlocked[1] == 0 and mail_1_text_unlocked[2] == 0:
+                action Call("warning_4")
             else:
                 action Hide("laptop_screen"), Show("mail_screen")
 
@@ -84,10 +93,11 @@ default mail_1_text_unlocked = [0, 0, 0, 0] # 1 means the i-th text is unlocked
 define mail_1_placement_sens = 100 # How sensitive the pieces must be aligned with their assigned spot (lower is more sensitive)
 define mail_1_pieces_total = 10
 define mail_1_piece_pos_goal = [(566, 301), (566, 449), (566, 599)]
-define mail_1_piece_pos_initial = [(1000, 200), (1000, 260), (1000, 320), (1000, 380), (1000, 440), (1000, 500), (1000, 560), (1000, 620), (1000, 680), (1000, 740)]
+define mail_1_piece_pos_initial = [(1000, 220), (1000, 280), (1000, 340), (1000, 400), (1000, 460), (1000, 520), (1000, 580), (1000, 640), (1000, 700), (1000, 760)]
 define mail_1_piece_pos_index = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
-define mail_1_correct_order = [1, 2, 3]
+define mail_1_correct_orders = [[1, 2, 3],[3, 1, 2],[1, 3, 2]]
 default mail_1_current_order = [0, 0, 0]
+default mail_1_previous_order = [-1,-1,-1]
 default mail_1_current_piece_count = 0
 default mail_1_previous_piece_count = 0
 default count_offset = 0
@@ -186,9 +196,19 @@ init python:
 
     # Function called when player wants to send the mail
     def send_mail():
-        if mail_1_current_order == mail_1_correct_order:
+        global mail_1_mistakes
+        global mail_1_previous_order
+        if mail_1_current_order == mail_1_previous_order:
+            renpy.notify("You've already sent this Email!")
+        elif mail_1_current_order in mail_1_correct_orders:
             #renpy.notify("correct mail")
             renpy.jump("phishing_mail_done")
+        elif mail_1_mistakes < 1:
+            mail_1_previous_order[0] = mail_1_current_order[0]
+            mail_1_previous_order[1] = mail_1_current_order[1]
+            mail_1_previous_order[2] = mail_1_current_order[2]
+            mail_1_mistakes +=1
+            renpy.jump("phishing_mail_retry")
         else:
             #renpy.notify("not the correct mail")
             renpy.jump("phishing_mail_fail")
@@ -232,14 +252,36 @@ screen social_screen_explore():
                 area social_area
                 background "#00000000"
                 image "bg home post 1" 
+                imagebutton:
+                    focus_mask True
+                    idle "bg home post 1 idle"
+                    hover "bg home post 1 hover"
+                    action Function(toggle_function, 1) #Show("")
+                if post_1_liked == True:
+                    image "bg home post 1 pressed"
+                
             frame:
                 area social_area
                 background "#00000000"
-                image "bg home post 2" 
+                image "bg home post 2"
+                imagebutton:
+                    focus_mask True
+                    idle "bg home post 2 idle"
+                    hover "bg home post 2 hover"
+                    action Function(toggle_function, 2) #Show("")
+                if post_2_liked == True:
+                    image "bg home post 2 pressed"
             frame:
                 area social_area
                 background "#00000000"
-                image "bg home post 3" 
+                image "bg home post 3"
+                imagebutton:
+                    focus_mask True
+                    idle "bg home post 3 idle"
+                    hover "bg home post 3 hover"
+                    action Function(toggle_function, 3) #Show("")
+                if post_3_liked == True:
+                    image "bg home post 3 pressed"
 
 
 screen social_screen_search():
@@ -573,3 +615,21 @@ screen website1_button_text:
 init python:
     def set_function(value):
         value = False
+
+init python:
+    def toggle_function(value):
+        global post_1_liked
+        global post_2_liked
+        global post_3_liked
+        if post_1_liked == False and value == 1:
+            post_1_liked = True
+        elif post_1_liked == True and value == 1:
+            post_1_liked = False
+        elif post_2_liked == False and value == 2:
+            post_2_liked = True
+        elif post_2_liked == True and value == 2:
+            post_2_liked = False
+        elif post_3_liked == False and value == 3:
+            post_3_liked = True
+        elif post_3_liked == True and value == 3:
+            post_3_liked = False
