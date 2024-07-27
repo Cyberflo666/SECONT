@@ -657,7 +657,7 @@ label wending_maschine:
             jump lab_entry_choice
 
 label lab_wait:
-    $ gloss_tailgating_seen = True
+    $ gloss_surfing_seen = True
     $ phone_not_glossary = True
     scene bg uni hallway #need better spot than hallway
     with dissolve
@@ -893,7 +893,8 @@ label phishing_mail_done:
     show alex smile at alex_right
     with dissolve
     A "Look, he even sent us the access codes to the back entrance of the facility. Just like we expected."
-    jump in_progress
+    
+    jump level_3_start
 
 label phishing_mail_retry:
     $ show_textbox = True
