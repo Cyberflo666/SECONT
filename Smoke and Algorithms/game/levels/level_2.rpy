@@ -883,17 +883,25 @@ label phishing_mail_done:
     scene black
     "The three of you return to your dorms and go to sleep."
     "As the next day arises you gather around your laptop to read the reply from Bob Anderson."
+
     scene bg new kitchen
     show leonie happy at left
     show alex happy at alex_right
     with dissolve
-
-    L "Yes. He fell right into our trap. He believed every word we said."
+    L "Yes. He fell right into our trap and believed every word we said."
 
     show alex smile at alex_right
     with dissolve
     A "Look, he even sent us the access codes to the back entrance of the facility. Just like we expected."
     
+    show leonie thinking at left    
+    with dissolve
+    L "Nice. Let's check out the building this evening and see what we're dealing with."
+
+    show alex happy at alex_right
+    with dissolve
+    A "Felix, we're coming."
+
     jump level_3_start
 
 label phishing_mail_retry:
@@ -932,7 +940,15 @@ label phishing_mail_retry:
     show leonie sad at left
     with dissolve
 
-    L "I think he just ignored us. Its probaply best if we try again."
+    L "I think he just ignored us. It's probably best if we try again."
+
+    show alex serious2 at alex_right
+    with dissolve
+    A "Make sure you write a believable mail. Remember: we are trying to impersonate Gill Cameron and need to get access to the facility Bob works at."
+
+    show alex serious1 at alex_right
+    with dissolve
+    A "Maybe you could also take a second look at the pictures we took from the dumpster diving. They may contain valuable information."
 
     $ show_textbox = False
 
