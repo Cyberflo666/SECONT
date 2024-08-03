@@ -1,3 +1,5 @@
+############################ Felix room point and click ###############################
+
 label hide_felix_room_interactables():
     hide screen felixes_bin
     hide screen felixes_bed
@@ -103,6 +105,7 @@ screen felixes_wall3():
             focus_mask True
             action Hide("felixes_wall3"),Jump("wall3")
 
+
 ################################ Janitor mini game ####################################
 
 screen round_rect(trust):
@@ -128,6 +131,7 @@ screen round_rect(trust):
         size 50
         outlines [(3, "#000000ff", 0, 0)]
         color "#AA4473FF"
+
 
 ############################# Lab room point and click ################################
 
@@ -221,5 +225,57 @@ screen trash:
             #focus_mask True
             #action Hide("medical_tools"),Jump("used_medical_tools")
 
-            
-                
+
+############################## Lab pin pad mini game ##################################
+define pin_correct = "471965"
+default pin_current = ""
+
+screen pin_pad_input:
+    image "images/backgrounds/pinpad/bg pinpad.png"
+
+    if len(pin_current) > 0:
+        image "images/backgrounds/pinpad/pin enter %s.png" %len(pin_current)
+
+    # Number buttons
+    for i in range(0, 10):
+        imagebutton:
+            idle "images/backgrounds/pinpad/%s idle.png" %i
+            hover "images/backgrounds/pinpad/%s hover.png" %i
+            focus_mask True
+            action Function(pin_add_number, i)
+    
+    # Clear button
+    imagebutton:
+        idle "images/backgrounds/pinpad/c idle.png"
+        hover "images/backgrounds/pinpad/c hover.png"
+        focus_mask True
+        action Function(pin_clear_input)
+    
+    # Enter button
+    imagebutton:
+        idle "images/backgrounds/pinpad/e idle.png"
+        hover "images/backgrounds/pinpad/e hover.png"
+        focus_mask True
+        action Function(pin_enter)
+
+init python:
+    def pin_add_number(num):
+        global pin_current
+        if len(pin_current) < 6:
+            pin_current = pin_current + str(num)
+            renpy.sound.play("audio/sfx/pin_pad_enter.wav")
+        # renpy.notify(pin_current) # DEBUG
+        return
+
+    def pin_clear_input():
+        global pin_current
+        pin_current = ""
+        renpy.sound.play("audio/sfx/pin_pad_clear.wav")
+        return
+
+    def pin_enter():
+        if pin_correct == pin_current:
+            renpy.sound.play("audio/sfx/pin_pad_correct.wav")
+            renpy.jump("pin_pad_mini_game_complete")
+        else:
+            renpy.sound.play("audio/sfx/pin_pad_false.wav")

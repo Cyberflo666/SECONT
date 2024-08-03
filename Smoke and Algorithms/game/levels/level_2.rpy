@@ -476,10 +476,6 @@ label after_dumpsterdive2:
 
 
 
-
-    
-
-
 label lab_access_denied:
     $ show_image_buttons = False
     if show_textbox == False:
@@ -657,6 +653,7 @@ label wending_maschine:
             jump lab_entry_choice
 
 label lab_wait:
+    $ hide_map = True
     $ gloss_surfing_seen = True
     $ phone_not_glossary = True
     scene bg uni hallway #need better spot than hallway
@@ -675,11 +672,43 @@ label lab_wait:
     L "Quiet, we don't want him to notice us. Just observe what he presses."
     show alex serious1 at alex_right
     with dissolve
-    scene bg pinpad binoculars
+    scene bg pinpad
+    show binoculars
     with dissolve
     "You see an ominous person walking up to the door. He does not look like any university employee you know."
-    "You watch as he puts his hand on the pinboard and inputs: \n '4' '7' '1' '9' '6' '5'."
     "While you observe, you whisper to your friends what you see."
+    show bg pinpad 4
+    show binoculars
+    with dissolve
+    pause
+    show bg pinpad 7
+    show binoculars
+    with dissolve
+    pause
+    show bg pinpad 1
+    show binoculars
+    with dissolve
+    pause
+    show bg pinpad 9
+    show binoculars
+    with dissolve
+    pause
+    show bg pinpad 6
+    show binoculars
+    with dissolve
+    pause
+    show bg pinpad 5
+    show binoculars
+    with dissolve
+    pause
+    show bg pinpad e
+    show binoculars
+    with dissolve
+    pause
+
+    $ notes.add_data(NoteData("Pinpad: 471965"))
+
+    # "You watch as he puts his hand on the pinboard and inputs: \n '4' '7' '1' '9' '6' '5'."
     scene bg uni hallway
     with dissolve
     show alex serious2 at alex_right
@@ -726,10 +755,24 @@ label lab_wait:
     "..."
     show leonie neutral at left
     with dissolve
-    L "Anyways."
-    "Upon entering the lab the three of you start to investigate." 
+    L "Anyways. Let's enter the PIN."
+
+    show screen phone_icon
+    show screen pin_pad_input
+    with dissolve
+    ""
+    jump empty_label
+
+label pin_pad_mini_game_complete:
+    hide screen phone_icon
+    hide screen pin_pad_input
+    with dissolve
+    # scene bg pinpad
+    # show image "images/backgrounds/pinpad/pin enter 6.png"
+    A "Nice. Seems like the door opened."
     scene bg medievil lab
     with dissolve
+    "Upon entering the lab, the three of you start to investigate." 
     L "Let's take a look around this lab."
 
 label inside_lab:
@@ -747,7 +790,6 @@ label inside_lab:
     with dissolve
     #show screen medical_tools
 
-    $ hide_map = True
     show screen phone_icon
     with moveinright
     jump empty_label
