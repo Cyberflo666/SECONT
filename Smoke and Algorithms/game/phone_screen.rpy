@@ -135,6 +135,12 @@ screen phone_hand():
             idle "password idle"
             focus_mask True
             action Hide("phone_hand"), Show("phone_hand_password"),
+    
+    imagebutton:
+        idle "minigame idle"
+        hover "minigame hover"
+        focus_mask True
+        action Hide("phone_hand"), Show("phone_hand_mini_game") # Call("play_pong") 
 
 ################################### Password ##########################################
 
@@ -283,6 +289,7 @@ transform index_gallery_pos:
         ypos 22.9
 default gallery_length = 1
 $ gallery_length = len(gallery.items) 
+
 screen phone_hand_camera():
     zorder 2
     modal True
@@ -651,6 +658,278 @@ init python:
     def set_gloss_text(input_text):
         global gloss_entry_text
         gloss_entry_text = input_text
+
+################################## Mini Game ##########################################
+init python:
+    class PongDisplayable(renpy.Displayable):
+
+        def __init__(self):
+
+            renpy.Displayable.__init__(self)
+
+            # The sizes of some of the images.
+            self.PADDLE_WIDTH = 95
+            self.PADDLE_HEIGHT = 12
+            self.PADDLE_Y = 950
+            self.BALL_WIDTH = 15
+            self.BALL_HEIGHT = 15
+            self.COURT_RIGHT = 1146
+            self.COURT_LEFT = 660
+
+            # Some displayables we use.
+            self.paddle = Solid("#000000", xsize=self.PADDLE_WIDTH, ysize=self.PADDLE_HEIGHT)
+            self.ball = Solid("#000000", xsize=self.BALL_WIDTH, ysize=self.BALL_HEIGHT)
+
+            # If the ball is stuck to the paddle.
+            self.stuck = True
+
+            # The positions of the two paddles.
+            self.playerx = (self.COURT_RIGHT - self.COURT_LEFT) / 2
+            self.computerx = self.playerx
+
+            # The speed of the computer.
+            self.computerspeed = 380.0
+
+            # The position, delta-position, and the speed of the ball.
+            self.bx = self.playerx + (self.PADDLE_WIDTH / 2)
+            self.by = self.PADDLE_Y - self.PADDLE_HEIGHT - 5
+            self.bdx = 0.5
+            self.bdy = -0.5
+            self.bspeed = 350.0
+
+            # The time of the past render-frame.
+            self.oldst = None
+
+            # The winner.
+            self.winner = None
+
+        def visit(self):
+            return [ self.paddle, self.ball ]
+
+        # Recomputes the position of the ball, handles bounces, and draws the screen.
+        # Function render is being called by the call screen in renpy automatically
+        def render(self, width, height, st, at):
+
+            # The Render object we'll be drawing into.
+            r = renpy.Render(width, height)
+
+            # Figure out the time elapsed since the previous frame.
+            if self.oldst is None:
+                self.oldst = st
+
+            dtime = st - self.oldst
+            self.oldst = st
+
+            # Figure out where we want to move the ball to.
+            speed = dtime * self.bspeed
+            lastby = self.by
+
+            if self.stuck:
+                self.bx = self.playerx + (self.PADDLE_WIDTH / 2)
+            else:
+                self.bx += self.bdx * speed
+                self.by += self.bdy * speed
+
+            # Move the computer's paddle. It wants to go to self.by, but may be limited by it's speed limit.
+            cspeed = self.computerspeed * dtime
+            if abs(self.bx - (self.computerx + (self.PADDLE_WIDTH / 2))) <= cspeed:
+                self.computerx = self.bx - (self.PADDLE_WIDTH / 2)
+            else:
+                self.computerx += cspeed * (self.bx - (self.computerx + (self.PADDLE_WIDTH / 2))) / abs(self.bx - (self.computerx + (self.PADDLE_WIDTH / 2)))
+
+            # Clamp computer paddle
+            self.computerx = min(self.computerx, self.COURT_RIGHT - self.PADDLE_WIDTH)
+            self.computerx = max(self.computerx, self.COURT_LEFT)
+
+
+            # Bounce off of right.
+            ball_right = self.COURT_RIGHT - (self.BALL_WIDTH / 2)
+            if self.bx > ball_right:
+                self.bx = ball_right + (ball_right - self.bx)
+                self.bdx = -self.bdx
+
+                # if not self.stuck:
+                #     renpy.sound.play("pong_beep.opus", channel=0)
+
+            # Bounce off left.
+            ball_left = self.COURT_LEFT + (self.BALL_WIDTH / 2)
+            if self.bx < ball_left:
+                self.bx = ball_left - (self.bx - ball_left)
+                self.bdx = -self.bdx
+
+                # if not self.stuck:
+                #     renpy.sound.play("pong_beep.opus", channel=0)
+
+            # Draw a paddle, and checks for bounces.
+            def paddle(px, py, hotside):
+
+                # Rendering of the paddle
+                pi = renpy.render(self.paddle, width, height, st, at)
+                r.blit(pi, (int(px), int(py)))
+
+                # Check for hit with ball...
+                # ...on x axis:
+                if px <= self.bx <= px + self.PADDLE_WIDTH:
+
+                    hit = False
+
+                    # ...on y axis:
+                    if lastby >= hotside >= self.by:
+                        self.by = hotside + (hotside - self.by)
+                        self.bdy = -self.bdy
+                        hit = True
+
+                    elif lastby <= hotside <= self.by:
+                        self.by = hotside - (self.by - hotside)
+                        self.bdy = -self.bdy
+                        hit = True
+
+                    if hit:
+                        # renpy.sound.play("pong_boop.opus", channel=1)
+                        self.bspeed *= 1.10
+
+            # Draw the two paddles. (first player, then computer)
+            paddle(self.playerx, self.PADDLE_Y, self.PADDLE_Y)
+            paddle(self.computerx, 150, 150 + self.PADDLE_HEIGHT)
+
+            # Draw the ball.
+            ball = renpy.render(self.ball, width, height, st, at)
+            r.blit(ball, (int(self.bx - self.BALL_WIDTH / 2),
+                            int(self.by - self.BALL_HEIGHT / 2)))
+
+            # Check for a winner.
+            if self.by < 100:
+                self.winner = 0
+                # renpy.notify("winner player")
+
+                # Needed to ensure that event is called, noticingthe winner.
+                renpy.timeout(0)
+
+            elif self.by > height - 50:
+                self.winner = 1
+                # renpy.notify("winner computer")
+                renpy.timeout(0)
+
+            # Ask that we be re-rendered ASAP, so we can show the next
+            # frame.
+            renpy.redraw(self, 0)
+
+            # Return the Render object.
+            return r
+
+        # Handles events.
+        def event(self, ev, x, y, st):
+
+            import pygame
+
+            # Mousebutton down == start the game by setting stuck to false.
+            if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1 and self.stuck == True:
+                self.stuck = False
+
+                # Ensure the pong screen updates.
+                renpy.notify("click")
+                renpy.restart_interaction()
+
+            # Set the position of the player's paddle.
+            x = min(x, self.COURT_RIGHT - self.PADDLE_WIDTH)
+            x = max(x, self.COURT_LEFT)
+            self.playerx = x
+
+            # If we have a winner, return him or her. Otherwise, ignore
+            # the current event.
+            if self.winner:
+                self.reset_game(self.winner)
+            else:
+                raise renpy.IgnoreEvent()
+        
+        # Resets game so that it can be played again
+        def reset_game(self, winner):
+            global winner_text
+            # Reset variables
+            self.stuck = True
+            self.bx = self.playerx + (self.PADDLE_WIDTH / 2)
+            self.by = self.PADDLE_Y - self.PADDLE_HEIGHT - 5
+
+            self.bdx = 0.5
+            self.bdy = -0.5
+            self.bspeed = 350.0
+        
+            # The time of the past render-frame.
+            self.oldst = None
+
+            # The winner.
+            self.winner = None
+
+            # Set winner text
+            if winner == 0:
+                winner_text = "player won"
+            else:
+                winner_text = "computer won"
+
+            renpy.restart_interaction()
+
+
+default winner_text = ""
+
+screen phone_hand_mini_game():
+    zorder 2
+    modal True
+    add Solid("#000c")
+
+    image "images/objects/phone/phone hand empty.png":
+        zoom 1.3
+        xalign 0.7
+    
+
+    default pong = PongDisplayable()
+
+    add pong   
+
+    # text "Player":
+    #     xpos 240
+    #     xanchor 0.5
+    #     ypos 25
+    #     size 40
+
+    # text "Computer":
+    #     xpos (1280 - 240)
+    #     xanchor 0.5
+    #     ypos 25
+
+    if pong.stuck:
+        text "[winner_text]":
+            xpos 765
+            ypos 400
+            size 40
+            color "#000000"
+        text "Click to Begin":
+            xpos 765
+            ypos 450
+            size 40
+            color "#000000"
+
+        # Return arrow
+        imagebutton:
+            idle "return arrow idle"
+            hover "return arrow hover" at arrow_pos
+            xpos 200
+            ypos 0
+            xsize 500
+            ysize 300
+            action Hide("phone_hand_mini_game"), Show("phone_hand")
+
+
+# label play_pong:
+
+#     # window hide  # Hide the window and quick menu while in pong
+#     # $ quick_menu = False
+
+#     call screen phone_hand_mini_game
+
+#     # $ quick_menu = True
+#     # window show
+
+
 
 ################################## Phone Icon #########################################
 
