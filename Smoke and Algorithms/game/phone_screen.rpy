@@ -701,7 +701,7 @@ init python:
             self.oldst = None
 
             # The winner.
-            self.winner = None
+            self.winner = -1
 
         def visit(self):
             return [ self.paddle, self.ball ]
@@ -785,7 +785,7 @@ init python:
                         hit = True
 
                     if hit:
-                        # renpy.sound.play("pong_boop.opus", channel=1)
+                        renpy.sound.play("audio/sfx/pong_blip.wav")
                         self.bspeed *= 1.10
 
             # Draw the two paddles. (first player, then computer)
@@ -825,9 +825,9 @@ init python:
             # Mousebutton down == start the game by setting stuck to false.
             if ev.type == pygame.MOUSEBUTTONDOWN and ev.button == 1 and self.stuck == True:
                 self.stuck = False
-
+                renpy.sound.play("audio/sfx/pong_blip.wav")
                 # Ensure the pong screen updates.
-                renpy.notify("click")
+                # renpy.notify("click")
                 renpy.restart_interaction()
 
             # Set the position of the player's paddle.
@@ -837,7 +837,7 @@ init python:
 
             # If we have a winner, return him or her. Otherwise, ignore
             # the current event.
-            if self.winner:
+            if self.winner != -1:
                 self.reset_game(self.winner)
             else:
                 raise renpy.IgnoreEvent()
@@ -845,6 +845,13 @@ init python:
         # Resets game so that it can be played again
         def reset_game(self, winner):
             global winner_text
+
+            # Set winner text
+            if winner == 0:
+                winner_text = "player won"
+            else:
+                winner_text = "computer won"
+            
             # Reset variables
             self.stuck = True
             self.bx = self.playerx + (self.PADDLE_WIDTH / 2)
@@ -857,14 +864,7 @@ init python:
             # The time of the past render-frame.
             self.oldst = None
 
-            # The winner.
-            self.winner = None
-
-            # Set winner text
-            if winner == 0:
-                winner_text = "player won"
-            else:
-                winner_text = "computer won"
+            self.winner = -1
 
             renpy.restart_interaction()
 
@@ -917,18 +917,6 @@ screen phone_hand_mini_game():
             xsize 500
             ysize 300
             action Hide("phone_hand_mini_game"), Show("phone_hand")
-
-
-# label play_pong:
-
-#     # window hide  # Hide the window and quick menu while in pong
-#     # $ quick_menu = False
-
-#     call screen phone_hand_mini_game
-
-#     # $ quick_menu = True
-#     # window show
-
 
 
 ################################## Phone Icon #########################################
