@@ -34,10 +34,9 @@ init python:
         # ...if the text of the new item doesn't exist already somewhere in this list
         def add_data(self, item, notification):
             global phone_not_gallery
-            #for it_item in self.items:
-                #if it_item.text == item.text:
-                    #return
+            global gallery_length
             self.items.append(item)
+            gallery_length = len(self.items)
             if notification:
                 renpy.notify("Picture added to your gallery.")
                 phone_not_gallery = True
