@@ -915,6 +915,7 @@ label phishing_mail_done:
     $ show_textbox = True
     hide screen phone_icon
     hide screen mail_screen
+    $ gloss_phishing_seen = True
     scene bg new kitchen
     show leonie thinking at left
     show alex smile at alex_right
