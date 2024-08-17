@@ -118,10 +118,33 @@ label level_3_start:
     with dissolve
     "You find yourself at the spot you were yesterday."
 
+
 menu:
     "Take the main entrance.":
         pass
     "Take the back entrance.":
-        pass
+        jump security_minigame_start
     "Observe the people entering the building.":
         pass
+
+
+label courtyard:
+    $ show_textbox = True
+    hide screen minigame_screen
+    "you see beautyful flowers"
+    "you decide to go back into the building"
+    jump security_minigame_start
+
+label bobs_office:
+    $ show_textbox = True
+    hide screen minigame_screen
+    "you see felix"
+    "you leave the facility"
+    jump game_over
+
+label optional:
+    $ show_textbox = True
+    hide screen minigame_screen
+    "you see interesting stuff"
+    "you decide to go back into the hallway"
+    jump security_minigame_start
