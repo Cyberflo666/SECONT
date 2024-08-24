@@ -10,6 +10,8 @@ image phone_icon_idle :
     "images/objects/phone/phone idle.png"
     zoom 0.15
 
+image circ_anim = Movie(play="videos/circ_anim.webm", loop=True, mask="videos/circ_anim_mask.webm", framedrop=False)
+
 transform icon_pos:
     zoom 1.3
     xalign 0.7
@@ -85,10 +87,10 @@ screen phone_hand():
         focus_mask True
         action Hide("phone_hand"), Show("phone_hand_camera")
     if phone_not_gallery:
-        image "images/objects/phone/phone notify circ.png":
-                zoom 0.2
-                xpos 1085
-                ypos 850
+        add "circ_anim":
+                zoom 0.25
+                xpos 1080
+                ypos 845
     
     imagebutton:
         hover "contacts hover" at icon_pos
@@ -102,10 +104,10 @@ screen phone_hand():
         focus_mask True
         action Hide("phone_hand"), Show("phone_hand_map")
     if phone_not_map:
-        image "images/objects/phone/phone notify circ.png":
-                zoom 0.2
-                xpos 840
-                ypos 380
+        add "circ_anim":
+            zoom 0.25
+            xpos 835
+            ypos 375
 
     imagebutton:
         hover "notes hover" at icon_pos
@@ -113,10 +115,10 @@ screen phone_hand():
         focus_mask True
         action Hide("phone_hand"), Show("phone_hand_notes")
     if phone_not_notes:
-        image "images/objects/phone/phone notify circ.png":
-                zoom 0.2
-                xpos 1060
-                ypos 160
+        add "circ_anim":
+                zoom 0.25
+                xpos 1055
+                ypos 155
 
     imagebutton:
         hover "glossary hover" at icon_pos
@@ -124,10 +126,10 @@ screen phone_hand():
         focus_mask True
         action Hide("phone_hand"), Show("phone_hand_glossary")
     if phone_not_glossary:
-        image "images/objects/phone/phone notify circ.png":
-                zoom 0.2
-                xpos 1060
-                ypos 380
+        add "circ_anim":
+                zoom 0.25
+                xpos 1055
+                ypos 375
 
     if password_icon == True:
         imagebutton:
@@ -944,7 +946,7 @@ screen phone_icon():
         
         # Displays notification circ if there's any new notification
         if phone_not_glossary or phone_not_gallery or phone_not_notes or phone_not_map:
-            image "images/objects/phone/phone notify circ.png":
-                zoom 0.2
-                xpos 225
-                ypos 800
+            add "circ_anim":
+                zoom 0.30
+                xpos 210
+                ypos 785
