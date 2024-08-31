@@ -139,8 +139,8 @@ screen phone_hand():
             action Hide("phone_hand"), Show("phone_hand_password"),
     
     imagebutton:
-        idle "minigame idle"
-        hover "minigame hover"
+        idle "pong idle" at icon_pos
+        hover "pong hover"
         focus_mask True
         action Hide("phone_hand"), Show("phone_hand_mini_game") # Call("play_pong") 
 
