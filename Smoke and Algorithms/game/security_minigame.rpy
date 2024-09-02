@@ -416,10 +416,21 @@ init python:
         global optional_flag 
         global bobs_flag 
         global courtyard_flag 
+        global a 
+        global b 
         optional_flag = True
         bobs_flag = True
         courtyard_flag = True
-
+        if fire_alarm:
+            a = "f"
+            b = "t"
+            player_pos = [1,1]
+            valid_inputs = [1,0,0,1,0]
+        else:
+            a = "t"
+            b = "f"
+            player_pos = [14,1]
+            valid_inputs = [1,1,0,0,0]
         game_matrix = [
                     [0,0,0,0,[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0]],
                     [0,["c",b,0],0,0,[0,"f",0,0,0,0],0,0,[0,"f",0,0,0,0],0],
@@ -440,20 +451,17 @@ init python:
 
         for i in range(0,4):
             if i == 0:
-                sec_list[i][1] = 10
+                sec_list[i][1] = 11
             else:
                 sec_list[i][1] = 0
         for i in range(0,4):
             tailgate_list[i][1] = 0
-        sec_index_1 = 10
+        sec_index_1 = 11
         sec_index_2 = 0
         sec_index_3 = 0
         sec_index_4 = 0
         green_index = 0
         purple_index = 0
         blue_index = 0
-        valid_inputs = [1,1,0,0,0]
-        if fire_alarm:
-            player_pos = [1,1]
-        else:
-            player_pos = [14,1]
+       
+        
