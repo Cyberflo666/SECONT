@@ -62,11 +62,11 @@ screen phone_hand():
     modal True
     add Solid("#000c")
     if password_icon == True:
-        image "images/objects/phone/phone hand with pw.png":
+        image "images/objects/phone/phone hand empty.png":
             zoom 1.3
             xalign 0.7
     else:
-        image "images/objects/phone/phone hand.png":
+        image "images/objects/phone/phone hand empty.png":
             zoom 1.3
             xalign 0.7
     

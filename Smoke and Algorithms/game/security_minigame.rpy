@@ -19,13 +19,15 @@ label security_minigame_start:
 default x = 0
 default y = 0
 
+define char_icon_offset = -47
+
 screen minigame_screen():
     zorder 0
     modal False
     if fire_alarm == False:
-        image "bg security minigame new"
+        image "bg security minigame new new"
     else :
-        image "bg security minigame backwards new"
+        image "bg security minigame backwards new new"
     if show_image_buttons == True:    
         imagebutton:
             focus_mask True
@@ -84,10 +86,10 @@ screen minigame_screen():
                 ypos  120 * x + 60 
                 xpos 1800 - (60 + 120 * y) + 60
                 rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
-            image "guard" :
+            image "guard icon" :
                 rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 2)
-                ypos  120 * x + 16
-                xpos 1800 - (60 + 120 * y) + 16
+                ypos  120 * x + char_icon_offset
+                xpos 1800 - (60 + 120 * y) + char_icon_offset
         elif i == 1:
             image "guard cone":
                 alpha 0.5
@@ -95,10 +97,10 @@ screen minigame_screen():
                 ypos  120 * x + 60
                 xpos 1800 - (60 + 120 * y) + 60
                 rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
-            image "guard" :
+            image "guard icon" :
                 rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 2)
-                ypos  120 * x + 16
-                xpos 1800 - (60 + 120 * y) + 16
+                ypos  120 * x + char_icon_offset
+                xpos 1800 - (60 + 120 * y) + char_icon_offset
         elif i == 2:
             image "guard cone":
                 alpha 0.5
@@ -106,10 +108,10 @@ screen minigame_screen():
                 ypos  120 * x + 60
                 xpos 1800 - (60 + 120 * y) + 60
                 rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
-            image "guard" :
+            image "guard icon" :
                 rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 2)
-                ypos  120 * x + 16
-                xpos 1800 - (60 + 120 * y) + 16
+                ypos  120 * x + char_icon_offset
+                xpos 1800 - (60 + 120 * y) + char_icon_offset
         else:
             image "guard cone":
                 alpha 0.5
@@ -117,32 +119,32 @@ screen minigame_screen():
                 ypos  120 * x + 60
                 xpos 1800 - (60 + 120 * y) + 60
                 rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
-            image "guard" :
+            image "guard icon" :
                 rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 2)
-                ypos  120 * x + 16
-                xpos 1800 - (60 + 120 * y) + 16
+                ypos  120 * x + char_icon_offset
+                xpos 1800 - (60 + 120 * y) + char_icon_offset
         $ x = tailgate_list[i][0][tailgate_list[i][1]][1]
         $ y = tailgate_list[i][0][tailgate_list[i][1]][0]
         if i == 0:
-            image "orange" :
+            image "orange icon" :
                 rotate 90 * (tailgate_list[i][0][tailgate_list[i][1]][2]-2)
-                ypos  120 * x + 16
-                xpos 1800 - (60 + 120 * y) + 16
+                ypos  120 * x + char_icon_offset
+                xpos 1800 - (60 + 120 * y) + char_icon_offset
         elif i == 1:
-            image "green" :
+            image "green icon" :
                 rotate 90 * (tailgate_list[i][0][tailgate_list[i][1]][2]-2)
-                ypos  120 * x + 16
-                xpos 1800 - (60 + 120 * y) + 16
+                ypos  120 * x + char_icon_offset
+                xpos 1800 - (60 + 120 * y) + char_icon_offset
         elif i == 2:
-            image "purple" :
+            image "purple icon" :
                 rotate 90 * (tailgate_list[i][0][tailgate_list[i][1]][2]-2)
-                ypos  120 * x + 16
-                xpos 1800 - (60 + 120 * y) + 16
+                ypos  120 * x + char_icon_offset
+                xpos 1800 - (60 + 120 * y) + char_icon_offset
         else:
-            image "blue" :
+            image "blue icon" :
                 rotate 90 * (tailgate_list[i][0][tailgate_list[i][1]][2]-2)
-                ypos  120 * x + 16
-                xpos 1800 - (60 + 120 * y) + 16
+                ypos  120 * x + char_icon_offset
+                xpos 1800 - (60 + 120 * y) + char_icon_offset
     $ x = player_pos[1]
     $ y = player_pos[0]
     image "player" :
