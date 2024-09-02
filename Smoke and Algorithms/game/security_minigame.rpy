@@ -1,7 +1,7 @@
 label security_minigame_start:
     $ show_textbox = False
     show screen minigame_screen()
-    $ renpy.notify("to early")
+    #$ renpy.notify("to early")
     jump empty_label
     #outside of tuple:
     #0s are no field 
@@ -23,9 +23,9 @@ screen minigame_screen():
     zorder 0
     modal False
     if fire_alarm == False:
-        image "bg security minigame"
+        image "bg security minigame new"
     else :
-        image "bg security1 minigame backwards"
+        image "bg security minigame backwards new"
     if show_image_buttons == True:    
         imagebutton:
             focus_mask True
@@ -165,16 +165,15 @@ init python:
         global optional_flag
         global courtyard_flag
         global bobs_flag
-        
+        if door_timer < 0:
+            door_state = False
+        door_timer -= 1
         turn_personal(game_matrix,tailgate_list)
         turn_player(input,game_matrix)
         turn_security(game_matrix,sec_list)
         for i in range(0,4):
             if see(sec_list[i][0][sec_list[i][1]][1],sec_list[i][0][sec_list[i][1]][0],sec_list[i][0][sec_list[i][1]][2],game_matrix) == 1:
                 renpy.jump("game_lost")
-        if door_timer < 0:
-            door_state = False
-        door_timer -= 1
         if player_pos == [6,5] and courtyard_flag:
             courtyard_flag = False
             renpy.jump("courtyard")
@@ -414,6 +413,12 @@ init python:
         global blue_index 
         global player_pos
         global valid_inputs
+        global optional_flag 
+        global bobs_flag 
+        global courtyard_flag 
+        optional_flag = True
+        bobs_flag = True
+        courtyard_flag = True
 
         game_matrix = [
                     [0,0,0,0,[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0]],
