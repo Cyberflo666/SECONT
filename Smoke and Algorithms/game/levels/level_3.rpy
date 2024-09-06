@@ -169,15 +169,26 @@ label level_3_start:
     with dissolve
     "With Leonie staying home, only Alex and you go towards the facility."
 
-    scene facility day afar bg
-    show alex serious1 at alex_right
+    scene bg front office 2 
     with dissolve
     "You find yourself at the spot you were yesterday."
-    hide alex with dissolve
+    #hide alex with dissolve
 
+define main_entrace_flag = False
 
+label menu_outside:
+scene bg front office 2 
+hide alex
+with dissolve
+menu:
+    "Take the main entrance." if main_entrace_flag == False:
+        "You and Alex decide to go through the main entrance"
+        "Upon entering you are greeted by ... no one. Every employee seems to be heavily invested in their work and there is a lot of security roaming around."
+        jump main_entrance
+hide alex 
 menu:
     "Take the main entrance.":
+        play music security_music volume loudness
         $ reset()
         $ fire_alarm = True
         $ player_pos = [1,1]
@@ -205,18 +216,68 @@ menu:
         hide screen minigame_screen
         jump security_minigame_start
     "Take the back entrance.":
+        play music security_music volume loudness
         $ reset()
         show screen minigame_screen()
         hide screen minigame_screen
         jump security_minigame_start
     "Observe the people entering the building.":
+        play music security_music volume loudness
         $ reset()
         $ cameras_off = True
         show screen minigame_screen()
         hide screen minigame_screen
         jump security_minigame_start
 
-
+define stairs_went = False
+define receptionist_talked = False
+define USB_placed_0 = False
+define main_entrance_entered = False
+label main_entrance:
+    scene bg front lobby
+    show alex serious2 at alex_right
+    with dissolve
+    if main_entrance_entered == False:
+        A "(Whispering) {size=20}Is it just me or are they not expecting visitors.{/size}"
+        PC "(Whispering) {size=20}Thats you, they are probaply just really busy.{/size}"
+        A "(Whispering) {size=20}Yeah sure. Anyways, what's the plan now.{/size}"
+label main_entrance_menu:
+    menu:
+        "Go back outside":
+            "Alex and you leave through the entrance you came in attracting a few weird looks but nothing more."
+            $ main_entrace_flag = True
+            $ main_entrance_entered = True
+            jump menu_outside
+        "Talk to the receptionist" if receptionist_talked == False:
+            scene bg receptionist desk
+            "Alex goes up to what looks like the guest reception. The Lady at the desk doesn't notice you at first."
+            show alex neutralleft at alex_left
+            A "Excuse me"
+            "She looks up slightly annoyed."
+            S1 "Can i help you?"
+            show alex smileleft at alex_left
+            A "My name is Gill Cameron and i need to deliver some packages to Bob Anderson."
+            S1 "Let me see your ID please."
+            "Knowing that this will probaply not work out you signal alex with a look that its time to bale."
+            show alex happyleft at alex_left
+            A "Yeah sure, its in my van outside. I'll be back in a minute."
+            "Alex and you leave the building through the main entrance not daring to go back this way."
+            $ receptionist_talked = True
+            $ main_entrace_flag = True
+            jump menu_outside
+        "Try to go into the restricted office area" if stairs_went == False:
+            "As you approach the stairs to bobs office the security stops and questions you. By letting Alex talk you get out rather easy but the security now keeps an eye out for you."
+            $ stairs_went = True
+            jump main_entrance_menu
+        "Place the USB-Drive with a deciving note on a nearby desk" if USB_placed_0 == False:
+            "You try to sneakily place leonies drive on the desk. As you leave you notice a security guard inspecting your trap. Shortly after he looks up with a determined suspicious face."
+            show alex serious1 at alex_right
+            A "(Whispering) {size=20}I dont think he fell for it.{/size}"
+            PC "(Whispering) {size=20}We should probaply leave before finds what he is looking for.{/size}"
+            "With your ninja-like agility you are able to avoid the guards gaze while leaving through the entrance."
+            $ USB_placed_0 = True
+            $ main_entrace_flag = True
+            jump menu_outside
 label courtyard:
     $ show_textbox = True
     hide screen minigame_screen
@@ -248,6 +309,8 @@ label leave_facility:
 
 label game_lost:
     #scene bg game_over
+    hide screen minigame_screen
+    show screen minigame_screen()
     $ show_image_buttons = False
     "{color=[red_game_over_color]}{size=120}You got arrested{/size}{/color}{fast}{nw=0.5}"
     "{color=[red_game_over_color]}{size=120}You got arrested{/size}{/color}{fast}{nw=0.5}"

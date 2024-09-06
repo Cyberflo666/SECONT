@@ -1,4 +1,5 @@
 label security_minigame_start:
+    
     $ show_textbox = False
     if detected == True:
         $ show_image_buttons = False
@@ -30,9 +31,9 @@ screen minigame_screen():
     zorder 0
     modal False
     if fire_alarm == False:
-        image "bg security minigame new new"
+        image "bg security minigame"
     else :
-        image "bg security minigame backwards new new"
+        image "bg security minigame backwards"
     
     if visability_list2[1] == True or cameras_off == False:
         if door_state == False:
@@ -208,6 +209,7 @@ init python:
         in_vision_door()
         for i in range(0,4):
             if see(sec_list[i][0][sec_list[i][1]][1],sec_list[i][0][sec_list[i][1]][0],sec_list[i][0][sec_list[i][1]][2],game_matrix) == 1:
+                renpy.sound.play("audio/sfx/security_caught.wav")
                 renpy.jump("game_lost")
                 #renpy.notify("u lost")
                 #detected = True

@@ -2,13 +2,13 @@
 # This file contains all characters and their corresponding images
 
 #Characters
-define narrator = Character(    what_italic=True, what_outlines=[(0, "#080808", 5, 5)])
-define PC = Character("[PN]",   what_prefix='"', what_suffix='"', who_color="#ffffff", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
-define A = Character("Alex",    what_prefix='"', what_suffix='"', who_color="#27e700", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
-define F = Character("Felix",   what_prefix='"', what_suffix='"', who_color="#2469ff", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
-define L = Character("Leonie",  what_prefix='"', what_suffix='"', who_color="#FF7F50", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
-define J = Character("Janitor", what_prefix='"', what_suffix='"', who_color="#AA4473", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
-
+define narrator = Character(            what_italic=True, what_outlines=[(0, "#080808", 5, 5)])
+define PC = Character("[PN]",           what_prefix='"', what_suffix='"', who_color="#ffffff", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+define A = Character("Alex",            what_prefix='"', what_suffix='"', who_color="#27e700", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+define F = Character("Felix",           what_prefix='"', what_suffix='"', who_color="#2469ff", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+define L = Character("Leonie",          what_prefix='"', what_suffix='"', who_color="#FF7F50", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+define J = Character("Janitor",         what_prefix='"', what_suffix='"', who_color="#AA4473", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+define S1 = Character("Receptionist",   what_prefix='"', what_suffix='"', who_color="#44aa99", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
 
 # Character Sprites
 # Leonie

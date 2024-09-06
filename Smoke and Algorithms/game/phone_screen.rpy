@@ -233,6 +233,7 @@ init python:
         global password_fail_counter
 
         if password_guessed == False or first_guess == password_guess:
+            renpy.sound.play("audio/sfx/pin_pad_false.wav")
             first_guess = password_guess
             password_guessed = True
             password_check_color = "#970000ff"
@@ -250,6 +251,7 @@ init python:
                 password_fail_counter += 1
                 return
         password_check_color = "#288f00ff"
+        renpy.sound.play("audio/sfx/pin_pad_correct.wav")
         password_check_text = "Correct password"
             
         password_guessed_correct = True

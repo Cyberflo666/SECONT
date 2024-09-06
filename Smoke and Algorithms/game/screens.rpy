@@ -580,6 +580,7 @@ screen about():
             text "Music used:"
             text "\"Funky\", \"Pandora\" and \"Pipeline\" by Szymon Matuszewsk\nhttps://opengameart.org/content/freemusicpack-by-szymon-matuszewski CC-BY 3.0"
             text "\"Relax4\" by Martin Linda -  Berusky 2 Sound Track © 2009 Martin Linda\nhttps://opengameart.org/content/berusky-ii-ost-action-puzzle-game-soundtrack-23-tracks CC-BY-SA 3.0"
+            text "\"A Wrench In The Works\" - \"Your Digital Footprint\" (Investigation Theme) Composed by One Man Symphony - \nonemansymphony.bandcamp.com CC-BY 3.0"
             text "\n---------------------\n"
             ## gui.about is usually set in options.rpy.
             if gui.about:
