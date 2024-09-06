@@ -1,8 +1,13 @@
 label security_minigame_start:
     $ show_textbox = False
-    show screen minigame_screen()
+    if detected == True:
+        $ show_image_buttons = False
+        show screen minigame_screen
+        jump game_lost
+    else:
+        show screen minigame_screen()
     #$ renpy.notify("to early")
-    jump empty_label
+        jump empty_label
     #outside of tuple:
     #0s are no field 
     #1s are field 
@@ -28,6 +33,105 @@ screen minigame_screen():
         image "bg security minigame new new"
     else :
         image "bg security minigame backwards new new"
+    
+    if visability_list2[1] == True or cameras_off == False:
+        if door_state == False:
+            image "door closed"
+        else:
+            image "door open"
+    if visability_list2[0] == True or cameras_off == False:
+        if door_state1 == False:
+            image "door closed":
+                xpos -841
+        else:
+            image "door open":
+                xpos -841
+
+    
+
+    for i in range(0,4):
+        $ x = sec_list[i][0][sec_list[i][1]][1]
+        $ y = sec_list[i][0][sec_list[i][1]][0]
+        if (i == 0 and cameras_off == False) or (i == 0 and visability_list[i] == True):
+            image "guard cone":
+                alpha 0.5
+                anchor (0.5,0.5)
+                ypos  120 * x + 60 
+                xpos 1800 - (60 + 120 * y) + 60
+                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
+            image "guard icon" :
+                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 2)
+                ypos  120 * x + char_icon_offset
+                xpos 1800 - (60 + 120 * y) + char_icon_offset
+        elif (i == 1 and cameras_off == False) or (i == 1 and visability_list[i] == True):
+            image "guard cone":
+                alpha 0.5
+                anchor (0.5,0.5)
+                ypos  120 * x + 60
+                xpos 1800 - (60 + 120 * y) + 60
+                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
+            image "guard icon" :
+                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 2)
+                ypos  120 * x + char_icon_offset
+                xpos 1800 - (60 + 120 * y) + char_icon_offset
+        elif (i == 2 and cameras_off == False) or (i == 2 and visability_list[i] == True):
+            image "guard cone":
+                alpha 0.5
+                anchor (0.5,0.5)
+                ypos  120 * x + 60
+                xpos 1800 - (60 + 120 * y) + 60
+                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
+            image "guard icon" :
+                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 2)
+                ypos  120 * x + char_icon_offset
+                xpos 1800 - (60 + 120 * y) + char_icon_offset
+        elif (cameras_off == False and i == 3) or (i == 3 and visability_list[i] == True):
+            image "guard cone":
+                alpha 0.5
+                anchor (0.5,0.5)
+                ypos  120 * x + 60
+                xpos 1800 - (60 + 120 * y) + 60
+                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
+            image "guard icon" :
+                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 2)
+                ypos  120 * x + char_icon_offset
+                xpos 1800 - (60 + 120 * y) + char_icon_offset
+
+        
+        $ x = tailgate_list[i][0][tailgate_list[i][1]][1]
+        $ y = tailgate_list[i][0][tailgate_list[i][1]][0]
+
+        if ((i == 0 and cameras_off == False) or (i == 0 and visability_list1[i] == True)) and tailgate_list[i][0][tailgate_list[i][1]][1] != -1:
+            image "orange icon" :
+                rotate 90 * (tailgate_list[i][0][tailgate_list[i][1]][2]-2)
+                ypos  120 * x + char_icon_offset
+                xpos 1800 - (60 + 120 * y) + char_icon_offset
+        elif ((i == 1 and cameras_off == False) or (i == 1 and visability_list1[i] == True)) and tailgate_list[i][0][tailgate_list[i][1]][1] != -1:
+            image "green icon":
+                rotate 90 * (tailgate_list[i][0][tailgate_list[i][1]][2]-2)
+                ypos  120 * x + char_icon_offset
+                xpos 1800 - (60 + 120 * y) + char_icon_offset
+        elif ((i == 2 and cameras_off == False) or (i == 2 and visability_list1[i] == True)) and tailgate_list[i][0][tailgate_list[i][1]][1] != -1:
+            image "purple icon" :
+                rotate 90 * (tailgate_list[i][0][tailgate_list[i][1]][2]-2)
+                ypos  120 * x + char_icon_offset
+                xpos 1800 - (60 + 120 * y) + char_icon_offset
+        elif ((i == 3 and cameras_off == False) or (i == 3 and visability_list1[i] == True)) and tailgate_list[i][0][tailgate_list[i][1]][1] != -1:
+            image "blue icon" :
+                rotate 90 * (tailgate_list[i][0][tailgate_list[i][1]][2]-2)
+                ypos  120 * x + char_icon_offset
+                xpos 1800 - (60 + 120 * y) + char_icon_offset
+    
+    $ x = player_pos[1]
+    $ y = player_pos[0]
+    image "player" :
+        ypos  120 * x + 16
+        xpos  1800 - (60 + 120 * y) + 16
+    if cameras_off == True:
+        image "security view circle":
+            zoom 2
+            ypos  120 * x + 16 - 1050
+            xpos  1800 - (60 + 120 * y) + 16 - 1900
     if show_image_buttons == True:    
         imagebutton:
             focus_mask True
@@ -70,86 +174,6 @@ screen minigame_screen():
                 action Function(turn,3),Hide("minigame_screen"),Jump("security_minigame_start")
             else:
                 action Function(real_notify,"Invalid input")
-    
-    if door_state == False:
-        image "door closed"
-    else:
-        image "door open"
-
-    for i in range(0,4):
-        $ x = sec_list[i][0][sec_list[i][1]][1]
-        $ y = sec_list[i][0][sec_list[i][1]][0]
-        if i == 0:
-            image "guard cone":
-                alpha 0.5
-                anchor (0.5,0.5)
-                ypos  120 * x + 60 
-                xpos 1800 - (60 + 120 * y) + 60
-                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
-            image "guard icon" :
-                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 2)
-                ypos  120 * x + char_icon_offset
-                xpos 1800 - (60 + 120 * y) + char_icon_offset
-        elif i == 1:
-            image "guard cone":
-                alpha 0.5
-                anchor (0.5,0.5)
-                ypos  120 * x + 60
-                xpos 1800 - (60 + 120 * y) + 60
-                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
-            image "guard icon" :
-                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 2)
-                ypos  120 * x + char_icon_offset
-                xpos 1800 - (60 + 120 * y) + char_icon_offset
-        elif i == 2:
-            image "guard cone":
-                alpha 0.5
-                anchor (0.5,0.5)
-                ypos  120 * x + 60
-                xpos 1800 - (60 + 120 * y) + 60
-                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
-            image "guard icon" :
-                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 2)
-                ypos  120 * x + char_icon_offset
-                xpos 1800 - (60 + 120 * y) + char_icon_offset
-        else:
-            image "guard cone":
-                alpha 0.5
-                anchor (0.5,0.5)
-                ypos  120 * x + 60
-                xpos 1800 - (60 + 120 * y) + 60
-                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
-            image "guard icon" :
-                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 2)
-                ypos  120 * x + char_icon_offset
-                xpos 1800 - (60 + 120 * y) + char_icon_offset
-        $ x = tailgate_list[i][0][tailgate_list[i][1]][1]
-        $ y = tailgate_list[i][0][tailgate_list[i][1]][0]
-        if i == 0:
-            image "orange icon" :
-                rotate 90 * (tailgate_list[i][0][tailgate_list[i][1]][2]-2)
-                ypos  120 * x + char_icon_offset
-                xpos 1800 - (60 + 120 * y) + char_icon_offset
-        elif i == 1:
-            image "green icon" :
-                rotate 90 * (tailgate_list[i][0][tailgate_list[i][1]][2]-2)
-                ypos  120 * x + char_icon_offset
-                xpos 1800 - (60 + 120 * y) + char_icon_offset
-        elif i == 2:
-            image "purple icon" :
-                rotate 90 * (tailgate_list[i][0][tailgate_list[i][1]][2]-2)
-                ypos  120 * x + char_icon_offset
-                xpos 1800 - (60 + 120 * y) + char_icon_offset
-        else:
-            image "blue icon" :
-                rotate 90 * (tailgate_list[i][0][tailgate_list[i][1]][2]-2)
-                ypos  120 * x + char_icon_offset
-                xpos 1800 - (60 + 120 * y) + char_icon_offset
-    $ x = player_pos[1]
-    $ y = player_pos[0]
-    image "player" :
-        ypos  120 * x + 16
-        xpos  1800 - (60 + 120 * y) + 16
 
 
 
@@ -164,18 +188,29 @@ init python:
         global player_pos
         global door_timer
         global door_state
+        global door_timer1
+        global door_state1
         global optional_flag
         global courtyard_flag
         global bobs_flag
+        global detected
         if door_timer < 0:
             door_state = False
         door_timer -= 1
+        if door_timer1 < 0:
+            door_state1 = False
+        door_timer1 -= 1
         turn_personal(game_matrix,tailgate_list)
         turn_player(input,game_matrix)
         turn_security(game_matrix,sec_list)
+        in_vision()
+        in_vision_personal()
+        in_vision_door()
         for i in range(0,4):
             if see(sec_list[i][0][sec_list[i][1]][1],sec_list[i][0][sec_list[i][1]][0],sec_list[i][0][sec_list[i][1]][2],game_matrix) == 1:
                 renpy.jump("game_lost")
+                #renpy.notify("u lost")
+                #detected = True
         if player_pos == [6,5] and courtyard_flag:
             courtyard_flag = False
             renpy.jump("courtyard")
@@ -243,16 +278,24 @@ init python:
         if player_pos == [3,5]:
             if door_state == False:
                 valid_inputs[3] = 0
-            
+        if player_pos == [10,5]:
+            if door_state1 == False:
+                valid_inputs[3] = 0
+                renpy.notify(valid_inputs[1])
+        if player_pos == [11,5]:
+            if door_state1 == False:
+                valid_inputs[1] = 0
     
     def turn_personal(matrix,path_list):
         global door_state
         global door_timer
+        global door_state1
+        global door_timer1
         for i in range(0,4):
-            matrix[path_list[i][0][path_list[i][1]][0]][path_list[i][0][path_list[i][1]][1]][i+2] = 0
+            #matrix[path_list[i][0][path_list[i][1]][0]][path_list[i][0][path_list[i][1]][1]][i+2] = 0
             path_list[i][1] +=1
-            path_list[i][1] = path_list[i][1] % (len(path_list[i][0]) - 1)
-            matrix[path_list[i][0][path_list[i][1]][0]][path_list[i][0][path_list[i][1]][1]][i+2] = 1
+            path_list[i][1] = path_list[i][1] % (len(path_list[i][0]))
+            #matrix[path_list[i][0][path_list[i][1]][0]][path_list[i][0][path_list[i][1]][1]][i+2] = 1
             if i == 3:
                 if path_list[3][0][path_list[3][1]][0] == 3 and path_list[3][0][path_list[3][1]][1] == 5:
                     door_state = True
@@ -262,6 +305,16 @@ init python:
                 if path_list[2][0][path_list[2][1]][0] == 4 and path_list[2][0][path_list[2][1]][1] == 5:
                     door_state = True
                     door_timer = 2
+                    #renpy.notify(door_state)
+            if i == 0:
+                if path_list[0][0][path_list[0][1]][0] == 11 and path_list[0][0][path_list[0][1]][1] == 5:
+                    door_state1 = True
+                    door_timer1 = 2
+                    #renpy.notify(door_state)
+            if i == 1:
+                if path_list[1][0][path_list[1][1]][0] == 11 and path_list[1][0][path_list[1][1]][1] == 5:
+                    door_state1 = True
+                    door_timer1 = 2
                     #renpy.notify(door_state)
     def turn_security(matrix,path_list):
         for i in range(0,4):
@@ -401,7 +454,182 @@ init python:
                 elif matrix[y][1+x][1] == "t":
                     return 1
         return 0
+
+    def in_vision():
+        global visability_list
+        global game_matrix
+        global player_pos
+        global sec_list
+        #sight_range = 3
+        for i in range(0,4):
+            ydif = sec_list[i][0][sec_list[i][1]][0] - player_pos[0]
+            xdif = sec_list[i][0][sec_list[i][1]][1] - player_pos[1]
+            #distance = ((sec_list[i][0][sec_list[i][1]][0] - player_pos[0])**2 + (sec_list[i][0][sec_list[i][1]][1] - player_pos[1]) **2)**0.5
+            if ydif == 0 and xdif == 0:
+                visability_list[i] = True
+            elif abs(ydif) <= 3 and ydif < 0 and xdif == 0:
+                if ydif == -1:
+                    visability_list[i] = True
+                elif ydif == -2:
+                    if game_matrix[player_pos[0]-1][player_pos[1]] == 0:
+                        visability_list[i] = False
+                        continue
+                    else:
+                        #renpy.notify("in vision")
+                        visability_list[i] = True
+                elif ydif == -3:
+                    if game_matrix[player_pos[0]-1][player_pos[1]] == 0 or game_matrix[player_pos[0]-2][player_pos[1]] == 0:
+                        visability_list[i] = False
+                        continue
+                    else:
+                        visability_list[i] = True
+
+            elif abs(ydif) <= 3 and ydif > 0 and xdif == 0:
+                if ydif == 1:
+                    visability_list[i] = True
+                elif ydif == 2:
+                    if game_matrix[player_pos[0]+1][player_pos[1]] == 0:
+                        visability_list[i] = False
+                        continue
+                    else:
+                        visability_list[i] = True
+                elif ydif == 3:
+                    if game_matrix[player_pos[0]+1][player_pos[1]] == 0 or game_matrix[player_pos[0]+2][player_pos[1]] == 0:
+                        visability_list[i] = False
+                        continue
+                    else:
+                        visability_list[i] = True    
+            
+            elif abs(xdif) <= 3 and xdif > 0 and ydif == 0:
+                if xdif == 1:
+                    visability_list[i] = True
+                elif xdif == 2:
+                    if game_matrix[player_pos[0]][player_pos[1]-1] == 0:
+                        visability_list[i] = False
+                        continue
+                    else:
+                        visability_list[i] = True
+                elif xdif == 3:
+                    if game_matrix[player_pos[0]][player_pos[1]-1] == 0 or game_matrix[player_pos[0]][player_pos[1]-2] == 0:
+                        visability_list[i] = False
+                        continue
+                    else:
+                        visability_list[i] = True 
+
+            elif abs(xdif) <= 3 and xdif < 0 and ydif == 0:
+                if xdif == -1:
+                    visability_list[i] = True
+                elif xdif == -2:
+                    if game_matrix[player_pos[0]][player_pos[1]-1] == 0:
+                        visability_list[i] = False
+                        continue
+                    else:
+                        visability_list[i] = True
+                elif xdif == -3:
+                    if game_matrix[player_pos[0]][player_pos[1]-1] == 0 or game_matrix[player_pos[0]][player_pos[1]-2] == 0:
+                        visability_list[i] = False
+                        continue
+                    else:
+                        visability_list[i] = True
+            else:
+                visability_list[i] = False
+    
+    def in_vision_personal():
+        global visability_list1
+        global game_matrix
+        global player_pos
+        global tailgate_list
+        #sight_range = 3
+        for i in range(0,4):
+            ydif = tailgate_list[i][0][tailgate_list[i][1]][0] - player_pos[0]
+            xdif = tailgate_list[i][0][tailgate_list[i][1]][1] - player_pos[1]
+            #distance = ((sec_list[i][0][sec_list[i][1]][0] - player_pos[0])**2 + (sec_list[i][0][sec_list[i][1]][1] - player_pos[1]) **2)**0.5
+            if ydif == 0 and xdif == 0:
+                visability_list1[i] = True
+            elif abs(ydif) <= 3 and ydif < 0 and xdif == 0:
+                if ydif == -1:
+                    visability_list1[i] = True
+                elif ydif == -2:
+                    if game_matrix[player_pos[0]-1][player_pos[1]] == 0:
+                        visability_list1[i] = False
+                        continue
+                    else:
+                        visability_list1[i] = True
+                elif ydif == -3:
+                    if game_matrix[player_pos[0]-1][player_pos[1]] == 0 or game_matrix[player_pos[0]-2][player_pos[1]] == 0:
+                        visability_list1[i] = False
+                        continue
+                    else:
+                        visability_list1[i] = True
+
+            elif abs(ydif) <= 3 and ydif > 0 and xdif == 0:
+                if ydif == 1:
+                    visability_list1[i] = True
+                elif ydif == 2:
+                    if game_matrix[player_pos[0]+1][player_pos[1]] == 0:
+                        visability_list1[i] = False
+                        continue
+                    else:
+                        visability_list1[i] = True
+                elif ydif == 3:
+                    if game_matrix[player_pos[0]+1][player_pos[1]] == 0 or game_matrix[player_pos[0]+2][player_pos[1]] == 0:
+                        visability_list1[i] = False
+                        continue
+                    else:
+                        visability_list1[i] = True    
+            
+            elif abs(xdif) <= 3 and xdif > 0 and ydif == 0:
+                if xdif == 1:
+                    visability_list1[i] = True
+                elif xdif == 2:
+                    if game_matrix[player_pos[0]][player_pos[1]+1] == 0:
+                        visability_list1[i] = False
+                        continue
+                    else:
+                        visability_list1[i] = True
+                elif xdif == 3:
+                    if game_matrix[player_pos[0]][player_pos[1]+1] == 0 or game_matrix[player_pos[0]][player_pos[1]+2] == 0:
+                        visability_list1[i] = False
+                        continue
+                    else:
+                        visability_list1[i] = True 
+
+            elif abs(xdif) <= 3 and xdif < 0 and ydif == 0:
+                if xdif == -1:
+                    visability_list1[i] = True
+                elif xdif == -2:
+                    if game_matrix[player_pos[0]][player_pos[1]-1] == 0:
+                        visability_list1[i] = False
+                        continue
+                    else:
+                        visability_list1[i] = True
+                elif xdif == -3:
+                    if game_matrix[player_pos[0]][player_pos[1]-1] == 0 or game_matrix[player_pos[0]][player_pos[1]-2] == 0:
+                        visability_list1[i] = False
+                        continue
+                    else:
+                        visability_list1[i] = True
+            else:
+                visability_list1[i] = False
+
+    def in_vision_door():
+        global visability_list2
+        global game_matrix
+        global player_pos
+        global sec_list
+        if player_pos == [13,5] or player_pos == [12,5] or player_pos == [11,5] or player_pos == [10,5] or player_pos == [9,5]:
+            visability_list2[0] = True
+        else:
+            visability_list2[0] = False
+        
+        if player_pos == [2,5] or player_pos == [3,5] or player_pos == [4,5] or player_pos == [5,5]:
+            visability_list2[1] = True
+        else:
+            visability_list2[1] = False
+        
+
     def reset():
+        global detected
         global sec_list
         global tailgate_list
         global game_matrix
@@ -417,9 +645,24 @@ init python:
         global valid_inputs
         global optional_flag 
         global bobs_flag 
-        global courtyard_flag 
+        global courtyard_flag
+        global door_timer 
+        global door_state
+        global door_timer1 
+        global door_state1
         global a 
         global b 
+        global visability_list
+        global visability_list1
+        global visability_list2
+        detected = False
+        visability_list = [False,False,False,False]
+        visability_list1 = [False,False,False,False]
+        visability_list2 = [False,False]
+        door_timer = 0
+        door_state = 0
+        door_timer1 = 0
+        door_state1 = 0
         optional_flag = True
         bobs_flag = True
         courtyard_flag = True
@@ -458,12 +701,20 @@ init python:
                 sec_list[i][1] = 0
         for i in range(0,4):
             tailgate_list[i][1] = 0
+            if i == 3:
+                tailgate_list[i][1] = 8
+            if i == 2:
+                tailgate_list[i][1] = 10
+            if i == 1:
+                tailgate_list[i][1] = 5
+            if i == 0:
+                tailgate_list[i][1] = 2
         sec_index_1 = 11
         sec_index_2 = 0
         sec_index_3 = 0
         sec_index_4 = 0
         green_index = 0
         purple_index = 0
-        blue_index = 0
+        blue_index = 8
        
         

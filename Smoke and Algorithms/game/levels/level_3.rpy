@@ -3,6 +3,11 @@ label level_3_start:
     define door_state = False
     define a = "t"
     define b = "f"
+    define detected = False
+    define cameras_off = False
+    define visability_list = [False,False,False,False]
+    define visability_list1 = [False,False,False,False]
+    define visability_list2 = [False,False]
     define game_matrix= [
                         [0,0,0,0,[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0]],
                         [0,["c",b,0],0,0,[0,"f",0,0,0,0],0,0,[0,"f",0,0,0,0],0],
@@ -33,14 +38,16 @@ label level_3_start:
     define sec_index_3 = 0
     define sec_index_4 = 0
     define sec_list = [[sec_path_1,sec_index_1],[sec_path_2,sec_index_2],[sec_path_3,sec_index_3],[sec_path_4,sec_index_4]]
-    define orange_index = 0
-    define green_index = 0
-    define purple_index = 0
-    define blue_index = 0
+    define orange_index = 2
+    define green_index = 5
+    define purple_index = 10
+    define blue_index = 8
     define tailgate_list = [[orange_path,orange_index],[green_path,green_index],[purple_path,purple_index],[blue_path,blue_index]]
     define valid_inputs = [1,1,0,0,0]
     define player_pos = [14,1]
     define door_timer = 0
+    define door_timer1 = 0
+    define door_state1 = False
     define optional_flag = True
     define bobs_flag = True
     define courtyard_flag = True
@@ -171,6 +178,7 @@ label level_3_start:
 
 menu:
     "Take the main entrance.":
+        $ reset()
         $ fire_alarm = True
         $ player_pos = [1,1]
         $ a = "f"
@@ -202,7 +210,11 @@ menu:
         hide screen minigame_screen
         jump security_minigame_start
     "Observe the people entering the building.":
-        pass
+        $ reset()
+        $ cameras_off = True
+        show screen minigame_screen()
+        hide screen minigame_screen
+        jump security_minigame_start
 
 
 label courtyard:
@@ -235,11 +247,18 @@ label leave_facility:
     jump security_minigame_start
 
 label game_lost:
-    hide screen minigame_screen
-    scene bg game_over
-    #""
+    #scene bg game_over
+    $ show_image_buttons = False
+    "{color=[red_game_over_color]}{size=120}You got arrested{/size}{/color}{fast}{nw=0.5}"
+    "{color=[red_game_over_color]}{size=120}You got arrested{/size}{/color}{fast}{nw=0.5}"
+    "{color=[red_game_over_color]}{size=120}You got arrested{/size}{/color}{fast}{nw=0.5}"
+    "{color=[red_game_over_color]}{size=120}You got arrested{/size}{/color}{fast}{nw=0.5}"
+    $ show_image_buttons = True
+    $ detected = False
     $ reset()
-    pause(2)
+    hide screen minigame_screen
+    show screen minigame_screen()
+    hide screen minigame_screen
     jump security_minigame_start
 
    
