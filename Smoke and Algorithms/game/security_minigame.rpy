@@ -54,45 +54,77 @@ screen minigame_screen():
         $ x = sec_list[i][0][sec_list[i][1]][1]
         $ y = sec_list[i][0][sec_list[i][1]][0]
         if (i == 0 and cameras_off == False) or (i == 0 and visability_list[i] == True):
-            image "guard cone":
-                alpha 0.5
-                anchor (0.5,0.5)
-                ypos  120 * x + 60 
-                xpos 1800 - (60 + 120 * y) + 60
-                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
+            if security_aware == True:
+                image "guard cone long":
+                    alpha 0.5
+                    anchor (0.5,0.5)
+                    ypos  120 * x + 60 
+                    xpos 1800 - (60 + 120 * y) + 60
+                    rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
+            else:
+                image "guard cone":
+                    alpha 0.5
+                    anchor (0.5,0.5)
+                    ypos  120 * x + 60 
+                    xpos 1800 - (60 + 120 * y) + 60
+                    rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
             image "guard icon" :
                 rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 2)
                 ypos  120 * x + char_icon_offset
                 xpos 1800 - (60 + 120 * y) + char_icon_offset
         elif (i == 1 and cameras_off == False) or (i == 1 and visability_list[i] == True):
-            image "guard cone":
-                alpha 0.5
-                anchor (0.5,0.5)
-                ypos  120 * x + 60
-                xpos 1800 - (60 + 120 * y) + 60
-                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
+            if security_aware == True:
+                image "guard cone long":
+                    alpha 0.5
+                    anchor (0.5,0.5)
+                    ypos  120 * x + 60
+                    xpos 1800 - (60 + 120 * y) + 60
+                    rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
+            else:
+                image "guard cone":
+                    alpha 0.5
+                    anchor (0.5,0.5)
+                    ypos  120 * x + 60
+                    xpos 1800 - (60 + 120 * y) + 60
+                    rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
             image "guard icon" :
                 rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 2)
                 ypos  120 * x + char_icon_offset
                 xpos 1800 - (60 + 120 * y) + char_icon_offset
         elif (i == 2 and cameras_off == False) or (i == 2 and visability_list[i] == True):
-            image "guard cone":
-                alpha 0.5
-                anchor (0.5,0.5)
-                ypos  120 * x + 60
-                xpos 1800 - (60 + 120 * y) + 60
-                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
+            if security_aware == True:
+                image "guard cone long":
+                    alpha 0.5
+                    anchor (0.5,0.5)
+                    ypos  120 * x + 60
+                    xpos 1800 - (60 + 120 * y) + 60
+                    rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
+            else:
+                image "guard cone":
+                    alpha 0.5
+                    anchor (0.5,0.5)
+                    ypos  120 * x + 60
+                    xpos 1800 - (60 + 120 * y) + 60
+                    rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
             image "guard icon" :
                 rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 2)
                 ypos  120 * x + char_icon_offset
                 xpos 1800 - (60 + 120 * y) + char_icon_offset
         elif (cameras_off == False and i == 3) or (i == 3 and visability_list[i] == True):
-            image "guard cone":
-                alpha 0.5
-                anchor (0.5,0.5)
-                ypos  120 * x + 60
-                xpos 1800 - (60 + 120 * y) + 60
-                rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
+            if security_aware == True:
+                image "guard cone long":
+                    alpha 0.5
+                    anchor (0.5,0.5)
+                    ypos  120 * x + 60
+                    xpos 1800 - (60 + 120 * y) + 60
+                    rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
+            else:
+                image "guard cone":
+                    alpha 0.5
+                    anchor (0.5,0.5)
+                    ypos  120 * x + 60
+                    xpos 1800 - (60 + 120 * y) + 60
+                    rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 1)
             image "guard icon" :
                 rotate 90 * (sec_list[i][0][sec_list[i][1]][2] - 2)
                 ypos  120 * x + char_icon_offset
@@ -131,8 +163,8 @@ screen minigame_screen():
     if cameras_off == True:
         image "security view circle":
             zoom 2
-            ypos  120 * x + 16 - 1050
-            xpos  1800 - (60 + 120 * y) + 16 - 1900
+            ypos  120 * x + 32 - 1050
+            xpos  1800 - (60 + 120 * y) + 41 - 1900
     if show_image_buttons == True:    
         imagebutton:
             focus_mask True
@@ -344,6 +376,14 @@ init python:
                     pass
                 elif matrix[y][x-2][1] == "t":
                     return 1
+            if security_aware == True:
+                if x - (1 * 3) < 0:
+                    pass
+                else:
+                    if matrix[y][x - (1 * 3)] == 0:
+                        pass
+                    elif matrix[y][x-3][1] == "t":
+                        return 1
             if (y-1) < 0:
                 pass
             else:
@@ -375,7 +415,14 @@ init python:
                     pass
                 elif matrix[y][x+2][1] == "t":
                     return 1
-            
+            if security_aware == True:
+                if x + (1 * 3) > 8 :
+                    pass
+                else:
+                    if matrix[y][x + (1 * 3)] == 0:
+                        pass
+                    elif matrix[y][x+3][1] == "t":
+                        return 1
             if (y-1) < 0:
                 pass
             else:
@@ -407,7 +454,14 @@ init python:
                     pass
                 elif matrix[y-2][x][1] == "t":
                     return 1
-
+            if security_aware == True:
+                if y - (1 * 3) < 0:
+                    pass
+                else:
+                    if matrix[y - (1 * 3)][x] == 0:
+                        pass
+                    elif matrix[y-3][x][1] == "t":
+                        return 1
             if (x-1) < 0:
                 pass
             else:
@@ -439,7 +493,14 @@ init python:
                     pass
                 elif matrix[y+2][x][1] == "t":
                     return 1
-
+            if security_aware == True:
+                if y + (1 * 3) > 14:
+                    pass
+                else:
+                    if matrix[y + (1 * 3)][x] == 0:
+                        pass
+                    elif matrix[y+3][x][1] == "t":
+                        return 1
             if (x-1) < 0:
                 pass
             else:
