@@ -23,8 +23,10 @@ default snack_gotten = False
 default open_gil_tag = False
 default gill_house_seen_bob = False
 default gill_house_seen_gill = False
+default in_dorms = False
 
 label level_2_start:
+    $ in_dorms = True
     scene bg new kitchen 
     
     "You walk over and gather around a table while opening up your laptop."

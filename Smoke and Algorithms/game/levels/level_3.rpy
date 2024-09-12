@@ -1,4 +1,7 @@
 label level_3_start:
+    $ in_dorms = False
+    define level_3_s = False
+    $ level_3_s = True
     define fire_alarm = False
     define door_state = False
     define leonie_away = True
@@ -215,9 +218,9 @@ label main_entrance:
     show alex serious2 at alex_right
     with dissolve
     if main_entrance_entered == False:
-        A "(Whispering) {size=20}Is it just me or are they not expecting visitors.{/size}"
-        PC "(Whispering) {size=20}Thats you, they are probaply just really busy.{/size}"
-        A "(Whispering) {size=20}Yeah sure. Anyways, what's the plan now.{/size}"
+        A "(whispering){size=23}Is it just me or are they not expecting visitors.{/size}"
+        PC "(whispering){size=23}Thats you, they are probaply just really busy.{/size}"
+        A "(whispering){size=23}Yeah sure. Anyways, what's the plan now.{/size}"
 label main_entrance_menu:
     menu:
         "Go back outside":
@@ -233,11 +236,11 @@ label main_entrance_menu:
             with dissolve
             A "Excuse me"
             "She looks up slightly annoyed."
-            S1 "Can i help you?"
+            R "Can i help you?"
             show alex smileleft at alex_left
             with dissolve
             A "My name is Gill Cameron and i need to deliver some packages to Bob Anderson."
-            S1 "Let me see your ID please."
+            R "Let me see your ID please."
             "Knowing that this will probaply not work out you signal alex with a look that its time to bale."
             show alex happyleft at alex_left
             with dissolve
@@ -255,8 +258,8 @@ label main_entrance_menu:
             "You try to sneakily place leonies drive on the desk. As you leave you notice a security guard inspecting your trap. Shortly after he looks up with a determined suspicious face."
             show alex serious1 at alex_right
             with dissolve
-            A "(Whispering) {size=20}I dont think he fell for it.{/size}"
-            PC "(Whispering) {size=20}We should probaply leave before finds what he is looking for.{/size}"
+            A "(Whispering) {size=23}I dont think he fell for it.{/size}"
+            PC "(Whispering) {size=23}We should probaply leave before finds what he is looking for.{/size}"
             "With your ninja-like agility you are able to avoid the guards gaze while leaving through the entrance."
             $ USB_placed_0 = True
             $ have_USB = False
@@ -267,7 +270,7 @@ label back_entrance:
     scene bg back entrance hallway
     "As you try to go the same way as before, you get noticed by what looks like a secretary."
     show secretary suspicious at center
-    S2 "Excuse me, who are you. I have not seen you here before."
+    S1 "Excuse me, who are you. I have not seen you here before."
     menu:
         "Tell her that you are the new interns of Aob Anderson and you need to go to his office.":
             show secretary suspicious at right
@@ -276,25 +279,25 @@ label back_entrance:
             A "We are Bob Andersons new interns and it's our first day. He said we should wait for him in his office for further instructions."
             show secretary angry at right
             with dissolve
-            S2 "Bob didn't mention any new interns."
+            S1 "Bob didn't mention any new interns."
             show alex neutralleft at alex_left 
             with dissolve
             A "How else would we have gotten access."
             show secretary thinking at right
             with dissolve
-            S2 "Well thats a good point. Sorry for being so mistrustful but our higher ups want us to take security rather serious"
+            S1 "Well thats a good point. Sorry for being so mistrustful but our higher ups want us to take security rather serious"
             show alex happyleft at alex_left
             with dissolve
             A "Yeah we know. Bob also said to us we shouldnt speak of what we do here outside of work."
             show secretary neutral at right
             with dissolve
-            S2 "Sounds like him. Anyways his office is in the area with the others just down this corridor."
+            S1 "Sounds like him. Anyways his office is in the area with the others just down this corridor."
             show alex smileleft at alex_left
             with dissolve
             A "Okay great, thank you."
             show secretary smile at right
             with dissolve
-            S2 "No problem."
+            S1 "No problem."
         "Tell her you need to go to the bathroom and make a run for it":
             show secretary thinking at right
             with dissolve
@@ -308,18 +311,18 @@ label back_entrance:
             A "We are technicians and here for problems with the internet connection in the west wing. We where called by Mr. Anderson you know where he is? We need some information before we start."
             show secretary thinking at right
             with dissolve
-            S2 "Well i don't know where he is but just wait here a minute, i will call him right now."
+            S1 "Well i don't know where he is but just wait here a minute, i will call him right now."
             show alex happyleft at alex_left
             with dissolve
             A "Thats not gonna be necessary, we will just look for him ourselfs thank you."
             show secretary smile at right
             with dissolve
-            S2 "No no, its nothing really. Just one second."
+            S1 "No no, its nothing really. Just one second."
             show secretary neutral at right
             show alex serious2left at alex_left
             with dissolve
             "The secretary starts to type something on her phone and then proceeds to wait for a call."
-            "You decide its best if you bale out while she is distracted before your'e lie falls apart right infront of you."
+            "You decide its best if you bale out while she is distracted before your lie falls apart right infront of you."
             scene bg facility hallway
             with dissolve
             "With that in mind you make a run for the office area before she can stop you."
@@ -376,47 +379,69 @@ label before_the_office:
 label courtyard:
     $ show_textbox = True
     hide screen minigame_screen
-    "you see beautyful flowers"
+    "you see beautiful flowers and a nice garden"
+    "upon staring at the delightful scenary a butterfly comes across your sight."
+    "you feel like you have to catch the butterfly"
+    #butterfly chasing minigame starts
     "you decide to go back into the building"
-    jump security_minigame_start
-
-label bobs_office:
-    $ show_textbox = True
-    hide screen minigame_screen
-    scene bg bob office
-    "you see felix"
-    "you leave the facility"
-    play music security_music volume loudness
-    $ reset()
-    $ player_pos = [1,1]
-    $ valid_inputs = [1,0,0,1,0]
-    $ game_matrix= [
-        [0,0,0,0,[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0]],
-        [0,["c","t",0],0,0,[0,"f",0,0,0,0],0,0,[0,"f",0,0,0,0],0],
-        [[0,"f",0,0,0,1],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[4,0,0,0,0,0]],
-        [0,0,0,0,0,[0,"f",0,0,0,0,door_state],0,0,0],
-        [0,0,0,0,0,[0,"f",0,0,0,0],0,0,0],
-        [0,0,[3,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0]],
-        [0,0,[0,"f",0,0,0,0],0,0,["b","f",0,0,],0,0,[0,"f",0,0,0,0]],
-        [[0,"f",0,0,1,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],0,0,0,0,0,[0,"f",0,0,0,0]],
-        [0,0,[0,"f",0,0,0,0],0,0,0,0,0,[0,"f",0,0,0,0]],
-        [["a","f",0],0,[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[1,"f",0,0,0,0]],
-        [[0,"f",0,0,0,0],0,0,0,0,[0,"f",0,0,0,0],0,0,0],
-        [[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[4,0,0,0,0,0]],
-        [0,0,0,[0,"f",0,0,0,0],0,[0,"f",0,0,0,0],0,0,0],
-        [[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],0,[0,"f",0,0,0,0],0,0,0],
-        [0,[0,"f",0,0,0,0],0,[0,"f",1,0,0,0],0,[0,"f",0,2,0,0],0,0,0]
-        ]
-    show screen minigame_screen()
-    hide screen minigame_screen
     jump security_minigame_start
 
 label optional:
     $ show_textbox = True
     hide screen minigame_screen
-    "you see interesting stuff"
-    "you decide to go back into the hallway"
+    "you sneakingly open the door, somewhat afraid that an employee might be here and walk in slowly"
+    show alex smileleft at alex_left
+    with dissolve
+    A "since were already in this weird room we might aswell take a look around"
+    #clicking through room + stories begin.
+    "upon inspecting the room you decide to go back into the hallway"
     jump security_minigame_start
+
+
+label bobs_office:
+    $ show_textbox = True
+    hide screen minigame_screen
+    scene bg bob office
+    show alex smileleft at alex_left
+    with dissolve
+    A "Now this is what were talking about. We finally made it."
+    PC "I cant believe this place has that many security guards and employees hording around"
+    show alex serious2left at alex_left
+    with dissolve 
+    A "You know theres probably a good reason why there are so many security guards here around the clock right? "
+    PC "Well lets try to find clues about Felix now thoiugh"
+    #bobs office clicking through room begins
+    #voice phshing game begins
+    "you go to where Felix is"
+    play music security_music volume loudness
+    if fire_alarm == True:
+        $ reset()
+        $ player_pos = [1,1]
+        $ valid_inputs = [1,0,0,1,0]
+        $ game_matrix= [
+            [0,0,0,0,[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0]],
+            [0,["c","t",0],0,0,[0,"f",0,0,0,0],0,0,[0,"f",0,0,0,0],0],
+            [[0,"f",0,0,0,1],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[4,0,0,0,0,0]],
+            [0,0,0,0,0,[0,"f",0,0,0,0,door_state],0,0,0],
+            [0,0,0,0,0,[0,"f",0,0,0,0],0,0,0],
+            [0,0,[3,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0]],
+            [0,0,[0,"f",0,0,0,0],0,0,["b","f",0,0,],0,0,[0,"f",0,0,0,0]],
+            [[0,"f",0,0,1,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],0,0,0,0,0,[0,"f",0,0,0,0]],
+            [0,0,[0,"f",0,0,0,0],0,0,0,0,0,[0,"f",0,0,0,0]],
+            [["a","f",0],0,[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[1,"f",0,0,0,0]],
+            [[0,"f",0,0,0,0],0,0,0,0,[0,"f",0,0,0,0],0,0,0],
+            [[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[4,0,0,0,0,0]],
+            [0,0,0,[0,"f",0,0,0,0],0,[0,"f",0,0,0,0],0,0,0],
+            [[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],0,[0,"f",0,0,0,0],0,0,0],
+            [0,[0,"f",0,0,0,0],0,[0,"f",1,0,0,0],0,[0,"f",0,2,0,0],0,0,0]
+            ]
+        show screen minigame_screen()
+        hide screen minigame_screen
+        jump security_minigame_start
+    
+label finding_felix: 
+
+    
 
 label leave_facility:
     $ show_textbox = True

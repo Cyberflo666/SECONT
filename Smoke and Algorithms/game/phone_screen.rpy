@@ -409,6 +409,8 @@ screen phone_hand_contact():
 init python:
     def already_here_notify():
         renpy.notify("You are already here.")
+    def cant_go_there_notify():
+        renpy.notify("You cant go there.")
 
 screen phone_hand_map():
     zorder 2
@@ -426,8 +428,10 @@ screen phone_hand_map():
         focus_mask True
         if hide_map:
             action Call("map_disabled")
-        else:
+        elif in_dorms:
             action Function(already_here_notify)
+        elif level_3_s:
+            action Function(cant_go_there_notify)
 
     # University
     if website_2_not_seen == False:
@@ -443,6 +447,8 @@ screen phone_hand_map():
                 action Call("lab_access_denied")
             elif lab_seen:
                 action Call("lab_visited")
+            elif level_3_s:
+                action Function(cant_go_there_notify)
             else:
                 # action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"),  Hide("website4_screen"), Hide("laptop_screen"), Jump("visitlab")
                 action Function(hide_all_screens), Jump("visitlab")
@@ -455,6 +461,8 @@ screen phone_hand_map():
             focus_mask True
             if hide_map:
                 action Call("map_disabled")
+            elif level_3_s:
+                action Function(already_here_notify)
             elif dumpster_doven:
                 action Call("dumpster_empty")
             else:
@@ -469,6 +477,8 @@ screen phone_hand_map():
             focus_mask True
             if hide_map:
                 action Call("map_disabled")
+            elif level_3_s:
+                action Function(cant_go_there_notify)
             elif dumpster2_doven:
                 action Call("dumpster_empty")
             else:
@@ -499,6 +509,7 @@ init python:
         renpy.hide_screen("social_screen_bob")
         renpy.hide_screen("social_screen_gill")
         renpy.hide_screen("social_screen_bob_tag")
+        renpy.hide_screen("mail_screen")
         return
 
 ##################################### Notes ###########################################
