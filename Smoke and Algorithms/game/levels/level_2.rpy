@@ -798,7 +798,7 @@ label inside_lab:
 
 
 label rat_in_cage_left:
-    call hide_lab_screens from _call_hide_lab_screens
+    call hide_lab_screens 
     scene bg left cage zoom
     with dissolve 
     $ show_textbox = True
@@ -808,7 +808,7 @@ label rat_in_cage_left:
     $ rat_seen = True
     jump inside_lab
 label left_pc_stats:
-    call hide_lab_screens from _call_hide_lab_screens_1
+    call hide_lab_screens 
     scene bg left pc zoom
     with dissolve 
     $ show_textbox = True
@@ -817,7 +817,7 @@ label left_pc_stats:
     $ left_pc_seen = True
     jump inside_lab
 label left_wall_obj:
-    call hide_lab_screens from _call_hide_lab_screens_2
+    call hide_lab_screens 
     scene bg left wall zoom
     with dissolve
     $ show_textbox = True
@@ -826,7 +826,7 @@ label left_wall_obj:
     $ left_wall_seen = True 
     jump inside_lab
 label symbols_on_screen:
-    call hide_lab_screens from _call_hide_lab_screens_3
+    call hide_lab_screens 
     scene bg monitor zoom
     with dissolve
     $ show_textbox = True
@@ -835,7 +835,7 @@ label symbols_on_screen:
     $ symbols_seen = True
     jump inside_lab
 label rat_in_cage_right:
-    call hide_lab_screens from _call_hide_lab_screens_4
+    call hide_lab_screens
     scene bg right cage zoom
     with dissolve
     $ show_textbox = True
@@ -845,7 +845,7 @@ label rat_in_cage_right:
     $ rat_seen = True
     jump inside_lab
 label right_pc_stats:
-    call hide_lab_screens from _call_hide_lab_screens_5
+    call hide_lab_screens 
     scene bg right pc zoom
     with dissolve
     $ show_textbox = True
@@ -854,7 +854,7 @@ label right_pc_stats:
     $ left_pc_seen = True
     jump inside_lab
 label empty_trash:
-    call hide_lab_screens from _call_hide_lab_screens_6
+    call hide_lab_screens 
     scene bg trash zoom
     with dissolve
     $ show_textbox = True
@@ -873,7 +873,8 @@ label empty_trash:
     #jump inside_lab
 
 label inside_lab_done:
-    call hide_lab_screens from _call_hide_lab_screens_7
+    hide screen phone_icon 
+    call hide_lab_screens 
     scene bg medievil lab
     with dissolve
     $ show_textbox = True

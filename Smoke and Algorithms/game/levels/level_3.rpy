@@ -57,7 +57,7 @@ label level_3_start:
     define optional_flag = True
     define bobs_flag = True
     define courtyard_flag = True
- 
+    define painting_seen = False
     scene bg back office far 
     #show leonie neutral at left
     #show alex neutral at alex_right
@@ -409,9 +409,70 @@ label bobs_office:
     show alex serious2left at alex_left
     with dissolve 
     A "You know theres probably a good reason why there are so many security guards here around the clock right? "
-    PC "Well lets try to find clues about Felix now thoiugh"
+    PC "Well lets try to find clues about Felix now though"
+    jump bob_clicking
     #bobs office clicking through room begins
-    #voice phshing game begins
+label bob_clicking: #need to add images
+    if painting_seen:
+        jump bob_clicking_done
+    $ show_textbox = False
+    scene bg medievil lab
+    show screen bob_laptop
+    show screen bob_book_shelf
+    show screen bob_sofa
+    show screen bob_painting
+    with dissolve
+    #show screen medical_tools
+
+    show screen phone_icon
+    with moveinleft
+    jump empty_label
+
+
+label laptop:
+    call hide_bob_screens 
+    scene bg left cage zoom
+    with dissolve 
+    $ show_textbox = True
+    "When observing the laptop you see that the laptop is locked"
+    $ show_textbox = False
+    jump bob_clicking
+label book_shelf:
+    call hide_bob_screens 
+    scene bg left pc zoom
+    with dissolve 
+    $ show_textbox = True
+    "You see interesting books and look for a secret doorway behind unsucessfully"
+    $ show_textbox = False
+    $ left_pc_seen = True
+    jump bob_clicking
+label sofa:
+    call hide_bob_screens
+    scene bg left wall zoom
+    with dissolve
+    $ show_textbox = True
+    "The Sofa seems quite comfy however theres nothing of interest here."
+    $ show_textbox = False
+    $ left_wall_seen = True 
+    jump bob_clicking
+label painting:
+    call hide_bob_screens 
+    scene bg monitor zoom
+    with dissolve
+    $ show_textbox = True
+    "you look at the painting and wonder why its placed so low and in the middle. You realise that you can take off the painting and theres a hidden little space with letters."
+    $ show_textbox = False
+    $ painting_seen = True
+    jump bob_clicking
+label bob_clicking_done:
+    scene bg bob office
+    call hide_bob_screens
+    $ show_textbox = True
+    hide screen phone_icon 
+    #voice phsihing game
+    jump finding_felix 
+
+label finding_felix:
     "you go to where Felix is"
     play music security_music volume loudness
     if fire_alarm == True:
@@ -439,7 +500,7 @@ label bobs_office:
         hide screen minigame_screen
         jump security_minigame_start
     
-label finding_felix: 
+ 
 
     
 

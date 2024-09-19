@@ -279,3 +279,62 @@ init python:
             renpy.jump("pin_pad_mini_game_complete")
         else:
             renpy.sound.play("audio/sfx/pin_pad_false.wav")
+############################# bob room point and click ################################
+label hide_bob_screens:
+    hide screen bob_laptop
+    hide screen bob_book_shelf
+    hide screen bob_sofa
+    hide screen bob_painting
+    return
+
+screen bob_laptop:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton :
+            hover "images/backgrounds/lab/left cage hover.png" 
+            idle "images/backgrounds/lab/left cage idle.png" 
+            focus_mask True
+            action Hide("bob_laptop"),Jump("laptop")
+
+screen bob_book_shelf:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton :
+            hover "images/backgrounds/lab/left pc hover.png" 
+            idle "images/backgrounds/lab/left pc idle.png" 
+            focus_mask True
+            action Hide("bob_book_shelf"),Jump("book_shelf")
+
+screen bob_sofa:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton :
+            hover "images/backgrounds/lab/left wall hover.png" 
+            idle "images/backgrounds/lab/left wall idle.png" 
+            focus_mask True
+            action Hide("bob_sofa"),Jump("sofa")
+
+screen bob_painting:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton :
+            hover "images/backgrounds/lab/monitor hover.png" 
+            idle "images/backgrounds/lab/monitor idle.png" 
+            focus_mask True
+            action Hide("bob_painting"),Jump("painting")
+
+
+
+#screen medical_tools:
+    #zorder 0
+    #modal False
+    #if show_image_buttons == True:
+        #imagebutton :
+            #hover "images/backgrounds/felix room/f wall3.png" 
+            #idle "images/backgrounds/felix room/fb wall3.png" 
+            #focus_mask True
+            #action Hide("medical_tools"),Jump("used_medical_tools")
