@@ -58,6 +58,9 @@ label level_3_start:
     define bobs_flag = True
     define courtyard_flag = True
     define painting_seen = False
+    define hospital_bed_seen = False
+    define operation_table_seen = False 
+    define skull_anatomy_seen = False
     scene bg back office far 
     #show leonie neutral at left
     #show alex neutral at alex_right
@@ -393,7 +396,50 @@ label optional:
     show alex smileleft at alex_left
     with dissolve
     A "since were already in this weird room we might aswell take a look around"
+    jump optional_clicking
     #clicking through room + stories begin.
+label optional_clicking: #need to add images
+    if hospital_bed_seen and operation_table_seen and skull_anatomy_seen:
+        jump optional_clicking_done
+    $ show_textbox = False
+    scene bg medievil lab 
+    show screen optional_room
+    with dissolve
+    show screen phone_icon
+    with moveinright
+    jump empty_label
+label hospital_bed:
+    call hide_optional_room_screen
+    scene bg left cage zoom
+    with dissolve
+    $ show_textbox = True
+    "You see bloody hospital beds"
+    $ show_textbox = False
+    $ hospital_bed_seen = True
+    jump optional_clicking
+label operation_table:
+    call hide_optional_room_screen
+    scene bg left cage zoom
+    with dissolve
+    $ show_textbox = True
+    "you see bloody equipment"
+    $ show_textbox = False
+    $ operation_table_seen = True
+    jump optional_clicking
+label skull_anatomy:
+    call hide_optional_room_screen
+    scene bg left cage zoom
+    with dissolve
+    $ show_textbox = True
+    "you see an anatomy picture of a skull with marks on it"
+    $ show_textbox = False
+    $ skull_anatomy_seen = True
+    jump optional_clicking
+
+
+label optional_clicking_done:
+    $ show_textbox = True
+    hide screen phone_icon
     "upon inspecting the room you decide to go back into the hallway"
     jump security_minigame_start
 
@@ -422,7 +468,6 @@ label bob_clicking: #need to add images
     show screen bob_sofa
     show screen bob_painting
     with dissolve
-    #show screen medical_tools
 
     show screen phone_icon
     with moveinleft

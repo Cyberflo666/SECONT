@@ -326,15 +326,29 @@ screen bob_painting:
             idle "images/backgrounds/lab/monitor idle.png" 
             focus_mask True
             action Hide("bob_painting"),Jump("painting")
+############################# optional room point and click ################################
+label hide_optional_room_screen:
+    hide screen optional_room
 
+screen optional_room:
+    zorder 0
+    modal False
+    if show_image_buttons == True:
+        imagebutton:
+            hover "images/backgrounds/lab/monitor hover.png" 
+            idle "images/backgrounds/lab/monitor idle.png" 
+            focus_mask True
+            action Hide("optional_room"),Jump("hospital_bed")
 
+        imagebutton:
+            hover "images/backgrounds/lab/left cage hover.png" 
+            idle "images/backgrounds/lab/left cage idle.png" 
+            focus_mask True
+            action Hide("optional_room"),Jump("operation_table")
 
-#screen medical_tools:
-    #zorder 0
-    #modal False
-    #if show_image_buttons == True:
-        #imagebutton :
-            #hover "images/backgrounds/felix room/f wall3.png" 
-            #idle "images/backgrounds/felix room/fb wall3.png" 
-            #focus_mask True
-            #action Hide("medical_tools"),Jump("used_medical_tools")
+        imagebutton:
+            hover "images/backgrounds/lab/right cage hover.png" 
+            idle "images/backgrounds/lab/right cage idle.png" 
+            focus_mask True
+            action Hide("optional_room"),Jump("skull_anatomy")
+
