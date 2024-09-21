@@ -115,6 +115,41 @@ transform janitor_middle:
     xalign 0.5
     yalign 1.0
 
+#Receptionist
+image receptionist friendly:
+    zoom 0.55
+    "images/characters/Receptionist (Male)/friendly.png"
+image receptionist neutral:
+    zoom 0.55
+    "images/characters/Receptionist (Male)/neutral.png"
+image receptionist suspicious:
+    "images/characters/Receptionist (Male)/suspicious.png"
+    zoom 0.55
+
+transform receptionist_right:
+    xalign 1.0
+    yalign 1.0
+
+#Secretary
+image secretary angry:
+    "images/characters/Secretary (Female)/angry.png"
+image secretary neutral:
+    "images/characters/Secretary (Female)/neutral.png"
+image secretary friendly:
+    "images/characters/Secretary (Female)/friendly.png"
+image secretary suspicious:
+    "images/characters/Secretary (Female)/suspicious.png"
+image secretary thinking:
+    "images/characters/Secretary (Female)/thinking.png"
+
+transform secretary_right:
+    ypos 1300
+    xalign 1.2
+transform secretary_right_smile:
+    ypos 1250
+    xalign 1.2
+    zoom 0.95
+
 label janitor_look(trust):
     if (trust > 75 ):
         show janitor thinking at janitor_right

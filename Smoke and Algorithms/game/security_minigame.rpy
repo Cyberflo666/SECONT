@@ -567,13 +567,13 @@ init python:
                 if xdif == 1:
                     visability_list[i] = True
                 elif xdif == 2:
-                    if game_matrix[player_pos[0]][player_pos[1]-1] == 0:
+                    if game_matrix[player_pos[0]][player_pos[1]+1] == 0:
                         visability_list[i] = False
                         continue
                     else:
                         visability_list[i] = True
                 elif xdif == 3:
-                    if game_matrix[player_pos[0]][player_pos[1]-1] == 0 or game_matrix[player_pos[0]][player_pos[1]-2] == 0:
+                    if game_matrix[player_pos[0]][player_pos[1]+1] == 0 or game_matrix[player_pos[0]][player_pos[1]+2] == 0:
                         visability_list[i] = False
                         continue
                     else:

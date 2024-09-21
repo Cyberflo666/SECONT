@@ -285,42 +285,43 @@ label hide_bob_screens:
     hide screen bob_book_shelf
     hide screen bob_sofa
     hide screen bob_painting
+    hide screen phone_icon
     return
 
 screen bob_laptop:
     zorder 0
     modal False
-    if show_image_buttons == True:
+    if show_image_buttons == True and computer_seen == False:
         imagebutton :
-            hover "images/backgrounds/lab/left cage hover.png" 
-            idle "images/backgrounds/lab/left cage idle.png" 
+            hover "images/backgrounds/Bob Office/bob computer hover.png" 
+            idle "images/backgrounds/Bob Office/bob computer idle.png"
             focus_mask True
             action Hide("bob_laptop"),Jump("laptop")
 
 screen bob_book_shelf:
     zorder 0
     modal False
-    if show_image_buttons == True:
+    if show_image_buttons == True and books_seen == False:
         imagebutton :
-            hover "images/backgrounds/lab/left pc hover.png" 
-            idle "images/backgrounds/lab/left pc idle.png" 
+            hover "images/backgrounds/Bob Office/bob bookshelf hover.png" 
+            idle "images/backgrounds/Bob Office/bob bookshelf idle.png" 
             focus_mask True
             action Hide("bob_book_shelf"),Jump("book_shelf")
 
 screen bob_sofa:
     zorder 0
     modal False
-    if show_image_buttons == True:
+    if show_image_buttons == True and sofa_seen == False:
         imagebutton :
-            hover "images/backgrounds/lab/left wall hover.png" 
-            idle "images/backgrounds/lab/left wall idle.png" 
+            hover "images/backgrounds/Bob Office/bob sofa hover.png" 
+            idle "images/backgrounds/Bob Office/bob sofa idle.png"
             focus_mask True
             action Hide("bob_sofa"),Jump("sofa")
 
 screen bob_painting:
     zorder 0
     modal False
-    if show_image_buttons == True:
+    if show_image_buttons == True and painting_seen == False:
         imagebutton :
             hover "images/backgrounds/lab/monitor hover.png" 
             idle "images/backgrounds/lab/monitor idle.png" 
@@ -329,26 +330,27 @@ screen bob_painting:
 ############################# optional room point and click ################################
 label hide_optional_room_screen:
     hide screen optional_room
+    hide screen phone_icon
 
 screen optional_room:
     zorder 0
     modal False
-    if show_image_buttons == True:
+    if show_image_buttons == True and hospital_bed_seen == False:
         imagebutton:
-            hover "images/backgrounds/lab/monitor hover.png" 
-            idle "images/backgrounds/lab/monitor idle.png" 
+            hover "images/backgrounds/Bob Office/bed hover.png" 
+            idle "images/backgrounds/Bob Office/bed idle.png"  
             focus_mask True
             action Hide("optional_room"),Jump("hospital_bed")
-
+    if show_image_buttons == True and operation_table_seen == False:
         imagebutton:
-            hover "images/backgrounds/lab/left cage hover.png" 
-            idle "images/backgrounds/lab/left cage idle.png" 
+            hover "images/backgrounds/Bob Office/tools hover.png"
+            idle "images/backgrounds/Bob Office/tools idle.png"
             focus_mask True
             action Hide("optional_room"),Jump("operation_table")
-
+    if show_image_buttons == True and skull_anatomy_seen == False:
         imagebutton:
-            hover "images/backgrounds/lab/right cage hover.png" 
-            idle "images/backgrounds/lab/right cage idle.png" 
+            hover "images/backgrounds/Bob Office/skull hover.png" 
+            idle "images/backgrounds/Bob Office/skull idle.png"
             focus_mask True
             action Hide("optional_room"),Jump("skull_anatomy")
 

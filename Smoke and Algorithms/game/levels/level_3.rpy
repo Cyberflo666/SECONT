@@ -58,6 +58,9 @@ label level_3_start:
     define bobs_flag = True
     define courtyard_flag = True
     define painting_seen = False
+    define sofa_seen = False
+    define computer_seen = False
+    define books_seen = False
     define hospital_bed_seen = False
     define operation_table_seen = False 
     define skull_anatomy_seen = False
@@ -206,7 +209,7 @@ menu:
         jump menu_outside
     "Go through the back door with the pin you got from Bob.":
         hide screen phone_icon
-        scene bobs office backside
+        scene bg back office day
         with dissolve
         "The two of you sneakily enter the building with the same method from yesterday."
         jump back_entrance
@@ -232,17 +235,20 @@ label main_entrance_menu:
             $ main_entrance_entered = True
             jump menu_outside
         "Talk to the receptionist" if receptionist_talked == False:
-            scene bg receptionist desk
+            scene bg receptionist
             with dissolve
             "Alex goes up to what looks like the guest reception. The Lady at the desk doesn't notice you at first."
             show alex neutralleft at alex_left
+            show receptionist neutral at receptionist_right
             with dissolve
             A "Excuse me"
-            "She looks up slightly annoyed."
+            show receptionist annoyed at right
+            "He looks up slightly annoyed."
             R "Can i help you?"
             show alex smileleft at alex_left
             with dissolve
             A "My name is Gill Cameron and i need to deliver some packages to Bob Anderson."
+            show receptionist suspicious at right
             R "Let me see your ID please."
             "Knowing that this will probaply not work out you signal alex with a look that its time to bale."
             show alex happyleft at alex_left
@@ -270,66 +276,67 @@ label main_entrance_menu:
             jump menu_outside
 
 label back_entrance:
-    scene bg back entrance hallway
+    scene bg secretary office
     "As you try to go the same way as before, you get noticed by what looks like a secretary."
     show secretary suspicious at center
     S1 "Excuse me, who are you. I have not seen you here before."
     menu:
         "Tell her that you are the new interns of Aob Anderson and you need to go to his office.":
-            show secretary suspicious at right
+            show secretary suspicious at secretary_right
             show alex smileleft at alex_left
             with dissolve
             A "We are Bob Andersons new interns and it's our first day. He said we should wait for him in his office for further instructions."
-            show secretary angry at right
+            show secretary angry at secretary_right
             with dissolve
             S1 "Bob didn't mention any new interns."
             show alex neutralleft at alex_left 
             with dissolve
             A "How else would we have gotten access."
-            show secretary thinking at right
+            show secretary thinking at secretary_right
             with dissolve
             S1 "Well thats a good point. Sorry for being so mistrustful but our higher ups want us to take security rather serious"
             show alex happyleft at alex_left
             with dissolve
             A "Yeah we know. Bob also said to us we shouldnt speak of what we do here outside of work."
-            show secretary neutral at right
+            show secretary neutral at secretary_right
             with dissolve
             S1 "Sounds like him. Anyways his office is in the area with the others just down this corridor."
             show alex smileleft at alex_left
             with dissolve
             A "Okay great, thank you."
-            show secretary smile at right
+            show secretary friendly at secretary_right_smile
             with dissolve
             S1 "No problem."
         "Tell her you need to go to the bathroom and make a run for it":
-            show secretary thinking at right
+            #show secretary thinking at secretary_right
+            scene bg hallway 2
             with dissolve
             "After you tell her your reason she looks like she wants to say something but you just start running in the direction of the bathroom."
             "The secretary will remember that."
             $ security_aware = True
         "Pretend to be technicians":
-            show secretary suspicious at right
+            show secretary suspicious at secretary_right
             show alex neutralleft at alex_left
             with dissolve
             A "We are technicians and here for problems with the internet connection in the west wing. We where called by Mr. Anderson you know where he is? We need some information before we start."
-            show secretary thinking at right
+            show secretary thinking at secretary_right
             with dissolve
             S1 "Well i don't know where he is but just wait here a minute, i will call him right now."
             show alex happyleft at alex_left
             with dissolve
             A "Thats not gonna be necessary, we will just look for him ourselfs thank you."
-            show secretary smile at right
+            show secretary friendly at secretary_right_smile
             with dissolve
             S1 "No no, its nothing really. Just one second."
-            show secretary neutral at right
+            show secretary neutral at secretary_right
             show alex serious2left at alex_left
             with dissolve
             "The secretary starts to type something on her phone and then proceeds to wait for a call."
             "You decide its best if you bale out while she is distracted before your lie falls apart right infront of you."
-            scene bg facility hallway
+            scene bg hallway 2
             with dissolve
             "With that in mind you make a run for the office area before she can stop you."
-            scene bg fcility hallway 2
+            scene bg hallway 1
             show security guard at center
             with dissolve
             "After only a few minutes you find security waiting for you around the corner."
@@ -338,7 +345,7 @@ label back_entrance:
 define USB_placed_1 = False
 
 label way_to_the_office:
-    scene bg facility
+    scene bg hallway 1
     hide alex
     hide secretary
     with dissolve
@@ -348,7 +355,7 @@ label way_to_the_office:
 define before_office = False
 
 label before_the_office:
-    scene bg facility
+    scene bg hallway 1
     $ infront_facility = False
     show screen phone_icon
     $ before_office = True
@@ -381,19 +388,22 @@ label before_the_office:
 
 label courtyard:
     $ show_textbox = True
+    scene bg courtyard
     hide screen minigame_screen
     "you see beautiful flowers and a nice garden"
     "upon staring at the delightful scenary a butterfly comes across your sight."
     "you feel like you have to catch the butterfly"
     #butterfly chasing minigame starts
     "you decide to go back into the building"
+    scene black
     jump security_minigame_start
 
 label optional:
     $ show_textbox = True
+    scene bg secret lab
     hide screen minigame_screen
     "you sneakingly open the door, somewhat afraid that an employee might be here and walk in slowly"
-    show alex smileleft at alex_left
+    show alex serious2left at alex_left
     with dissolve
     A "since were already in this weird room we might aswell take a look around"
     jump optional_clicking
@@ -402,7 +412,7 @@ label optional_clicking: #need to add images
     if hospital_bed_seen and operation_table_seen and skull_anatomy_seen:
         jump optional_clicking_done
     $ show_textbox = False
-    scene bg medievil lab 
+    scene bg secret lab 
     show screen optional_room
     with dissolve
     show screen phone_icon
@@ -410,30 +420,33 @@ label optional_clicking: #need to add images
     jump empty_label
 label hospital_bed:
     call hide_optional_room_screen
-    scene bg left cage zoom
+    scene bg secret lab beds
     with dissolve
     $ show_textbox = True
     "You see bloody hospital beds"
     $ show_textbox = False
     $ hospital_bed_seen = True
+    show screen phone_icon
     jump optional_clicking
 label operation_table:
     call hide_optional_room_screen
-    scene bg left cage zoom
+    scene bg secret lab equipment
     with dissolve
     $ show_textbox = True
     "you see bloody equipment"
     $ show_textbox = False
     $ operation_table_seen = True
+    show screen phone_icon
     jump optional_clicking
 label skull_anatomy:
     call hide_optional_room_screen
-    scene bg left cage zoom
+    scene bg secret lab skull
     with dissolve
     $ show_textbox = True
     "you see an anatomy picture of a skull with marks on it"
     $ show_textbox = False
     $ skull_anatomy_seen = True
+    show screen phone_icon
     jump optional_clicking
 
 
@@ -448,11 +461,11 @@ label bobs_office:
     $ show_textbox = True
     hide screen minigame_screen
     scene bg bob office
-    show alex smileleft at alex_left
+    show alex serious2left at alex_left
     with dissolve
     A "Now this is what were talking about. We finally made it."
     PC "I cant believe this place has that many security guards and employees hording around"
-    show alex serious2left at alex_left
+    show alex angryleft at alex_left
     with dissolve 
     A "You know theres probably a good reason why there are so many security guards here around the clock right? "
     PC "Well lets try to find clues about Felix now though"
@@ -462,7 +475,7 @@ label bob_clicking: #need to add images
     if painting_seen:
         jump bob_clicking_done
     $ show_textbox = False
-    scene bg medievil lab
+    scene bg bob office
     show screen bob_laptop
     show screen bob_book_shelf
     show screen bob_sofa
@@ -476,29 +489,33 @@ label bob_clicking: #need to add images
 
 label laptop:
     call hide_bob_screens 
-    scene bg left cage zoom
+    scene bg bob office computer
     with dissolve 
     $ show_textbox = True
     "When observing the laptop you see that the laptop is locked"
     $ show_textbox = False
+    $ computer_seen = True
+    show screen phone_icon
     jump bob_clicking
 label book_shelf:
     call hide_bob_screens 
-    scene bg left pc zoom
+    scene bg bob office books
     with dissolve 
     $ show_textbox = True
     "You see interesting books and look for a secret doorway behind unsucessfully"
     $ show_textbox = False
-    $ left_pc_seen = True
+    $ books_seen = True
+    show screen phone_icon
     jump bob_clicking
 label sofa:
     call hide_bob_screens
-    scene bg left wall zoom
+    scene bg bob office sofa
     with dissolve
     $ show_textbox = True
     "The Sofa seems quite comfy however theres nothing of interest here."
     $ show_textbox = False
-    $ left_wall_seen = True 
+    $ sofa_seen = True
+    show screen phone_icon
     jump bob_clicking
 label painting:
     call hide_bob_screens 
@@ -508,6 +525,7 @@ label painting:
     "you look at the painting and wonder why its placed so low and in the middle. You realise that you can take off the painting and theres a hidden little space with letters."
     $ show_textbox = False
     $ painting_seen = True
+    show screen phone_icon
     jump bob_clicking
 label bob_clicking_done:
     scene bg bob office
