@@ -199,6 +199,7 @@ label butterfly_minigame_canceled:
     with dissolve
     "There are certainly more important matters right now."
     "You decide to go back into the building."
+    play music security_music volume loudness
     jump security_minigame_start
 
 label butterfly_minigame_completed:
@@ -209,6 +210,7 @@ label butterfly_minigame_completed:
     "..."
     "After a moment of inner peace, you remember, that there are more important things at hand."
     "You decide to go back into the building."
+    play music security_music volume loudness
     jump security_minigame_start
 
 # Helper Functions

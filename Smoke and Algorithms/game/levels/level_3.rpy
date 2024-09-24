@@ -388,6 +388,7 @@ label before_the_office:
 
 label courtyard:
     scene bg courtyard
+    play music main_music1 volume loudness
     hide screen minigame_screen
     with dissolve
     $ show_textbox = True
@@ -458,15 +459,16 @@ label optional_clicking_done:
 
 
 label bobs_office:
-    $ show_textbox = True
-    hide screen minigame_screen
     scene bg bob office
+    hide screen minigame_screen
+    with dissolve
+    $ show_textbox = True
     show alex serious2left at alex_left
     with dissolve
     A "Now this is what were talking about. We finally made it."
     PC "I cant believe this place has that many security guards and employees hording around"
     show alex angryleft at alex_left
-    with dissolve 
+    with dissolve
     A "You know theres probably a good reason why there are so many security guards here around the clock right? "
     PC "Well lets try to find clues about Felix now though"
     jump bob_clicking

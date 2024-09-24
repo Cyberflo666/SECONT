@@ -22,7 +22,7 @@ define config.mouse["pressed_button"] = [ ("gui/mouse/cursor_select_tap.png", 0,
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("Smoke and Algorithms")
+define config.name = _("Mind Hackers: Whispers in the Wires")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
