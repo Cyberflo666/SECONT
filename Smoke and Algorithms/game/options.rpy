@@ -11,7 +11,10 @@
 
 # OWN CHANGES:
 # define config.rollback_enabled = False
-
+define config.mouse = { }
+define config.mouse["default"] = [ ("gui/mouse/cursor_default.png", 0, 0) ]
+define config.mouse["button"] = [ ("gui/mouse/cursor_select.png", 0, 0) ]
+define config.mouse["pressed_button"] = [ ("gui/mouse/cursor_select_tap.png", 0, 0) ]
 
 
 ## A human-readable name of the game. This is used to set the default window

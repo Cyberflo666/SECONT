@@ -387,21 +387,21 @@ label before_the_office:
             jump bobs_office
 
 label courtyard:
-    $ show_textbox = True
     scene bg courtyard
     hide screen minigame_screen
-    "you see beautiful flowers and a nice garden"
-    "upon staring at the delightful scenary a butterfly comes across your sight."
-    "you feel like you have to catch the butterfly"
-    #butterfly chasing minigame starts
-    "you decide to go back into the building"
-    scene black
-    jump security_minigame_start
+    with dissolve
+    $ show_textbox = True
+    "You see beautiful flowers and a nice garden."
+    "Upon staring at the delightful scenary, a group of butterflies comes across your sight."
+    "You feel like you could maybe try to catch them."
+    show screen butterfly_mini_game
+    with dissolve
 
 label optional:
-    $ show_textbox = True
     scene bg secret lab
     hide screen minigame_screen
+    with dissolve
+    $ show_textbox = True
     "you sneakingly open the door, somewhat afraid that an employee might be here and walk in slowly"
     show alex serious2left at alex_left
     with dissolve
