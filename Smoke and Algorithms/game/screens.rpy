@@ -381,7 +381,7 @@ screen main_menu():
         vbox:
             style "main_menu_vbox"
 
-            text "Mind Hackers:\nWhispers in the Wires":
+            text "Mind Hackers:\n        Whispers in the Wires":
                 style "main_menu_title"
 
             text "[config.version]":

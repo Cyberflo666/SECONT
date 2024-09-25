@@ -69,6 +69,8 @@ label level_3_start:
     #show alex neutral at alex_right
     #with dissolve
 
+    play music mystery_music1 volume loudness
+
     "As the sun starts to set, your team arrives at the facility where {color=[medievilColor]}Medievil{/color} probably conducts tons of unethical experiments and also where Bob Anderson works."
 
     #show leonie serious at left
@@ -154,6 +156,9 @@ label level_3_start:
 
     scene black
     with dissolve
+
+    play music main_music1 volume loudness
+
     "Your group returns the way you came in and goes home without any incidents."
 
     "The next day during breakfast, you talk about your approach."
@@ -180,6 +185,8 @@ label level_3_start:
     scene black
     with dissolve
     "With Leonie staying home, only Alex and you go towards the facility."
+
+    play music mystery_music1 volume loudness
 
     scene bg front office 2 
     with dissolve
@@ -349,8 +356,8 @@ label way_to_the_office:
     hide alex
     hide secretary
     with dissolve
-    "Going furhter into the facility you find the beginnig of the office area you were looking for."
-    A "Well what do we do now? We still dont have control of the cameras."
+    "Going furhter into the facility you find the begining of the office area you were looking for."
+    A "Well what do we do now? We still don't have control of the cameras."
 
 define before_office = False
 
@@ -374,7 +381,7 @@ label before_the_office:
         "Place the USB-Drive as a bait for employees" if USB_placed_1 == False and have_USB == True:
             hide screen phone_icon
             "You put the USB-Drive on a nearby desk with a note saying \"Observation team, please have a look at this\"."
-            "To avoid further confrontation you hide in the bathroom until you get a call from leonie telling you that she is now in controll of the cameras."
+            "To avoid further confrontation you hide in the bathroom until you get a call from leonie telling you that she is now in control of the cameras."
             $ cameras_off = False
             $ USB_placed_1 = True
             jump before_the_office
@@ -647,3 +654,83 @@ menu:
         show screen minigame_screen()
         hide screen minigame_screen
         jump security_minigame_start
+
+default temp_cps = 0
+label find_felix:
+    scene bg facility hallway day
+    with dissolve
+    "As you are both stepping out of the office area, you both let out a sigh of relieve."
+    show alex serious1 at alex_right
+    with dissolve
+    A "Ok, now that we are finally away from this high security we can start looking for Felix."
+    PC "This Joe said they hold him captive in the basement so let's just follow the staircase downwards."
+    scene black
+    with dissolve
+    "You and Alex go after the signs indicating the way to the basements. Along the way there are no people aside from you."
+    "After reaching the bottom of the stairs, you follow the hallways."
+    scene bg basement hallways
+    with dissolve
+    "There are no windows down here and the light emanating from the halogen lights fills the hallways in a constant dazzling brightness. Together with the walls just smelling like freshly pouren concrete, it creates an unnerving ambience."
+    "You hear two women from afar, their voices echoing in the barren hallways. They appear to be office workers and you avoid them by staying out of sight until they've passed you."
+    "Keeping the communication to simple hand signs as not to avoid attention, the two of you push forward, coming along a series of heavy metal doors, labelled with cryptic number and letter combinations."
+    "You check each one of the labels until you find the door that Felix is supposed to be kept behind."
+    "The PIN Joe gave you seems to work just fine and Alex opens the door with a loud creak reflecting along the drawn out hallways."
+    scene bg file room
+    show felix neutral1
+    with dissolve
+    F "[PN]? Alex?"
+    "Before you sits Felix on a simple metal chair. The room you are entering seems to be a small file storage space with metal racks filled with file boxes. Felix seems exhausted, his hair still a tangled mess and his clothes visibly not changed in a while."
+    show alex happy at alex_right
+    with dissolve
+    A "Oh man, I was so worried about you."
+    "The three of you give each other a big hug before Felix's energetic spirit comes back."
+
+    # The following few texts from Felix are supposed to be cut off and the sentences are supposed to be that long!
+    $ temp_cps = preferences.text_cps
+    $ preferences.text_cps = 60
+    show felix thinking
+    with dissolve
+    F "I knew it. I fricking knew it. From the start when I got the internship here, it was clear that they had some hidden secrets. When I was asked with sorting out their databank I stumbled across this project \"Omicron Cerebrum\" and when I asked about it, my supervisor didn't tell my anything about it and made excuses that it was non of my business and that I should keep my mouth shut about it{nw}"
+    show felix serious
+    with dissolve
+    F "but then I feared that they might catch on to me snooping around so I reverted to accessing over the dark net solely to cover my tracks but the problem was that I had to get into their internal network to get access to the secured files they keep in their server rooms and so I planned to get access to their system via infiltrating it with a USB drive I would stick into one of their internal computers{nw}"
+    $ preferences.text_cps = temp_cps
+    show alex surprised at alex_right
+    with dissolve
+    A "Felix wai...{nw}"
+    $ preferences.text_cps = 60
+    show felix thinking
+    with dissolve
+    F "but of course they caught on to me just as I had feared I contacted Bob Anderson, my supervisor to try to talk my ways out of this situation but they wouldn't listen so I ran to you guys to gave you the informations in hope that you would understand what what happening to me and ...{nw}"
+    $ preferences.text_cps = temp_cps
+
+    PC "Felix stop!"
+    PC "The flash drive you gave us helped us to get to you but right now we have to get out of here first. Leonie helped too, but she stayed home to give technical support."
+    show alex serious1 at alex_right
+    with dissolve
+    A "Right. They will probably notice your abscence so we should get away as fast as possible."
+    show felix serious
+    with dissolve
+    F "Of course, of course. Wait a minute I found something interesting in these documents"
+    "Felix scoops up a pile of opened documents and loose paper lying next to a couple of opened file boxes and tries to fit most of it under his shirt and in his pockets."
+    show felix neutral1
+    with dissolve
+    F "Alright, I'm ready. Do you know how to get out of here?"
+    show alex serious2 at alex_right
+    with dissolve
+    A "Yes, follow us. We'll take the back entrace to get out again. There shouldn't really be anyone there."
+    scene black
+    with dissolve
+    "The three of you leave the facility without further occurences and head home where Leonie waits."
+    scene bg new kitchen
+    show leonie happy at left
+    show felix neutral1
+    with dissolve
+    L "Felix! We were worried sick. You have to tell us what happened."
+    show alex happy at alex_right
+    with dissolve
+    A "Not so fast. I believe Felix should get some rest first after what happened to him."
+    "Alex pours Felix a glass of water and rumbles through the fridge in an attempt to find something edible."
+    scene bg party
+    with dissolve
+    "End of the game"
