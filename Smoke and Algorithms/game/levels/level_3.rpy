@@ -14,6 +14,9 @@ label level_3_start:
     define visability_list = [False,False,False,False]
     define visability_list1 = [False,False,False,False]
     define visability_list2 = [False,False]
+    define number_found = False
+    define phone_seen = False
+    define first_time_in = True
     define game_matrix= [
                         [0,0,0,0,[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0]],
                         [0,["c",b,0],0,0,[0,"f",0,0,0,0],0,0,[0,"f",0,0,0,0],0],
@@ -101,7 +104,7 @@ label level_3_start:
     with dissolve
     L "Yes, the code worked."
 
-    show facility hallway bg
+    show bg hallway night 3
     "With the door open, you sneakily follow the hallways towards the office areas. The hallways are almost completely void of any employees."
 
     show leonie serious at left
@@ -337,7 +340,7 @@ label back_entrance:
             with dissolve
             "With that in mind you make a run for the office area before she can stop you."
             scene bg hallway 1
-            show security guard at center
+            show guard_angry at security
             with dissolve
             "After only a few minutes you find security waiting for you around the corner."
             jump game_over
@@ -423,7 +426,8 @@ label hospital_bed:
     scene bg secret lab beds
     with dissolve
     $ show_textbox = True
-    "You see bloody hospital beds"
+    "You see a blood stained operational seat that gives you the creeps"
+    A "wow this looks quite frightening. I wonder what they did here"
     $ show_textbox = False
     $ hospital_bed_seen = True
     show screen phone_icon
@@ -433,7 +437,7 @@ label operation_table:
     scene bg secret lab equipment
     with dissolve
     $ show_textbox = True
-    "you see bloody equipment"
+    "You see messy operational equipment.Looks like they have been used lately"
     $ show_textbox = False
     $ operation_table_seen = True
     show screen phone_icon
@@ -443,7 +447,7 @@ label skull_anatomy:
     scene bg secret lab skull
     with dissolve
     $ show_textbox = True
-    "you see an anatomy picture of a skull with marks on it"
+    "you see an anatomy picture of a skull with marks on it."
     $ show_textbox = False
     $ skull_anatomy_seen = True
     show screen phone_icon
@@ -472,14 +476,13 @@ label bobs_office:
     jump bob_clicking
     #bobs office clicking through room begins
 label bob_clicking: #need to add images
-    if painting_seen:
-        jump bob_clicking_done
     $ show_textbox = False
     scene bg bob office
     show screen bob_laptop
     show screen bob_book_shelf
     show screen bob_sofa
     show screen bob_painting
+    show screen bob_phone
     with dissolve
 
     show screen phone_icon
@@ -507,6 +510,26 @@ label book_shelf:
     $ books_seen = True
     show screen phone_icon
     jump bob_clicking
+label phone:
+    call hide_bob_screens
+    scene bg bob office phone
+    with dissolve
+    $ show_textbox = True
+    "This must be bobs phone. It looks pretty fancy and expensive."
+    $ show_textbox = False
+    $ phone_seen = True
+    show screen phone_icon
+    jump bob_clicking
+label phone_2:
+    call hide_bob_screens
+    scene bg bob office phone
+    with dissolve
+    $ show_textbox = True
+    $ trust = 50
+    "You call the number from the notes you found."
+    $ show_textbox = False
+    show screen phone_icon
+    jump voice_phishing
 label sofa:
     call hide_bob_screens
     scene bg bob office sofa
@@ -519,26 +542,113 @@ label sofa:
     jump bob_clicking
 label painting:
     call hide_bob_screens 
-    scene bg monitor zoom
+    scene bg bob office painting
     with dissolve
     $ show_textbox = True
-    "you look at the painting and wonder why its placed so low and in the middle. You realise that you can take off the painting and theres a hidden little space with letters."
+    "You look at the painting and wonder why its placed so low and in the middle. You realise that you can take off the painting and theres a hidden little space with letters and a note with what seems to be a phone number."
+    scene bg bob office
+    "The Letters are from someone called Joe Arnold. They talk about how he was supposed to look out for felix because bob anderson found his latest behavior suspicious."
+    "They even mention the day you last saw felix and that the problem was taken care of."
+    A "Is this about felix? What does taken care of mean? Do you think he's ... dead?"
+    "I dont know but we shouldnt think of that. We need to think of what to do next if he is still alive."
+    A "The number from the notes! I think there is a good chance its from this Joe Arnold. If we call him and pretend to be bob anderson he might tell us what happened to felix."
     $ show_textbox = False
     $ painting_seen = True
+    $ number_found = True
+    $ phone_seen = False
     show screen phone_icon
     jump bob_clicking
-label bob_clicking_done:
-    scene bg bob office
-    call hide_bob_screens
-    $ show_textbox = True
-    hide screen phone_icon 
-    #voice phsihing game
-    jump finding_felix 
 
-label finding_felix:
-    "you go to where Felix is"
-    play music security_music volume loudness
+define trust_delta_2 = 25
+define called_from_smartphone = False
+define joe_called = 0
+
+label voice_phishing:
+    scene bg bob office
+    hide screen phone_icon
+    $ show_textbox = True
+    $ joe_called = 1
+    show screen round_rect(trust)
+    with dissolve
+    "Biep ... Biep ...."
+    if called_from_smartphone == False:
+        JA "Hey Bob what is it? Im kinda busy."
+        menu:
+            "Hi Joe. Im not Mr. Anderson only his assistant, but I have a question from him.":
+                jump voice_phishing_1
+            "Im bobs assistant and I have a question":
+                $ trust -= trust_delta_2
+                jump voice_phishing_1
+            "Hello Mr. Arnold. Im Mr. Andersons assistant and he wanted me to ask you something.":
+                $ trust += trust_delta_2
+
+    else:
+        JA "Hello who is there? Im kinda busy."
+        menu:
+            "Hi Joe. Im Mr. Andersons assistant and I have a question from him.":
+                jump voice_phishing_1
+            "Im bobs assistant and I have a question":
+                $ trust -= trust_delta_2
+                jump voice_phishing_1
+            "Hello Mr. Arnold. Im Mr. Andersons assistant and he wanted me to ask you something.":
+                $ trust += trust_delta_2
+
+label voice_phishing_1:
+    show screen round_rect(trust)     
+    JA "Ok just make it quick."
+    menu:
+        "Do you remember his former intern Felix whom he needed help with? The small and anxious one who looks kinda like shaggy from scooby doo. Where you told Mr. Anderson he was taken care of.":
+            $ trust -= trust_delta_2
+            jump voice_phishing_2
+        "Do you recall when Mr. Anderson asked you to have an eye on someone.":
+            jump voice_phishing_2
+        "Its about this intern Felix you took care of.":
+            $ trust += trust_delta_2
+            jump voice_phishing_2
+
+label voice_phishing_2:
+    show screen round_rect(trust)
+    JA "Yeah I can remember Felix. Now what about him."
+    menu:
+        "I need you to tell me where he is. I have a question for him.":
+            $ trust -= trust_delta_2
+            jump voice_phishing_3
+        "Can you give me his location. Mr. Anderson has something to ask him.":
+            $ trust += trust_delta_2
+            jump voice_phishing_3
+        "I need his whereabouts to ask him something.":
+            jump voice_phishing_3
+
+label voice_phishing_3:
+    show screen round_rect(trust)
+    JA "If you want an answer from him why not let me ask the question."
+    menu:
+        "No need for you to get involved again. We will take over from here.":
+            $ trust -= trust_delta_2
+            jump voice_phishing_done
+        "Mr. Anderson wants to handle this more privately.":
+            jump voice_phishing_done
+        "Well Mr. Anderson trusted me with this task and since you're busy i think its best if I talk to him.":
+            $ trust += trust_delta_2
+            jump voice_phishing_done
+
+label voice_phishing_done:
+    show screen round_rect(trust)
+    if trust < 75:
+        JA "No way Bob sent you. Who are you really?"
+        "You try to explain that you are actually bobs assistant but he does'nt fall for it and hangs up."
+        "This was your best chance to find your friend and you ruined it."
+        jump game_over
+    JA "Alright we took him to the experimental department in the facility at cityville street 12345. We locked him in laboratory 2 in the cellar."
+    hide screen round_rect
+    "Ok great and how can i get in."
+    JA "Oh rihgt, the pin to the door is 385529."
+    "Perfect, thank you for your time"
+    JA "Sure"
+    A "He is here in this facility. C'mon we have to help him."
     if fire_alarm == True:
+        "You head out to find Felix but by now the entire building is full of people again and the doors you got past for free last time are now keycard locked again."
+        play music security_music volume loudness
         $ reset()
         $ player_pos = [1,1]
         $ valid_inputs = [1,0,0,1,0]
@@ -562,10 +672,6 @@ label finding_felix:
         show screen minigame_screen()
         hide screen minigame_screen
         jump security_minigame_start
-    
- 
-
-    
 
 label leave_facility:
     $ show_textbox = True

@@ -1,11 +1,28 @@
 label security_minigame_start:
-    
     $ show_textbox = False
     if detected == True:
         $ show_image_buttons = False
-        show screen minigame_screen
+        show screen minigame_screen()
         jump game_lost
     else:
+        if first_time_in:
+            $ show_textbox = True
+            $ show_image_buttons = False
+            show screen minigame_screen()
+            "Use the Buttons with arrows to move in the according direction"
+            "Avoid the vision cones of the security"
+            "Follow the personal to get through the glas doors"
+            if fire_alarm == True:
+                show screen office_exit
+                "The green room is the exit of the office area and the yellow rooms are for you to explore."
+                hide screen office_exit
+            else:
+                show screen bobs_office
+                "The green room is bobs office and the yellow rooms are for you to explore."
+                hide screen bobs_office
+            $ first_time_in = False
+            $ show_image_buttons = True
+            $ show_textbox = False
         show screen minigame_screen()
     #$ renpy.notify("to early")
         jump empty_label
@@ -26,6 +43,12 @@ default x = 0
 default y = 0
 
 define char_icon_offset = -47
+
+screen bobs_office:
+    image "security minigame goal"
+
+screen office_exit:
+    image "security minigame backwards goal"
 
 screen minigame_screen():
     zorder 0

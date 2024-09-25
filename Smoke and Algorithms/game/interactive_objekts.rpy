@@ -118,7 +118,7 @@ screen round_rect(trust):
         ysize 500
         value AnimatedValue(trust,100,0.5)
 
-        if (trust > 75 ):
+        if (trust >= 75 ):
             bottom_bar "gui/bar/bottomgreen.png"
         elif (trust > 40):
             bottom_bar "gui/bar/bottomyellow.png"
@@ -286,6 +286,7 @@ label hide_bob_screens:
     hide screen bob_sofa
     hide screen bob_painting
     hide screen phone_icon
+    hide screen bob_phone
     return
 
 screen bob_laptop:
@@ -297,6 +298,23 @@ screen bob_laptop:
             idle "images/backgrounds/Bob Office/bob computer idle.png"
             focus_mask True
             action Hide("bob_laptop"),Jump("laptop")
+
+screen bob_phone:
+    zorder 0
+    modal False
+    if show_image_buttons == True and phone_seen == False:
+        if number_found == False:
+            imagebutton :
+                hover "images/backgrounds/Bob Office/bob phone hover.png" 
+                idle "images/backgrounds/Bob Office/bob phone idle.png"
+                focus_mask True
+                action Hide("bob_phone"),Jump("phone")
+        else:
+            imagebutton :
+                hover "images/backgrounds/Bob Office/bob phone hover.png" 
+                idle "images/backgrounds/Bob Office/bob phone idle.png"
+                focus_mask True
+                action Hide("bob_phone"),Jump("phone_2")
 
 screen bob_book_shelf:
     zorder 0
@@ -323,8 +341,8 @@ screen bob_painting:
     modal False
     if show_image_buttons == True and painting_seen == False:
         imagebutton :
-            hover "images/backgrounds/lab/monitor hover.png" 
-            idle "images/backgrounds/lab/monitor idle.png" 
+            hover "images/backgrounds/Bob Office/bob painting hover.png" 
+            idle "images/backgrounds/Bob Office/bob painting idle.png" 
             focus_mask True
             action Hide("bob_painting"),Jump("painting")
 ############################# optional room point and click ################################

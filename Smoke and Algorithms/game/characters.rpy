@@ -8,9 +8,10 @@ define A = Character("Alex",            what_prefix='"', what_suffix='"', who_co
 define F = Character("Felix",           what_prefix='"', what_suffix='"', who_color="#2469ff", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
 define L = Character("Leonie",          what_prefix='"', what_suffix='"', who_color="#FF7F50", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
 define J = Character("Janitor",         what_prefix='"', what_suffix='"', who_color="#AA4473", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
-define R = Character("Receptionist",   what_prefix='"', what_suffix='"', who_color="#44aa99", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+define R = Character("Receptionist",    what_prefix='"', what_suffix='"', who_color="#44aa99", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
 define S1 = Character("Secretary",      what_prefix='"', what_suffix='"', who_color="#b60000", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
 define S2 = Character("Security",       what_prefix='"', what_suffix='"', who_color="#686868", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+define JA = Character("Joe Arnold",     what_prefix='"', what_suffix='"', who_color="#dacb00", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
 
 # Character Sprites
 # Leonie
@@ -149,6 +150,9 @@ transform secretary_right_smile:
     ypos 1250
     xalign 1.2
     zoom 0.95
+transform security:
+    yalign 0.4
+    xalign 0.5
 
 label janitor_look(trust):
     if (trust > 75 ):

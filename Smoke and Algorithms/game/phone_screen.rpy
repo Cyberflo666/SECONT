@@ -366,10 +366,12 @@ screen phone_hand_contact():
         focus_mask True
         action Hide("phone_hand_contact"), Show("phone_hand")
     
+
     viewport:
-        area phone_usable_area
-        draggable False
-        mousewheel False
+        area (675, 140, 470, 720)
+        #draggable False
+        mousewheel True
+        scrollbars "vertical"
 
         # Content of the contacts
         vbox:
@@ -403,6 +405,17 @@ screen phone_hand_contact():
                     hover "contact box felix hover"
                     focus_mask True
                     action Call("call_felix")
+            if number_found == True:
+                frame:
+                    area(0, 0 , 500, 200)
+                    background "#00000000"
+                    imagebutton:
+                        xpos 0.08
+                        idle "contact box joe idle"
+                        hover "contact box joe hover"
+                        focus_mask True
+                        action Call("call_joe_arnold")
+
 
 ###################################### Map ############################################
 

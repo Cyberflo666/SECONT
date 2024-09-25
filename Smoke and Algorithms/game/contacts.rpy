@@ -21,6 +21,61 @@ label call_alex:
     with dissolve
     return
 
+label call_joe_arnold:
+    if joe_called == 0:
+        $ show_image_buttons = False
+        if show_textbox == False:
+            $ show_textbox = True
+            $ hide_textbox = True
+        hide screen phone_hand_contact
+        with dissolve
+        $ trust = 25
+        $ called_from_smartphone = True
+        A "You call the number from the notes."
+        with dissolve
+        #$ show_image_buttons = True
+        if hide_textbox == True:
+            $ show_textbox = False
+            $ hide_textbox = False
+        jump voice_phishing
+        show screen phone_hand_contact
+        with dissolve
+    elif joe_called == 1:
+        $ show_image_buttons = False
+        if show_textbox == False:
+            $ show_textbox = True
+            $ hide_textbox = True
+        hide screen phone_hand_contact
+        with dissolve
+        $ joe_called = 2
+        A "I can't talk right now."
+        with dissolve
+        $ show_image_buttons = True
+        if hide_textbox == True:
+            $ show_textbox = False
+            $ hide_textbox = False
+        show screen phone_hand_contact
+        with dissolve
+    else:
+        $ show_image_buttons = False
+        if show_textbox == False:
+            $ show_textbox = True
+            $ hide_textbox = True
+        hide screen phone_hand_contact
+        with dissolve
+        $ trust == 25
+        $ called_from_smartphone = True
+        "Biep ... Biep ..."
+        "No one answers."
+        with dissolve
+        $ show_image_buttons = True
+        if hide_textbox == True:
+            $ show_textbox = False
+            $ hide_textbox = False
+        show screen phone_hand_contact
+        with dissolve
+    return
+
 label call_leonie:
     $ show_image_buttons = False
     if show_textbox == False:
