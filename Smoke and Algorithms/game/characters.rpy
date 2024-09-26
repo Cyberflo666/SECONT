@@ -92,6 +92,10 @@ image felix running:
 image felix shouting:
     "images/characters/felix/felix shouting.png"
     zoom 0.8
+transform felix_right:
+    zoom 0.6
+    xalign 0.9
+    ypos 60
 
 # Janitor
 image janitor neutral1:

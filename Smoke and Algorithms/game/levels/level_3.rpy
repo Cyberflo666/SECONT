@@ -641,6 +641,7 @@ label voice_phishing_3:
             $ trust += trust_delta_2
             jump voice_phishing_done
 
+
 label voice_phishing_done:
     show screen round_rect(trust)
     if trust < 75:
@@ -650,37 +651,45 @@ label voice_phishing_done:
         jump game_over
     JA "Alright we took him to the experimental department in the facility at cityville street 12345. We locked him in laboratory 2 in the cellar."
     hide screen round_rect
-    "Ok great and how can i get in."
+    PC "Ok great and how can i get in."
     JA "Oh rihgt, the pin to the door is 385529."
-    "Perfect, thank you for your time"
+    PC "Perfect, thank you for your time"
     JA "Sure"
     A "He is here in this facility. C'mon we have to help him."
-    if fire_alarm == True:
-        "You head out to find Felix but by now the entire building is full of people again and the doors you got past for free last time are now keycard locked again."
-        play music security_music volume loudness
-        $ reset()
-        $ player_pos = [1,1]
-        $ valid_inputs = [1,0,0,1,0]
-        $ game_matrix= [
-            [0,0,0,0,[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0]],
-            [0,["c","t",0],0,0,[0,"f",0,0,0,0],0,0,[0,"f",0,0,0,0],0],
-            [[0,"f",0,0,0,1],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[4,0,0,0,0,0]],
-            [0,0,0,0,0,[0,"f",0,0,0,0,door_state],0,0,0],
-            [0,0,0,0,0,[0,"f",0,0,0,0],0,0,0],
-            [0,0,[3,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0]],
-            [0,0,[0,"f",0,0,0,0],0,0,["b","f",0,0,],0,0,[0,"f",0,0,0,0]],
-            [[0,"f",0,0,1,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],0,0,0,0,0,[0,"f",0,0,0,0]],
-            [0,0,[0,"f",0,0,0,0],0,0,0,0,0,[0,"f",0,0,0,0]],
-            [["a","f",0],0,[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[1,"f",0,0,0,0]],
-            [[0,"f",0,0,0,0],0,0,0,0,[0,"f",0,0,0,0],0,0,0],
-            [[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[4,0,0,0,0,0]],
-            [0,0,0,[0,"f",0,0,0,0],0,[0,"f",0,0,0,0],0,0,0],
-            [[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],0,[0,"f",0,0,0,0],0,0,0],
-            [0,[0,"f",0,0,0,0],0,[0,"f",1,0,0,0],0,[0,"f",0,2,0,0],0,0,0]
-            ]
-        show screen minigame_screen()
-        hide screen minigame_screen
-        jump security_minigame_start
+
+    menu:
+        "Activate the fire alarm" if fire_alarm == False:
+            "After activate the fire alarm you heard sirens going off and speakers talking. While everyone is leaving the building you wait in Bob's office."
+            "With noone in the building you can just strole out of the office area again."
+            jump find_felix
+        "Sneak out of the security area":
+            if fire_alarm:
+                "You head out to find Felix but by now the entire building is full of people again and the doors you got past for free last time are now keycard locked again."
+            $ fire_alarm = True
+            play music security_music volume loudness
+            $ reset()
+            $ player_pos = [1,1]
+            $ valid_inputs = [1,0,0,1,0]
+            $ game_matrix= [
+                [0,0,0,0,[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0]],
+                [0,["c","t",0],0,0,[0,"f",0,0,0,0],0,0,[0,"f",0,0,0,0],0],
+                [[0,"f",0,0,0,1],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[4,0,0,0,0,0]],
+                [0,0,0,0,0,[0,"f",0,0,0,0,door_state],0,0,0],
+                [0,0,0,0,0,[0,"f",0,0,0,0],0,0,0],
+                [0,0,[3,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0]],
+                [0,0,[0,"f",0,0,0,0],0,0,["b","f",0,0,],0,0,[0,"f",0,0,0,0]],
+                [[0,"f",0,0,1,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],0,0,0,0,0,[0,"f",0,0,0,0]],
+                [0,0,[0,"f",0,0,0,0],0,0,0,0,0,[0,"f",0,0,0,0]],
+                [["a","f",0],0,[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[1,"f",0,0,0,0]],
+                [[0,"f",0,0,0,0],0,0,0,0,[0,"f",0,0,0,0],0,0,0],
+                [[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[4,0,0,0,0,0]],
+                [0,0,0,[0,"f",0,0,0,0],0,[0,"f",0,0,0,0],0,0,0],
+                [[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],0,[0,"f",0,0,0,0],0,0,0],
+                [0,[0,"f",0,0,0,0],0,[0,"f",1,0,0,0],0,[0,"f",0,2,0,0],0,0,0]
+                ]
+            show screen minigame_screen()
+            hide screen minigame_screen
+            jump security_minigame_start
 
 label leave_facility:
     $ show_textbox = True
@@ -718,52 +727,58 @@ label install_malware:
     "After receiving a file from Leonie you install the content on a spare Drive you have in your pockets."
     jump before_the_office
 
-menu:
-    "Take the main entrance.":
-        play music security_music volume loudness
-        $ reset()
-        $ fire_alarm = True
-        $ player_pos = [1,1]
-        $ a = "f"
-        $ b = "t"
-        $ valid_inputs = [1,0,0,1,0]
-        $ game_matrix= [
-            [0,0,0,0,[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0]],
-            [0,["c",b,0],0,0,[0,"f",0,0,0,0],0,0,[0,"f",0,0,0,0],0],
-            [[0,"f",0,0,0,1],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[4,0,0,0,0,0]],
-            [0,0,0,0,0,[0,"f",0,0,0,0,door_state],0,0,0],
-            [0,0,0,0,0,[0,"f",0,0,0,0],0,0,0],
-            [0,0,[3,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0]],
-            [0,0,[0,"f",0,0,0,0],0,0,["b","f",0,0,],0,0,[0,"f",0,0,0,0]],
-            [[0,"f",0,0,1,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],0,0,0,0,0,[0,"f",0,0,0,0]],
-            [0,0,[0,"f",0,0,0,0],0,0,0,0,0,[0,"f",0,0,0,0]],
-            [["a","f",0],0,[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[1,"f",0,0,0,0]],
-            [[0,"f",0,0,0,0],0,0,0,0,[0,"f",0,0,0,0],0,0,0],
-            [[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[4,0,0,0,0,0]],
-            [0,0,0,[0,"f",0,0,0,0],0,[0,"f",0,0,0,0],0,0,0],
-            [[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],0,[0,"f",0,0,0,0],0,0,0],
-            [0,[0,a,0,0,0,0],0,[0,"f",1,0,0,0],0,[0,"f",0,2,0,0],0,0,0]
-            ]
-        show screen minigame_screen()
-        hide screen minigame_screen
-        jump security_minigame_start
-    "Take the back entrance.":
-        play music security_music volume loudness
-        $ reset()
-        show screen minigame_screen()
-        hide screen minigame_screen
-        jump security_minigame_start
-    "Observe the people entering the building.":
-        play music security_music volume loudness
-        $ reset()
-        $ cameras_off = True
-        show screen minigame_screen()
-        hide screen minigame_screen
-        jump security_minigame_start
+init python:
+    """
+    # Not needed anymore?
+    menu:
+        "Take the main entrance.":
+            play music security_music volume loudness
+            $ reset()
+            $ fire_alarm = True
+            $ player_pos = [1,1]
+            $ a = "f"
+            $ b = "t"
+            $ valid_inputs = [1,0,0,1,0]
+            $ game_matrix= [
+                [0,0,0,0,[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0]],
+                [0,["c",b,0],0,0,[0,"f",0,0,0,0],0,0,[0,"f",0,0,0,0],0],
+                [[0,"f",0,0,0,1],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[4,0,0,0,0,0]],
+                [0,0,0,0,0,[0,"f",0,0,0,0,door_state],0,0,0],
+                [0,0,0,0,0,[0,"f",0,0,0,0],0,0,0],
+                [0,0,[3,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0]],
+                [0,0,[0,"f",0,0,0,0],0,0,["b","f",0,0,],0,0,[0,"f",0,0,0,0]],
+                [[0,"f",0,0,1,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],0,0,0,0,0,[0,"f",0,0,0,0]],
+                [0,0,[0,"f",0,0,0,0],0,0,0,0,0,[0,"f",0,0,0,0]],
+                [["a","f",0],0,[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[1,"f",0,0,0,0]],
+                [[0,"f",0,0,0,0],0,0,0,0,[0,"f",0,0,0,0],0,0,0],
+                [[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[4,0,0,0,0,0]],
+                [0,0,0,[0,"f",0,0,0,0],0,[0,"f",0,0,0,0],0,0,0],
+                [[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],0,[0,"f",0,0,0,0],0,0,0],
+                [0,[0,a,0,0,0,0],0,[0,"f",1,0,0,0],0,[0,"f",0,2,0,0],0,0,0]
+                ]
+            show screen minigame_screen()
+            hide screen minigame_screen
+            jump security_minigame_start
+        "Take the back entrance.":
+            play music security_music volume loudness
+            $ reset()
+            show screen minigame_screen()
+            hide screen minigame_screen
+            jump security_minigame_start
+        "Observe the people entering the building.":
+            play music security_music volume loudness
+            $ reset()
+            $ cameras_off = True
+            show screen minigame_screen()
+            hide screen minigame_screen
+            jump security_minigame_start
+    """
 
 default temp_cps = 0
 label find_felix:
-    scene bg facility hallway day
+    scene bg hallway 1
+    $ renpy.hide_screen("minigame_screen")
+    $ show_textbox = True
     with dissolve
     "As you are both stepping out of the office area, you both let out a sigh of relieve."
     show alex serious1 at alex_right
@@ -778,15 +793,15 @@ label find_felix:
     with dissolve
     "There are no windows down here and the light emanating from the halogen lights fills the hallways in a constant dazzling brightness. Together with the walls just smelling like freshly pouren concrete, it creates an unnerving ambience."
     "You hear two women from afar, their voices echoing in the barren hallways. They appear to be office workers and you avoid them by staying out of sight until they've passed you."
-    "Keeping the communication to simple hand signs as not to avoid attention, the two of you push forward, coming along a series of heavy metal doors, labelled with cryptic number and letter combinations."
+    "Keeping the communication to simple hand signs as not to raise attention, the two of you push forward, coming along a series of heavy metal doors, labelled with cryptic number and letter combinations."
     "You check each one of the labels until you find the door that Felix is supposed to be kept behind."
     "The PIN Joe gave you seems to work just fine and Alex opens the door with a loud creak reflecting along the drawn out hallways."
     scene bg file room
-    show felix neutral1
+    show felix neutral1 at felix_right
     with dissolve
     F "[PN]? Alex?"
     "Before you sits Felix on a simple metal chair. The room you are entering seems to be a small file storage space with metal racks filled with file boxes. Felix seems exhausted, his hair still a tangled mess and his clothes visibly not changed in a while."
-    show alex happy at alex_right
+    show alex happy at alex_left
     with dissolve
     A "Oh man, I was so worried about you."
     "The three of you give each other a big hug before Felix's energetic spirit comes back."
@@ -794,49 +809,99 @@ label find_felix:
     # The following few texts from Felix are supposed to be cut off and the sentences are supposed to be that long!
     $ temp_cps = preferences.text_cps
     $ preferences.text_cps = 60
-    show felix thinking
+    show felix thinking at felix_right
     with dissolve
     F "I knew it. I fricking knew it. From the start when I got the internship here, it was clear that they had some hidden secrets. When I was asked with sorting out their databank I stumbled across this project \"Omicron Cerebrum\" and when I asked about it, my supervisor didn't tell my anything about it and made excuses that it was non of my business and that I should keep my mouth shut about it{nw}"
-    show felix serious
+    show felix serious at felix_right
     with dissolve
     F "but then I feared that they might catch on to me snooping around so I reverted to accessing over the dark net solely to cover my tracks but the problem was that I had to get into their internal network to get access to the secured files they keep in their server rooms and so I planned to get access to their system via infiltrating it with a USB drive I would stick into one of their internal computers{nw}"
     $ preferences.text_cps = temp_cps
-    show alex surprised at alex_right
+    show alex surprised at alex_left
     with dissolve
     A "Felix wai...{nw}"
     $ preferences.text_cps = 60
-    show felix thinking
+    show felix thinking at felix_right
     with dissolve
     F "but of course they caught on to me just as I had feared I contacted Bob Anderson, my supervisor to try to talk my ways out of this situation but they wouldn't listen so I ran to you guys to gave you the informations in hope that you would understand what what happening to me and ...{nw}"
     $ preferences.text_cps = temp_cps
 
     PC "Felix stop!"
     PC "The flash drive you gave us helped us to get to you but right now we have to get out of here first. Leonie helped too, but she stayed home to give technical support."
-    show alex serious1 at alex_right
+    show alex serious1 at alex_left
     with dissolve
     A "Right. They will probably notice your abscence so we should get away as fast as possible."
-    show felix serious
+    show felix serious at felix_right
     with dissolve
     F "Of course, of course. Wait a minute I found something interesting in these documents"
     "Felix scoops up a pile of opened documents and loose paper lying next to a couple of opened file boxes and tries to fit most of it under his shirt and in his pockets."
-    show felix neutral1
+    show felix neutral1 at felix_right
     with dissolve
     F "Alright, I'm ready. Do you know how to get out of here?"
-    show alex serious2 at alex_right
+    show alex serious2 at alex_left
     with dissolve
     A "Yes, follow us. We'll take the back entrace to get out again. There shouldn't really be anyone there."
     scene black
     with dissolve
     "The three of you leave the facility without further occurences and head home where Leonie waits."
+    play music main_music1 volume loudness
     scene bg new kitchen
+    show alex neutral at alex_left
     show leonie happy at left
-    show felix neutral1
+    show felix smile at felix_right
     with dissolve
     L "Felix! We were worried sick. You have to tell us what happened."
-    show alex happy at alex_right
+    show alex happy at alex_left
     with dissolve
     A "Not so fast. I believe Felix should get some rest first after what happened to him."
-    "Alex pours Felix a glass of water and rumbles through the fridge in an attempt to find something edible."
-    scene bg party
+    show felix neutral2 at felix_right
     with dissolve
-    "End of the game"
+    "Alex pours Felix a glass of water and rumbles through the fridge in an attempt to find something edible."
+
+    play music end_music volume loudness
+    scene bg party
+    show felix smile at felix_right
+    with dissolve
+    F "Thank you guys for believing me. I knew I could put my trust in you."
+    show alex smile at alex_left
+    with dissolve
+    A "Always Felix."
+    show leonie thinking at left
+    with dissolve
+    L "Phew, this was quite the adventure. I can't believe {color=[medievilColor]}Medievil{/color} really held you captive."
+    show alex happy at alex_left
+    with dissolve
+    A "Yes, I'm glad we got you out of there. However we can't let them continue with this. Felix is quite possible still in great danger and so might we be."
+    PC "Correct. We shouldn't let our guard down now. We have to investigate further into this company and bring them down once and for all."
+    show leonie happy at left
+    with dissolve
+    L "I agree, but why don't we enjoy at least this evening together without worrying about evil coorporations huting us."
+    show alex smile at alex_left
+    with dissolve
+    A "Good Idea."
+    $ show_textbox = False
+    show screen end_screen
+    jump empty_label
+
+screen end_screen:
+    image "images/backgrounds/bg new kitchen.png"
+    image "images/characters/felix/felix smile.png":
+        zoom 0.8
+        xpos 550
+        ypos -100
+    image "images/characters/player/male/pcm smile.png":
+        zoom 1.6
+        xpos -600
+        ypos 200
+    image "images/characters/leonie/leonie happy.png":
+        zoom 0.3
+        xpos 1150
+        ypos 200
+    # Exit to main menu button
+    imagebutton:
+        idle "images/objects/main menu button idle.png"
+        hover "images/objects/main menu button hover.png"
+        focus_mask True
+        action Jump("game_finished")
+
+label game_finished:
+    return

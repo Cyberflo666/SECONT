@@ -278,7 +278,7 @@ init python:
             optional_flag = False
             renpy.jump("optional")
         elif player_pos == [14,1] and fire_alarm == True:
-            renpy.jump("leave_facility")
+            renpy.jump("find_felix")
         #renpy.notify(door_timer)
         renpy.restart_interaction()
         #renpy.show("minigame_screen")
