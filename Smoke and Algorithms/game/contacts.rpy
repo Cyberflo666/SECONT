@@ -11,7 +11,10 @@ label call_alex:
         $ hide_textbox = True
     hide screen phone_hand_contact
     with dissolve
-    A "Are you blind? I'm standing right next to you, Haha."
+    if current_location == "end_game":
+        A "Hey, I'm still right here. Glad we got Felix out of there."
+    else:
+        A "Are you blind? I'm standing right next to you, Haha."
     with dissolve
     $ show_image_buttons = True
     if hide_textbox == True:
@@ -19,6 +22,14 @@ label call_alex:
         $ hide_textbox = False
     show screen phone_hand_contact
     with dissolve
+    if USB_placed_0 == True and before_office == False:
+        jump menu_outside
+    elif have_USB == False:
+        jump before_the_office
+    elif infront_facility == True:
+        jump menu_outside
+    elif current_location == "before_office":
+        jump before_the_office
     return
 
 label call_joe_arnold:
@@ -31,7 +42,7 @@ label call_joe_arnold:
         with dissolve
         $ trust = 25
         $ called_from_smartphone = True
-        A "You call the number from the notes."
+        "You call the number from the notes."
         with dissolve
         #$ show_image_buttons = True
         if hide_textbox == True:
@@ -48,7 +59,7 @@ label call_joe_arnold:
         hide screen phone_hand_contact
         with dissolve
         $ joe_called = 2
-        A "I can't talk right now."
+        JA "I can't talk right now."
         with dissolve
         $ show_image_buttons = True
         if hide_textbox == True:
@@ -84,13 +95,15 @@ label call_leonie:
     hide screen phone_hand_contact
     with dissolve
     if USB_placed_0 == True and before_office == False:
-        "You lost the USB? Should have know you two would mess it up. Just come back and i'll give you another one."
+        L "You lost the USB? Should have know you two would mess it up. Just come back and i'll give you another one."
         $ have_USB = True
     elif have_USB == False:
-        "You lost the USB? Should have know you two would mess it up. Wait a sec I'll send you a copy of the mallware to install on a spare USB."
+        L "You lost the USB? Should have know you two would mess it up. Wait a sec I'll send you a copy of the mallware to install on a spare USB."
         $ have_USB = True
+    elif current_location == "end_game":
+        L "Nice job, but why are you calling me?"
     elif leonie_away == True:
-        "Why are you calling for no reason?" 
+        L "Why are you calling for no reason?"
     else:    
         L "Hey, I'm right here [PN]."
     with dissolve
@@ -98,13 +111,15 @@ label call_leonie:
     if hide_textbox == True:
         $ show_textbox = False
         $ hide_textbox = False
+    show screen phone_hand_contact
+    
     if USB_placed_0 == True and before_office == False:
         jump get_another_USB
     elif have_USB == False:
         jump install_malware
     elif infront_facility == True:
         jump menu_outside
-    elif infront_facility == False:
+    elif current_location == "before_office":
         jump before_the_office
     show screen phone_hand_contact
     with dissolve
@@ -117,9 +132,13 @@ label call_felix:
         $ hide_textbox = True
     hide screen phone_hand_contact
     with dissolve
-    "Beep beep beep."
-    "..."
-    "It seems like noone answers the phone."
+
+    if current_location == "end_game":
+        F "Thanks for getting me out of there"
+    else:
+        "Beep beep beep."
+        "..."
+        "It seems like noone answers the phone."
     with dissolve
     $ show_image_buttons = True
     if hide_textbox == True:
@@ -127,6 +146,15 @@ label call_felix:
         $ hide_textbox = False
     show screen phone_hand_contact
     with dissolve
+
+    if USB_placed_0 == True and before_office == False:
+        jump menu_outside
+    elif have_USB == False:
+        jump before_the_office
+    elif infront_facility == True:
+        jump menu_outside
+    elif current_location == "before_office":
+        jump before_the_office
     return
 
 screen call_screen:

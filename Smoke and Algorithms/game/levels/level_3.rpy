@@ -200,29 +200,30 @@ define main_entrace_flag = False
 define observe_entrance_flag = False
 define infront_facility = True
 label menu_outside:
-scene bg front office 2 
-hide alex
-with dissolve
-show screen phone_icon
+    scene bg front office 2 
+    hide alex
+    with dissolve
+    if not phone_open:
+        show screen phone_icon
 
-menu:
-    "Take the main entrance." if main_entrace_flag == False:
-        hide screen phone_icon
-        "You and Alex decide to go through the main entrance"
-        "Upon entering you are greeted by ... no one. Every employee seems to be heavily invested in their work and there is a lot of security roaming around."
-        jump main_entrance
-    "Observe the people entering the facility." if observe_entrance_flag == False:
-        hide screen phone_icon
-        "All the people you see look like they have buisness at this place. You can't spot anyone who looks like a visitor in your eyes."
-        "Through the opening main entrance door you can make out that there is heavy security guarding this place, but they don't seem to check the people entering."
-        $ observe_entrance_flag = True
-        jump menu_outside
-    "Go through the back door with the pin you got from Bob.":
-        hide screen phone_icon
-        scene bg back office day
-        with dissolve
-        "The two of you sneakily enter the building with the same method from yesterday."
-        jump back_entrance
+    menu:
+        "Take the main entrance." if main_entrace_flag == False:
+            hide screen phone_icon
+            "You and Alex decide to go through the main entrance"
+            "Upon entering you are greeted by ... no one. Every employee seems to be heavily invested in their work and there is a lot of security roaming around."
+            jump main_entrance
+        "Observe the people entering the facility." if observe_entrance_flag == False:
+            hide screen phone_icon
+            "All the people you see look like they have buisness at this place. You can't spot anyone who looks like a visitor in your eyes."
+            "Through the opening main entrance door you can make out that there is heavy security guarding this place, but they don't seem to check the people entering."
+            $ observe_entrance_flag = True
+            jump menu_outside
+        "Go through the back door with the pin you got from Bob.":
+            hide screen phone_icon
+            scene bg back office day
+            with dissolve
+            "The two of you sneakily enter the building with the same method from yesterday."
+            jump back_entrance
 
 define stairs_went = False
 define receptionist_talked = False
@@ -362,15 +363,16 @@ label way_to_the_office:
     "Going furhter into the facility you find the begining of the office area you were looking for."
     A "Well what do we do now? We still don't have control of the cameras."
 
-define before_office = False
-
 label before_the_office:
     scene bg hallway 1
     $ infront_facility = False
-    show screen phone_icon
+    $ current_location = "before_office"
+    if not phone_open:
+        show screen phone_icon
     $ before_office = True
     menu:
         "Infiltrate bobs office":
+            $ current_location = -1
             hide screen phone_icon
             "You decide that now is the time to infiltrate bobs office."
             play music security_music volume loudness
@@ -390,6 +392,7 @@ label before_the_office:
             jump before_the_office
 
         "Activate the fire alarm":
+            $ current_location = -1
             hide screen phone_icon
             "After activate the fire alarm you heard sirens going off and speakers talking. While everyone is leaving the building you hide in the bathroom and wait a bit."
             "With noone in the building you can just strole into the office of bob anderson."
@@ -718,7 +721,7 @@ label game_lost:
 label get_another_USB:
     scene black
     with dissolve
-    "You return to leonie and she gives you another USB_Drive after lecturing you to not loose it again."
+    "You return to leonie and she gives you another USB-Drive after lecturing you to not loose it again."
     jump menu_outside
 
 label install_malware:
@@ -879,7 +882,10 @@ label find_felix:
     with dissolve
     A "Good Idea."
     $ show_textbox = False
+    $ current_location = "end_game"
     show screen end_screen
+    show screen phone_icon
+    with dissolve
     jump empty_label
 
 screen end_screen:
@@ -904,4 +910,5 @@ screen end_screen:
         action Jump("game_finished")
 
 label game_finished:
-    return
+    pass
+return

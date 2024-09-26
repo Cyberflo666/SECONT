@@ -78,7 +78,7 @@ screen phone_hand():
         ypos 0
         xsize 500
         ysize 300
-        action Hide("phone_hand"), Show("phone_icon")
+        action Hide("phone_hand"), Show("phone_icon"), Function(set_phone_open, False)
     
     # Phone icons
     imagebutton:
@@ -958,7 +958,7 @@ screen phone_hand_mini_game():
 
 
 ################################## Phone Icon #########################################
-
+default phone_open = False
 screen phone_icon():
     zorder 2
     modal False
@@ -968,7 +968,7 @@ screen phone_icon():
             hover "phone_icon_hover" at phone_pos
             
             focus_mask True
-            action Show("phone_hand"), Hide("phone_icon")
+            action Show("phone_hand"), Hide("phone_icon"), Function(set_phone_open, True)
         
         # Displays notification circ if there's any new notification
         if phone_not_glossary or phone_not_gallery or phone_not_notes or phone_not_map:
@@ -976,3 +976,10 @@ screen phone_icon():
                 zoom 0.30
                 xpos 210
                 ypos 785
+
+init python:
+    def set_phone_open(boolean):
+        global phone_open
+        phone_open = boolean
+        renpy.notify("phone:" + str(boolean))
+        return

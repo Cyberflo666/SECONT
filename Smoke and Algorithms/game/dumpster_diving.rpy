@@ -172,16 +172,20 @@ init python:
             if distance < placement_sens:
                 dragged_piece[0].snap(snap_spot.x, snap_spot.y, 0.1)
                 dragged_piece[0].draggable = False
+                renpy.sound.play("audio/sfx/dumpster_clip.wav")
 
                 if diving_minigame_active_index == 0:
                     dd1_pieces_completed +=1
                     if dd1_pieces_completed == dd1_pieces_total:
+                        renpy.sound.play("audio/sfx/dumpster_done.wav")
                         renpy.jump("dumpster_diving_minigame_completed_1")
                 elif diving_minigame_active_index == 1:
                     dd2_pieces_completed += 1
                     if dd2_pieces_completed == dd2_pieces_total:
+                        renpy.sound.play("audio/sfx/dumpster_done.wav")
                         renpy.jump("dumpster_diving_minigame2_completed")
                 elif diving_minigame_active_index == 2:
                     dd3_pieces_completed += 1
                     if dd3_pieces_completed == dd3_pieces_total:
+                        renpy.sound.play("audio/sfx/dumpster_done.wav")
                         renpy.jump("dumpster_diving_minigame3_completed")
