@@ -13,17 +13,17 @@ label security_minigame_start:
             $ show_textbox = True
             $ show_image_buttons = False
             show screen minigame_screen()
-            "You are the golden circle."
-            "Use the Buttons with arrows to move in the according direction."
-            "Avoid the vision cones of the security."
-            "Follow the personal to get through the glas doors."
+            "[[1/5] You are the golden circle."
+            "[[2/5] Use the Buttons with arrows to move in the according direction."
+            "[[3/5] Avoid the vision cones of the security."
+            "[[4/5] Follow the personal to get through the glas doors."
             if fire_alarm == True:
                 show screen office_exit
-                "The green room is the exit of the office area and the yellow rooms are for you to explore."
+                "[[5/5] The green room is the exit of the office area and the yellow rooms are for you to explore."
                 hide screen office_exit
             else:
                 show screen bobs_office
-                "The green room is bobs office and the yellow rooms are for you to explore."
+                "[[5/5] The green room is bobs office and the yellow rooms are for you to explore."
                 hide screen bobs_office
             $ first_time_in = False
             $ show_image_buttons = True

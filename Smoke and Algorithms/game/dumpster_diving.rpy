@@ -180,6 +180,7 @@ init python:
             if distance < placement_sens:
                 dragged_piece[0].snap(snap_spot.x, snap_spot.y, 0.1)
                 dragged_piece[0].draggable = False
+                dragged_piece[0].bottom()
                 renpy.sound.play("audio/sfx/dumpster_clip.wav")
 
                 if diving_minigame_active_index == 0:
