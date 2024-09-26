@@ -1,3 +1,7 @@
+# Mind Hackers: Whispers in the wires - Project 2024 SECont
+# This file contains the security mini game encountered in level 3
+
+# ############################## Mini game explanation: ###############################
 label security_minigame_start:
     $ show_textbox = False
     if detected == True:
@@ -9,9 +13,10 @@ label security_minigame_start:
             $ show_textbox = True
             $ show_image_buttons = False
             show screen minigame_screen()
-            "Use the Buttons with arrows to move in the according direction"
-            "Avoid the vision cones of the security"
-            "Follow the personal to get through the glas doors"
+            "You are the golden circle."
+            "Use the Buttons with arrows to move in the according direction."
+            "Avoid the vision cones of the security."
+            "Follow the personal to get through the glas doors."
             if fire_alarm == True:
                 show screen office_exit
                 "The green room is the exit of the office area and the yellow rooms are for you to explore."
@@ -39,6 +44,8 @@ label security_minigame_start:
     #4s are blue tailgate people
     #[field,security on field,is player on field,tailgate people] (t for true f for false) extra: door open : O door closed : C
     # 120, 60
+
+# #################################### Variables: #####################################
 default x = 0
 default y = 0
 
@@ -50,6 +57,7 @@ screen bobs_office:
 screen office_exit:
     image "security minigame backwards goal"
 
+# ################################ Mini game screen: ##################################
 screen minigame_screen():
     zorder 0
     modal False
@@ -71,9 +79,8 @@ screen minigame_screen():
             image "door open":
                 xpos -841
 
-    
-
     for i in range(0,4):
+        # ######################## Guard positioning: #################################
         $ x = sec_list[i][0][sec_list[i][1]][1]
         $ y = sec_list[i][0][sec_list[i][1]][0]
         if (i == 0 and cameras_off == False) or (i == 0 and visability_list[i] == True):
@@ -153,7 +160,7 @@ screen minigame_screen():
                 ypos  120 * x + char_icon_offset
                 xpos 1800 - (60 + 120 * y) + char_icon_offset
 
-        
+        # ###################### Employee positioning: ################################
         $ x = tailgate_list[i][0][tailgate_list[i][1]][1]
         $ y = tailgate_list[i][0][tailgate_list[i][1]][0]
 
@@ -177,7 +184,8 @@ screen minigame_screen():
                 rotate 90 * (tailgate_list[i][0][tailgate_list[i][1]][2]-2)
                 ypos  120 * x + char_icon_offset
                 xpos 1800 - (60 + 120 * y) + char_icon_offset
-    
+
+    # ###################### Player and movement buttons: #############################
     $ x = player_pos[1]
     $ y = player_pos[0]
     image "player" :
@@ -231,8 +239,7 @@ screen minigame_screen():
             else:
                 action Function(real_notify,"Invalid input")
 
-
-
+# ############################### Logic for mini game: ################################
 init python:
     def real_notify(string):
         renpy.notify(string)
@@ -802,5 +809,3 @@ init python:
         green_index = 0
         purple_index = 0
         blue_index = 8
-       
-        

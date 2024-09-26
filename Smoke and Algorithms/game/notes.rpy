@@ -1,3 +1,7 @@
+# Mind Hackers: Whispers in the wires - Project 2024 SECont
+# This file contains the logic for storing notes and images on the phone
+
+# ###################################### Notes: #######################################
 init python:
     class Notes():
         def __init__(self, items):
@@ -25,6 +29,7 @@ init python:
         def __init__(self, text):
             self.text = text
         
+# #################################### Pictures: ######################################
 init python:
     class Pictures():
         def __init__(self, items):

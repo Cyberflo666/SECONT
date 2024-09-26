@@ -1,4 +1,8 @@
+# Mind Hackers: Whispers in the wires - Project 2024 SECont
+# File for the story of level 3
+
 label level_3_start:
+    # Level related variables:
     $ in_dorms = False
     define level_3_s = False
     $ level_3_s = True
@@ -17,6 +21,8 @@ label level_3_start:
     define number_found = False
     define phone_seen = False
     define first_time_in = True
+
+    # Matrices for handling logics of the security mini game
     define game_matrix= [
                         [0,0,0,0,[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0]],
                         [0,["c",b,0],0,0,[0,"f",0,0,0,0],0,0,[0,"f",0,0,0,0],0],
@@ -57,6 +63,7 @@ label level_3_start:
     define door_timer = 0
     define door_timer1 = 0
     define door_state1 = False
+    
     define optional_flag = True
     define bobs_flag = True
     define courtyard_flag = True
@@ -67,10 +74,10 @@ label level_3_start:
     define hospital_bed_seen = False
     define operation_table_seen = False 
     define skull_anatomy_seen = False
-    scene bg back office far 
-    #show leonie neutral at left
-    #show alex neutral at alex_right
-    #with dissolve
+
+
+    scene bg back office far
+    with dissolve
 
     play music mystery_music1 volume loudness
 
@@ -421,8 +428,8 @@ label optional:
     with dissolve
     A "since were already in this weird room we might aswell take a look around"
     jump optional_clicking
-    #clicking through room + stories begin.
-label optional_clicking: #need to add images
+
+label optional_clicking:
     if hospital_bed_seen and operation_table_seen and skull_anatomy_seen:
         jump optional_clicking_done
     $ show_textbox = False
@@ -432,38 +439,42 @@ label optional_clicking: #need to add images
     show screen phone_icon
     with moveinright
     jump empty_label
+
 label hospital_bed:
     call hide_optional_room_screen
     scene bg secret lab beds
     with dissolve
     $ show_textbox = True
     "You see a blood stained operational seat that gives you the creeps"
-    A "wow this looks quite frightening. I wonder what they did here"
+    A "Wow this looks quite frightening. I wonder what they did here"
     $ show_textbox = False
     $ hospital_bed_seen = True
     show screen phone_icon
     jump optional_clicking
+
 label operation_table:
     call hide_optional_room_screen
     scene bg secret lab equipment
     with dissolve
     $ show_textbox = True
-    "You see messy operational equipment.Looks like they have been used lately"
+    "You see messy operational equipment. Looks like they have been used lately."
+    A "Ok, this is getting out of hand. They haven't used this on other people have they?"
     $ show_textbox = False
     $ operation_table_seen = True
     show screen phone_icon
     jump optional_clicking
+
 label skull_anatomy:
     call hide_optional_room_screen
     scene bg secret lab skull
     with dissolve
     $ show_textbox = True
-    "you see an anatomy picture of a skull with marks on it."
+    "You see an anatomy picture of a skull with marks on it."
+    A "God, I hope Felix is alright."
     $ show_textbox = False
     $ skull_anatomy_seen = True
     show screen phone_icon
     jump optional_clicking
-
 
 label optional_clicking_done:
     $ show_textbox = True
@@ -486,8 +497,9 @@ label bobs_office:
     A "You know theres probably a good reason why there are so many security guards here around the clock right? "
     PC "Well lets try to find clues about Felix now though"
     jump bob_clicking
-    #bobs office clicking through room begins
-label bob_clicking: #need to add images
+
+# Interactable mini game in Bob's office begins
+label bob_clicking:
     $ show_textbox = False
     scene bg bob office
     show screen bob_laptop
@@ -501,7 +513,6 @@ label bob_clicking: #need to add images
     with moveinleft
     jump empty_label
 
-
 label laptop:
     call hide_bob_screens 
     scene bg bob office computer
@@ -512,6 +523,7 @@ label laptop:
     $ computer_seen = True
     show screen phone_icon
     jump bob_clicking
+
 label book_shelf:
     call hide_bob_screens 
     scene bg bob office books
@@ -522,6 +534,7 @@ label book_shelf:
     $ books_seen = True
     show screen phone_icon
     jump bob_clicking
+
 label phone:
     call hide_bob_screens
     scene bg bob office phone
@@ -532,6 +545,7 @@ label phone:
     $ phone_seen = True
     show screen phone_icon
     jump bob_clicking
+
 label phone_2:
     call hide_bob_screens
     scene bg bob office phone
@@ -542,6 +556,7 @@ label phone_2:
     $ show_textbox = False
     show screen phone_icon
     jump voice_phishing
+
 label sofa:
     call hide_bob_screens
     scene bg bob office sofa
@@ -552,6 +567,7 @@ label sofa:
     $ sofa_seen = True
     show screen phone_icon
     jump bob_clicking
+
 label painting:
     call hide_bob_screens 
     scene bg bob office painting
@@ -571,6 +587,8 @@ label painting:
     show screen phone_icon
     jump bob_clicking
 
+
+# Voice phishing mini game begins
 define trust_delta_2 = 25
 define called_from_smartphone = False
 define joe_called = 0
@@ -701,6 +719,7 @@ label leave_facility:
     "you get scared and accidentally run into traffic and die"
     jump security_minigame_start
 
+# Lost label, when player is catched by the security guards in the security mini game
 label game_lost:
     #scene bg game_over
     hide screen minigame_screen
@@ -730,52 +749,6 @@ label install_malware:
     "After receiving a file from Leonie you install the content on a spare Drive you have in your pockets."
     jump before_the_office
 
-init python:
-    """
-    # Not needed anymore?
-    menu:
-        "Take the main entrance.":
-            play music security_music volume loudness
-            $ reset()
-            $ fire_alarm = True
-            $ player_pos = [1,1]
-            $ a = "f"
-            $ b = "t"
-            $ valid_inputs = [1,0,0,1,0]
-            $ game_matrix= [
-                [0,0,0,0,[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0]],
-                [0,["c",b,0],0,0,[0,"f",0,0,0,0],0,0,[0,"f",0,0,0,0],0],
-                [[0,"f",0,0,0,1],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[4,0,0,0,0,0]],
-                [0,0,0,0,0,[0,"f",0,0,0,0,door_state],0,0,0],
-                [0,0,0,0,0,[0,"f",0,0,0,0],0,0,0],
-                [0,0,[3,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0]],
-                [0,0,[0,"f",0,0,0,0],0,0,["b","f",0,0,],0,0,[0,"f",0,0,0,0]],
-                [[0,"f",0,0,1,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],0,0,0,0,0,[0,"f",0,0,0,0]],
-                [0,0,[0,"f",0,0,0,0],0,0,0,0,0,[0,"f",0,0,0,0]],
-                [["a","f",0],0,[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[1,"f",0,0,0,0]],
-                [[0,"f",0,0,0,0],0,0,0,0,[0,"f",0,0,0,0],0,0,0],
-                [[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[4,0,0,0,0,0]],
-                [0,0,0,[0,"f",0,0,0,0],0,[0,"f",0,0,0,0],0,0,0],
-                [[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],[0,"f",0,0,0,0],0,[0,"f",0,0,0,0],0,0,0],
-                [0,[0,a,0,0,0,0],0,[0,"f",1,0,0,0],0,[0,"f",0,2,0,0],0,0,0]
-                ]
-            show screen minigame_screen()
-            hide screen minigame_screen
-            jump security_minigame_start
-        "Take the back entrance.":
-            play music security_music volume loudness
-            $ reset()
-            show screen minigame_screen()
-            hide screen minigame_screen
-            jump security_minigame_start
-        "Observe the people entering the building.":
-            play music security_music volume loudness
-            $ reset()
-            $ cameras_off = True
-            show screen minigame_screen()
-            hide screen minigame_screen
-            jump security_minigame_start
-    """
 
 default temp_cps = 0
 label find_felix:
@@ -875,12 +848,14 @@ label find_felix:
     with dissolve
     A "Yes, I'm glad we got you out of there. However we can't let them continue with this. Felix is quite possible still in great danger and so might we be."
     PC "Correct. We shouldn't let our guard down now. We have to investigate further into this company and bring them down once and for all."
+    F "Haha, it was their mistake they locked me in this storage room. I may have found something that could be useful for us. But we have to investigate this further."
+    A "So what is it? What did you find."
     show leonie happy at left
     with dissolve
-    L "I agree, but why don't we enjoy at least this evening together without worrying about evil coorporations huting us."
+    L "I agree that Medievil deserves to be brought down, but why don't we enjoy at least this evening together without worrying about evil coorporations hunting us."
     show alex smile at alex_left
     with dissolve
-    A "Good Idea."
+    A "Alright. Good Idea."
     $ show_textbox = False
     $ current_location = "end_game"
     show screen end_screen

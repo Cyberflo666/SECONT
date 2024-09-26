@@ -1,10 +1,13 @@
-$ renpy.include("screens.rpy")
-default current_index = 0
+# Mind Hackers: Whispers in the wires - Project 2024 SECont
+# This file contains the phone interactable that can be accessed during most of the game
 
+$ renpy.include("screens.rpy")
+
+# #################################### Variables: #####################################
+default current_index = 0
 image phone_icon_hover :
     "images/objects/phone/phone hover.png"
     zoom 0.15
-   
 
 image phone_icon_idle :
     "images/objects/phone/phone idle.png"
@@ -28,18 +31,17 @@ transform arrow_pos:
 transform change_arrow:
     zoom 0.35
 
-
-
-# Variables
 define phone_usable_area = (675, 140, 470, 720)
 define phone_normal_text_color = "#000000"
 define gil_social_media_seen = False
-# Notification variables
+
+# Notification variables:
 default phone_not_glossary = False
 default phone_not_gallery = False
 default phone_not_notes = False
 default phone_not_map = False
 
+# ############################## Notification function: ###############################
 init python:
     def reset_notification(id):
         global phone_not_glossary
@@ -56,7 +58,7 @@ init python:
         elif id == 3:
             phone_not_map = False
 
-
+# ################################ Phone home screen: #################################
 screen phone_hand():
     zorder 2
     modal True
@@ -144,8 +146,7 @@ screen phone_hand():
         focus_mask True
         action Hide("phone_hand"), Show("phone_hand_mini_game") # Call("play_pong") 
 
-################################### Password ##########################################
-
+# ################################# Password screen: ##################################
 default password =""
 default password_check_text = ""
 default first_guess = ""
@@ -278,8 +279,7 @@ init python:
             renpy.jump("password_help")
         return
 
-
-#################################### Gallery ##########################################
+# ################################## Gallery screen: ##################################
 transform change_arrow1:
         xpos 0.035
         ypos 0.40
@@ -331,9 +331,6 @@ screen phone_hand_camera():
         text "[current_index +1 ] / [gallery_length]" at index_gallery_pos
         background "#00000000"
 
-        
-        
-
 init python:
     def change_index(x):
         global gallery
@@ -347,8 +344,7 @@ init python:
             current_index-= 1  
             current_index = current_index % gallery_length 
 
-
-# Screen for displaying the contacts of the player
+# ################################# Contacts screen: ##################################
 define contacts_font_size = 45
 screen phone_hand_contact():
     zorder 2
@@ -417,8 +413,7 @@ screen phone_hand_contact():
                         action Call("call_joe_arnold")
 
 
-###################################### Map ############################################
-
+# ################################## Map screen: ######################################
 init python:
     def already_here_notify():
         renpy.notify("You are already here.")
@@ -463,7 +458,6 @@ screen phone_hand_map():
             elif level_3_s:
                 action Function(cant_go_there_notify)
             else:
-                # action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"),  Hide("website4_screen"), Hide("laptop_screen"), Jump("visitlab")
                 action Function(hide_all_screens), Jump("visitlab")
 
     # Medievil
@@ -479,7 +473,6 @@ screen phone_hand_map():
             elif dumpster_doven:
                 action Call("dumpster_empty")
             else:
-                # action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("website4_screen"), Hide("laptop_screen"), Jump("dumpsterdive")
                 action Function(hide_all_screens), Jump("dumpsterdive")
 
     # Gills Place
@@ -495,7 +488,6 @@ screen phone_hand_map():
             elif dumpster2_doven:
                 action Call("dumpster_empty")
             else:
-                # action Hide("phone_hand_map"), Hide("web_screen"), Hide("website1_screen"), Hide("website2_screen"), Hide("website3_screen"), Hide("website4_screen"), Hide("laptop_screen"), Hide("social_screen"), Jump("dumpsterdive2")
                 action Function(hide_all_screens), Jump("dumpsterdive2")
     
     # Return arrow (closes phone)
@@ -525,7 +517,7 @@ init python:
         renpy.hide_screen("mail_screen")
         return
 
-##################################### Notes ###########################################
+# ################################## Notes screen: ####################################
 define notes_font_size = 25
 screen phone_hand_notes():
     zorder 2
@@ -562,9 +554,7 @@ screen phone_hand_notes():
                 for entry in notes.get_items_list():
                     text "{size=[notes_font_size]}{color=[phone_normal_text_color]}[entry.text]{/color}{/size}"
 
-
-
-################################### Glossary ##########################################
+# ################################# Glossary screen: ##################################
 define gloss_font_size_big = 40
 define gloss_font_size_normal = 25
 
@@ -602,8 +592,6 @@ style gloss_text_header:
     bold True
     size gloss_font_size_big
 
-
-# General overview Screen
 screen phone_hand_glossary():
     zorder 2
     modal True
@@ -697,7 +685,7 @@ init python:
         gloss_entry_text = gloss_text_list[technique_index]
         gloss_entry_img = gloss_img_list[technique_index]
 
-################################## Mini Game ##########################################
+# ################################## Pong logic: ######################################
 init python:
     class PongDisplayable(renpy.Displayable):
 
@@ -909,6 +897,7 @@ init python:
 
 default winner_text = ""
 
+# ################################## Pong screen: #####################################
 screen phone_hand_mini_game():
     zorder 2
     modal True
@@ -956,8 +945,7 @@ screen phone_hand_mini_game():
             ysize 300
             action Hide("phone_hand_mini_game"), Show("phone_hand")
 
-
-################################## Phone Icon #########################################
+# ################################## Phone Icon: ######################################
 default phone_open = False
 screen phone_icon():
     zorder 2
@@ -977,6 +965,7 @@ screen phone_icon():
                 xpos 210
                 ypos 785
 
+# Function to keep track if phone is open or not (necessary in level 3)
 init python:
     def set_phone_open(boolean):
         global phone_open

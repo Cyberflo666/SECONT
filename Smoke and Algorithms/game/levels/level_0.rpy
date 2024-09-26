@@ -1,4 +1,5 @@
-#Smoke and Algorithms - Project 2024 SECont 
+# Mind Hackers: Whispers in the wires - Project 2024 SECont
+# File for the story of level 0
 
 default PN = "Max"
 default gender = "neutral"
@@ -18,6 +19,7 @@ label level_0_start:
     
     "Buckle up for a journey where trust is a weapon, truth is a labyrinth, and the choices you make could unravel a conspiracy that reaches far beyond the walls of your imagination."
 
+    # Read the player name
     $ PN = renpy.input("Enter your name.", "Max", length=15, exclude=" 0123456789+=,.?!<>@[]{}").strip() 
     
 #    menu:
@@ -146,8 +148,6 @@ menu:
     "Try not to get involved.":
         PC "This looks like it could be dangerous. Maybe we should stay out of it."
         jump choice0_ignore
-        
-
 
 label choice0_ignore:
 
@@ -252,6 +252,5 @@ label choice0_follow:
         $ check = True
 
         jump choice0_check
-
 
 return 

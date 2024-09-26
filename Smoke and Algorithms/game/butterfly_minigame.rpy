@@ -1,6 +1,8 @@
+# Mind Hackers: Whispers in the wires - Project 2024 SECont
 # This file covers the mini game encountered in level 3 where the player has to catch a butterfly
 
 init python:
+    # ################################# Butterfly class: ##################################
     # Class handles the butterfly (and bee) logic and visuals
     class Butterfly():
         def __init__(self, is_bee):
@@ -93,7 +95,7 @@ init python:
             else:
                 return False
 
-
+    # ################################ Displayable class: #################################
     # Class handles user input and the renpy render pipeline
     class ButterflyDisplayable(renpy.Displayable):
 
@@ -139,7 +141,7 @@ init python:
                 bf = renpy.render(t, width, height, st, at)
                 r.blit(bf, (int(butterfly.pos[0] - butterfly.OFFSET[0]), int(butterfly.pos[1] - butterfly.OFFSET[1])))
 
-            # re-rendere ASAP, so we can show the next frame (has to be here)
+            # re-render ASAP, so we can show the next frame (has to be here)
             renpy.redraw(self, 0)
 
             # Return the Render object
@@ -166,6 +168,7 @@ init python:
                                 renpy.notify("done")
                                 renpy.restart_interaction()
 
+# ################################ Mini game screen: ##################################
 transform arrow2_pos:
     zoom 0.35
     xalign 0.02
@@ -193,6 +196,7 @@ screen butterfly_mini_game():
         ysize 300
         action Jump("butterfly_minigame_canceled")
 
+# ############################### Mini game dialogue: #################################
 label butterfly_minigame_canceled:
     scene bg courtyard
     hide screen butterfly_mini_game
@@ -213,7 +217,8 @@ label butterfly_minigame_completed:
     play music security_music volume loudness
     jump security_minigame_start
 
-# Helper Functions
+
+# ################################ Helper functions: ##################################
 init python:
     # lets value1 approach value2 by factor[0, 1]
     def lerp(value1, value2, factor):

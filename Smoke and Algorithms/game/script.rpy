@@ -1,10 +1,11 @@
-#Smoke and Algorithms - Project 2024 SECont
-# Organizing file for calling the starting level
+# Smoke and Algorithms - Project 2024 SECont
+# Main file; Organizing file for calling the starting level
 
+# Initialize Variables
 default notes = Notes([])
 default show_textbox = True
 default gallery = Pictures([])
-define medievilColor = "#e46b6bff"
+define medievilColor = "#e46b6bff" # Text color used everytime "Medievil" is mentioned in dialogue
 default current_location = 0 # -1 = Error, 0 = Dorms, 1 = University
 default mouse_index = 0
 default hide_map = False
@@ -12,6 +13,7 @@ default hide_map = False
 init python:
     offset = renpy.random.randint(0,10)
 
+# Splashscreen thats been shown after opening the game before the main menu
 label splashscreen:
     scene black
     with Pause(1)
@@ -23,7 +25,7 @@ label splashscreen:
     with Pause(1)
     return
 
-
+# Label called when player tries to use map, but it's disabled
 label map_disabled:
     $ show_image_buttons = False
     if show_textbox == False:
@@ -40,6 +42,7 @@ label map_disabled:
     with dissolve
     return
 
+# Label "start" is being called by renpy automatically after starting the game
 label start:
     $ randomize_indices()
     $ gallery.add_data(["gallery_meme"], False)

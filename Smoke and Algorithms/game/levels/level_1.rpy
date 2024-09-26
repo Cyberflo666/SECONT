@@ -1,6 +1,7 @@
-$ renpy.include("inventory.rpy")
+# Mind Hackers: Whispers in the wires - Project 2024 SECont
+# File for the story of level 1
 
-#Smoke and Algorithms - Project 2024 SECont
+$ renpy.include("inventory.rpy")
 
 # Level related variables:
 define window_not_done = True
@@ -258,6 +259,7 @@ label help_from_janitor:
     with dissolve
     play music funky_music1 volume loudness fadeout 1.0
 
+    # Start of Janitor mini game
     menu:
         J "Is this urgent? I'm already on my way to help with the printers and I've got my hands full of work."
         "Understanding that his hands are full.":
@@ -446,18 +448,13 @@ label felix_room:
     show screen phone_icon
     with dissolve
 
+# Start of interactable mini game in Felix's room
 label felix_room_menu:
     scene bg felix room
     call show_felix_room_interactables from _call_show_felix_room_interactables
     with dissolve
     "Explore the room or use your phone to crack the password."
     jump felix_room_menu
-
-"""
-menu:
-    "Pull the phone out to crack the password":
-        #add minigame
-"""
 
 label notebooks:
     call hide_felix_room_interactables from _call_hide_felix_room_interactables
@@ -652,6 +649,8 @@ menu:
         with dissolve
 
         A "At least now we know that the police won't be much help against {color=[medievilColor]}Medievil{/color}. Looks like we're on our own."
+        show leonie neutral at left
+        with dissolve
         L "Let's get back to our dorm and take matters in our own hands."
         PC "I left my laptop in the kitchen, so let's just get going there."
 
@@ -672,12 +671,13 @@ menu:
         PC "I left my laptop there anyway, so I guess I'll take over the research."
         PC "From there, I guess we can fulfill Felix's wish and investigate properly."
         with dissolve
+
         jump level_2_start
     
 
+# Game over screens
 
 label game_over:
-    #play music funky_music1 volume 1
     scene bg game over 1
     with dissolve
     pause 1.5

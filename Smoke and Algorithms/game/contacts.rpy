@@ -1,9 +1,10 @@
+# Mind Hackers: Whispers in the wires - Project 2024 SECont
 # File contains dialogues for the contacts-screen on the phone
+
 default hide_textbox = False
 default show_image_buttons = True
 
-
-
+# ###################################### Alex: ########################################
 label call_alex:
     $ show_image_buttons = False
     if show_textbox == False:
@@ -32,6 +33,7 @@ label call_alex:
         jump before_the_office
     return
 
+# ####################################### Joe: ########################################
 label call_joe_arnold:
     if joe_called == 0:
         $ show_image_buttons = False
@@ -87,6 +89,7 @@ label call_joe_arnold:
         with dissolve
     return
 
+# ##################################### Leonie: #######################################
 label call_leonie:
     $ show_image_buttons = False
     if show_textbox == False:
@@ -125,6 +128,7 @@ label call_leonie:
     with dissolve
     return
 
+# ##################################### Felix: ########################################
 label call_felix:
     $ show_image_buttons = False
     if show_textbox == False:
@@ -156,6 +160,7 @@ label call_felix:
     elif current_location == "before_office":
         jump before_the_office
     return
+
 
 screen call_screen:
     add Solid("#00000000")

@@ -1,3 +1,7 @@
+# Mind Hackers: Whispers in the wires - Project 2024 SECont
+# This file contains the laptop encountered in level 2
+
+# #################################### Variables: #####################################
 define laptop_usable_area = (240, 186, 1441, 702)
 define laptop_usable_area_social = (239, 196, 1441, 643)
 define website_area = (0, 0, 1441, 2400)
@@ -12,6 +16,23 @@ define post_2_liked = False
 define post_3_liked = False
 define search_result = "#000000FF"
 
+transform website1_icon:
+    xalign 0.15
+    yalign 0.2
+transform website2_icon:
+    xalign 0.15
+    yalign 0.25
+transform website3_icon:
+    xalign 0.15
+    yalign 0.3
+transform return_arrow_black_pos:
+    zoom 0.2
+    xalign 0.14
+    yalign 0.1
+transform website_button_pos:
+    zoom 1
+
+# ################################# Helper functions: #################################
 init python:
     def viewport_change1(value):
         global website_1_scrollbar_pos
@@ -36,27 +57,12 @@ init python:
     def viewport_changeS1(value):
         global social_1_scrollbar_pos
         social_1_scrollbar_pos = value
-transform website1_icon:
-    xalign 0.15
-    yalign 0.2
-transform website2_icon:
-    xalign 0.15
-    yalign 0.25
-transform website3_icon:
-    xalign 0.15
-    yalign 0.3
-transform return_arrow_black_pos:
-    zoom 0.2
-    xalign 0.14
-    yalign 0.1
-transform website_button_pos:
-    zoom 1
 
+# ################################## Laptop screen: ###################################
 screen laptop_screen():
     zorder 1
     modal False
         
-    
 # Return arrow (closes phone)
     if show_image_buttons == True:
         imagebutton:
@@ -86,7 +92,7 @@ screen laptop_screen():
             focus_mask True
             action Hide("laptop_screen"), Show("web_screen")
 
-################################### Mail ##########################################
+# ################################## Phishing Mail: ###################################
 # Variables
 default offset = 0
 default mail_1_text_unlocked = [0, 0, 0, 0] # 1 means the i-th text is unlocked
@@ -213,8 +219,7 @@ init python:
             #renpy.notify("not the correct mail")
             renpy.jump("phishing_mail_fail")
 
-###################################################################################
-
+# ############################### Laptop sub-screens: #################################
 screen power_screen():
     zorder 2
     modal False
@@ -282,7 +287,6 @@ screen social_screen_explore():
                     action Function(toggle_function, 3) #Show("")
                 if post_3_liked == True:
                     image "bg home post 3 pressed"
-
 
 screen social_screen_search():
     zorder 0
@@ -387,7 +391,6 @@ screen social_screen_bob():
                     #focus_mask False
                     action Hide("social_screen_bob"), Show("social_screen_bob_tag")
                 
-
 screen social_screen_gill():
     zorder 0
     modal False
@@ -416,8 +419,6 @@ screen social_screen_gill():
                         focus_mask True
                         action Hide("social_screen_gill"), Jump("social_button_6")
 
-
-        
 screen web_screen():
     zorder 0
     modal False
@@ -615,6 +616,7 @@ screen website1_button_text:
 init python:
     def set_function(value):
         value = False
+
 
 init python:
     def toggle_function(value):

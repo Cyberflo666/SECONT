@@ -1,5 +1,9 @@
-# This file contains the dumpster diving mini game
-# 1 is the receipt 2 is the random trash
+# Mind Hackers: Whispers in the wires - Project 2024 SECont
+# This file contains the dumpster diving mini game encountered in level 2
+
+# 1 is the receipt, 2 is the random trash, 3 is the handover note
+
+# ################################ Dumpster diving 1: #################################
 define diving1completed = False
 default diving_minigame_active_index = 0
 
@@ -57,6 +61,7 @@ screen dumpster_diving_minigame_1:
                 image "images/objects/dumpster diving/pieces 3/piece %s.png" %(i + 1) alpha 0.0
 
 
+# ################################ Dumpster diving 2: #################################
 label dumpster_diving_minigame2_start:
     $ diving_minigame_active_index = 1
     hide screen phone_icon
@@ -71,20 +76,7 @@ label dumpster_diving_minigame2_completed:
     $ diving_minigame_active_index = 2
     call screen dumpster_diving_minigame_3
 
-label dumpster_diving_minigame3_completed:
-    $ diving1completed = True
-    $ mail_1_text_unlocked[0] = 1 # Sets variable to show the phishing mail text in the phishing mail mini game
-    $ mail_1_text_unlocked[1] = 1
-
-    scene bg dumpster diving 2 finished
-    pause 1.5
-    scene bg gill dumpster
-
-    $ gallery.add_data(["gallery_dd_notepage"], True)
-    pause 1.5
-    jump after_dumpsterdive2
     
-
 # Variables
 define placement_sens = 20 # How sensitive the pieces must be aligned with their assigned spot (lower is more sensitive)
 define dd2_pieces_total = 20
@@ -121,11 +113,26 @@ screen dumpster_diving_minigame_2:
 
                 image "images/objects/dumpster diving/pieces 1/piece %s.png" %(i + 1) alpha 0.0
 
+
+# ################################ Dumpster diving 3: #################################
+label dumpster_diving_minigame3_completed:
+    $ diving1completed = True
+    $ mail_1_text_unlocked[0] = 1 # Sets variable to show the phishing mail text in the phishing mail mini game
+    $ mail_1_text_unlocked[1] = 1
+
+    scene bg dumpster diving 2 finished
+    pause 1.5
+    scene bg gill dumpster
+
+    $ gallery.add_data(["gallery_dd_notepage"], True)
+    pause 1.5
+    jump after_dumpsterdive2
+
+# Variables
 define dd3_pieces_total = 18
 default dd3_pieces_completed = 0
 define dd3_piece_pos_goal = [(49, 24), (260, 24), (134, 250), (49, 454), (49, 673), (124, 672), (193, 476), (486, 24), (560, 24), (648, 100), (617, 307), (410, 444), (283, 646), (283, 822), (437, 840), (664, 713), (548, 585), (630, 457)]
 define dd3_piece_pos_initial = [(1500, 660), (1100, 300), (850, 350), (1000, 50), (1340, 450), (940, 150), (1140, 550), (890, 500), (1350, 250), (1200, 420), (950, 80), (1070, 290), (1245, 362), (1600, 130), (1180, 450), (1300, 320), (930, 150), (1420, 320)]
-
 
 screen dumpster_diving_minigame_3:
     image "images/objects/dumpster diving/bg dumpster diving 2.png"
@@ -157,6 +164,7 @@ screen dumpster_diving_minigame_3:
                 image "images/objects/dumpster diving/pieces 2/piece %s.png" %(i + 1) alpha 0.0
 
 
+# ################################### Snap Function ###################################
 init python:
     import math
     

@@ -1,7 +1,7 @@
-# Smoke and Algorithms - Project 2024 SECont
-# This file contains all characters and their corresponding images
+# Mind Hackers: Whispers in the wires - Project 2024 SECont
+# This file contains all characters and their corresponding images as well as their custom transforms if needed
 
-#Characters
+# ################################### Characters: #####################################
 define narrator = Character(            what_italic=True, what_outlines=[(0, "#080808", 5, 5)])
 define PC = Character("[PN]",           what_prefix='"', what_suffix='"', who_color="#ffffff", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
 define A = Character("Alex",            what_prefix='"', what_suffix='"', who_color="#27e700", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
@@ -13,8 +13,7 @@ define S1 = Character("Secretary",      what_prefix='"', what_suffix='"', who_co
 define S2 = Character("Security",       what_prefix='"', what_suffix='"', who_color="#686868", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
 define JA = Character("Joe Arnold",     what_prefix='"', what_suffix='"', who_color="#dacb00", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
 
-# Character Sprites
-# Leonie
+# ################################# Leonie sprites: ###################################
 image leonie neutral:
     "images/characters/leonie/leonie neutral.png"
     zoom 0.25
@@ -34,7 +33,7 @@ image leonie thinking:
     "images/characters/leonie/leonie thinking.png"
     zoom 0.25
 
-# Alex
+# ################################## Alex sprites: ####################################
 image alex neutral:
     "images/characters/player/male/pcm neutral.png"
     zoom 1.4
@@ -84,7 +83,7 @@ transform alex_left:
     xalign -1
     yalign -0.8
 
-# Felix
+# ################################## Felix sprites: ###################################
 image felix running:
     "images/characters/felix/felix running scared.png"
     zoom 0.8
@@ -97,7 +96,7 @@ transform felix_right:
     xalign 0.9
     ypos 60
 
-# Janitor
+# ################################# Janitor sprites: ##################################
 image janitor neutral1:
     "images/characters/janitor/janitor neutral1.png"
     zoom 0.85
@@ -120,7 +119,7 @@ transform janitor_middle:
     xalign 0.5
     yalign 1.0
 
-#Receptionist
+# ############################## Receptionist sprites: ################################
 image receptionist friendly:
     zoom 0.55
     "images/characters/Receptionist (Male)/friendly.png"
@@ -135,7 +134,7 @@ transform receptionist_right:
     xalign 1.0
     yalign 1.0
 
-#Secretary
+# ################################ Secretary sprites: #################################
 image secretary angry:
     "images/characters/Secretary (Female)/angry.png"
 image secretary neutral:
@@ -158,6 +157,7 @@ transform security:
     yalign 0.4
     xalign 0.5
 
+# ########################### Janitor trust bar sprites: ##############################
 label janitor_look(trust):
     if (trust > 75 ):
         show janitor thinking at janitor_right

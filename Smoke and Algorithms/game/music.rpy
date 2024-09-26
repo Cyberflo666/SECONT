@@ -1,3 +1,6 @@
+# Mind Hackers: Whispers in the wires - Project 2024 SECont
+# This file contains the background music
+
 define funky_music1 = "<loop 0>audio/music/Szymon Matuszewski - Funky - [Main Theme 1].mp3"
 define suspense_music1 = "<loop 0>audio/music/Szymon Matuszewski - Pandora - [Mystery Theme 1].mp3"
 define mystery_music1 = "<loop 0>audio/music/Szymon Matuszewski - Pipeline - [Mystery Theme 2].mp3"

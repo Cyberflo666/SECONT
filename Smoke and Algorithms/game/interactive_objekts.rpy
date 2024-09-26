@@ -1,5 +1,7 @@
-############################ Felix room point and click ###############################
+# Mind Hackers: Whispers in the wires - Project 2024 SECont
+# This file contains various interactive screens used in mini games
 
+# ############################ Felix room point and click: ############################
 label hide_felix_room_interactables():
     hide screen felixes_bin
     hide screen felixes_bed
@@ -106,8 +108,7 @@ screen felixes_wall3():
             action Hide("felixes_wall3"),Jump("wall3")
 
 
-################################ Janitor mini game ####################################
-
+# ################################ Janitor mini game: #################################
 screen round_rect(trust):
     image "gui/bar/bottom back.png":
         xalign 0.976 ypos 297
@@ -133,8 +134,7 @@ screen round_rect(trust):
         color "#AA4473FF"
 
 
-############################# Lab room point and click ################################
-
+# ############################ Lab room point and click: ##############################
 label hide_lab_screens:
     hide screen left_cage
     hide screen left_pc
@@ -215,18 +215,8 @@ screen trash:
             focus_mask True
             action Hide("trash"),Jump("empty_trash")
 
-#screen medical_tools:
-    #zorder 0
-    #modal False
-    #if show_image_buttons == True:
-        #imagebutton :
-            #hover "images/backgrounds/felix room/f wall3.png" 
-            #idle "images/backgrounds/felix room/fb wall3.png" 
-            #focus_mask True
-            #action Hide("medical_tools"),Jump("used_medical_tools")
 
-
-############################## Lab pin pad mini game ##################################
+# ############################## Lab pin pad mini game: ###############################
 define pin_correct = "471965"
 default pin_current = ""
 
@@ -279,7 +269,9 @@ init python:
             renpy.jump("pin_pad_mini_game_complete")
         else:
             renpy.sound.play("audio/sfx/pin_pad_false.wav")
-############################# bob room point and click ################################
+
+
+# ########################### Bob room point and click: ###############################
 label hide_bob_screens:
     hide screen bob_laptop
     hide screen bob_book_shelf
@@ -345,7 +337,9 @@ screen bob_painting:
             idle "images/backgrounds/Bob Office/bob painting idle.png" 
             focus_mask True
             action Hide("bob_painting"),Jump("painting")
-############################# optional room point and click ################################
+
+
+# ########################## optional room point and click: ###########################
 label hide_optional_room_screen:
     hide screen optional_room
     hide screen phone_icon
@@ -371,4 +365,3 @@ screen optional_room:
             idle "images/backgrounds/Bob Office/skull idle.png"
             focus_mask True
             action Hide("optional_room"),Jump("skull_anatomy")
-

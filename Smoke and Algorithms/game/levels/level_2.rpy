@@ -1,3 +1,7 @@
+# Mind Hackers: Whispers in the wires - Project 2024 SECont
+# File for the story of level 2
+
+# Level related variables:
 define website_1_not_seen = True
 define website_2_not_seen = True
 define website_3_not_seen = True
@@ -49,6 +53,7 @@ label research:
     ""
     jump empty_label
 
+# Warnings to warn the player of writing the phishing mail without the sufficient information
 label warning_1:
     $ show_image_buttons = False
     $ warning_counter = 1
@@ -111,6 +116,7 @@ label warning_4:
     show screen mail_screen
     return
 
+# Dialogue for the social media section on the Laptop
 label social_button_1:
     $ show_image_buttons = False
     $ show_textbox = True
@@ -251,6 +257,7 @@ label social_button_5:
         $ show_image_buttons = True
         jump empty_label
 
+# Dialogue for the web search section on the Laptop
 label website1_button:
     $ show_image_buttons = False
     $ show_textbox = True
@@ -477,7 +484,7 @@ label after_dumpsterdive2:
     jump research 
 
 
-
+# Notifications for the map
 label lab_access_denied:
     $ show_image_buttons = False
     if show_textbox == False:
@@ -519,6 +526,7 @@ label dumpster_empty:
     $ show_image_buttons = True
     show screen phone_hand_map
     return
+
 
 label visitlab:
     $ show_textbox = True
@@ -634,6 +642,7 @@ label lab_entry_choice:
             "After paying 1,20$ for an overpriced chocolate bar you watch as your snack gets stuck in the spiral of a lower row."
             jump wending_maschine
 
+# Someone didn't know how to write vending machine
 label wending_maschine:
     menu:
         "Shake the vending machine to get your snack" if machine_struck_counter == 0:
@@ -658,7 +667,7 @@ label lab_wait:
     $ hide_map = True
     $ gloss_surfing_seen = True
     $ phone_not_glossary = True
-    scene bg uni hallway #need better spot than hallway
+    scene bg uni hallway # need better spot than hallway?
     with dissolve
     play music mystery_music1 volume loudness fadeout 1.0
     "As you return you got to the location Leonie sent you. A desk at the snack machine with four chairs."
@@ -709,8 +718,7 @@ label lab_wait:
     pause
 
     $ notes.add_data(NoteData("Pinpad: 471965"))
-
-    # "You watch as he puts his hand on the pinboard and inputs: \n '4' '7' '1' '9' '6' '5'."
+    
     scene bg uni hallway
     with dissolve
     show alex serious2 at alex_right
@@ -796,7 +804,7 @@ label inside_lab:
     with moveinright
     jump empty_label
 
-
+# Dialogues for interactables in lab mini game 
 label rat_in_cage_left:
     call hide_lab_screens 
     scene bg left cage zoom
@@ -807,6 +815,7 @@ label rat_in_cage_left:
     $ show_textbox = False
     $ rat_seen = True
     jump inside_lab
+
 label left_pc_stats:
     call hide_lab_screens 
     scene bg left pc zoom
@@ -816,6 +825,7 @@ label left_pc_stats:
     $ show_textbox = False
     $ left_pc_seen = True
     jump inside_lab
+
 label left_wall_obj:
     call hide_lab_screens 
     scene bg left wall zoom
@@ -825,6 +835,7 @@ label left_wall_obj:
     $ show_textbox = False
     $ left_wall_seen = True 
     jump inside_lab
+
 label symbols_on_screen:
     call hide_lab_screens 
     scene bg monitor zoom
@@ -834,6 +845,7 @@ label symbols_on_screen:
     $ show_textbox = False
     $ symbols_seen = True
     jump inside_lab
+
 label rat_in_cage_right:
     call hide_lab_screens
     scene bg right cage zoom
@@ -844,6 +856,7 @@ label rat_in_cage_right:
     $ show_textbox = False
     $ rat_seen = True
     jump inside_lab
+
 label right_pc_stats:
     call hide_lab_screens 
     scene bg right pc zoom
@@ -853,6 +866,7 @@ label right_pc_stats:
     $ show_textbox = False
     $ left_pc_seen = True
     jump inside_lab
+
 label empty_trash:
     call hide_lab_screens 
     scene bg trash zoom
@@ -863,14 +877,6 @@ label empty_trash:
     $ trash_seen = True
     jump inside_lab 
 
-#label used_medical_tools:
-    #call hide_lab_screens
-    #show  medical tools
-    #$ show_textbox = True
-    #"Searching on a desk you find some chemicals and medical tools alongside what looks like a few of medievils implants but way smaller."
-    #$ show_textbox = False
-    #$ medical_tools_seen = True
-    #jump inside_lab
 
 label inside_lab_done:
     hide screen phone_icon 
@@ -1003,8 +1009,6 @@ label phishing_mail_retry:
     show screen mail_screen
     jump empty_label
 
-
-
 label phishing_mail_fail:
     $ show_textbox = True
     hide screen phone_icon
@@ -1034,17 +1038,28 @@ label phishing_mail_fail:
     L "Hmm. That mail was doomed from the start"
     jump game_over
 
-label in_progress:
-    scene black
-    with dissolve
-    $ show_textbox = False
-    "{size=90}Work in progress{/size}\nThank you for playing."
-    with dissolve
-    pause 2.5
-    return
+init python:
+    """
+    # Not needed currently
+    label in_progress:
+        scene black
+        with dissolve
+        $ show_textbox = False
+        "{size=90}Work in progress{/size}\nThank you for playing."
+        with dissolve
+        pause 2.5
+        return
+    """
 
 
+# Empty label creates an empty loop that is needed when the player is currently in an interactable screen
+# Without this label, when a screen with interactables would open, it would open on top of the dialogue...
+# ...which would cause the dialogue to advance in the background without notice when the player...
+# ...interacts with the screen in the foreground. Therefore it is adviced (by us; unless someone finds...
+# ...a better alternative) to enter this label (jump to it) when entering an interactable screen like...
+# ...the laptop so that relevant dialogue dosn't advance in the background. Of course afterwards the...
+# ...game has to jump out of the empty label from the interactable screen after it's done.
 label empty_label:
     ""
-    # $ renpy.notify("all good")
+    # $ renpy.notify("in empty label")
     jump empty_label
