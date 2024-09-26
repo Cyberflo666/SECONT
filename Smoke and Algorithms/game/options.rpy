@@ -11,7 +11,10 @@
 
 # OWN CHANGES:
 # define config.rollback_enabled = False
-
+define config.mouse = { }
+define config.mouse["default"] = [ ("gui/mouse/cursor_default.png", 0, 0) ]
+define config.mouse["button"] = [ ("gui/mouse/cursor_select.png", 0, 0) ]
+define config.mouse["pressed_button"] = [ ("gui/mouse/cursor_select_tap.png", 0, 0) ]
 
 
 ## A human-readable name of the game. This is used to set the default window
@@ -19,7 +22,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("Smoke and Algorithms")
+define config.name = _("Mind Hackers: Whispers in the Wires")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set

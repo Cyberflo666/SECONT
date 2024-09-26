@@ -381,7 +381,7 @@ screen main_menu():
         vbox:
             style "main_menu_vbox"
 
-            text "[config.name!t]":
+            text "Mind Hackers:\n        Whispers in the Wires":
                 style "main_menu_title"
 
             text "[config.version]":
@@ -574,13 +574,12 @@ screen about():
 
             text "\n---------------------\n"
             text "Made by the project group \"Social Engineering, the adventure continues\"."
-            text "at Bauhausuniversity Weimar \n\nSummer semester 2024"
+            text "at Bauhaus-Universität Weimar \n\nSummer semester 2024\n"
             image "gui/bauhausuni logo.png"
             text "\n---------------------\n"
-            text "Music used:"
-            text "\"Funky\", \"Pandora\" and \"Pipeline\" by Szymon Matuszewsk\nhttps://opengameart.org/content/freemusicpack-by-szymon-matuszewski CC-BY 3.0"
-            text "\"Relax4\" by Martin Linda -  Berusky 2 Sound Track © 2009 Martin Linda\nhttps://opengameart.org/content/berusky-ii-ost-action-puzzle-game-soundtrack-23-tracks CC-BY-SA 3.0"
-            text "\"A Wrench In The Works\" - \"Your Digital Footprint\" (Investigation Theme) Composed by One Man Symphony - \nonemansymphony.bandcamp.com CC-BY 3.0"
+            text "Music used:\n"
+            text "\"Funky\", \"Pandora\" and \"Pipeline\"\n by {a=https://opengameart.org/content/freemusicpack-by-szymon-matuszewski}Szymon Matuszewsk{/a}\nlicenced under {a=https://creativecommons.org/licenses/by/3.0/}CC-BY 3.0{/a}\n"
+            text "\"A Wrench In The Works\", \"Lost Dream\" and \"Like In Old Movies\"\n by {a=https://onemansymphony.bandcamp.com}One Man Symphony{/a}\nlicenced under {a=https://creativecommons.org/licenses/by/4.0/}CC-BY 4.0{/a}"
             text "\n---------------------\n"
             ## gui.about is usually set in options.rpy.
             if gui.about:
