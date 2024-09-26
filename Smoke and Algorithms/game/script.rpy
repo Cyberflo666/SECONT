@@ -6,7 +6,7 @@ default show_textbox = True
 default gallery = Pictures([])
 define medievilColor = "#e46b6bff"
 default current_location = 0 # -1 = Error, 0 = Dorms, 1 = University
-
+default mouse_index = 0
 default hide_map = False
 
 init python:

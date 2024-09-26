@@ -11,7 +11,10 @@
 
 # OWN CHANGES:
 # define config.rollback_enabled = False
-
+define config.mouse = { }
+define config.mouse["default"] = [ ("gui/mouse/cursor_default.png", 0, 0) ]
+define config.mouse["button"] = [ ("gui/mouse/cursor_select.png", 0, 0) ]
+define config.mouse["pressed_button"] = [ ("gui/mouse/cursor_select_tap.png", 0, 0) ]
 
 
 ## A human-readable name of the game. This is used to set the default window
@@ -19,7 +22,7 @@
 ##
 ## The _() surrounding the string marks it as eligible for translation.
 
-define config.name = _("Smoke and Algorithms")
+define config.name = _("Mind Hackers: Whispers in the Wires")
 
 
 ## Determines if the title given above is shown on the main menu screen. Set
@@ -30,7 +33,7 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = "1.0"
+define config.version = "1.1"
 
 
 ## Text that is placed on the game's about screen. Place the text between the
@@ -127,7 +130,7 @@ define config.window_hide_transition = Dissolve(.2)
 ## Controls the default text speed. The default, 0, is infinite, while any other
 ## number is the number of characters per second to type out.
 
-default preferences.text_cps = 0
+default preferences.text_cps = 35
 
 
 ## The default auto-forward delay. Larger numbers lead to longer waits, with 0

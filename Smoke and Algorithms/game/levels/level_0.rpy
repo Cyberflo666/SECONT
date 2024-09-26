@@ -120,7 +120,7 @@ label dorm_1:
 
     "Felix gasps for air, his voice barely a whisper"
 
-    F " {color=[medievilColor]}Medievil{/color}! They're not what they seem. This... this is everything. Trust no one."
+    F "{color=[medievilColor]}Medievil{/color}! They're not what they seem. This... this is everything. Trust no one."
 
     "With trembling hands, he thrusts a battered flash drive into your hand, then turns and flees, disappearing into the dimly lit hallway."
 

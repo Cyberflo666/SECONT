@@ -2,13 +2,16 @@
 # This file contains all characters and their corresponding images
 
 #Characters
-define narrator = Character(    what_italic=True, what_outlines=[(0, "#080808", 5, 5)])
-define PC = Character("[PN]",   what_prefix='"', what_suffix='"', who_color="#ffffff", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
-define A = Character("Alex",    what_prefix='"', what_suffix='"', who_color="#27e700", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
-define F = Character("Felix",   what_prefix='"', what_suffix='"', who_color="#2469ff", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
-define L = Character("Leonie",  what_prefix='"', what_suffix='"', who_color="#FF7F50", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
-define J = Character("Janitor", what_prefix='"', what_suffix='"', who_color="#AA4473", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
-
+define narrator = Character(            what_italic=True, what_outlines=[(0, "#080808", 5, 5)])
+define PC = Character("[PN]",           what_prefix='"', what_suffix='"', who_color="#ffffff", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+define A = Character("Alex",            what_prefix='"', what_suffix='"', who_color="#27e700", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+define F = Character("Felix",           what_prefix='"', what_suffix='"', who_color="#2469ff", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+define L = Character("Leonie",          what_prefix='"', what_suffix='"', who_color="#FF7F50", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+define J = Character("Janitor",         what_prefix='"', what_suffix='"', who_color="#AA4473", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+define R = Character("Receptionist",    what_prefix='"', what_suffix='"', who_color="#44aa99", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+define S1 = Character("Secretary",      what_prefix='"', what_suffix='"', who_color="#b60000", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+define S2 = Character("Security",       what_prefix='"', what_suffix='"', who_color="#686868", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
+define JA = Character("Joe Arnold",     what_prefix='"', what_suffix='"', who_color="#dacb00", who_bold=True, who_outlines=[(3, "#000000", 0, 0)], what_outlines=[(0, "#080808", 5, 5)])
 
 # Character Sprites
 # Leonie
@@ -89,6 +92,10 @@ image felix running:
 image felix shouting:
     "images/characters/felix/felix shouting.png"
     zoom 0.8
+transform felix_right:
+    zoom 0.6
+    xalign 0.9
+    ypos 60
 
 # Janitor
 image janitor neutral1:
@@ -112,6 +119,44 @@ transform janitor_right:
 transform janitor_middle:
     xalign 0.5
     yalign 1.0
+
+#Receptionist
+image receptionist friendly:
+    zoom 0.55
+    "images/characters/Receptionist (Male)/friendly.png"
+image receptionist neutral:
+    zoom 0.55
+    "images/characters/Receptionist (Male)/neutral.png"
+image receptionist suspicious:
+    "images/characters/Receptionist (Male)/suspicious.png"
+    zoom 0.55
+
+transform receptionist_right:
+    xalign 1.0
+    yalign 1.0
+
+#Secretary
+image secretary angry:
+    "images/characters/Secretary (Female)/angry.png"
+image secretary neutral:
+    "images/characters/Secretary (Female)/neutral.png"
+image secretary friendly:
+    "images/characters/Secretary (Female)/friendly.png"
+image secretary suspicious:
+    "images/characters/Secretary (Female)/suspicious.png"
+image secretary thinking:
+    "images/characters/Secretary (Female)/thinking.png"
+
+transform secretary_right:
+    ypos 1300
+    xalign 1.2
+transform secretary_right_smile:
+    ypos 1250
+    xalign 1.2
+    zoom 0.95
+transform security:
+    yalign 0.4
+    xalign 0.5
 
 label janitor_look(trust):
     if (trust > 75 ):

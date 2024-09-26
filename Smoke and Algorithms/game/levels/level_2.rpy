@@ -10,7 +10,7 @@ default lab_seen = False
 default uni_access_denied = False
 default dumpster_doven = False
 default dumpster2_doven = False
-default player_warned = False
+default warning_counter = 0
 default rat_seen = False
 default medical_tools_seen = False
 default symbols_seen = False 
@@ -23,8 +23,10 @@ default snack_gotten = False
 default open_gil_tag = False
 default gill_house_seen_bob = False
 default gill_house_seen_gill = False
+default in_dorms = False
 
 label level_2_start:
+    $ in_dorms = True
     scene bg new kitchen 
     
     "You walk over and gather around a table while opening up your laptop."
@@ -47,19 +49,66 @@ label research:
     ""
     jump empty_label
 
-label warning:
+label warning_1:
     $ show_image_buttons = False
-    $ player_warned = True
+    $ warning_counter = 1
     if show_textbox == False:
         $ show_textbox = True
         $ hide_textbox = True
     with dissolve
-    L "Are you sure we have enough information for a phishing mail?"
+    L "Im not sure if we have enough information for a phishing mail. We should do more research first!"
     with dissolve
     $ show_image_buttons = True
     if hide_textbox == True:
         $ show_textbox = False
         $ hide_textbox = False
+    return
+
+label warning_2:
+    $ show_image_buttons = False
+    $ warning_counter = 2
+    if show_textbox == False:
+        $ show_textbox = True
+        $ hide_textbox = True
+    with dissolve
+    L "Didn't I already tell you? We need to do more research first!"
+    with dissolve
+    $ show_image_buttons = True
+    if hide_textbox == True:
+        $ show_textbox = False
+        $ hide_textbox = False
+    return
+
+label warning_3:
+    $ show_image_buttons = False
+    $ warning_counter = 3
+    if show_textbox == False:
+        $ show_textbox = True
+        $ hide_textbox = True
+    with dissolve
+    L "Are you hard of hearing? We need more information before we write a phishing mail!"
+    with dissolve
+    $ show_image_buttons = True
+    if hide_textbox == True:
+        $ show_textbox = False
+        $ hide_textbox = False
+    return
+
+label warning_4:
+    $ show_image_buttons = False
+    $ warning_counter = 4
+    if show_textbox == False:
+        $ show_textbox = True
+        $ hide_textbox = True
+    with dissolve
+    L "Ok fine if you are beyond reason, go and write your pathetic email!"
+    with dissolve
+    $ show_image_buttons = True
+    if hide_textbox == True:
+        $ show_textbox = False
+        $ hide_textbox = False
+    hide screen laptop_screen
+    show screen mail_screen
     return
 
 label social_button_1:
@@ -335,6 +384,7 @@ label after_dumpsterdive:
     A "Yup, I've heard a lot of wild things about that restaurant. You're right, only the higher classes can afford it."
     PC "Seems like Bob Anderson went there with someone."
     L "I wonder whom he went there with. The food and drinks definitely look like for 2 people."
+    A "Maybe we can use this for our phishing mail later."
     $ gloss_dumpster_seen = True
     $ phone_not_glossary = True
     $ dumpster_doven = True
@@ -421,15 +471,11 @@ label after_dumpsterdive2:
     PC "It's a note from Gill."
     L "Says something about a handover."
     A "Interesting."
-    PC "I wonder if this can be of any use for us."
+    PC "I wonder if this can be of any use for our phishing mail."
     $ gloss_dumpster_seen = True
     $ dumpster2_doven = True
     jump research 
 
-
-
-
-    
 
 
 label lab_access_denied:
@@ -609,7 +655,8 @@ label wending_maschine:
             jump lab_entry_choice
 
 label lab_wait:
-    $ gloss_tailgating_seen = True
+    $ hide_map = True
+    $ gloss_surfing_seen = True
     $ phone_not_glossary = True
     scene bg uni hallway #need better spot than hallway
     with dissolve
@@ -627,11 +674,43 @@ label lab_wait:
     L "Quiet, we don't want him to notice us. Just observe what he presses."
     show alex serious1 at alex_right
     with dissolve
-    scene bg pinpad binoculars
+    scene bg pinpad
+    show binoculars
     with dissolve
     "You see an ominous person walking up to the door. He does not look like any university employee you know."
-    "You watch as he puts his hand on the pinboard and inputs: \n '4' '7' '1' '9' '6' '5'."
     "While you observe, you whisper to your friends what you see."
+    show bg pinpad 4
+    show binoculars
+    with dissolve
+    pause
+    show bg pinpad 7
+    show binoculars
+    with dissolve
+    pause
+    show bg pinpad 1
+    show binoculars
+    with dissolve
+    pause
+    show bg pinpad 9
+    show binoculars
+    with dissolve
+    pause
+    show bg pinpad 6
+    show binoculars
+    with dissolve
+    pause
+    show bg pinpad 5
+    show binoculars
+    with dissolve
+    pause
+    show bg pinpad e
+    show binoculars
+    with dissolve
+    pause
+
+    $ notes.add_data(NoteData("Pinpad: 471965"))
+
+    # "You watch as he puts his hand on the pinboard and inputs: \n '4' '7' '1' '9' '6' '5'."
     scene bg uni hallway
     with dissolve
     show alex serious2 at alex_right
@@ -678,14 +757,28 @@ label lab_wait:
     "..."
     show leonie neutral at left
     with dissolve
-    L "Anyways."
-    "Upon entering the lab the three of you start to investigate." 
+    L "Anyways. Let's enter the PIN."
+
+    show screen phone_icon
+    show screen pin_pad_input
+    with dissolve
+    ""
+    jump empty_label
+
+label pin_pad_mini_game_complete:
+    hide screen phone_icon
+    hide screen pin_pad_input
+    with dissolve
+    # scene bg pinpad
+    # show image "images/backgrounds/pinpad/pin enter 6.png"
+    A "Nice. Seems like the door opened."
     scene bg medievil lab
     with dissolve
+    "Upon entering the lab, the three of you start to investigate." 
     L "Let's take a look around this lab."
 
 label inside_lab:
-    if rat_seen and left_pc_seen and left_wall_seen and symbols_seen and trash_seen:
+    if rat_seen and left_pc_seen and left_wall_seen and symbols_seen:
         jump inside_lab_done
     $ show_textbox = False
     scene bg medievil lab
@@ -699,14 +792,13 @@ label inside_lab:
     with dissolve
     #show screen medical_tools
 
-    $ hide_map = True
     show screen phone_icon
     with moveinright
     jump empty_label
 
 
 label rat_in_cage_left:
-    call hide_lab_screens from _call_hide_lab_screens
+    call hide_lab_screens 
     scene bg left cage zoom
     with dissolve 
     $ show_textbox = True
@@ -716,7 +808,7 @@ label rat_in_cage_left:
     $ rat_seen = True
     jump inside_lab
 label left_pc_stats:
-    call hide_lab_screens from _call_hide_lab_screens_1
+    call hide_lab_screens 
     scene bg left pc zoom
     with dissolve 
     $ show_textbox = True
@@ -725,7 +817,7 @@ label left_pc_stats:
     $ left_pc_seen = True
     jump inside_lab
 label left_wall_obj:
-    call hide_lab_screens from _call_hide_lab_screens_2
+    call hide_lab_screens 
     scene bg left wall zoom
     with dissolve
     $ show_textbox = True
@@ -734,7 +826,7 @@ label left_wall_obj:
     $ left_wall_seen = True 
     jump inside_lab
 label symbols_on_screen:
-    call hide_lab_screens from _call_hide_lab_screens_3
+    call hide_lab_screens 
     scene bg monitor zoom
     with dissolve
     $ show_textbox = True
@@ -743,7 +835,7 @@ label symbols_on_screen:
     $ symbols_seen = True
     jump inside_lab
 label rat_in_cage_right:
-    call hide_lab_screens from _call_hide_lab_screens_4
+    call hide_lab_screens
     scene bg right cage zoom
     with dissolve
     $ show_textbox = True
@@ -753,7 +845,7 @@ label rat_in_cage_right:
     $ rat_seen = True
     jump inside_lab
 label right_pc_stats:
-    call hide_lab_screens from _call_hide_lab_screens_5
+    call hide_lab_screens 
     scene bg right pc zoom
     with dissolve
     $ show_textbox = True
@@ -762,7 +854,7 @@ label right_pc_stats:
     $ left_pc_seen = True
     jump inside_lab
 label empty_trash:
-    call hide_lab_screens from _call_hide_lab_screens_6
+    call hide_lab_screens 
     scene bg trash zoom
     with dissolve
     $ show_textbox = True
@@ -781,7 +873,8 @@ label empty_trash:
     #jump inside_lab
 
 label inside_lab_done:
-    call hide_lab_screens from _call_hide_lab_screens_7
+    hide screen phone_icon 
+    call hide_lab_screens 
     scene bg medievil lab
     with dissolve
     $ show_textbox = True
@@ -805,7 +898,7 @@ label inside_lab_done:
     with dissolve
     L "That can't be good. Looks like Felix was onto something for real."
 
-    PC "In any case I think we shouldn't stick around in here any longer than we need to."
+    PC "In any case I think we shouldn't stick around in here any longer than we need to. I dont think we will find more information for our phishing mail here."
 
     show alex serious2 at alex_right
     with dissolve
@@ -825,6 +918,7 @@ label phishing_mail_done:
     $ show_textbox = True
     hide screen phone_icon
     hide screen mail_screen
+    $ gloss_phishing_seen = True
     scene bg new kitchen
     show leonie thinking at left
     show alex smile at alex_right
@@ -835,17 +929,81 @@ label phishing_mail_done:
     scene black
     "The three of you return to your dorms and go to sleep."
     "As the next day arises you gather around your laptop to read the reply from Bob Anderson."
+
     scene bg new kitchen
     show leonie happy at left
     show alex happy at alex_right
     with dissolve
-
-    L "Yes. He fell right into our trap. He believed every word we said."
+    L "Yes. He fell right into our trap and believed every word we said."
 
     show alex smile at alex_right
     with dissolve
     A "Look, he even sent us the access codes to the back entrance of the facility. Just like we expected."
-    jump in_progress
+    
+    show leonie thinking at left    
+    with dissolve
+    L "Nice. Let's check out the building this evening and see what we're dealing with."
+
+    show alex happy at alex_right
+    with dissolve
+    A "Felix, we're coming."
+
+    jump level_3_start
+
+label phishing_mail_retry:
+    $ show_textbox = True
+    hide screen phone_icon
+    hide screen mail_screen
+    scene bg new kitchen
+    show leonie serious at left
+    show alex serious1 at alex_right
+    with dissolve
+    play music main_music1 volume loudness fadeout 1.0
+
+    A "I dont think this one will work, but let's see."
+
+    show leonie sad at left
+    with dissolve
+
+    L "I have a bad feeling about this."
+
+    scene black
+    "Hoping for a response the three of you go to bed and wait for tomorrow."
+    "The next day you all go to your dorms room and look through your Emails."
+
+    scene bg new kitchen
+    show leonie serious at left
+    show alex serious2 at alex_right
+    with dissolve
+
+    PC "Hmm. No response yet."
+
+    show alex serious1 at alex_right
+    with dissolve
+
+    A "Maybe he still hasn't read it."
+
+    show leonie sad at left
+    with dissolve
+
+    L "I think he just ignored us. It's probably best if we try again."
+
+    show alex serious2 at alex_right
+    with dissolve
+    A "Make sure you write a believable mail. Remember: we are trying to impersonate Gill Cameron and need to get access to the facility Bob works at."
+
+    show alex serious1 at alex_right
+    with dissolve
+    A "Maybe you could also take a second look at the pictures we took from the dumpster diving. They may contain valuable information."
+
+    $ show_textbox = False
+
+    scene bg laptop full
+    show screen phone_icon
+    show screen mail_screen
+    jump empty_label
+
+
 
 label phishing_mail_fail:
     $ show_textbox = True
