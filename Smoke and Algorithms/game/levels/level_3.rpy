@@ -572,6 +572,7 @@ label painting:
     call hide_bob_screens 
     scene bg bob office painting
     with dissolve
+    $ gloss_voice_seen = True
     $ show_textbox = True
     "You look at the painting and wonder why its placed so low and in the middle. You realise that you can take off the painting and theres a hidden little space with letters and a note with what seems to be a phone number."
     scene bg bob office

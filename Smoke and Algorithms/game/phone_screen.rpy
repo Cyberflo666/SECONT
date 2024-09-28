@@ -564,16 +564,18 @@ default gloss_dumpster_seen = False
 default gloss_tailgating_seen = False
 default gloss_phishing_seen = False
 default gloss_surfing_seen = False
+default gloss_voice_seen = False
 
 define gloss_text_list = ["""{b}{size=[gloss_font_size_big]}Bribery{/size}{/b}\n\nAlso known as “Quid pro quo”, Latin for “something for something”. Involves an exchange of information or services for a compensation. Subjects of bribery are usually aware of their wrongdoings although the true scale of the consequences may not be comprehensible to them at first.""",
                         """{b}{size=[gloss_font_size_big]}Impersonation{/size}{/b}\n\nExplains the act of posing as someone you are not in an attempt to deceive anyone. Impersonation can come in different styles: over the phone, where the voice is enough to pretend to be someone else, or even in person if the one being tricked doesn't know the impersonated one. Appearance, equipment and even other people can help strengthen the deception for example when wearing a warning vest and holding a clipboard.""",
                         """{b}{size=[gloss_font_size_big]}Dumpster Diving{/size}{/b}\n\nMost people don't dispose of their trash properly, leaving a lot of sensitive information in the form of letters, notes or invoices free to access for anyone willing to rummage through the garbage. If hardware is being disposed of, the data can also often still be accessed if the contents of the drives haven't been overwritten properly. Usually people forget their stuff once it's in the trash. “Out of sight out of mind”, but with enough patience, adversaries can get a lot of compromising data through dumpster diving.""",
                         """{b}{size=[gloss_font_size_big]}Tailgating{/size}{/b}\n\nAlso known as “piggybacking”. Describes the act of gaining access to a restricted area by following other people who have access. A perpetrator could, for example, disguise himself as a delivery person or a repair man and wait for someone holding up the door for him in a nice gesture.""",
                         """{b}{size=[gloss_font_size_big]}Shoulder Surfing{/size}{/b}\n\nShoulder surfing is an observational technique to gather information, by for example watching someone over the shoulder typing in confidential information. It doesn't specifically have to be over someones shoulder, but could be done further away by the usage of binoculars, as long as the adversary secretly views their data.""",
-                        """{b}{size=[gloss_font_size_big]}Phishing Mail{/size}{/b}\n\nIs  an attack via a message which is used to bait the target into handing out sensitive information or installing malware. In these messages, the attacker pretends to be a legitimate source to gain the trust of the target so they will follow the instructions given. Another variant of this approach is Spear Phishing where the content of the message is directed towards a single individual. In this case, the attacker uses personal information to get to the targeted person."""]
+                        """{b}{size=[gloss_font_size_big]}Phishing Mail{/size}{/b}\n\nIs  an attack via a message which is used to bait the target into handing out sensitive information or installing malware. In these messages, the attacker pretends to be a legitimate source to gain the trust of the target so they will follow the instructions given. Another variant of this approach is Spear Phishing where the content of the message is directed towards a single individual. In this case, the attacker uses personal information to get to the targeted person.""",
+                        """{b}{size=[gloss_font_size_big]}Voice Phishing{/size}{/b}\n\nSimilarly to phishing mail, baits the target into handing out sensitive information by the attacker pretending to be a trustworthy entity. However, unlike email-based phishing, this method involves verbal communication, typically over the phone. This has the advantage that in a call a person doesn't have as much time to think and answer as when responding to an email and thus it stresses out the targets, making them more likely to comply."""]
 default gloss_entry_text = ""
 
-define gloss_img_list = ["bribery", "impersonation", "dumpster", "tailgating", "surfing", "phishing"]
+define gloss_img_list = ["bribery", "impersonation", "dumpster", "tailgating", "surfing", "phishing", "voice phishing"]
 default gloss_entry_img = ""
 
 style gloss_buttons:
@@ -645,6 +647,10 @@ screen phone_hand_glossary():
                 textbutton "Phishing":
                     text_style "gloss_buttons"
                     action Function(set_gloss_text, 5), Hide("phone_hand_glossary"), Show("phone_hand_glossary_entry")
+            if gloss_voice_seen:
+                textbutton "Voice Phishing":
+                    text_style "gloss_buttons"
+                    action Function(set_gloss_text, 6), Hide("phone_hand_glossary"), Show("phone_hand_glossary_entry")
 
 # Seperate glossary entry screens
 screen phone_hand_glossary_entry():
@@ -674,7 +680,9 @@ screen phone_hand_glossary_entry():
             spacing 35
             # List of buttons for the social engineering techniques
             text [gloss_entry_text] style "gloss_text"
-
+        if gloss_entry_img == "bribery" or gloss_entry_img == "voice phishing":
+            pass
+        else:
             image "images/objects/phone/glossary/gloss %s.png" %gloss_entry_img
 
 init python:
