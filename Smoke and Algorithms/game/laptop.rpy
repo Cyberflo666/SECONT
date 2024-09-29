@@ -69,13 +69,13 @@ screen laptop_screen():
             idle "mail idle"
             hover "mail hover"
             focus_mask True
-            if warning_counter == 0 and mail_1_text_unlocked[0] == 0 and mail_1_text_unlocked[1] == 0 and mail_1_text_unlocked[2] == 0:
+            if warning_counter == 0 and (mail_1_text_unlocked[0] == 0 or mail_1_text_unlocked[1] == 0 or mail_1_text_unlocked[2] == 0):
                 action Call("warning_1")
-            elif warning_counter == 1 and mail_1_text_unlocked[0] == 0 and mail_1_text_unlocked[1] == 0 and mail_1_text_unlocked[2] == 0:
+            elif warning_counter == 1 and (mail_1_text_unlocked[0] == 0 or mail_1_text_unlocked[1] == 0 or mail_1_text_unlocked[2] == 0):
                 action Call("warning_2")
-            elif warning_counter == 2 and mail_1_text_unlocked[0] == 0 and mail_1_text_unlocked[1] == 0 and mail_1_text_unlocked[2] == 0:
+            elif warning_counter == 2 and (mail_1_text_unlocked[0] == 0 or mail_1_text_unlocked[1] == 0 or mail_1_text_unlocked[2] == 0):
                 action Call("warning_3")
-            elif warning_counter == 3 and mail_1_text_unlocked[0] == 0 and mail_1_text_unlocked[1] == 0 and mail_1_text_unlocked[2] == 0:
+            elif warning_counter == 3 and (mail_1_text_unlocked[0] == 0 or mail_1_text_unlocked[1] == 0 or mail_1_text_unlocked[2] == 0):
                 action Call("warning_4")
             else:
                 action Hide("laptop_screen"), Show("mail_screen")

@@ -80,7 +80,7 @@ label level_3_start:
     with dissolve
 
     play music mystery_music1 volume loudness
-
+    $ hide_map = True
     "As the sun starts to set, your team arrives at the facility where {color=[medievilColor]}Medievil{/color} probably conducts tons of unethical experiments and also where Bob Anderson works."
 
     #show leonie serious at left
@@ -114,6 +114,7 @@ label level_3_start:
     L "Yes, the code worked."
 
     show bg hallway night 3
+    with dissolve
     "With the door open, you sneakily follow the hallways towards the office areas. The hallways are almost completely void of any employees."
 
     show leonie serious at left
@@ -206,8 +207,9 @@ label level_3_start:
 
 define main_entrace_flag = False
 define observe_entrance_flag = False
-define infront_facility = True
+define infront_facility = False
 label menu_outside:
+    $ infront_facility = True
     scene bg front office 2 
     hide alex
     with dissolve
@@ -261,13 +263,13 @@ label main_entrance_menu:
             show receptionist neutral at receptionist_right
             with dissolve
             A "Excuse me!"
-            show receptionist annoyed at right
+            show receptionist annoyed at receptionist_right
             "He looks up slightly annoyed."
             R "Can i help you?"
             show alex smileleft at alex_left
             with dissolve
             A "My name is Gill Cameron and I need to deliver some packages to Bob Anderson."
-            show receptionist suspicious at right
+            show receptionist suspicious at receptionist_right
             R "Let me see your ID, please."
             "Knowing that this will probably not work out, you signal Alex with a look that its time to bale."
             show alex happyleft at alex_left
@@ -362,7 +364,7 @@ label back_entrance:
             jump game_over
 
 define USB_placed_1 = False
-
+define before_office = False
 label way_to_the_office:
     scene bg hallway 1
     hide alex
@@ -597,6 +599,7 @@ define called_from_smartphone = False
 define joe_called = 0
 
 label voice_phishing:
+    call hide_bob_screens
     scene bg bob office
     hide screen phone_icon
     $ show_textbox = True
@@ -675,12 +678,13 @@ label voice_phishing_done:
         jump game_over
     JA "Alright, we took him to the experimental department in the facility at Cityville Street 12345. We locked him in Laboratory 2 in the cellar."
     hide screen round_rect
+    $ show_image_buttons = True
     PC "Ok, great, and how can I get in."
     JA "Oh right, the pin to the door is 385529."
     PC "Perfect, thank you for your time."
     JA "Sure."
     A "He is here in this facility. C'mon, we have to help him."
-
+   
     menu:
         "Activate the fire alarm" if fire_alarm == False:
             "After activating the fire alarm, you heard sirens going off and speakers talking. While everyone is leaving the building, you wait in Bob's office."
@@ -744,13 +748,17 @@ label game_lost:
 label get_another_USB:
     scene black
     with dissolve
+    $ have_USB = True
     "You return to Leonie, and she gives you another USB-drive after lecturing you to not lose it again."
+    show screen phone_icon
     jump menu_outside
 
 label install_malware:
     scene black
     with dissolve
+    $ have_USB = True
     "After receiving a file from Leonie, you install the content on a spare drive you have in your pockets."
+    show screen phone_icon
     jump before_the_office
 
 
@@ -826,12 +834,12 @@ label find_felix:
     "The three of you leave the facility without further occurrences and head home, where Leonie waits."
     play music main_music1 volume loudness
     scene bg new kitchen
-    show alex neutral at alex_left
+    show alex neutral at alex_mid
     show leonie happy at left
     show felix smile at felix_right
     with dissolve
     L "Felix! We were worried sick. You have to tell us what happened."
-    show alex happy at alex_left
+    show alex happy at alex_mid
     with dissolve
     A "Not so fast. I believe Felix should get some rest first after what happened to him."
     show felix neutral2 at felix_right
@@ -843,13 +851,13 @@ label find_felix:
     show felix smile at felix_right
     with dissolve
     F "Thank you guys for believing me. I knew I could put my trust in you."
-    show alex smile at alex_left
+    show alex smile at alex_mid
     with dissolve
     A "Always Felix."
     show leonie thinking at left
     with dissolve
     L "Phew, this was quite the adventure. I can't believe {color=[medievilColor]}Medievil{/color} really held you captive."
-    show alex happy at alex_left
+    show alex happy at alex_mid
     with dissolve
     A "Yes, I'm glad we got you out of there. However, we can't let them continue with this. Felix is quite possible still in great danger, and so might we be."
     PC "Correct. We shouldn't let our guard down now. We have to investigate further into this company and bring them down once and for all."
@@ -858,7 +866,7 @@ label find_felix:
     show leonie happy at left
     with dissolve
     L "I agree that Medievil deserves to be brought down, but why don't we enjoy at least this evening together without worrying about evil corporations hunting us?"
-    show alex smile at alex_left
+    show alex smile at alex_mid
     with dissolve
     A "Alright. Good Idea."
     "You have reached the end of this game. Thank you for playing."
@@ -897,5 +905,5 @@ screen end_screen:
         action Jump("game_finished")
 
 label game_finished:
-    pass
+    $ MainMenu()
 return

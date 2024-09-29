@@ -27,7 +27,7 @@ default snack_gotten = False
 default open_gil_tag = False
 default gill_house_seen_bob = False
 default gill_house_seen_gill = False
-default in_dorms = False
+default in_dorms = True
 
 label level_2_start:
     $ in_dorms = True
@@ -44,6 +44,8 @@ label level_2_start:
     PC "Either way we should do some research on him."
 
 label research:
+    $ current_location = 0
+    $ in_dorms = True
     scene bg laptop full
     show screen phone_icon
     show screen laptop_screen
@@ -587,6 +589,7 @@ label visitlab:
 
     hide alex 
     hide leonie 
+    with dissolve
 
     "You head to the door of the lab, and see that there's a pin needed to unlock the door."
 
@@ -639,7 +642,7 @@ label lab_entry_choice:
             with dissolve
             $ snack_gotten = True
             "Researching all day made you kinda hungry and since there is nothing else nearby you decide to get a snack from the local wending machine."
-            "After paying 1,20$ for an overpriced chocolate bar you watch as your snack gets stuck in the spiral of a lower row."
+            "After paying 1.20$ for an overpriced chocolate bar you watch as your snack gets stuck in the spiral of a lower row."
             jump wending_maschine
 
 # Someone didn't know how to write vending machine

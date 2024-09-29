@@ -82,6 +82,9 @@ transform alex_midleft:
 transform alex_left:
     xalign -1
     yalign -0.8
+transform alex_mid:
+    xalign  0.35
+    yalign -0.8
 
 # ################################## Felix sprites: ###################################
 image felix running:
@@ -129,9 +132,12 @@ image receptionist neutral:
 image receptionist suspicious:
     "images/characters/Receptionist (Male)/suspicious.png"
     zoom 0.55
+image receptionist annoyed:
+    "images/characters/Receptionist (Male)/annoyed.png"
+    zoom 0.55
 
 transform receptionist_right:
-    xalign 1.0
+    xalign 0.9
     yalign 1.0
 
 # ################################ Secretary sprites: #################################

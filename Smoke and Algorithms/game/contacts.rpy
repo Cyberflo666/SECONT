@@ -97,12 +97,10 @@ label call_leonie:
         $ hide_textbox = True
     hide screen phone_hand_contact
     with dissolve
-    if USB_placed_0 == True and before_office == False:
+    if have_USB == False and before_office == False:
         L "You lost the USB? Should have know you two would mess it up. Just come back and i'll give you another one."
-        $ have_USB = True
     elif have_USB == False:
         L "You lost the USB? Should have know you two would mess it up. Wait a sec I'll send you a copy of the mallware to install on a spare USB."
-        $ have_USB = True
     elif current_location == "end_game":
         L "Nice job, but why are you calling me?"
     elif leonie_away == True:
@@ -116,9 +114,11 @@ label call_leonie:
         $ hide_textbox = False
     show screen phone_hand_contact
     
-    if USB_placed_0 == True and before_office == False:
+    if have_USB == False and before_office == False:
+        hide screen phone_hand_contact
         jump get_another_USB
     elif have_USB == False:
+        hide screen phone_hand_contact
         jump install_malware
     elif infront_facility == True:
         jump menu_outside

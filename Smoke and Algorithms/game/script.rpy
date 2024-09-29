@@ -40,6 +40,14 @@ label map_disabled:
     $ show_image_buttons = True
     show screen phone_hand_map
     with dissolve
+    if USB_placed_0 == True and before_office == False:
+        jump menu_outside
+    elif have_USB == False:
+        jump before_the_office
+    elif infront_facility == True:
+        jump menu_outside
+    elif current_location == "before_office":
+        jump before_the_office
     return
 
 # Label "start" is being called by renpy automatically after starting the game

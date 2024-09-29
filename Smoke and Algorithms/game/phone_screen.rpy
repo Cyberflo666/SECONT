@@ -680,10 +680,10 @@ screen phone_hand_glossary_entry():
             spacing 35
             # List of buttons for the social engineering techniques
             text [gloss_entry_text] style "gloss_text"
-        if gloss_entry_img == "bribery" or gloss_entry_img == "voice phishing":
-            pass
-        else:
-            image "images/objects/phone/glossary/gloss %s.png" %gloss_entry_img
+            if gloss_entry_img == "bribery" or gloss_entry_img == "voice phishing":
+                pass
+            else:
+                image "images/objects/phone/glossary/gloss %s.png" %gloss_entry_img
 
 init python:
     def set_gloss_text(technique_index):
