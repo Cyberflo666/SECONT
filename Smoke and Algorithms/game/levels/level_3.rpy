@@ -749,6 +749,7 @@ label get_another_USB:
     scene black
     with dissolve
     $ have_USB = True
+    $ phone_open = False
     "You return to Leonie, and she gives you another USB-drive after lecturing you to not lose it again."
     show screen phone_icon
     jump menu_outside
@@ -757,6 +758,7 @@ label install_malware:
     scene black
     with dissolve
     $ have_USB = True
+    $ phone_open = False
     "After receiving a file from Leonie, you install the content on a spare drive you have in your pockets."
     show screen phone_icon
     jump before_the_office
