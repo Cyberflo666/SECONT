@@ -17,6 +17,7 @@ define ignore = False
 label level_0_start:
     play music suspense_music1 volume loudness
     
+    "[[Remember to save the game regularly; Ren'Py provides automatic saves in the tab 'A' in the saves]"
     "Buckle up for a journey where trust is a weapon, truth is a labyrinth, and the choices you make could unravel a conspiracy that reaches far beyond the walls of your imagination."
 
     # Read the player name
