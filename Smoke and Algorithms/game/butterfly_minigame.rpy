@@ -165,7 +165,6 @@ init python:
                             self.butterf_caught += 1
                             if self.butterf_caught == self.butterf_count - 1:
                                 renpy.jump("butterfly_minigame_completed")
-                                renpy.notify("done")
                                 renpy.restart_interaction()
 
 # ################################ Mini game screen: ##################################

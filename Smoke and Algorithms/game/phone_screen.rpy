@@ -259,7 +259,7 @@ init python:
         show_image_buttons = False
 
 
-        renpy.notify(password_fail_counter)
+        # DEBUG renpy.notify(password_fail_counter)
         # Correct Password: thecakeisalie0417911
     
     def reset_password_text():
@@ -418,7 +418,7 @@ init python:
     def already_here_notify():
         renpy.notify("You are already here.")
     def cant_go_there_notify():
-        renpy.notify("You cant go there.")
+        renpy.notify("You can't go there.")
 
 screen phone_hand_map():
     zorder 2
@@ -978,5 +978,5 @@ init python:
     def set_phone_open(boolean):
         global phone_open
         phone_open = boolean
-        renpy.notify("phone:" + str(boolean))
+        # DEBUG renpy.notify("phone:" + str(boolean))
         return

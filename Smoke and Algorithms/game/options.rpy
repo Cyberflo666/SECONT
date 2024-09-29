@@ -10,7 +10,7 @@
 
 
 # OWN CHANGES:
-# define config.rollback_enabled = False
+define config.rollback_enabled = False # Disable this for development
 define config.mouse = { }
 define config.mouse["default"] = [ ("gui/mouse/cursor_default.png", 0, 0) ]
 define config.mouse["button"] = [ ("gui/mouse/cursor_select.png", 0, 0) ]
@@ -33,7 +33,7 @@ define gui.show_name = True
 
 ## The version of the game.
 
-define config.version = "1.1"
+define config.version = "1.2"
 
 
 ## Text that is placed on the game's about screen. Place the text between the

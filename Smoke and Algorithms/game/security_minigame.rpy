@@ -242,7 +242,8 @@ screen minigame_screen():
 # ############################### Logic for mini game: ################################
 init python:
     def real_notify(string):
-        renpy.notify(string)
+        pass
+        # DEBUG renpy.notify(string)
     def turn(input):
         global game_matrix
         global sec_list
@@ -338,14 +339,14 @@ init python:
         if player_pos == [4,5]:
             if door_state == False:
                 valid_inputs[1] = 0
-                renpy.notify(valid_inputs[1])
+                # DEBUG renpy.notify(valid_inputs[1])
         if player_pos == [3,5]:
             if door_state == False:
                 valid_inputs[3] = 0
         if player_pos == [10,5]:
             if door_state1 == False:
                 valid_inputs[3] = 0
-                renpy.notify(valid_inputs[1])
+                # DEBUG renpy.notify(valid_inputs[1])
         if player_pos == [11,5]:
             if door_state1 == False:
                 valid_inputs[1] = 0

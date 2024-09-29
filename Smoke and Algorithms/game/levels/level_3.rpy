@@ -203,6 +203,7 @@ label level_3_start:
     scene bg front office 2 
     with dissolve
     "You find yourself at the spot you were yesterday."
+    $ phone_open = False
     #hide alex with dissolve
 
 define main_entrace_flag = False
