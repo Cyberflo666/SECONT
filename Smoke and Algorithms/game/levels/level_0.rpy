@@ -239,11 +239,11 @@ label choice0_follow:
 
         A "Felix! Where are you?"
 
-        "Their voices echo down the empty corridor, but there's no response. They search every nook and cranny, every possible hiding spot, but Felix is gone."
+        "Your voice echoes down the empty corridor, but there's no response. Your search every nook and cranny, every possible hiding spot, but Felix is gone."
 
         PC "Damn it! We lost him."
 
-        "Defeated, they return to the dorm room, the silence amplifying their worry. Leonie picks up the flash drive Felix left behind, a sense of urgency washing over her."
+        "Defeated, your return to the dorm room, the silence amplifying your worry. Leonie picks up the flash drive Felix left behind, a sense of urgency washing over her."
 
         L "We have to figure out what's on this drive. Maybe it holds the answers to where Felix went and what he's so scared of."
 

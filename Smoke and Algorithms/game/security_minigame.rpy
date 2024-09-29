@@ -756,6 +756,9 @@ init python:
         door_state = 0
         door_timer1 = 0
         door_state1 = 0
+        operation_table_seen = False
+        hospital_bed_seen = False
+        skull_anatomy_seen = False
         optional_flag = True
         bobs_flag = True
         courtyard_flag = True

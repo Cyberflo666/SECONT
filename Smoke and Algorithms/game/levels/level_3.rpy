@@ -157,6 +157,7 @@ label level_3_start:
     A "\'Tailgaiting\'. We follow one of the employees through the door and pretend we belong here. I think most people would believe us and just hold the door open for us like we were other employees."
 
     $ gloss_tailgating_seen = True
+    $ phone_not_glossary = True
 
     show leonie serious at left
     with dissolve
@@ -299,7 +300,7 @@ label back_entrance:
     show secretary suspicious at center
     S1 "Excuse me, who are you? I have not seen you here before."
     menu:
-        "Tell her that you are the new interns of Aob Anderson, and you need to go to his office.":
+        "Tell her that you are the new interns of Bob Anderson, and you need to go to his office.":
             show secretary suspicious at secretary_right
             show alex smileleft at alex_left
             with dissolve
@@ -312,7 +313,7 @@ label back_entrance:
             A "How else would we have gotten access."
             show secretary thinking at secretary_right
             with dissolve
-            S1 "Well thats a good point. Sorry for being so mistrustful but our higher ups want us to take security rather serious"
+            S1 "Well that's a good point. Sorry for being so mistrustful but our higher ups want us to take security rather serious"
             show alex happyleft at alex_left
             with dissolve
             A "Yeah, we know. Bob also said to us, We shouldn't speak of what we do here outside of work."
@@ -321,7 +322,7 @@ label back_entrance:
             S1 "Sounds like him. Anyway, his office is in the area with the others just down this corridor."
             show alex smileleft at alex_left
             with dissolve
-            A "Okay, great, thank you."
+            A "Okay, great. Thank you."
             show secretary friendly at secretary_right_smile
             with dissolve
             S1 "No problem."
@@ -393,7 +394,7 @@ label before_the_office:
         "Place the USB-Drive as a bait for employees" if USB_placed_1 == False and have_USB == True:
             hide screen phone_icon
             "You put the USB-Drive on a nearby desk with a note saying, \"Observation team, please have a look at this\"."
-            "To avoid further confrontation, you hide in the bathroom until you get a call from leonie telling you that she is now in control of the cameras."
+            "To avoid further confrontation, you hide in the bathroom until you get a call from Leonie telling you that she is now in control of the cameras."
             $ cameras_off = False
             $ USB_placed_1 = True
             jump before_the_office
@@ -426,7 +427,7 @@ label optional:
     "You sneakingly open the door, somewhat afraid that an employee might be here and walk in slowly."
     show alex serious2left at alex_left
     with dissolve
-    A "Since We are already in this weird room, we might as well take a look around."
+    A "Since we are already in this weird room, we might as well take a look around."
     jump optional_clicking
 
 label optional_clicking:
@@ -540,7 +541,7 @@ label phone:
     scene bg bob office phone
     with dissolve
     $ show_textbox = True
-    "This must be bobs phone. It looks pretty fancy and expensive."
+    "This must be Bob's phone. It looks pretty fancy and expensive."
     $ show_textbox = False
     $ phone_seen = True
     show screen phone_icon
@@ -576,7 +577,7 @@ label painting:
     $ show_textbox = True
     "You look at the painting and wonder why it's placed so low and in the middle. You realise that you can take off the painting, and theres a hidden little space with letters and a note with what seems to be a phone number."
     scene bg bob office
-    "The letters are from someone called Joe Arnold. They talk about how he was supposed to look after Felix because Bob Anderson found his latest behavior suspicious."
+    "The letters are from someone called \"Joe Arnold\". They talk about how he was supposed to look after Felix because Bob Anderson found his latest behavior suspicious."
     "They even mention the day you last saw Felix and that the problem was taken care of."
     A "Is this about Felix? What does taken care of mean? Do you think he's ... dead?"
     "I dont know, but we shouldn't think of that. We need to think of what to do next if he is still alive."
@@ -585,6 +586,7 @@ label painting:
     $ painting_seen = True
     $ number_found = True
     $ phone_seen = False
+    $ phone_not_glossary = True
     show screen phone_icon
     jump bob_clicking
 
@@ -713,6 +715,7 @@ label voice_phishing_done:
             hide screen minigame_screen
             jump security_minigame_start
 
+# Not used anymore?
 label leave_facility:
     $ show_textbox = True
     hide screen minigame_screen
@@ -766,14 +769,14 @@ label find_felix:
     with dissolve
     "You and Alex go after the signs indicating the way to the basements. Along the way, there are no people aside from you."
     "After reaching the bottom of the stairs, you follow the hallways."
-    scene bg basement hallways
+    scene bg basement 2
     with dissolve
     "There are no windows down here, and the light emanating from the halogen lights fills the hallways in a constant dazzling brightness. Together with the walls just smelling like freshly pouren concrete, it creates an unnerving ambience."
     "You hear two women from afar, their voices echoing in the barren hallways. They appear to be office workers, and you avoid them by staying out of sight until they've passed you."
     "Keeping the communication to simple hand signs as not to raise attention, the two of you push forward, coming along a series of heavy metal doors, labeled with cryptic numbers and letter combinations."
     "You check each one of the labels until you find the door that Felix is supposed to be kept behind."
     "The PIN Joe gave you seems to work just fine, and Alex opens the door with a loud creak reflecting along the drawn-out hallways."
-    scene bg file room
+    scene bg felix cell
     show felix neutral1 at felix_right
     with dissolve
     F "[PN]? Alex?"
@@ -819,6 +822,7 @@ label find_felix:
     A "Yes, follow us. We'll take the back entrance to get out again. There shouldn't really be anyone there."
     scene black
     with dissolve
+    $ in_dorms = True
     "The three of you leave the facility without further occurrences and head home, where Leonie waits."
     play music main_music1 volume loudness
     scene bg new kitchen
@@ -835,7 +839,7 @@ label find_felix:
     "Alex pours Felix a glass of water and rumbles through the fridge in an attempt to find something edible."
 
     play music end_music volume loudness
-    scene bg party
+    scene bg kitchen party
     show felix smile at felix_right
     with dissolve
     F "Thank you guys for believing me. I knew I could put my trust in you."
@@ -857,6 +861,7 @@ label find_felix:
     show alex smile at alex_left
     with dissolve
     A "Alright. Good Idea."
+    "You have reached the end of this game. Thank you for playing."
     $ show_textbox = False
     $ current_location = "end_game"
     show screen end_screen
@@ -865,19 +870,25 @@ label find_felix:
     jump empty_label
 
 screen end_screen:
-    image "images/backgrounds/bg new kitchen.png"
-    image "images/characters/felix/felix smile.png":
-        zoom 0.8
-        xpos 550
-        ypos -100
+
+    image "images/backgrounds/bg kitchen party.png"
+
     image "images/characters/player/male/pcm smile.png":
         zoom 1.6
-        xpos -600
+        xpos 150
         ypos 200
+
+    image "images/characters/felix/felix smile.png":
+        zoom 0.8
+        xpos 1150
+        ypos -100
+
     image "images/characters/leonie/leonie happy.png":
         zoom 0.3
-        xpos 1150
+        xpos -100
         ypos 200
+        xzoom -1
+
     # Exit to main menu button
     imagebutton:
         idle "images/objects/main menu button idle.png"
